@@ -10,7 +10,15 @@
 class IdentityDefinition {
 
 #define AFTER_EXTRA
-
+// Add Member There
+public:
+enum class Type : char
+{
+    Invalid = 0,
+    Player = 1,
+    Actor = 2,
+    Fake = 3
+};
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_IDENTITYDEFINITION
 public:

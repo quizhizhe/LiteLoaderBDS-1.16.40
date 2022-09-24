@@ -8,6 +8,9 @@
 #undef BEFORE_EXTRA
 
 namespace Automation {
+    // Add Member There
+    class AutomationClient;
+    enum MessagePurpose;
 
 #define AFTER_EXTRA
 

@@ -111,11 +111,21 @@ ActorUniqueID Actor::getActorUniqueId() const {
 //     return true;
 // }
 
-// ItemStack* Actor::getHandSlot() {
-//     if (isPlayer())
-//         return (ItemStack*)&((Player*)this)->getSelectedItem();
-//     return (ItemStack*)&getHandContainer().getItem(0);
-// }
+SimpleContainer & Actor::getHandContainer(){
+    //ScriptHandContainerComponent::hasComponent actor
+    return dAccess<SimpleContainer&>(this, 176);
+}
+
+ItemStack* Actor::getHandSlot() {
+    if (isPlayer())
+        return (ItemStack*)&((Player*)this)->getSelectedItem();
+    return (ItemStack*)&getHandContainer().getItem(0);
+}
+
+SimpleContainer & Actor::getArmorContainer(){
+    // ItemStackNetManagerServer::_handleLegacyTransactionRequest Line46
+    return dAccess<SimpleContainer&>(this, 1400);
+}
 
 bool Actor::rename(const string& name) {
     setNameTag(name);

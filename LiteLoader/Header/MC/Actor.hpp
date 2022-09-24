@@ -50,7 +50,7 @@ public:
     //LIAPI bool hurtEntity(float damage, ActorDamageCause damageCause = ActorDamageCause::ActorDamageCause_Override);
     //LIAPI bool teleport(Vec3 to, int dimID, float x, float y);
     //LIAPI bool teleport(Vec3 pos,int dimid);
-    //LIAPI ItemStack* getHandSlot();
+    LIAPI ItemStack* getHandSlot();
     LIAPI bool rename(const string& name);
     LIAPI std::unique_ptr<CompoundTag> getNbt();
     LIAPI bool setNbt(CompoundTag* nbt);
@@ -58,6 +58,8 @@ public:
     LIAPI bool addEffect(MobEffect::EffectType type, int tick, int level, bool ambient = false, bool showParticles = true, bool showAnimation = false);
     LIAPI float quickEvalMolangScript(const string& expression);
     //LIAPI Json::Value quickEvalMolangScriptAsJson(const string& expression);
+    LIAPI SimpleContainer & getHandContainer();
+    LIAPI SimpleContainer & getArmorContainer();
 
     inline Vec3 getPosition()
     {

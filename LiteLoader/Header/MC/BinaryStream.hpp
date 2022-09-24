@@ -27,6 +27,13 @@ public:
     LIAPI void writeUnsignedInt64(unsigned __int64 value);
     LIAPI void writeVarInt(int value);
     LIAPI void writeVarInt64(__int64 value);
+    
+    inline void writeType(class Vec3 const& vec3)
+    {
+        writeFloat(vec3.x);
+        writeFloat(vec3.y);
+        writeFloat(vec3.z);
+    }
 
     LIAPI void reserve(size_t size);
     LIAPI std::string& getRaw();

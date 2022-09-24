@@ -44,14 +44,19 @@ public:
     LIAPI string getServerAddress();
     LIAPI NetworkIdentifier* getNetworkIdentifier();
     LIAPI Certificate* getCertificate();
-    LIAPI Container* getEnderChestContainer();
     LIAPI std::pair<BlockPos, int> getRespawnPosition();
     LIAPI float getAvgPacketLoss();
     LIAPI float getLastPacketLoss();
-    LIAPI string getClientId();
+    //LIAPI string getClientId();
     LIAPI int getDeviceType();
     LIAPI bool isOperator();
     LIAPI bool isOP();
+    LIAPI int getPlatform();
+    LIAPI Container & getInventory();
+    LIAPI BlockPos const & getSpawnPosition();
+    LIAPI AutomaticID<Dimension, int> getSpawnDimension();
+    LIAPI enum CommandPermissionLevel getPlayerPermissionLevel();
+    LIAPI int getPlayerLevel();
 
     LIAPI int getCurrentExperience();
     LIAPI bool setCurrentExperience(int exp);
@@ -129,7 +134,7 @@ public:
     LIAPI bool refreshAttributes(std::vector<Attribute const*> const& attributes);
     //LIAPI void addBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay = 0);
     LIAPI void removeBossEvent(int64_t uid);
-    LIAPI void updateBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay = 0);
+    //LIAPI void updateBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay = 0);
 
     LIAPI int getScore(const string& key);
     LIAPI bool setScore(const string& key, int value);
@@ -152,7 +157,7 @@ public:
     //LIAPI bool sendAddEntityPacket(unsigned long long runtimeID, string entityType, Vec3 pos, Vec2 rotation, float headYaw, vector<std::unique_ptr<DataItem>> dataItems = {});
     LIAPI bool sendUpdateBlockPacket(BlockPos const& blockPos, unsigned int runtimeId, UpdateBlockFlags flag = UpdateBlockFlags::BlockUpdateAll, UpdateBlockLayer layer = UpdateBlockLayer::UpdateBlockDefault);
     LIAPI bool sendUpdateBlockPacket(BlockPos const& blockPos, const Block& block, UpdateBlockFlags flag = UpdateBlockFlags::BlockUpdateAll, UpdateBlockLayer layer = UpdateBlockLayer::UpdateBlockDefault);
-    //LIAPI bool sendTransferPacket(const string& address, short port) const;
+    LIAPI bool sendTransferPacket(const string& address, short port) const;
     LIAPI bool sendSetDisplayObjectivePacket(const string& title, const string& name, char sortOrder) const;
     LIAPI bool sendSetScorePacket(char type, const vector<ScorePacketInfo>& data);
     //LIAPI bool sendBossEventPacket(BossEvent type, string name, float percent, BossEventColour colour, int overlay = 0);
@@ -161,7 +166,7 @@ public:
     LIAPI bool sendTextTalkPacket(const string& msg, Player* target /* = nullptr*/);
 
     LIAPI bool sendRawFormPacket(unsigned formId, const string& data) const;
-    LIAPI bool sendToastPacket(string title, string msg);
+    //LIAPI bool sendToastPacket(string title, string msg);
 
     LIAPI static bool isValid(Player* player);
 

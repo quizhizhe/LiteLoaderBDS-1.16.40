@@ -10,7 +10,12 @@
 class Objective {
 
 #define AFTER_EXTRA
+// Add Member There
+public:
+    std::string getName();
 
+    LIAPI bool setDisplay(const std::string& slotName, ObjectiveSortOrder sort);
+    
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_OBJECTIVE
 public:

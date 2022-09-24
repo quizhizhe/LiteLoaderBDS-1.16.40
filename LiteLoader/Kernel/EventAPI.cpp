@@ -26,8 +26,8 @@
 #include <MC/PlayerActionPacket.hpp>
 #include <MC/RespawnPacket.hpp>
 #include <MC/Scoreboard.hpp>
-#include <MC/NpcActionsContainer.hpp>
-#include <MC/NpcSceneDialogueData.hpp>
+// #include <MC/NpcActionsContainer.hpp>
+// #include <MC/NpcSceneDialogueData.hpp>
 #include <MC/ArmorStand.hpp>
 #include <MC/NpcAction.hpp>
 #include <MC/NpcComponent.hpp>
@@ -38,7 +38,7 @@
 #include <MC/ActorDamageSource.hpp>
 #include <ScheduleAPI.h>
 #include <MC/ServerPlayer.hpp>
-#include <RegCommandAPI.h>
+// #include <RegCommandAPI.h>
 #include <Utils/StringHelper.h>
 #include <Utils/DbgHelper.h>
 #include <I18nAPI.h>
@@ -51,14 +51,14 @@
 #include <MC/ComplexInventoryTransaction.hpp>
 #include <MC/InventoryTransaction.hpp>
 #include <MC/InventoryAction.hpp>
-#include <MC/InventorySource.hpp>
+// #include <MC/InventorySource.hpp>
 #include <MC/Util.hpp>
 #include <DynamicCommandAPI.h>
 #include <MC/ResourcePackManager.hpp>
 #include <MC/ResourceLocation.hpp>
 #include <MC/PackSourceFactory.hpp>
 #include <MC/CompositePackSource.hpp>
-#include <MC/ResourcePackPaths.hpp>
+// #include <MC/ResourcePackPaths.hpp>
 #include <MC/DirectoryPackSource.hpp> 
 #include <MC/PackSource.hpp>
 
@@ -1273,7 +1273,7 @@ TInstanceHook(void, "?onProjectileHit@Block@@QEBAXAEAVBlockSource@@AEBVBlockPos@
 
 
 /////////////////// RedStoneUpdate ///////////////////
-// 红石粉
+// 红石�?
 TClasslessInstanceHook(void, "?onRedstoneUpdate@RedStoneWireBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@H_N@Z",
                        BlockSource* bs, BlockPos* bp, int level, bool isActive) {
     IF_LISTENED(RedStoneUpdateEvent) {
@@ -1305,7 +1305,7 @@ TClasslessInstanceHook(void, "?onRedstoneUpdate@RedstoneTorchBlock@@UEBAXAEAVBlo
     IF_LISTENED_END(RedStoneUpdateEvent)
     return original(this, bs, bp, level, isActive);
 }
-// 红石中继器
+// 红石中继�?
 TClasslessInstanceHook(void, "?onRedstoneUpdate@DiodeBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@H_N@Z",
                        BlockSource* bs, BlockPos* bp, int level, bool isActive) {
     IF_LISTENED(RedStoneUpdateEvent) {
@@ -1321,7 +1321,7 @@ TClasslessInstanceHook(void, "?onRedstoneUpdate@DiodeBlock@@UEBAXAEAVBlockSource
     IF_LISTENED_END(RedStoneUpdateEvent)
     return original(this, bs, bp, level, isActive);
 }
-// 红石比较器
+// 红石比较�?
 TClasslessInstanceHook(void, "?onRedstoneUpdate@ComparatorBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@H_N@Z",
                        BlockSource* bs, BlockPos* bp, int level, bool isActive) {
     IF_LISTENED(RedStoneUpdateEvent) {

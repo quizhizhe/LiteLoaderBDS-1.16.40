@@ -10,6 +10,11 @@
 class ScoreboardIdentityRef {
 
 #define AFTER_EXTRA
+public:
+    enum IdentityDefinition::Type getIdentityType(){
+        //ServerScoreboard::_unpackIdentityDefToScorePacket Line30~31 16+72
+        return dAccess<enum IdentityDefinition::Type>(this, 88);
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SCOREBOARDIDENTITYREF

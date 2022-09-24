@@ -10,6 +10,10 @@
 class Attribute {
 
 #define AFTER_EXTRA
+public:
+    inline class HashedString const & getName() const{
+        return dAccess<HashedString>(this, 8);
+    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ATTRIBUTE

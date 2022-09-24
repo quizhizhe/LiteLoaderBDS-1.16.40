@@ -10,7 +10,13 @@
 class MinecraftPackets {
 
 #define AFTER_EXTRA
-
+// Add Member There
+public:
+//Warning temporary
+static std::shared_ptr<class Packet> createPacket(int type)
+{
+    return createPacket((MinecraftPacketIds)type);
+}
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MINECRAFTPACKETS
 public:

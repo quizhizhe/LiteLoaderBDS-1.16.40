@@ -10,6 +10,40 @@
 class AttributeInstance {
 
 #define AFTER_EXTRA
+public:
+    inline float getMinValue()const{
+        return dAccess<float>(this, 31);
+    };
+    inline float getMaxValue()const{
+        return dAccess<float>(this, 32);
+    };
+    inline float getCurrentValue()const{
+        return dAccess<float>(this, 33);
+    };
+    //maybe error
+    inline void setCurrentValue(float value)const{
+        dAccess<float, 33>((void*)this)= value;
+        //AttributeInstance::resetToMaxValue Line11~Line28
+        // if (this + 3)
+        // {
+        //     auto p_mDirtyAttributes = dAccess<std::vector<ScoreInfo> *>(this, 65);
+        //     ScoreInfo* value = dAccess<ScoreInfo*>(p_mDirtyAttributes, 8);
+            
+        //     if ( dAccess<ScoreInfo*>(p_mDirtyAttributes, 16) == value )
+        //     {
+        //         //std::vector<ScoreInfo>::_Emplace_reallocate<ScoreInfo &>(p_mDirtyAttributes, value, &v5);
+        //         p_mDirtyAttributes->emplace_back(value);
+        //     }
+        //     else
+        //     {
+        //     *v4 = v5;
+        //     *(v3 + 8) += 16i64;
+        //     }
+        // }
+    };
+    inline float getDefaultValue(int a)const{
+        return dAccess<float>(this, 30);
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ATTRIBUTEINSTANCE

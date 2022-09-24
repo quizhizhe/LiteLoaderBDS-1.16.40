@@ -28,6 +28,7 @@
 #include <MC/Container.hpp>
 #include <MC/SimpleContainer.hpp>
 #include <MC/Scoreboard.hpp>
+#include <MC/ScoreboardId.hpp>
 #include <MC/PlaySoundPacket.hpp>
 #include <MC/SetDisplayObjectivePacket.hpp>
 #include <MC/Block.hpp>
@@ -95,6 +96,26 @@ string Player::getServerAddress() {
     return "unknown";
 }
 
+int Player::getPlatform(){
+    //AddPlayerPacket::AddPlayerPacket Line59
+    return dAccess<int>(this, 256);
+}
+
+Container & Player::getInventory(){
+    //InventoryContainerModel::_getContainer  2928 + 176
+    return dAccess<Container&>(this, 3104);
+}
+
+enum CommandPermissionLevel Player::getPlayerPermissionLevel(){
+    //return dAccess<CommandPermissionLevel&>(this, 2112);  can do
+    return getCommandPermissionLevel();
+}
+
+int Player::getPlayerLevel(){
+    auto& attr = getAttribute(Player::LEVEL);
+    return attr.getCurrentValue();
+}
+
 string Player::getDeviceTypeName() {
     switch ((int)getPlatform()) {
         case -1:
@@ -136,7 +157,7 @@ string Player::getDeviceTypeName() {
 
 bool Player::kick(const std::string& msg) {
     NetworkIdentifier* pNetworkIdentifier = getNetworkIdentifier();
-    Global<ServerNetworkHandler>->disconnectClient(*pNetworkIdentifier, msg, 0);
+    Global<ServerNetworkHandler>->disconnectClient(*pNetworkIdentifier, 0, msg, 0);
     return true;
 }
 
@@ -209,12 +230,22 @@ bool Player::runcmd(const string& cmd) {
     return sendCommandRequestPacket(cmd);
 }
 
-Container* Player::getEnderChestContainer() {
-    return dAccess<Container*>(this, 5440); // IDA Player::Player() 782
-}
+// Container* Player::getEnderChestContainer() {
+//     return dAccess<Container*>(this, 4032); // IDA Player::Player() Line239
+// }
 
 bool Player::transferServer(const string& address, unsigned short port) {
     return sendTransferPacket(address, port);
+}
+
+BlockPos const & Player::getSpawnPosition(){
+    //ServerNetworkHandler::_sendLevelData Line316
+    return dAccess<BlockPos>(this, 1797);
+}
+
+AutomaticID<Dimension, int> Player::getSpawnDimension(){
+    //ServerNetworkHandler::_sendLevelData Line310
+    return dAccess<AutomaticID<Dimension, int>>(this, 1800);
 }
 
 std::pair<BlockPos, int> Player::getRespawnPosition() {
@@ -264,34 +295,29 @@ bool Player::refreshAttributes(std::vector<Attribute const*> const& attributes) 
 }
 
 string Player::getUuid() {
-    auto ueic = getUserEntityIdentifierComponent();
-    if (!ueic)
-        return "";
-    return ueic->mUUID.asString();
+    auto result = ExtendedCertificate::getIdentity(*getCertificate());
+    return result.asString();
 }
 
 string Player::getXuid() {
-    return "Unknow";
+    return ExtendedCertificate::getXuid(*getCertificate());
 }
 
 unsigned char Player::getClientSubId() {
-    auto ueic = getUserEntityIdentifierComponent();
-    if (!ueic)
-        return -1;
-    return ueic->mClientSubId;
+    return -1;
 }
 
 float Player::getAvgPacketLoss() {
-    return Global<Minecraft>->getNetworkHandler().getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mAveragePacketLoss;
+    return Global<NetworkHandler>->getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mAveragePacketLoss;
 }
 
 float Player::getLastPacketLoss() {
-    return Global<Minecraft>->getNetworkHandler().getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mCurrentPacketLoss;
+    return Global<NetworkHandler>->getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mCurrentPacketLoss;
 }
 
-string Player::getClientId() {
-    return Global<ServerNetworkHandler>->fetchConnectionRequest(*getNetworkIdentifier()).getDeviceId();
-}
+// string Player::getClientId() {
+//     return Global<ServerNetworkHandler>->fetchConnectionRequest(*getNetworkIdentifier()).getDeviceId();
+// }
 
 int Player::getDeviceType() {
     return getPlatform();
@@ -459,10 +485,10 @@ void Player::removeBossEvent(int64_t uid) {
     sendNetworkPacket(*pkt);
 }
 
-void Player::updateBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay) {
-    removeBossEvent(uid);
-    addBossEvent(uid, name, percent, colour, overlay);
-}
+// void Player::updateBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay) {
+//     removeBossEvent(uid);
+//     addBossEvent(uid, name, percent, colour, overlay);
+// }
 
 
 ////////////////////////// Packet //////////////////////////
@@ -503,11 +529,11 @@ bool Player::sendTextPacket(string text, TextType Type) const {
     return true;
 }
 
-bool Player::sendToastPacket(string title, string msg) {
-    ToastRequestPacket pkt = ToastRequestPacket(title, msg);
-    sendNetworkPacket(pkt);
-    return true;
-}
+// bool Player::sendToastPacket(string title, string msg) {
+//     ToastRequestPacket pkt = ToastRequestPacket(title, msg);
+//     sendNetworkPacket(pkt);
+//     return true;
+// }
 
 bool Player::sendTitlePacket(string text, TitleType Type, int FadeInDuration, int RemainDuration, int FadeOutDuration) const {
     BinaryStream wp;
@@ -630,11 +656,13 @@ bool Player::sendUpdateBlockPacket(BlockPos const& bpos, const Block& block, Upd
     return sendUpdateBlockPacket(bpos, block.getRuntimeId(), flag, layer);
 }
 
-// bool Player::sendTransferPacket(const string& address, short port) const {
-//     TransferPacket transferPkt(address, port);
-//     sendNetworkPacket(transferPkt);
-//     return true;
-// }
+bool Player::sendTransferPacket(const string& address, short port) const {
+    auto packet = MinecraftPackets::createPacket(0x55);
+    dAccess<short>(packet.get(), 36) = port;
+    dAccess<string>(packet.get(), 40) = address;
+    sendNetworkPacket(*packet);
+    return true;
+}
 
 bool Player::sendSetDisplayObjectivePacket(const string& title, const string& name, char sortOrder) const {
     SetDisplayObjectivePacket pkt = SetDisplayObjectivePacket("sidebar", name, title, "dummy", ObjectiveSortOrder(sortOrder));

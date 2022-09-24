@@ -60,3 +60,8 @@ bool Block::setNbt(CompoundTag* nbt) {
     nbt->setBlock(this);
     return true;
 }
+
+unsigned int const & Block::getRuntimeId() const{
+    // Actor::_playFlySound Line7
+    return dAccess<unsigned int>(this, 12);
+}

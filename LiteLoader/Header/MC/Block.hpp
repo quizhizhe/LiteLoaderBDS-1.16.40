@@ -22,6 +22,7 @@ public:
     LIAPI unsigned short getTileData();
     LIAPI std::unique_ptr<CompoundTag> getNbt();
     LIAPI bool setNbt(CompoundTag* nbt);
+    LIAPI unsigned int const & getRuntimeId() const;
 
     inline bool operator==(class Block const& a2) const {
         __int64 v2; // r8

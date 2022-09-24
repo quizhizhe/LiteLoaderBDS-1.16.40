@@ -66,15 +66,18 @@ void BinaryStream::reserve(size_t size) {
     mBuffer->reserve(size);
 }
 std::string& BinaryStream::getRaw() {
-    return *dAccess<std::string*, 12>(this); // BinaryStream::getAndReleaseData
+    return *dAccess<std::string*, 15>(this); // BinaryStream::getAndReleaseData
 }
 
 struct IDataOutput{
     void* pVT;
     BinaryStream* pBinaryStream;
-}pVTVarIntDataOutput;
+};
+
 void BinaryStream::writeCompoundTag(class CompoundTag const& tag) {
-    pVTVarIntDataOutput.pVT = nullptr;
+    //serialize<DataItem>::write  in case 5
+    IDataOutput pVTVarIntDataOutput;
+    pVTVarIntDataOutput.pVT = dlsym("??_7VarIntDataOutput@@6B@");
     pVTVarIntDataOutput.pBinaryStream = this;
     NbtIo::write(&tag,pVTVarIntDataOutput);
 }

@@ -10,7 +10,25 @@
 class ReadOnlyBinaryStream {
 
 #define AFTER_EXTRA
+// Add Member There
+public:
+    size_t      readPointer{};
+    bool        unk;
+    std::string ownBuf, *pBuf;
 
+public:
+    LIAPI std::string const& getData() const;
+    LIAPI size_t getLength() const;
+    LIAPI size_t getReadPointer() const;
+    LIAPI size_t getUnreadLength() const;
+    LIAPI void setReadPointer(std::size_t size);
+
+    // inline void readType(mce::UUID& uuid)
+    // {
+    //     dAccess<uint64_t, 0>(&uuid) = getUnsignedInt64();
+    //     dAccess<uint64_t, 8>(&uuid) = getUnsignedInt64();
+    // }
+    LIAPI std::unique_ptr<class CompoundTag> getCompoundTag();
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_READONLYBINARYSTREAM
 public:

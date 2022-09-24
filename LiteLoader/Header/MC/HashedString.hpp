@@ -10,6 +10,10 @@
 class HashedString {
 
 #define AFTER_EXTRA
+public: 
+    inline std::string const & getString()const{
+        return dAccess<std::string>(this, 8);
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_HASHEDSTRING
