@@ -12,6 +12,16 @@
 class MinecraftEventing {
 
 #define AFTER_EXTRA
+    // Add Member There
+public:
+    enum InteractionType;
+    enum ChangeType;
+    enum TeleportationCause;
+    enum BlockPlacementMethod;
+    enum AchievementIds;
+    enum POIBlockInteractionType;
+    enum AcquisitionMethod;
+    enum UseMethod;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MINECRAFTEVENTING

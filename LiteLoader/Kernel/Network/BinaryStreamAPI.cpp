@@ -4,9 +4,10 @@
 #include <MC/IDataOutput.hpp>
 
 void BinaryStream::write(const void* origin, size_t num){
-        //BinaryStream::writeSignedBigEndianInt
-        std::string* mBuffer = dAccess<std::string*>(this, 12);
-        mBuffer->append((const char*)origin,num);
+        //BatchedNetworkPeer::flush Line24
+        // std::string* mBuffer = dAccess<std::string*>(this, 15);
+        // mBuffer->append((const char*)origin,num);
+        this->pwBuf->append((const char*)origin,num);
 }
 void BinaryStream::writeByte(uint8_t origin){
     write(&origin,1ull);
@@ -62,8 +63,9 @@ void BinaryStream::writeVarInt64(__int64 value){
 }
 
 void BinaryStream::reserve(size_t size) {
-    std::string* mBuffer = dAccess<std::string*>(this, 12);
-    mBuffer->reserve(size);
+    // std::string* mBuffer = dAccess<std::string*>(this, 15);
+    // mBuffer->reserve(size);
+    this->pwBuf->reserve(size);
 }
 std::string& BinaryStream::getRaw() {
     return *dAccess<std::string*, 15>(this); // BinaryStream::getAndReleaseData

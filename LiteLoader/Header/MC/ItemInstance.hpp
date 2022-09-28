@@ -3,12 +3,13 @@
 #define AUTO_GENERATED
 #include "../Global.h"
 #include "ItemStackBase.hpp"
+#include "Item.hpp"
 
 #define BEFORE_EXTRA
 
 #undef BEFORE_EXTRA
 
-class ItemInstance : public ItemStackBase {
+class ItemInstance : public ItemStackBase, public Item {
 
 #define AFTER_EXTRA
 

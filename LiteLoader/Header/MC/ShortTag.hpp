@@ -11,6 +11,16 @@
 class ShortTag : public Tag {
 
 #define AFTER_EXTRA
+    // Add Member There
+    short val;
+
+public:
+    LIAPI short& value();
+    LIAPI ShortTag& operator=(short val);
+    LIAPI static std::unique_ptr<ShortTag> create(short val = 0);
+    LIAPI bool set(short val);
+    LIAPI short get();
+    LIAPI operator short() const;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SHORTTAG

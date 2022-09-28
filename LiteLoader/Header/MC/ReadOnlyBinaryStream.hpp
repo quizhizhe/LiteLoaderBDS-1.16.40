@@ -13,7 +13,6 @@ class ReadOnlyBinaryStream {
 // Add Member There
 public:
     size_t      readPointer{};
-    bool        unk;
     std::string ownBuf, *pBuf;
 
 public:

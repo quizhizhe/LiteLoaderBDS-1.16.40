@@ -5,7 +5,13 @@
 #include "Json.hpp"
 
 #define BEFORE_EXTRA
-
+template<class T, class T1, int T2>
+class SimpleServerNetId {
+public:
+    SimpleServerNetId() = delete;
+    SimpleServerNetId(SimpleServerNetId const&) = delete;
+    SimpleServerNetId(SimpleServerNetId const&&) = delete;
+};
 #undef BEFORE_EXTRA
 
 class Item {

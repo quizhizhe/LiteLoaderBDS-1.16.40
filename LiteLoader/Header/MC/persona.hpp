@@ -10,6 +10,9 @@
 namespace persona {
 
 #define AFTER_EXTRA
+// Add Member There
+enum AnimatedTextureType;
+enum PieceType;
 
 #undef AFTER_EXTRA
     MCAPI extern std::string const ANIMATED_128X128_NAME;

@@ -50,7 +50,7 @@ NetworkIdentifier* Player::getNetworkIdentifier() {
 }
 
 
-Certificate* Player::getCertificate() {
+Certificate* Player::getCertificate() const{
     //ServerNetworkHandler::_onPlayerLeft Line145
     return dAccess<Certificate*>(this, 342);
 }
@@ -103,7 +103,7 @@ int Player::getPlatform(){
 
 Container & Player::getInventory(){
     //InventoryContainerModel::_getContainer  2928 + 176
-    return dAccess<Container&>(this, 3104);
+    return dAccess<Container>(this, 3104);
 }
 
 enum CommandPermissionLevel Player::getPlayerPermissionLevel(){
@@ -299,7 +299,7 @@ string Player::getUuid() {
     return result.asString();
 }
 
-string Player::getXuid() {
+string Player::getXuid() const{
     return ExtendedCertificate::getXuid(*getCertificate());
 }
 

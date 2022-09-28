@@ -5,12 +5,24 @@
 #include "Tag.hpp"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+#include "TagMemoryChunk.hpp"
 #undef BEFORE_EXTRA
 
 class IntArrayTag : public Tag {
 
 #define AFTER_EXTRA
+    // Add Member There
+    TagMemoryChunk val;
+
+public:
+    LIAPI TagMemoryChunk& value();
+    LIAPI IntArrayTag& operator=(TagMemoryChunk const& val);
+    LIAPI static std::unique_ptr<IntArrayTag> create();
+    LIAPI static std::unique_ptr<IntArrayTag> create(TagMemoryChunk const& val);
+    LIAPI static std::unique_ptr<IntArrayTag> create(int data[], size_t size);
+    LIAPI bool set(TagMemoryChunk const& val);
+    LIAPI TagMemoryChunk get();
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_INTARRAYTAG

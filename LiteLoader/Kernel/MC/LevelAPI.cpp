@@ -42,9 +42,9 @@ BlockSource* Level::getBlockSource(int dimID) {
     //return dAccess<BlockSource*>(dim, 96);
 }
 
-//BlockSource* Level::getBlockSource(Actor* ac) {
-//    return const_cast<BlockSource*>(&ac->getRegionConst());
-//}
+BlockSource* Level::getBlockSource(Actor* ac) {
+   return const_cast<BlockSource*>(&ac->getRegionConst());
+}
 
 Block* Level::getBlock(BlockPos* pos, int dimId) {
     return getBlock(*pos, Level::getBlockSource(dimId));
@@ -86,17 +86,17 @@ BlockInstance Level::getBlockInstance(BlockPos* pos, int dimId) {
     return {*pos, dimId};
 }
 
-//BlockInstance Level::getBlockInstance(BlockPos* pos, BlockSource* blockSource) {
-//    return {*pos, blockSource->getDimensionId()};
-//}
+BlockInstance Level::getBlockInstance(BlockPos* pos, BlockSource* blockSource) {
+   return {*pos, blockSource->getDimensionId()};
+}
 
 BlockInstance Level::getBlockInstance(const BlockPos& pos, int dim) {
     return {pos, dim};
 }
 
-//BlockInstance Level::getBlockInstance(const BlockPos& pos, BlockSource* blockSource) {
-//    return {pos, blockSource->getDimensionId()};
-//}
+BlockInstance Level::getBlockInstance(const BlockPos& pos, BlockSource* blockSource) {
+   return {pos, blockSource->getDimensionId()};
+}
 
 BlockActor* Level::getBlockEntity(BlockPos* pos, int dimId) {
     return getBlockEntity(pos, Level::getBlockSource(dimId));

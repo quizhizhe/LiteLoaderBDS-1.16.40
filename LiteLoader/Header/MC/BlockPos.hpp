@@ -35,9 +35,9 @@ public:
         return res;
     }
 
-    inline std::string toString() const {
-        return std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z);
-    }
+//    inline std::string toString() const {
+//        return std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z);
+//    }
 
     inline BlockPos add(int dx) const {
         return {x + dx, y, z};

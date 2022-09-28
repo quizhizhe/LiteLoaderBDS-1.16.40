@@ -239,7 +239,7 @@ public:
     //MCAPI iterator begin();
     //MCAPI iterator end();
 
-    //MCAPI std::string toStyledString() const;
+    MCAPI std::string toStyledString() const;
 
     union ValueHolder {
         LargestInt int_;

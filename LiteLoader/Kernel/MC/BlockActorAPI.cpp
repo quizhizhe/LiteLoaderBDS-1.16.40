@@ -11,10 +11,10 @@
 //     return block->getBlockEntityType(); // IDA Block::getBlockEntityType
 // }
 
-// bool BlockActor::refreshData() {
-//     setChanged();
-//     return true;
-// }
+bool BlockActor::refreshData() {
+    setChanged();
+    return true;
+}
 
 // bool BlockActor::refreshData(BlockSource* bs) {
 //     refreshData();

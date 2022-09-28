@@ -4,7 +4,8 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+// Add include headers & pre-declares
+class ItemStack;
 #undef BEFORE_EXTRA
 
 class Container {

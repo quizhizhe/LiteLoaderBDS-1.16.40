@@ -11,6 +11,16 @@
 class Int64Tag : public Tag {
 
 #define AFTER_EXTRA
+    // Add Member There
+    int64_t val;
+
+public:
+    LIAPI int64_t& value();
+    LIAPI Int64Tag& operator=(int64_t val);
+    LIAPI static std::unique_ptr<Int64Tag> create(int64_t val = 0);
+    LIAPI bool set(int64_t val);
+    LIAPI int64_t get();
+    LIAPI operator int64_t() const;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_INT64TAG

@@ -9,18 +9,26 @@
 
 class AABB {
 
+public:
+    Vec3 min;
+    Vec3 max;
+
 #define AFTER_EXTRA
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_AABB
 public:
-    class AABB& operator=(class AABB const &) = delete;
-    AABB(class AABB const &) = delete;
+    // class AABB& operator=(class AABB const &) = delete;
+    // AABB(class AABB const &) = delete;
 #endif
 
 public:
 #ifdef ENABLE_VIRTUAL_FAKESYMBOL_AABB
 #endif
+
+    inline AABB(class AABB const& k) : min(k.min), max(k.max){};
+//    inline AABB() : min(Vec3::MIN), max(Vec3::MIN){};
+    
     MCAPI AABB();
     MCAPI AABB(float, float, float, float, float, float);
     MCAPI AABB(class Vec3 const &, class Vec3 const &);
@@ -40,5 +48,60 @@ public:
     MCAPI void set(float, float, float, float, float, float);
     MCAPI class AABB shrink(class Vec3 const &) const;
     MCAPI static class AABB const EMPTY;
+
+    inline Vec3& operator[](int index) {
+        if (index < 0 || index > 1) {
+            return (&min)[0];
+        }
+        return (&min)[index];
+    }
+
+    constexpr AABB& operator+=(float& b) {
+        min += b;
+        max += b;
+        return *this;
+    }
+
+    constexpr AABB& operator-=(float& b) {
+        min -= b;
+        max -= b;
+        return *this;
+    }
+
+    constexpr AABB& operator+=(Vec3 const& b) {
+        min += b;
+        max += b;
+        return *this;
+    }
+
+    constexpr AABB& operator-=(Vec3 const& b) {
+        min -= b;
+        max -= b;
+        return *this;
+    }
+
+    inline AABB operator+(Vec3 const& b) const {
+        return AABB(min + b, max + b);
+    }
+
+    inline AABB operator+(float& b) const {
+        return AABB(min + b, max + b);
+    }
+
+    inline AABB operator-(Vec3 const& b) const {
+        return AABB(min - b, max - b);
+    }
+
+    inline AABB operator-(float& b) const {
+        return AABB(min - b, max - b);
+    }
+
+    inline AABB merge(AABB const& a) {
+        return AABB(Vec3::min(a.min, min), Vec3::max(a.max, max));
+    }
+
+    inline AABB merge(Vec3 const& a) {
+        return AABB(Vec3::min(a, min), Vec3::max(a, max));
+    }
 
 };

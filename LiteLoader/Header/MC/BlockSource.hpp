@@ -5,6 +5,7 @@
 
 #define BEFORE_EXTRA
 #include "BlockInstance.hpp"
+#include "Dimension.hpp"
 
 #undef BEFORE_EXTRA
 
@@ -18,7 +19,12 @@ public:
 // {
 //     MCAPI static const std::function<bool(class Block const&)> CHECK_ALL_BLOCKS;
 // };
-    //LIAPI BlockInstance getBlockInstance(BlockPos);
+    LIAPI BlockInstance getBlockInstance(BlockPos);
+    inline AutomaticID<Dimension, int> getDimensionId(){
+        //Dimension::onBlockEvent Line24
+        Dimension* mDimension = dAccess< Dimension*>(this, 4);
+        return dAccess<AutomaticID<Dimension, int>>(mDimension, 192);
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BLOCKSOURCE

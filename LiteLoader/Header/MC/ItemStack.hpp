@@ -23,6 +23,7 @@ class ItemStack : public ItemStackBase {
     ItemStackNetIdVariant mNetId;
 
 public:
+    ItemStack clone() const;
     // The return value should be freed by the developer if it is no longer used
     LIAPI static ItemStack* create();
     // The return value should be freed by the developer if it is no longer used
@@ -31,8 +32,8 @@ public:
     LIAPI static ItemStack* create(std::unique_ptr<CompoundTag> tag);
     // The return value should be freed by the developer if it is no longer used
     LIAPI static ItemStack* create(short itemId, int aux,int count = 1);
-    //LIAPI ItemStack* clone_s() const;
-    //LIAPI static ItemStack fromItemInstance(ItemInstance const& ins);
+    LIAPI ItemStack* clone_s() const;
+    LIAPI static ItemStack fromItemInstance(ItemInstance const& ins);
 
     LIAPI std::string getTypeName() const;
     LIAPI int getAux() const;

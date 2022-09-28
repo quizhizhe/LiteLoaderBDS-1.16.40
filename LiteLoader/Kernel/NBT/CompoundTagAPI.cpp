@@ -116,7 +116,7 @@ class CompoundTag const* CompoundTag::getCompoundTag(class gsl::basic_string_spa
 };
 
 Tag* CompoundTag::operator[](class gsl::basic_string_span<char const, -1> key) {
-    return get(key);
+    return const_cast<Tag*>(get(key));
 }
 
 #pragma endregion

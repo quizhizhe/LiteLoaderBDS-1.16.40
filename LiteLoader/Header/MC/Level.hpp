@@ -56,9 +56,9 @@ public:
     LIAPI static Block* getBlock(const BlockPos& pos, BlockSource *blockSource);
     //LIAPI static Block* getBlockEx(const BlockPos& pos, int dimId);
     LIAPI static BlockInstance getBlockInstance(BlockPos* pos, int dimId);
-    //LIAPI static BlockInstance getBlockInstance(BlockPos* pos, BlockSource* blockSource);
+    LIAPI static BlockInstance getBlockInstance(BlockPos* pos, BlockSource* blockSource);
     LIAPI static BlockInstance getBlockInstance(const BlockPos& pos, int dimId);
-    //LIAPI static BlockInstance getBlockInstance(const BlockPos& pos, BlockSource* blockSource);
+    LIAPI static BlockInstance getBlockInstance(const BlockPos& pos, BlockSource* blockSource);
     LIAPI static BlockActor* getBlockEntity(BlockPos* pos, int dimId);
     LIAPI static BlockActor* getBlockEntity(BlockPos* pos, BlockSource* blockSource);
     LIAPI static BlockActor* getBlockEntity(const BlockPos& pos, int dimId);
@@ -80,7 +80,7 @@ public:
 
     //Helper
     LIAPI static BlockSource* getBlockSource(int dimid);
-    //LIAPI static BlockSource* getBlockSource(Actor* actor);
+    LIAPI static BlockSource* getBlockSource(Actor* actor);
     //LIAPI static BlockPalette* getBlockPalette();
     //LIAPI static Dimension* getDimension(class AutomaticID<class Dimension, int> a0);
     LIAPI static Actor* getDamageSourceEntity(ActorDamageSource* ads);

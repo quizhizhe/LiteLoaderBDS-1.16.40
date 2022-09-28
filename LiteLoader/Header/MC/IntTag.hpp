@@ -11,6 +11,16 @@
 class IntTag : public Tag {
 
 #define AFTER_EXTRA
+    // Add Member There
+    int val;
+
+public:
+    LIAPI int& value();
+    LIAPI IntTag& operator=(int val);
+    LIAPI static std::unique_ptr<IntTag> create(int val = 0);
+    LIAPI bool set(int val);
+    LIAPI int get();
+    LIAPI operator int() const;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_INTTAG

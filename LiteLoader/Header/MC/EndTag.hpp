@@ -11,6 +11,12 @@
 class EndTag : public Tag {
 
 #define AFTER_EXTRA
+    // Add Member There
+public:
+    LIAPI nullptr_t value();
+    LIAPI static std::unique_ptr<EndTag> create();
+    LIAPI bool set();
+    LIAPI nullptr_t get();
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ENDTAG

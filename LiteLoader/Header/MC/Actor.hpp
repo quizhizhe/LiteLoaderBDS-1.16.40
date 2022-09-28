@@ -8,6 +8,7 @@
 #include "MobEffectInstance.hpp"
 #include "Tick.hpp"
 #include "ActorDamageSource.hpp"
+#include "SimpleContainer.hpp"
 class Actor;
 class Player;
 class NetworkIdentifier;
@@ -17,6 +18,9 @@ class BlockInstance;
 class ItemStack;
 class BlockSource;
 enum class FaceID : char;
+enum ActorFlags : int{
+    MOVING=0x22
+};
 
 #undef BEFORE_EXTRA
 
@@ -61,7 +65,7 @@ public:
     LIAPI SimpleContainer & getHandContainer();
     LIAPI SimpleContainer & getArmorContainer();
 
-    inline Vec3 getPosition()
+    inline const Vec3 &getPosition()const
     {
         return getPos();
     }
@@ -69,6 +73,12 @@ public:
     {
         return getPosOld();
     }
+    inline BlockSource const & getRegionConst() const{
+        return dAccess<BlockSource>(this,100);
+    };
+    inline bool isMoving() const{
+        return getStatusFlag(ActorFlags::MOVING);
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ACTOR

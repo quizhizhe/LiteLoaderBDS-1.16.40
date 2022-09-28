@@ -11,6 +11,16 @@
 class FloatTag : public Tag {
 
 #define AFTER_EXTRA
+    // Add Member There
+    float val;
+
+public:
+    LIAPI float& value();
+    LIAPI FloatTag& operator=(float val);
+    LIAPI static std::unique_ptr<FloatTag> create(float val = 0.0f);
+    LIAPI bool set(float val);
+    LIAPI float get();
+    LIAPI operator float() const;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_FLOATTAG

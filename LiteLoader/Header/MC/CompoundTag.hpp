@@ -91,6 +91,24 @@ public:
     // Deprecated?
     LIAPI std::string toSNBT();
 
+    inline Tag const * get(class gsl::basic_string_span<char const, -1> key) const{
+        auto iter = val.find(key.data());
+        if(iter != val.end())
+            return iter->second.get();
+    };
+
+    inline bool isEmpty(){
+        return this->val.empty();
+    }
+
+    inline map<std::string, CompoundTagVariant>::const_iterator begin(){
+        return this->val.begin();
+    } 
+    inline map<std::string, CompoundTagVariant>::const_iterator end(){
+        return this->val.end();
+    } 
+    
+
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMPOUNDTAG
 public:

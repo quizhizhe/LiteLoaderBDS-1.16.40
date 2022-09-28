@@ -34,7 +34,7 @@ public:
     LIAPI std::string getName();
     LIAPI std::string getRealName();
     LIAPI std::string getUuid();
-    LIAPI std::string getXuid();
+    LIAPI std::string getXuid()const;
     LIAPI unsigned char getClientSubId();
     LIAPI string getDeviceTypeName();
     LIAPI int getAvgPing();
@@ -43,7 +43,7 @@ public:
     LIAPI string getLanguageCode();
     LIAPI string getServerAddress();
     LIAPI NetworkIdentifier* getNetworkIdentifier();
-    LIAPI Certificate* getCertificate();
+    LIAPI Certificate* getCertificate()const;
     LIAPI std::pair<BlockPos, int> getRespawnPosition();
     LIAPI float getAvgPacketLoss();
     LIAPI float getLastPacketLoss();

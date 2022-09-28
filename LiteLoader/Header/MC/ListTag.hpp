@@ -49,6 +49,17 @@ public:
     LIAPI std::vector<Tag*>::const_iterator begin() const;
     LIAPI std::vector<Tag*>::const_iterator end() const;
 
+    inline int size() const{
+        return this->val.size();
+    };
+
+    inline Tag * get(int num) const{
+        if(num < size() || num >0)
+            return this->val[num];
+        else
+            return nullptr;
+    };
+
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LISTTAG
 public:

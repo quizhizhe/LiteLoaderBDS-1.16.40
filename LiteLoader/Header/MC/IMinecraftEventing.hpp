@@ -10,7 +10,8 @@
 class IMinecraftEventing {
 
 #define AFTER_EXTRA
-
+public:
+    enum StructureBlockActionType;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_IMINECRAFTEVENTING
 public:

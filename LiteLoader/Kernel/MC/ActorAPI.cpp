@@ -113,7 +113,7 @@ ActorUniqueID Actor::getActorUniqueId() const {
 
 SimpleContainer & Actor::getHandContainer(){
     //ScriptHandContainerComponent::hasComponent actor
-    return dAccess<SimpleContainer&>(this, 176);
+    return dAccess<SimpleContainer>(this, 176);
 }
 
 ItemStack* Actor::getHandSlot() {
@@ -124,7 +124,7 @@ ItemStack* Actor::getHandSlot() {
 
 SimpleContainer & Actor::getArmorContainer(){
     // ItemStackNetManagerServer::_handleLegacyTransactionRequest Line46
-    return dAccess<SimpleContainer&>(this, 1400);
+    return dAccess<SimpleContainer>(this, 1400);
 }
 
 bool Actor::rename(const string& name) {

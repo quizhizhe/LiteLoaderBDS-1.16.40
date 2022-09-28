@@ -11,12 +11,12 @@ namespace BlockSerializationUtils {
 
 #define AFTER_EXTRA
 // Add Member There
-// struct NbtToBlockCache {
-//     NbtToBlockCache() = delete;
-//     NbtToBlockCache(NbtToBlockCache const&) = delete;
-//     NbtToBlockCache(NbtToBlockCache const&&) = delete;
-// };
-// enum NBTState;
+ struct NbtToBlockCache {
+     NbtToBlockCache() = delete;
+     NbtToBlockCache(NbtToBlockCache const&) = delete;
+     NbtToBlockCache(NbtToBlockCache const&&) = delete;
+ };
+ enum NBTState;
 
 #undef AFTER_EXTRA
     MCAPI extern class std::unordered_map<std::string, class std::function<void (int, class CompoundTag &)>, struct std::hash<std::string>, struct std::equal_to<std::string>, class std::allocator<struct std::pair<std::string const, class std::function<void (int, class CompoundTag &)>>>> BLOCK_REPLACE_DATA_MAP;

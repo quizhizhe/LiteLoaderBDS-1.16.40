@@ -11,6 +11,16 @@
 class DoubleTag : public Tag {
 
 #define AFTER_EXTRA
+    // Add Member There
+    double val;
+
+public:
+    LIAPI double& value();
+    LIAPI DoubleTag& operator=(double val);
+    LIAPI static std::unique_ptr<DoubleTag> create(double val = 0.0);
+    LIAPI bool set(double val);
+    LIAPI double get();
+    LIAPI operator double() const;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_DOUBLETAG

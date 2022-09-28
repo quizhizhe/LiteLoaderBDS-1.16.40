@@ -4,13 +4,51 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+#include "ServerNetworkHandler.hpp"
+class ReadOnlyBinaryStream;
+class BinaryStream;
+class ServerPlayer;
+class NetworkIdentifier;
+enum StreamReadResult;
+enum class PacketReliability {
+    Relible,
+    RelibleOrdered
+};
 #undef BEFORE_EXTRA
 
 class Packet {
 
 #define AFTER_EXTRA
+    // Add Member There
+public:
+    unsigned unk2 = 2;                                                     // 8
+    PacketReliability reliableOrdered = PacketReliability::RelibleOrdered; // 12
+    unsigned char clientSubId = 0;                                         // 16
+    uint64_t unk24 = 0;                                                    // 24
+    uint64_t unk40 = 0;                                                    // 32
+    uint32_t incompressible = 0;                                           // 40
 
+    inline Packet(unsigned compress)
+    : incompressible(!compress)
+    { }
+#define DISABLE_CONSTRUCTOR_PREVENTION_PACKET
+    inline Packet() {}
+    class Packet& operator=(class Packet const&) = delete;
+    Packet(class Packet const&) = delete;
+
+    inline ServerPlayer* getPlayerFromPacket(ServerNetworkHandler* handler, NetworkIdentifier* netId)
+    {
+        return handler->getServerPlayer(*netId, dAccess<char>(this, 16));
+    }
+    inline enum StreamReadResult _read(class ReadOnlyBinaryStream& binaryStream)
+    {
+        return read(binaryStream);
+    }
+protected:
+    std::string toDebugString() {
+        return fmt::format("{}({})->{}", getName(), getId(), clientSubId);
+    }
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_PACKET
 public:

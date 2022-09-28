@@ -14,7 +14,7 @@
 using namespace std;
 
 static_assert(sizeof(ItemStack) == 160);
-static_assert(sizeof(ItemInstance) == 136);
+static_assert(sizeof(ItemInstance) == 144);
 
 ItemStack* ItemStack::create() {
     try {
@@ -49,19 +49,24 @@ ItemStack* ItemStack::create(std::string type, int count) {
     return create(std::move(nbt));
 }
 
-// ItemStack ItemStack::fromItemInstance(ItemInstance const& ins) {
-//     try {
-//         return {ins};
-//     } catch (...) {
-//         return ItemStack::EMPTY_ITEM;
-//     }
-// }
+ ItemStack ItemStack::fromItemInstance(ItemInstance const& ins) {
+     try {
+         return {ins};
+     } catch (...) {
+         return ItemStack::EMPTY_ITEM;
+     }
+ }
 
-// ItemStack* ItemStack::clone_s() const {
-//     ItemStack* a = ItemStack::create();
-//     *a = clone();
-//     return a;
-// }
+ ItemStack ItemStack::clone() const {
+     ItemStack a = ItemStack(*this);
+     return a;
+ }
+
+ ItemStack* ItemStack::clone_s() const {
+     ItemStack* a = ItemStack::create();
+     *a = clone();
+     return a;
+ }
 
 std::string ItemStack::getTypeName() const {
     if (isNull())

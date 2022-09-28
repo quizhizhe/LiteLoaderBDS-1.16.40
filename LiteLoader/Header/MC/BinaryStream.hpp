@@ -12,6 +12,8 @@ class BinaryStream : public ReadOnlyBinaryStream {
 
 #define AFTER_EXTRA
 public:
+    std::string writeBuf, *pwBuf;
+
     LIAPI void write(const void* origin, size_t num);
     LIAPI void writeByte(uint8_t origin);
     LIAPI void writeBool(bool origin);
@@ -38,6 +40,16 @@ public:
     LIAPI void reserve(size_t size);
     LIAPI std::string& getRaw();
     LIAPI void writeCompoundTag(class CompoundTag const& tag);
+
+    inline void reset(){
+        this->pwBuf->clear();
+        ReadOnlyBinaryStream::setReadPointer(0);
+    }
+
+    inline std::string getAndReleaseData(){
+        std::string *str = std::move(this->pwBuf);
+        return *str;
+    }
 
 
 #undef AFTER_EXTRA

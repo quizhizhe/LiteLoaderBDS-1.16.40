@@ -17,12 +17,21 @@ class BlockActor {
 #define AFTER_EXTRA
     // Add new members to class
 public:
-    //LIAPI bool refreshData();
-    //LIAPI bool refreshData(BlockSource* bs);
+    LIAPI bool refreshData();
+    // LIAPI bool refreshData(BlockSource* bs);
     LIAPI std::unique_ptr<CompoundTag> getNbt();
     LIAPI bool setNbt(CompoundTag* nbt);
     LIAPI bool setNbt(CompoundTag* nbt, BlockSource* bs);
     //static unsigned int getBlockEntityType(Block* block);
+
+    inline void setChanged(){
+        //EndGatewayBlockActor::teleportEntity Line115
+        dAccess<bool, 200>(this) = 1;
+    }
+    inline BlockPos const & getPosition() const{
+        //EndGatewayBlockActor::teleportEntity Line114
+        return dAccess<BlockPos>(this,44);
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BLOCKACTOR
