@@ -10,7 +10,13 @@
 class MapItemTrackedActor {
 
 #define AFTER_EXTRA
-
+    // Add Member There
+public:
+    struct UniqueId {
+        UniqueId() = delete;
+        UniqueId(UniqueId const&) = delete;
+        UniqueId(UniqueId const&&) = delete;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MAPITEMTRACKEDACTOR
 public:

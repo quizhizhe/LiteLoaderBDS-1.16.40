@@ -4,7 +4,7 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+#include "MC/HashedString.hpp"
 #undef BEFORE_EXTRA
 
 struct ActorDefinitionIdentifier {

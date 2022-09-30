@@ -184,7 +184,7 @@ void LoadParticleAPI() {
     auto lib = LoadLibrary(str2wstr(path).c_str());
     if (lib) {
         logger.info(tr("ll.loader.loadParticleAPI.success"));
-        ParticleCUI::init(lib);
+        //ParticleCUI::init(lib);
     } else {
         logger.error("Fail to load ParticleAPI!");
         logger.error("Error: Code[{}] - {}", GetLastError(), GetLastErrorMessage());

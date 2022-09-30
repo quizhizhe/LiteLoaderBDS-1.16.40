@@ -4,7 +4,7 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+using namespace mce;
 #undef BEFORE_EXTRA
 
 namespace ColorFormat {
@@ -45,8 +45,8 @@ LIAPI std::string& transferColorCodeToConsole(std::string& str, bool keepColorCo
     MCAPI extern std::string const BLACK;
     MCAPI extern std::string const BLUE;
     MCAPI extern std::string const BOLD;
-    MCAPI std::string ColorCodeFromColor(class mce::Color const &);
-    MCAPI class mce::Color const * ColorFromColorCode(std::string const &);
+    MCAPI std::string ColorCodeFromColor(class Color const &);
+    MCAPI class Color const * ColorFromColorCode(std::string const &);
     MCAPI extern std::string const DARK_AQUA;
     MCAPI extern std::string const DARK_BLUE;
     MCAPI extern std::string const DARK_GRAY;

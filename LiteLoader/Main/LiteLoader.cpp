@@ -196,34 +196,34 @@ void CheckProtocolVersion() {
     }
 }
 
-BOOL WINAPI ConsoleExitHandler(DWORD CEvent) {
-    switch (CEvent) {
-        case CTRL_C_EVENT:
-        case CTRL_CLOSE_EVENT:
-        case CTRL_SHUTDOWN_EVENT: {
-            if (Global<Minecraft>) {
-                Global<Minecraft>->requestServerShutdown();
-            } else {
-                std::terminate();
-            }
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
+//BOOL WINAPI ConsoleExitHandler(DWORD CEvent) {
+//    switch (CEvent) {
+//        case CTRL_C_EVENT:
+//        case CTRL_CLOSE_EVENT:
+//        case CTRL_SHUTDOWN_EVENT: {
+//            if (Global<Minecraft>) {
+//                Global<Minecraft>->requestServerShutdown();
+//            } else {
+//                std::terminate();
+//            }
+//            return TRUE;
+//        }
+//    }
+//    return FALSE;
+//}
 
-void UnixSignalHandler(int signum) {
-    switch (signum) {
-        case SIGINT:
-        case SIGTERM: {
-            if (Global<Minecraft>) {
-                Global<Minecraft>->requestServerShutdown();
-            } else {
-                std::terminate();
-            }
-        }
-    }
-}
+//void UnixSignalHandler(int signum) {
+//    switch (signum) {
+//        case SIGINT:
+//        case SIGTERM: {
+//            if (Global<Minecraft>) {
+//                Global<Minecraft>->requestServerShutdown();
+//            } else {
+//                std::terminate();
+//            }
+//        }
+//    }
+//}
 
 // extern
 extern void EndScheduleSystem();
@@ -294,9 +294,9 @@ void LLMain() {
     SetWindowText(hwnd, s.c_str());
 
     // Register Exit Event Handler.
-    SetConsoleCtrlHandler(ConsoleExitHandler, TRUE);
-    signal(SIGTERM, UnixSignalHandler);
-    signal(SIGINT, UnixSignalHandler);
+//    SetConsoleCtrlHandler(ConsoleExitHandler, TRUE);
+//    signal(SIGTERM, UnixSignalHandler);
+//    signal(SIGINT, UnixSignalHandler);
 
     // Welcome
     Welcome();
@@ -305,15 +305,15 @@ void LLMain() {
     CheckDevMode();
 
     // Addon Helper
-    if (LL::globalConfig.enableAddonsHelper) {
-        InitAddonsHelper();
-    }
+//    if (LL::globalConfig.enableAddonsHelper) {
+//        InitAddonsHelper();
+//    }
 
     // Load plugins
     LL::LoadMain();
 
     // Register built-in commands
-    RegisterCommands();
+    //RegisterCommands();
 
     // Register simple server logger
     RegisterSimpleServerLogger();

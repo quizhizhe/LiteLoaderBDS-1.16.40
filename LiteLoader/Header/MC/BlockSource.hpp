@@ -8,7 +8,8 @@
 #include "Dimension.hpp"
 
 #undef BEFORE_EXTRA
-
+#include "MC/LevelChunk.hpp"
+#include "MC/ChunkPos.hpp"
 class BlockSource {
 
 #define AFTER_EXTRA
@@ -20,11 +21,15 @@ public:
 //     MCAPI static const std::function<bool(class Block const&)> CHECK_ALL_BLOCKS;
 // };
     LIAPI BlockInstance getBlockInstance(BlockPos);
-    inline AutomaticID<Dimension, int> getDimensionId(){
+    AutomaticID<class Dimension, int> getDimensionId(){
         //Dimension::onBlockEvent Line24
         Dimension* mDimension = dAccess< Dimension*>(this, 4);
-        return dAccess<AutomaticID<Dimension, int>>(mDimension, 192);
+        return dAccess<AutomaticID<class Dimension, int>>(mDimension, 192);
     };
+    LevelChunk * getChunkAt(BlockPos& pos) const{
+        ChunkPos chunkPos = ChunkPos(pos.x>>4, pos.z>>4);
+        return getChunk(chunkPos);
+    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BLOCKSOURCE

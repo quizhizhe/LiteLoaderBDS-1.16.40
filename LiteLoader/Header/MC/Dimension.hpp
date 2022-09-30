@@ -4,15 +4,15 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+#include "MC/BlockSource.hpp"
 #undef BEFORE_EXTRA
 
 class Dimension {
 
 #define AFTER_EXTRA
 public:
-    LIAPI BlockSource& getBlockSourceFromMainChunkSource(){
-        return dAccess<BlockSource&>(this, 96);
+    BlockSource& getBlockSourceFromMainChunkSource() const{
+        return *dAccess<BlockSource*>(this, 96);
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_DIMENSION

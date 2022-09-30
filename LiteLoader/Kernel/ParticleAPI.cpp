@@ -9,11 +9,11 @@
 #include <MC/ResourcePackStack.hpp>
 #include <EventAPI.h>
 #include <MC/ResourcePackRepository.hpp>
-void InitParticle() {
-    Event::ResourcePackInitEvent::subscribe([](const Event::ResourcePackInitEvent& ev) {
-        ev.mRepo->setCustomResourcePackPath(PackType::PackType_Resources, R"(plugins/LiteLoader/ResourcePacks)");
-        return true;
-    });
-}
-
-ParticleAPI ParticleCUI::api{};
+//void InitParticle() {
+//    Event::ResourcePackInitEvent::subscribe([](const Event::ResourcePackInitEvent& ev) {
+//        ev.mRepo->setCustomResourcePackPath(PackType::PackType_Resources, R"(plugins/LiteLoader/ResourcePacks)");
+//        return true;
+//    });
+//}
+//
+//ParticleAPI ParticleCUI::api{};

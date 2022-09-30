@@ -10,7 +10,11 @@
 class PropertiesSettings {
 
 #define AFTER_EXTRA
-
+public:
+    inline bool useOnlineAuthentication(){
+        //PropertiesSettings::PropertiesSettings Line550;
+        return dAccess<bool>(this, 417);
+    }
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_PROPERTIESSETTINGS
 public:

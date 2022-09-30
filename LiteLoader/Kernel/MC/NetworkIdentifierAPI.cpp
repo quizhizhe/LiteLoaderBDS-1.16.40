@@ -2,6 +2,7 @@
 #include <MC/RakNet.hpp>
 
 string NetworkIdentifier::getIP() {
-    string rv = Global<RakNet::RakPeer>->getAdr(*this).ToString(true, ':');
+    string rv;
+    Global<RakNet::RakPeer>->getAdr(*this).ToString_New(true, ':', rv.data());
     return rv.substr(0, rv.find('|'));
 }

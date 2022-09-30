@@ -37,9 +37,9 @@ MCINLINE Vec3 Actor::getFeetPosition() const {
     return CommandUtils::getFeetPos(this);
 }
 
-// BlockSource* Actor::getBlockSource() const {
-//     return Level::getBlockSource((Actor*)this);
-// }
+ BlockSource* Actor::getBlockSource() const {
+     return Level::getBlockSource((Actor*)this);
+ }
 
 bool Actor::isPlayer(bool allowSimulatedPlayer) const {
     if (!this)
@@ -51,9 +51,9 @@ bool Actor::isPlayer(bool allowSimulatedPlayer) const {
     } catch (...) { return false; }
 }
 
-// bool Actor::isItemActor() const {
-//     return hasCategory((ActorCategory)1024); // IDA Player::take
-// }
+ bool Actor::isItemActor() const {
+     return hasCategory((ActorCategory)1024); // IDA Player::take
+ }
 
 bool Actor::isOnGround() const {
     return (dAccess<bool, 472>(this)); // IDA DirectActorProxyImpl<IMobMovementProxy>::isOnGround
@@ -169,16 +169,16 @@ Vec3 Actor::getCameraPos() const {
     return pos;
 }
 
-// Tick* Actor::getLastTick() const {
-//     auto bs = getBlockSource();
-//     if (!bs)
-//         return nullptr;
-//     auto bpos = getPos().toBlockPos();
-//     LevelChunk* lc = bs->getChunkAt(bpos);
-//     if (!lc)
-//         return nullptr;
-//     return (Tick*)&lc->getLastTick();
-// }
+ Tick* Actor::getLastTick() const {
+     auto bs = getBlockSource();
+     if (!bs)
+         return nullptr;
+     auto bpos = getPos().toBlockPos();
+     LevelChunk* lc = bs->getChunkAt(bpos);
+     if (!lc)
+         return nullptr;
+     return (Tick*)&lc->getLastTick();
+ }
 //enum ActorLocation;
 
 // BlockInstance Actor::getBlockFromViewVector(FaceID& face, bool includeLiquid, bool solidOnly, float maxDistance, bool ignoreBorderBlocks, bool fullOnly) const {

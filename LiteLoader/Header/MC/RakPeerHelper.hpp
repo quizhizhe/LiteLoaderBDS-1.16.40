@@ -11,6 +11,12 @@
 class RakPeerHelper {
 
 #define AFTER_EXTRA
+public:
+    struct IPSupportInterface{
+        IPSupportInterface() = delete;
+        IPSupportInterface(struct IPSupportInterface&) = delete;
+        IPSupportInterface(struct IPSupportInterface&&) = delete;
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_RAKPEERHELPER

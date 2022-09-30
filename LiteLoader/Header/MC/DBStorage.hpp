@@ -8,13 +8,20 @@
 #include "LevelStorage.hpp"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+#include "third-party/leveldb/status.h"
 #undef BEFORE_EXTRA
 
 class DBStorage : public LevelStorage {
 
 #define AFTER_EXTRA
-
+    // Add Member There
+public:
+    struct PendingWriteResult {
+        PendingWriteResult() = delete;
+        PendingWriteResult(PendingWriteResult const&) = delete;
+        PendingWriteResult(PendingWriteResult const&&) = delete;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_DBSTORAGE
 public:

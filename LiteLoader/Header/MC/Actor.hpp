@@ -32,7 +32,7 @@ public:
 
     LIAPI std::string getTypeName() const;
     LIAPI Vec3 getFeetPosition() const;
-    //LIAPI BlockSource* getBlockSource() const;
+    LIAPI BlockSource* getBlockSource() const;
     LIAPI Vec2* getDirection() const;
     LIAPI ActorUniqueID getActorUniqueId() const;
     LIAPI Vec3 getCameraPos() const;
@@ -78,6 +78,10 @@ public:
     };
     inline bool isMoving() const{
         return getStatusFlag(ActorFlags::MOVING);
+    };
+    inline bool hasCategory(enum ActorCategory actorCategory) const{
+        // IDA Player::take Line123
+        return (dAccess<ActorCategory>(this, 79) & actorCategory) !=0;
     };
 
 #undef AFTER_EXTRA

@@ -4,13 +4,41 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+template <typename T>
+class typeid_t {
+public:
+    typeid_t& operator=(typeid_t const&) = delete;
+    typeid_t(typeid_t const&) = delete;
+};
 #undef BEFORE_EXTRA
 
 class CommandRegistry {
 
 #define AFTER_EXTRA
+public:
+    struct ParseTable;
+    class Symbol {
+        Symbol& operator=(Symbol const&) = delete;
+        Symbol(Symbol const&) = delete;
+    };
 
+    struct ParseToken {
+        ParseToken() = delete;
+        ParseToken(ParseToken const&) = delete;
+        ParseToken(ParseToken const&&) = delete;
+    };
+
+    struct Overload {
+        Overload() = delete;
+        Overload(Overload const&) = delete;
+        Overload(Overload const&&) = delete;
+    };
+
+    struct Signature {
+        Signature() = delete;
+        Signature(Signature const&) = delete;
+        Signature(Signature const&&) = delete;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDREGISTRY
 public:

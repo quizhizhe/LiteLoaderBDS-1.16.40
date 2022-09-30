@@ -10,7 +10,11 @@
 class VarIntDataOutput {
 
 #define AFTER_EXTRA
-
+    BinaryStream *mStream;
+public:
+    VarIntDataOutput(BinaryStream *stream){
+        mStream = stream;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_VARINTDATAOUTPUT
 public:

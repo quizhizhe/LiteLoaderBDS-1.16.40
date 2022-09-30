@@ -39,6 +39,11 @@ struct HardcodedSpawningArea {
     class BoundingBox aabb;
     enum HardcodedSpawnAreaType type;
 };
+public:
+    struct Tick const & getLastTick() const{
+        //CommandAreaFactory::_getArea Line156
+        return *dAccess<Tick*>(this, 144);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LEVELCHUNK
 public:

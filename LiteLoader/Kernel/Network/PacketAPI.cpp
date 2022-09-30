@@ -845,7 +845,7 @@ static_assert(sizeof(MobArmorEquipmentPacket) == 0x198 || sizeof(MobArmorEquipme
 static_assert(sizeof(InteractPacket) == 0x50 || sizeof(InteractPacket) == 48, "size of InteractPacket should be 80 or 48(default)");
 static_assert(sizeof(BlockPickRequestPacket) == 0x40 || sizeof(BlockPickRequestPacket) == 48, "size of BlockPickRequestPacket should be 64 or 48(default)");
 static_assert(sizeof(ActorPickRequestPacket) == 0x40 || sizeof(ActorPickRequestPacket) == 48, "size of ActorPickRequestPacket should be 64 or 48(default)");
-static_assert(sizeof(PlayerActionPacket) == 0x58 || sizeof(PlayerActionPacket) == 48, "size of PlayerActionPacket should be 88 or 48(default)");
+static_assert(sizeof(PlayerActionPacket) == 0x50 || sizeof(PlayerActionPacket) == 48, "size of PlayerActionPacket should be 88 or 48(default)");
 static_assert(sizeof(HurtArmorPacket) == 0x40 || sizeof(HurtArmorPacket) == 48, "size of HurtArmorPacket should be 64 or 48(default)");
 static_assert(sizeof(SetActorDataPacket) == 0x58 || sizeof(SetActorDataPacket) == 48, "size of SetActorDataPacket should be 88 or 48(default)");
 static_assert(sizeof(SetActorMotionPacket) == 0x48 || sizeof(SetActorMotionPacket) == 48, "size of SetActorMotionPacket should be 72 or 48(default)");

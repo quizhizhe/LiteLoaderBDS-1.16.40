@@ -148,7 +148,7 @@ bool InitPlayerDatabase() {
         //     return true;
         // });
         Event::PlayerJoinEvent::subscribe([](const Event::PlayerJoinEvent& e) {
-            if (!e.mPlayer->isSimulatedPlayer()) {
+            if (!e.mPlayer) {
                 insert(e.mPlayer->getRealName(), e.mPlayer->getXuid(), e.mPlayer->getUuid());
             }
             return true;

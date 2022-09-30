@@ -10,7 +10,13 @@
 class LevelStorageWriteBatch {
 
 #define AFTER_EXTRA
-
+    // Add Member There
+public:
+    struct BatchEntry {
+        BatchEntry() = delete;
+        BatchEntry(BatchEntry const&) = delete;
+        BatchEntry(BatchEntry const&&) = delete;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LEVELSTORAGEWRITEBATCH
 public:

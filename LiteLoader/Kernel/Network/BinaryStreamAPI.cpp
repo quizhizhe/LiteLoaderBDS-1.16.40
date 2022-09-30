@@ -71,15 +71,9 @@ std::string& BinaryStream::getRaw() {
     return *dAccess<std::string*, 15>(this); // BinaryStream::getAndReleaseData
 }
 
-struct IDataOutput{
-    void* pVT;
-    BinaryStream* pBinaryStream;
-};
 
 void BinaryStream::writeCompoundTag(class CompoundTag const& tag) {
     //serialize<DataItem>::write  in case 5
-    IDataOutput pVTVarIntDataOutput;
-    pVTVarIntDataOutput.pVT = dlsym("??_7VarIntDataOutput@@6B@");
-    pVTVarIntDataOutput.pBinaryStream = this;
-    NbtIo::write(&tag,pVTVarIntDataOutput);
+    VarIntDataOutput pVTVarIntDataOutput = VarIntDataOutput(this);
+    NbtIo::write(&tag,(IDataOutput&)pVTVarIntDataOutput);
 }

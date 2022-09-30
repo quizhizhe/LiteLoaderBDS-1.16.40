@@ -5,13 +5,28 @@
 #include "Core.hpp"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+enum LogAreaID;
 #undef BEFORE_EXTRA
 
 namespace BedrockLog {
 
 #define AFTER_EXTRA
-
+// Add Member There
+class LogAreaFilter {
+public:
+    LogAreaFilter() = delete;
+    LogAreaFilter(LogAreaFilter const&) = delete;
+    LogAreaFilter(LogAreaFilter const&&) = delete;
+};
+enum LogChannel;
+enum LogRule;
+enum LogCategory;
+struct LogDetails {
+    LogDetails() = delete;
+    LogDetails(LogDetails const&) = delete;
+    LogDetails(LogDetails const&&) = delete;
+};
 #undef AFTER_EXTRA
     MCAPI enum LogAreaID _areaFilterFromString(std::string const &);
     MCAPI bool _constructAreaFilterFromString(std::string const &, class BedrockLog::LogAreaFilter &);
