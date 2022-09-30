@@ -28,11 +28,15 @@ public:
     bool isValid(){
         return *this != 0xFFFFFFFF;
     }
+    struct ScoreboardId& operator=(struct ScoreboardId const & scoreboardId){
+        this->id = scoreboardId.id;
+        this->null = scoreboardId.null;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SCOREBOARDID
 public:
-    struct ScoreboardId& operator=(struct ScoreboardId const &) = delete;
-    ScoreboardId(struct ScoreboardId const &)= delete;
+    //struct ScoreboardId& operator=(struct ScoreboardId const &);
+    //ScoreboardId(struct ScoreboardId const &)= delete;
     //ScoreboardId()= delete;
 #endif
 public:

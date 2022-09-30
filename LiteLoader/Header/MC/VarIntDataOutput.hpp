@@ -25,8 +25,8 @@ public:
 
 public:
     /*0*/ virtual ~VarIntDataOutput();
-    /*1*/ virtual void __unk_vfn_1();
-    /*2*/ virtual void __unk_vfn_2();
+    /*1*/ virtual void writeLongString(gsl::basic_string_span<char const,-1>);
+//    /*2*/ virtual void writeLongString(gsl::basic_string_span<char const,-1>);
     /*3*/ virtual void writeFloat(float);
     /*4*/ virtual void writeDouble(double);
     /*5*/ virtual void writeByte(char);
