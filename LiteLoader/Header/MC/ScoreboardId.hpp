@@ -31,6 +31,7 @@ public:
     struct ScoreboardId& operator=(struct ScoreboardId const & scoreboardId){
         this->id = scoreboardId.id;
         this->null = scoreboardId.null;
+        return *this;
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SCOREBOARDID

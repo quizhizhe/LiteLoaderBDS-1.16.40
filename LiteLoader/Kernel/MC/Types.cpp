@@ -53,7 +53,8 @@ class mce::Color mce::Color::fromConsoleCode(std::string const& code) {
     return ColorFormat::ColorFromConsoleCode(code);
 }
 mce::Color Color::fromColorCode(std::string const& code) {
-    return *ColorFormat::ColorFromColorCode(code);
+    auto temp =  *ColorFormat::ColorFromColorCode(code);
+    return mce::Color(temp.r,temp.g,temp.b,temp.a);
 };
 mce::Color Color::sRGBToLinear() const {
     float mr = r > 0.04045f ? pow(r / 1.055f + 0.055f, 2.4f) : r / 12.92f;

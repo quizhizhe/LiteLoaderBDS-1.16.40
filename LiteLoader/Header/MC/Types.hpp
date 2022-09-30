@@ -13,6 +13,29 @@
 typedef std::string xuid_t;
 typedef unsigned long long QWORD;
 
+class Color{
+public:
+    float r;
+    float g;
+    float b;
+    float a;
+    Color()
+    : r(0.0f), g(0.0f), b(0.0f), a(0.0f){};
+    Color(float r, float g, float b, float a = 1)
+    : r(r), g(g), b(b), a(a){};
+    Color(double r, double g, double b, double a = 1)
+    : r((float)r), g((float)g), b((float)b), a((float)a){};
+    Color(int ir, int ig, int ib, int ia = 255)
+    : r(ir / 255.0f), g(ig / 255.0f), b(ib / 255.0f), a(ia / 255.0f){};
+
+    MCAPI static Color const NIL;
+    MCAPI static class Color fromHexString(std::string const&);
+    MCAPI bool operator==(class Color const&) const;
+    MCAPI int toABGR(void) const;
+    MCAPI int toARGB(void) const;
+    MCAPI std::string toHexString(void) const;
+};
+
 namespace mce {
 
 LL_CONSTEXPR int static hexToNum(char s) {
@@ -119,7 +142,7 @@ public:
     };
 
     inline operator bool() const {
-        return !(*this == NIL);
+        return !(*this == mce::Color(0,0,0));
     }
 
     LIAPI double distanceTo(mce::Color const& dst) const;
@@ -139,18 +162,12 @@ public:
     LIAPI double deltaE94(mce::Color const& dst) const; // 1.0 for JND
     LIAPI double deltaE00(mce::Color const& dst) const; // 1.0 for JND
 
-    MCAPI static Color const NIL;
-    MCAPI static class Color fromHexString(std::string const&);
-    MCAPI bool operator==(class Color const&) const;
-    MCAPI int toABGR(void) const;
-    MCAPI int toARGB(void) const;
-    MCAPI std::string toHexString(void) const;
 
     inline Vec3 toVec3() const {
         return {r, g, b};
     }
 
-    inline static Color fromVec3(const Vec3& k) {
+    inline static mce::Color fromVec3(const Vec3& k) {
         return {k.x, k.y, k.z, 1.0f};
     }
 
@@ -158,31 +175,31 @@ public:
         return {r * 255.0f, g * 255.0f, b * 255.0f};
     }
 
-    inline static Color fromBlockPos(const BlockPos& k) {
+    inline static mce::Color fromBlockPos(const BlockPos& k) {
         return {k.x / 255.0f, k.y / 255.0f, k.z / 255.0f, 1.0f};
     }
 
-    inline bool operator!=(const Color& c) const {
+    inline bool operator!=(const mce::Color& c) const {
         return !(c == *this);
     }
 
-    inline Color operator*(float c) const {
+    inline mce::Color operator*(float c) const {
         return {r * c, g * c, b * c, a * c};
     }
 
-    inline Color operator/(float c) const {
+    inline mce::Color operator/(float c) const {
         return {r / c, g / c, b / c, a / c};
     }
 
-    inline Color operator+(float c) const {
+    inline mce::Color operator+(float c) const {
         return {r + c, g + c, b + c, a + c};
     }
 
-    inline Color operator-(float c) const {
+    inline mce::Color operator-(float c) const {
         return {r - c, g - c, b - c, a - c};
     }
 
-    constexpr Color& operator+=(float c) {
+    constexpr mce::Color& operator+=(float c) {
         r += c;
         g += c;
         b += c;
@@ -190,7 +207,7 @@ public:
         return *this;
     }
 
-    constexpr Color& operator-=(float c) {
+    constexpr mce::Color& operator-=(float c) {
         r -= c;
         g -= c;
         b -= c;
@@ -198,7 +215,7 @@ public:
         return *this;
     }
 
-    constexpr Color& operator*=(float c) {
+    constexpr mce::Color& operator*=(float c) {
         r *= c;
         g *= c;
         b *= c;
@@ -206,7 +223,7 @@ public:
         return *this;
     }
 
-    constexpr Color& operator/=(float c) {
+    constexpr mce::Color& operator/=(float c) {
         r /= c;
         g /= c;
         b /= c;
@@ -214,7 +231,7 @@ public:
         return *this;
     }
 
-    constexpr Color& operator+=(Color const& c) {
+    constexpr mce::Color& operator+=(mce::Color const& c) {
         r += c.r;
         g += c.g;
         b += c.b;
@@ -222,7 +239,7 @@ public:
         return *this;
     }
 
-    constexpr Color& operator-=(Color const& c) {
+    constexpr mce::Color& operator-=(mce::Color const& c) {
         r -= c.r;
         g -= c.g;
         b -= c.b;
@@ -230,7 +247,7 @@ public:
         return *this;
     }
 
-    constexpr Color& operator*=(Color const& c) {
+    constexpr mce::Color& operator*=(mce::Color const& c) {
         r *= c.r;
         g *= c.g;
         b *= c.b;
@@ -238,7 +255,7 @@ public:
         return *this;
     }
 
-    constexpr Color& operator/=(Color const& c) {
+    constexpr mce::Color& operator/=(mce::Color const& c) {
         r /= c.r;
         g /= c.g;
         b /= c.b;
@@ -246,57 +263,57 @@ public:
         return *this;
     }
 
-    inline Color operator+(Color const& c) const {
+    inline mce::Color operator+(mce::Color const& c) const {
         return {r + c.r, g + c.g, b + c.b, a + c.a};
     }
 
-    inline Color operator*(Color const& c) const {
+    inline mce::Color operator*(mce::Color const& c) const {
         return {r * c.r, g * c.g, b * c.b, a * c.a};
     }
 
-    inline Color operator/(Color const& c) const {
+    inline mce::Color operator/(mce::Color const& c) const {
         return {r / c.r, g / c.g, b / c.b, a / c.a};
     }
 
-    inline Color operator-(Color const& c) const {
+    inline mce::Color operator-(mce::Color const& c) const {
         return {r - c.r, g - c.g, b - c.b, a - c.a};
     }
 
-    inline static Color max(const Color& k, const Color& l) {
+    inline static mce::Color max(const mce::Color& k, const mce::Color& l) {
         return {std::max(k.r, l.r), std::max(k.g, l.g), std::max(k.b, l.b), std::max(k.a, l.a)};
     }
 
-    inline static Color min(const Color& k, const Color& l) {
+    inline static mce::Color min(const mce::Color& k, const mce::Color& l) {
         return {std::min(k.r, l.r), std::min(k.g, l.g), std::min(k.b, l.b), std::min(k.a, l.a)};
     }
 
-    inline static Color lerp(const Color& k, const Color& l, float m) {
+    inline static mce::Color lerp(const mce::Color& k, const mce::Color& l, float m) {
         return k * (1.0f - m) + l * m;
     }
 
-    inline static Color mix(const Color& k, const Color& l, float m) {
+    inline static mce::Color mix(const mce::Color& k, const mce::Color& l, float m) {
         return lerp(k, l, m);
     }
 };
 
 static std::unordered_map<ColorPalette, std::pair<char, Color>> const particleColors = {
     // clang-format off
-        {mce::ColorPalette::BLACK,    {'B', Color("#000000")}},
-        {mce::ColorPalette::INDIGO,   {'I', Color("#144A74")}},
-        {mce::ColorPalette::LAVENDER, {'L', Color("#8E65F3")}},
-        {mce::ColorPalette::TEAL,     {'T', Color("#07946E")}},
-        {mce::ColorPalette::COCOA,    {'C', Color("#AB5236")}},
-        {mce::ColorPalette::DARK,     {'D', Color("#56575F")}},
-        {mce::ColorPalette::OATMEAL,  {'O', Color("#A2A3A7")}},
-        {mce::ColorPalette::WHITE,    {'W', Color("#FFFFFF")}},
-        {mce::ColorPalette::RED,      {'R', Color("#FF3040")}},
-        {mce::ColorPalette::APRICOT,  {'A', Color("#FF7300")}},
-        {mce::ColorPalette::YELLOW,   {'Y', Color("#FFEC27")}},
-        {mce::ColorPalette::GREEN,    {'G', Color("#10E436")}},
-        {mce::ColorPalette::VATBLUE,  {'V', Color("#29ADFF")}},
-        {mce::ColorPalette::SLATE,    {'S', Color("#83769C")}},
-        {mce::ColorPalette::PINK,     {'P', Color("#FF77A8")}},
-        {mce::ColorPalette::FAWN,     {'E', Color("#FFCCAA")}},
+        {mce::ColorPalette::BLACK,    {'B', mce::Color("#000000")}},
+        {mce::ColorPalette::INDIGO,   {'I', mce::Color("#144A74")}},
+        {mce::ColorPalette::LAVENDER, {'L', mce::Color("#8E65F3")}},
+        {mce::ColorPalette::TEAL,     {'T', mce::Color("#07946E")}},
+        {mce::ColorPalette::COCOA,    {'C', mce::Color("#AB5236")}},
+        {mce::ColorPalette::DARK,     {'D', mce::Color("#56575F")}},
+        {mce::ColorPalette::OATMEAL,  {'O', mce::Color("#A2A3A7")}},
+        {mce::ColorPalette::WHITE,    {'W', mce::Color("#FFFFFF")}},
+        {mce::ColorPalette::RED,      {'R', mce::Color("#FF3040")}},
+        {mce::ColorPalette::APRICOT,  {'A', mce::Color("#FF7300")}},
+        {mce::ColorPalette::YELLOW,   {'Y', mce::Color("#FFEC27")}},
+        {mce::ColorPalette::GREEN,    {'G', mce::Color("#10E436")}},
+        {mce::ColorPalette::VATBLUE,  {'V', mce::Color("#29ADFF")}},
+        {mce::ColorPalette::SLATE,    {'S', mce::Color("#83769C")}},
+        {mce::ColorPalette::PINK,     {'P', mce::Color("#FF77A8")}},
+        {mce::ColorPalette::FAWN,     {'E', mce::Color("#FFCCAA")}},
     // clang-format on
 };
 

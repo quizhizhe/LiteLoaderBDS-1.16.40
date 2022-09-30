@@ -102,7 +102,7 @@ std::string consoleCodeFromColorCode(std::string const& mcCode) {
     return iter->second;
 }
 
-Color ColorFromConsoleCode(std::string const& console) {
+mce::Color ColorFromConsoleCode(std::string const& console) {
     unsigned char decoration = 0;
     unsigned char r = 0;
     unsigned char g = 0;
@@ -110,33 +110,35 @@ Color ColorFromConsoleCode(std::string const& console) {
     std::istringstream iss(console);
     int c = 0;
     if (iss.get() != '\x1b' || iss.get() != '[')
-        return Color::NIL;
+        return mce::Color(0,0,0);
     c = __readUnsignedChar(decoration, iss);
     if (c == EOF)
-        return Color::NIL;
+        return mce::Color(0,0,0);
     if (c == 'm') {
         auto codeIter = decorationToColorCodeMap.find(decoration);
-        if (codeIter != decorationToColorCodeMap.end())
-            return *ColorFromColorCode(codeIter->second);
-        return Color::NIL;
+        if (codeIter != decorationToColorCodeMap.end()) {
+            auto temp = ColorFromColorCode(codeIter->second);
+            return mce::Color(temp->r, temp->g, temp->b, temp->a);
+        }
+        return mce::Color(0,0,0);
     }
     if (decoration == 38 && c == ';') {
         unsigned char unk;
         c = __readUnsignedChar(unk, iss);
         if (c != ';')
-            return Color::NIL;
+            return mce::Color(0,0,0);
         c = __readUnsignedChar(r, iss);
         if (c != ';')
-            return Color::NIL;
+            return mce::Color(0,0,0);
         c = __readUnsignedChar(g, iss);
         if (c != ';')
-            return Color::NIL;
+            return mce::Color(0,0,0);
         c = __readUnsignedChar(b, iss);
         if (c != 'm')
-            return Color::NIL;
-        return Color(r, g, b);
+            return mce::Color(0,0,0);
+        return mce::Color(r, g, b);
     }
-    return Color::NIL;
+    return mce::Color(0,0,0);
 }
 
 std::string nearestColorCodeFromConsoleCode(std::string const& code) {
@@ -147,13 +149,13 @@ std::string nearestColorCodeFromConsoleCode(std::string const& code) {
             return mcCode;
     }
     if (code.size() == 19 && code.substr(0, 7) == "\x1b[38;2;" && code.back() == 'm') {
-        mce::Color color(0, 0, 0);
+        Color color(0, 0, 0);
         color.r = std::stoi(code.substr(7, 7 + 3)) / 255.0f;
         color.g = std::stoi(code.substr(11, 11 + 3)) / 255.0f;
         color.b = std::stoi(code.substr(15, 15 + 3)) / 255.0f;
         auto colorCode = ColorCodeFromColor(color);
         if (colorCode.empty())
-            return nearestColorCodeFromColor(color);
+            return nearestColorCodeFromColor(mce::Color(color.r,color.g,color.b,color.a));
         else
             return colorCode;
     }

@@ -4,7 +4,7 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-using mce::Color;
+//using mce::Color;
 #undef BEFORE_EXTRA
 
 namespace ColorFormat {
