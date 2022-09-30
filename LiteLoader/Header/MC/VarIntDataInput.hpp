@@ -4,13 +4,17 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+#include "MC/ReadOnlyBinaryStream.hpp"
 #undef BEFORE_EXTRA
 
 class VarIntDataInput {
 
 #define AFTER_EXTRA
-
+    ReadOnlyBinaryStream *mStream;
+public:
+    VarIntDataInput(ReadOnlyBinaryStream *stream){
+        mStream = stream;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_VARINTDATAINPUT
 public:
@@ -21,8 +25,8 @@ public:
 
 public:
     /*0*/ virtual ~VarIntDataInput();
-    /*1*/ virtual void __unk_vfn_1();
-    /*2*/ virtual void __unk_vfn_2();
+//    /*1*/ virtual void __unk_vfn_1();
+    /*2*/ virtual class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char>> readLongString(void);
     /*3*/ virtual float readFloat();
     /*4*/ virtual double readDouble();
     /*5*/ virtual char readByte();

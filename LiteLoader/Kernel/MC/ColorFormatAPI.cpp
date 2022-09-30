@@ -118,7 +118,7 @@ Color ColorFromConsoleCode(std::string const& console) {
         auto codeIter = decorationToColorCodeMap.find(decoration);
         if (codeIter != decorationToColorCodeMap.end())
             return *ColorFromColorCode(codeIter->second);
-        return mce::Color::NIL;
+        return Color::NIL;
     }
     if (decoration == 38 && c == ';') {
         unsigned char unk;
