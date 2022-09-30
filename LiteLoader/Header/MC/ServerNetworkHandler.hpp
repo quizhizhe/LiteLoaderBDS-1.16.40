@@ -133,11 +133,12 @@ inline void handle(class NetworkIdentifier const& a0, class EmotePacket const& a
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVEmotePacket@@@Z");
     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class EmotePacket const&>(a1));
 }
-inline void handle(class NetworkIdentifier const& a0, class FilterTextPacket const& a1) {
-    void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class FilterTextPacket const&);
-    *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVFilterTextPacket@@@Z");
-    return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class FilterTextPacket const&>(a1));
-}
+// 没有这个符号
+// inline void handle(class NetworkIdentifier const& a0, class FilterTextPacket const& a1) {
+//     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class FilterTextPacket const&);
+//     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVFilterTextPacket@@@Z");
+//     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class FilterTextPacket const&>(a1));
+// }
 inline void handle(class NetworkIdentifier const& a0, class InteractPacket const& a1) {
     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class InteractPacket const&);
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVInteractPacket@@@Z");
@@ -228,11 +229,12 @@ inline void handle(class NetworkIdentifier const& a0, class NpcRequestPacket con
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVNpcRequestPacket@@@Z");
     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class NpcRequestPacket const&>(a1));
 }
-inline void handle(class NetworkIdentifier const& a0, class PassengerJumpPacket const& a1) {
-    void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class PassengerJumpPacket const&);
-    *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVPassengerJumpPacket@@@Z");
-    return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class PassengerJumpPacket const&>(a1));
-}
+// 没有这个符号
+// inline void handle(class NetworkIdentifier const& a0, class PassengerJumpPacket const& a1) {
+//     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class PassengerJumpPacket const&);
+//     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVPassengerJumpPacket@@@Z");
+//     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class PassengerJumpPacket const&>(a1));
+// }
 inline void handle(class NetworkIdentifier const& a0, class PlayerActionPacket const& a1) {
     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class PlayerActionPacket const&);
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVPlayerActionPacket@@@Z");
@@ -328,11 +330,12 @@ inline void handle(class NetworkIdentifier const& a0, class StructureTemplateDat
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVStructureTemplateDataRequestPacket@@@Z");
     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class StructureTemplateDataRequestPacket const&>(a1));
 }
-inline void handle(class NetworkIdentifier const& a0, class SubChunkRequestPacket const& a1) {
-    void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class SubChunkRequestPacket const&);
-    *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVSubChunkRequestPacket@@@Z");
-    return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class SubChunkRequestPacket const&>(a1));
-}
+// 1.16没有subChunkPacket
+// inline void handle(class NetworkIdentifier const& a0, class SubChunkRequestPacket const& a1) {
+//     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class SubChunkRequestPacket const&);
+//     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVSubChunkRequestPacket@@@Z");
+//     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class SubChunkRequestPacket const&>(a1));
+// }
 inline void handle(class NetworkIdentifier const& a0, class SubClientLoginPacket const& a1) {
     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class SubClientLoginPacket const&);
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVSubClientLoginPacket@@@Z");
@@ -353,12 +356,12 @@ inline void handle(class NetworkIdentifier const& a0, class std::shared_ptr<clas
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@V?$shared_ptr@VBlockActorDataPacket@@@std@@@Z");
     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class std::shared_ptr<class BlockActorDataPacket>>(a1));
 }
-
-inline void handle(class NetworkIdentifier const& a0, class CreatePhotoPacket const& a1) {
-    void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class CreatePhotoPacket const&);
-    *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVCreatePhotoPacket@@@Z");
-    return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class CreatePhotoPacket const&>(a1));
-}
+// 没有这个符号
+// inline void handle(class NetworkIdentifier const& a0, class CreatePhotoPacket const& a1) {
+//     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class CreatePhotoPacket const&);
+//     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVCreatePhotoPacket@@@Z");
+//     return (this->*rv)(std::forward<class NetworkIdentifier const&>(a0), std::forward<class CreatePhotoPacket const&>(a1));
+// }
 inline void handle(class NetworkIdentifier const& a0, class CompletedUsingItemPacket const& a1) {
     void (ServerNetworkHandler:: * rv)(class NetworkIdentifier const&, class CompletedUsingItemPacket const&);
     *((void**)&rv) = dlsym("?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVCompletedUsingItemPacket@@@Z");

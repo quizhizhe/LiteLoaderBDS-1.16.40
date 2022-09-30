@@ -42,15 +42,17 @@ TInstanceHook(void, "?allowIncomingConnections@ServerNetworkHandler@@QEAAXAEBV?$
 // }
 
 // MinecraftCommands
-TInstanceHook(void,
-              "?initCoreEnums@MinecraftCommands@@QEAAXVItemRegistryRef@@AEBVIWorldRegistriesProvider@@AEBVActorFactory@"
-              "@AEBVExperiments@@AEBVBaseGameVersion@@@Z",
-              MinecraftCommands, void* a2, __int64 a3, __int64 a4, void* a5, void* a6) {
-    original(this, a2, a3, a4, a5, a6);
-    Global<MinecraftCommands> = this;
-}
+// 没有这个符号
+// TInstanceHook(void,
+//               "?initCoreEnums@MinecraftCommands@@QEAAXVItemRegistryRef@@AEBVIWorldRegistriesProvider@@AEBVActorFactory@"
+//               "@AEBVExperiments@@AEBVBaseGameVersion@@@Z",
+//               MinecraftCommands, void* a2, __int64 a3, __int64 a4, void* a5, void* a6) {
+//     original(this, a2, a3, a4, a5, a6);
+//     Global<MinecraftCommands> = this;
+// }
 
 // LevelStorage & DBStorage
+// 没有这个符号,去掉应该会狗带吧？
 TInstanceHook(DBStorage*, "??0DBStorage@@QEAA@UDBStorageConfig@@V?$not_null@V?$NonOwnerPointer@VLevelDbEnv@@@Bedrock@@@gsl@@@Z",
               DBStorage, struct DBStorageConfig* config, void* a3) {
     auto ret = original(this, config, a3);
@@ -70,8 +72,9 @@ THook(void*, "??0ChunkSource@@QEAA@V?$unique_ptr@VChunkSource@@U?$default_delete
 
 // RakNetServerLocator
 // ?activate@RakNetServerLocator@@AEAAXXZ
+// 没有这个符号，两个都是一样的
 TInstanceHook(void*, "?_activate@RakNetServerLocator@@AEAAXXZ", RakNetServerLocator) {
-    constexpr auto h = do_hash("?_activate@RakNetServerLocator@@AEAAXXZ");
+    //constexpr auto h = do_hash("?_activate@RakNetServerLocator@@AEAAXXZ");
     static bool set = false;
     if (!set) {
         set = true;

@@ -125,23 +125,24 @@ void CheckRunningBDS() {
 }
 
 void FixAllowList() {
-    if (filesystem::exists("whitelist.json")) {
-        if (filesystem::exists("allowlist.json")) {
-            auto res = ReadAllFile("allowlist.json");
-            if (res && (res->empty() || nlohmann::json::parse(*res, nullptr, true, true).empty())) {
-                logger.warn(tr("ll.main.fixAllowList.removeEmptyAllowlist"));
-                filesystem::remove("allowlist.json");
-            } else {
-                logger.warn(tr("ll.main.fixAllowList.checkManually"));
-                return;
-            }
-        }
-        std::error_code ec;
-        // Rename whitelist.json to allowlist.json
-        filesystem::copy_file("whitelist.json", "allowlist.json", filesystem::copy_options::overwrite_existing, ec);
-        filesystem::remove("whitelist.json", ec);
-        logger.warn(tr("ll.main.fixAllowList.renamed"));
-    }
+    // 这个应该不必改吧？以后也许会同步
+    // if (filesystem::exists("whitelist.json")) {
+    //     if (filesystem::exists("allowlist.json")) {
+    //         auto res = ReadAllFile("allowlist.json");
+    //         if (res && (res->empty() || nlohmann::json::parse(*res, nullptr, true, true).empty())) {
+    //             logger.warn(tr("ll.main.fixAllowList.removeEmptyAllowlist"));
+    //             filesystem::remove("allowlist.json");
+    //         } else {
+    //             logger.warn(tr("ll.main.fixAllowList.checkManually"));
+    //             return;
+    //         }
+    //     }
+    //     std::error_code ec;
+    //     // Rename whitelist.json to allowlist.json
+    //     filesystem::copy_file("whitelist.json", "allowlist.json", filesystem::copy_options::overwrite_existing, ec);
+    //     filesystem::remove("whitelist.json", ec);
+    //     logger.warn(tr("ll.main.fixAllowList.renamed"));
+    // }
 }
 
 extern void RegisterCommands();

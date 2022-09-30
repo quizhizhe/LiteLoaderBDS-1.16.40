@@ -28,6 +28,7 @@
 
 Actor* Level::getEntity(ActorUniqueID uniqueId) {
     try {
+        // 完蛋，没有这个符号
         return SymCall("?fetchEntity@Level@@UEBAPEAVActor@@UActorUniqueID@@_N@Z", Actor*, Level*, ActorUniqueID)(Global<Level>, uniqueId);
     } catch (...) {
         return nullptr;
@@ -223,6 +224,7 @@ std::vector<Actor*> Level::getAllEntities(int dimId) {
 
         // Check Valid
         std::vector<Actor*> result;
+        // 阿这，这个符号也没有
         auto currTick = SymCall("?getCurrentTick@Level@@UEBAAEBUTick@@XZ", Tick*, Level*)(lv)->t;
         for (auto& i : list) {
             // auto entity = SymCall("??$tryUnwrap@VActor@@$$V@WeakEntityRef@@QEBAPEAVActor@@XZ",
@@ -289,6 +291,7 @@ Player* Level::getPlayer(const string& info) {
 }
 
 Player* Level::getPlayer(ActorUniqueID id) {
+    // 裂开，这个符号也没有
     return SymCall("?getPlayer@Level@@UEBAPEAVPlayer@@UActorUniqueID@@@Z", Player*, Level*, ActorUniqueID)(Global<Level>, id);
 }
 

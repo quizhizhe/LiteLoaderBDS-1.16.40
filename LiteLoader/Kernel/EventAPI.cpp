@@ -321,32 +321,34 @@ TClasslessInstanceHook(void, "?sendLoginMessageLocal@ServerNetworkHandler@@QEAAX
 
 
 /////////////////// PlayerJoin ///////////////////
-TInstanceHook(bool, "?setLocalPlayerAsInitialized@ServerPlayer@@QEAAXXZ",
-              ServerPlayer) {
-    IF_LISTENED(PlayerJoinEvent) {
-        PlayerJoinEvent ev{};
-        ev.mPlayer = this;
+//没有这个符号
+// TInstanceHook(bool, "?setLocalPlayerAsInitialized@ServerPlayer@@QEAAXXZ",
+//               ServerPlayer) {
+//     IF_LISTENED(PlayerJoinEvent) {
+//         PlayerJoinEvent ev{};
+//         ev.mPlayer = this;
 
-        if (!ev.call())
-            return false;
-    }
-    IF_LISTENED_END(PlayerJoinEvent)
-    return original(this);
-}
+//         if (!ev.call())
+//             return false;
+//     }
+//     IF_LISTENED_END(PlayerJoinEvent)
+//     return original(this);
+// }
 
 
 /////////////////// PlayerLeft ///////////////////
-THook(void, "?disconnect@ServerPlayer@@QEAAXXZ",
-      ServerPlayer* sp) {
-    IF_LISTENED(PlayerLeftEvent) {
-        PlayerLeftEvent ev{};
-        ev.mPlayer = sp;
-        ev.mXUID = sp->getXuid();
-        ev.call();
-    }
-    IF_LISTENED_END(PlayerLeftEvent)
-    return original(sp);
-}
+//符号没有
+// THook(void, "?disconnect@ServerPlayer@@QEAAXXZ",
+//       ServerPlayer* sp) {
+//     IF_LISTENED(PlayerLeftEvent) {
+//         PlayerLeftEvent ev{};
+//         ev.mPlayer = sp;
+//         ev.mXUID = sp->getXuid();
+//         ev.call();
+//     }
+//     IF_LISTENED_END(PlayerLeftEvent)
+//     return original(sp);
+// }
 
 /////////////////// PlayerRespawn ///////////////////
 TClasslessInstanceHook(void, "?handle@?$PacketHandlerDispatcherInstance@VPlayerActionPacket@@$0A@@@UEBAXAEBVNetworkIdentifier@@AEAVNetEventCallback@@AEAV?$shared_ptr@VPacket@@@std@@@Z",
@@ -396,22 +398,23 @@ public:
     std::unique_ptr<CompoundTag> mAgentTag;
 };
 
-TClasslessInstanceHook(bool, "?requestPlayerChangeDimension@Level@@UEAAXAEAVPlayer@@V?$unique_ptr@VChangeDimensionRequest@@U?$default_delete@VChangeDimensionRequest@@@std@@@std@@@Z",
-                       Player* sp, std::unique_ptr<ChangeDimensionRequest> request) {
+//没有这个符号
+// TClasslessInstanceHook(bool, "?requestPlayerChangeDimension@Level@@UEAAXAEAVPlayer@@V?$unique_ptr@VChangeDimensionRequest@@U?$default_delete@VChangeDimensionRequest@@@std@@@std@@@Z",
+//                        Player* sp, std::unique_ptr<ChangeDimensionRequest> request) {
 
-    if (request->mToDimensionId == sp->getDimensionId())
-        return original(this, sp, std::move(request));
+//     if (request->mToDimensionId == sp->getDimensionId())
+//         return original(this, sp, std::move(request));
 
-    IF_LISTENED(PlayerChangeDimEvent) {
-        PlayerChangeDimEvent ev{};
-        ev.mPlayer = sp;
-        ev.mToDimensionId = request->mToDimensionId;
-        if (!ev.call())
-            return false;
-    }
-    IF_LISTENED_END(PlayerChangeDimEvent)
-    return original(this, sp, std::move(request));
-}
+//     IF_LISTENED(PlayerChangeDimEvent) {
+//         PlayerChangeDimEvent ev{};
+//         ev.mPlayer = sp;
+//         ev.mToDimensionId = request->mToDimensionId;
+//         if (!ev.call())
+//             return false;
+//     }
+//     IF_LISTENED_END(PlayerChangeDimEvent)
+//     return original(this, sp, std::move(request));
+// }
 
 int num = 0;
 /////////////////// PlayerJump ///////////////////
@@ -426,53 +429,56 @@ TInstanceHook(void, "?jumpFromGround@Player@@UEAAXXZ", Player) {
 }
 
 /////////////////// PlayerSneak ///////////////////
-TClasslessInstanceHook(void, "?sendActorSneakChanged@ActorEventCoordinator@@QEAAXAEAVActor@@_N@Z",
-                       Actor* ac, bool isSneaking) {
-    IF_LISTENED(PlayerSneakEvent) {
-        PlayerSneakEvent ev{};
-        ev.mPlayer = (Player*)ac;
-        ev.mIsSneaking = isSneaking;
-        ev.call();
+//没有这个符号
+// TClasslessInstanceHook(void, "?sendActorSneakChanged@ActorEventCoordinator@@QEAAXAEAVActor@@_N@Z",
+//                        Actor* ac, bool isSneaking) {
+//     IF_LISTENED(PlayerSneakEvent) {
+//         PlayerSneakEvent ev{};
+//         ev.mPlayer = (Player*)ac;
+//         ev.mIsSneaking = isSneaking;
+//         ev.call();
 
-        isSneaking = ev.mIsSneaking;
-    }
-    IF_LISTENED_END(PlayerSneakEvent)
-    return original(this, ac, isSneaking);
-}
+//         isSneaking = ev.mIsSneaking;
+//     }
+//     IF_LISTENED_END(PlayerSneakEvent)
+//     return original(this, ac, isSneaking);
+// }
 
 
 /////////////////// PlayerAttackEntity ///////////////////
-TInstanceHook(bool, "?attack@Player@@UEAA_NAEAVActor@@AEBW4ActorDamageCause@@@Z",
-              Player, Actor* ac, int* damageCause) {
-    IF_LISTENED(PlayerAttackEvent) {
-        PlayerAttackEvent ev{};
-        ev.mPlayer = this;
-        ev.mTarget = ac;
-        ev.mAttackDamage = *damageCause;
-        if (!ev.call())
-            return false;
+//没有这个符号
+// TInstanceHook(bool, "?attack@Player@@UEAA_NAEAVActor@@AEBW4ActorDamageCause@@@Z",
+//               Player, Actor* ac, int* damageCause) {
+//     IF_LISTENED(PlayerAttackEvent) {
+//         PlayerAttackEvent ev{};
+//         ev.mPlayer = this;
+//         ev.mTarget = ac;
+//         ev.mAttackDamage = *damageCause;
+//         if (!ev.call())
+//             return false;
 
-        ac = ev.mTarget;
-        *damageCause = ev.mAttackDamage;
-    }
-    IF_LISTENED_END(PlayerAttackEvent)
-    return original(this, ac, damageCause);
-}
+//         ac = ev.mTarget;
+//         *damageCause = ev.mAttackDamage;
+//     }
+//     IF_LISTENED_END(PlayerAttackEvent)
+//     return original(this, ac, damageCause);
+// }
 
 /////////////////// PlayerAttackBlock ///////////////////
-TInstanceHook(bool, "?attack@Block@@QEBA_NPEAVPlayer@@AEBVBlockPos@@@Z",
-              Block, Player* pl, BlockPos* bp) {
-    IF_LISTENED(PlayerAttackBlockEvent) {
-        PlayerAttackBlockEvent ev{};
-        ev.mPlayer = pl;
-        ev.mItemStack = pl->getHandSlot();
-        ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, pl->getDimensionId());
-        if (!ev.call())
-            return false;
-    }
-    IF_LISTENED_END(PlayerAttackBlockEvent)
-    return original(this, pl, bp);
-}
+//没有这个符号
+// TInstanceHook(bool, "?attack@Block@@QEBA_NPEAVPlayer@@AEBVBlockPos@@@Z",
+//               Block, Player* pl, BlockPos* bp) {
+//     IF_LISTENED(PlayerAttackBlockEvent) {
+//         PlayerAttackBlockEvent ev{};
+//         ev.mPlayer = pl;
+//         ev.mItemStack = pl->getHandSlot();
+//         ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, pl->getDimensionId());
+//         if (!ev.call())
+//             return false;
+//     }
+//     IF_LISTENED_END(PlayerAttackBlockEvent)
+//     return original(this, pl, bp);
+// }
 
 /////////////////// PlayerTakeItem ///////////////////
 TInstanceHook(bool, "?take@Player@@QEAA_NAEAVActor@@HH@Z",
@@ -552,51 +558,54 @@ TInstanceHook(void, "?onEffectRemoved@ServerPlayer@@MEAAXAEAVMobEffectInstance@@
     return original(this, effect);
 }
 // update
-TInstanceHook(void, "?onEffectUpdated@ServerPlayer@@MEAAXAEAVMobEffectInstance@@@Z", Player, MobEffectInstance* effect) {
-    IF_LISTENED(PlayerEffectChangedEvent) {
-        PlayerEffectChangedEvent ev{};
-        ev.mPlayer = this;
-        ev.mEventType = PlayerEffectChangedEvent::EventType::Update;
-        ev.mEffect = effect;
-        ev.call();
-    }
-    IF_LISTENED_END(PlayerEffectChangedEvent)
-    return original(this, effect);
-}
+// 没有这个符号
+// TInstanceHook(void, "?onEffectUpdated@ServerPlayer@@MEAAXAEAVMobEffectInstance@@@Z", Player, MobEffectInstance* effect) {
+//     IF_LISTENED(PlayerEffectChangedEvent) {
+//         PlayerEffectChangedEvent ev{};
+//         ev.mPlayer = this;
+//         ev.mEventType = PlayerEffectChangedEvent::EventType::Update;
+//         ev.mEffect = effect;
+//         ev.call();
+//     }
+//     IF_LISTENED_END(PlayerEffectChangedEvent)
+//     return original(this, effect);
+// }
 
 
 /////////////////// PlayerStartDestroyBlock ///////////////////
-TClasslessInstanceHook(void, "?sendBlockDestructionStarted@BlockEventCoordinator@@QEAAXAEAVPlayer@@AEBVBlockPos@@@Z",
-                       Player* pl, BlockPos* bp) {
-    IF_LISTENED(PlayerStartDestroyBlockEvent) {
-        PlayerStartDestroyBlockEvent ev{};
-        ev.mPlayer = pl;
-        ev.mBlockInstance = Level::getBlockInstance(bp, Level::getBlockSource(pl));
-        ev.call();
-    }
-    IF_LISTENED_END(PlayerStartDestroyBlockEvent)
-    return original(this, pl, bp);
-}
+// 没有这个符号
+// TClasslessInstanceHook(void, "?sendBlockDestructionStarted@BlockEventCoordinator@@QEAAXAEAVPlayer@@AEBVBlockPos@@@Z",
+//                        Player* pl, BlockPos* bp) {
+//     IF_LISTENED(PlayerStartDestroyBlockEvent) {
+//         PlayerStartDestroyBlockEvent ev{};
+//         ev.mPlayer = pl;
+//         ev.mBlockInstance = Level::getBlockInstance(bp, Level::getBlockSource(pl));
+//         ev.call();
+//     }
+//     IF_LISTENED_END(PlayerStartDestroyBlockEvent)
+//     return original(this, pl, bp);
+// }
 
 /////////////////// PlayerPlaceBlock ///////////////////
 #include <MC/ItemUseInventoryTransaction.hpp>
-TInstanceHook(char, "?checkBlockPermissions@BlockSource@@QEAA_NAEAVActor@@AEBVBlockPos@@EAEBVItemStackBase@@_N@Z",
-              BlockSource, Actor* ac, BlockPos* bp, unsigned __int8 facing, ItemStackBase* item, bool a6) {
-    if (ac->isPlayer()) {
-        IF_LISTENED(PlayerPlaceBlockEvent) {
-            auto pl = (Player*)ac;
-            PlayerPlaceBlockEvent ev{};
-            ev.mPlayer = pl;
-            ev.mBlockInstance = this->getBlockInstance(*bp);
-            if (!ev.call()) { // this pointer is not used.
-                ((ItemUseInventoryTransaction*)nullptr)->resendBlocksAroundArea(*pl, *bp, facing);
-                return false;
-            }
-        }
-        IF_LISTENED_END(PlayerPlaceBlockEvent)
-    }
-    return original(this, ac, bp, facing, item, a6);
-}
+// 没有这个符号
+// TInstanceHook(char, "?checkBlockPermissions@BlockSource@@QEAA_NAEAVActor@@AEBVBlockPos@@EAEBVItemStackBase@@_N@Z",
+//               BlockSource, Actor* ac, BlockPos* bp, unsigned __int8 facing, ItemStackBase* item, bool a6) {
+//     if (ac->isPlayer()) {
+//         IF_LISTENED(PlayerPlaceBlockEvent) {
+//             auto pl = (Player*)ac;
+//             PlayerPlaceBlockEvent ev{};
+//             ev.mPlayer = pl;
+//             ev.mBlockInstance = this->getBlockInstance(*bp);
+//             if (!ev.call()) { // this pointer is not used.
+//                 ((ItemUseInventoryTransaction*)nullptr)->resendBlocksAroundArea(*pl, *bp, facing);
+//                 return false;
+//             }
+//         }
+//         IF_LISTENED_END(PlayerPlaceBlockEvent)
+//     }
+//     return original(this, ac, bp, facing, item, a6);
+// }
 
 /////////////////// BlockPlacedByPlayerEvent ///////////////////
 TClasslessInstanceHook(void, "?sendBlockPlacedByPlayer@BlockEventCoordinator@@QEAAXAEAVPlayer@@AEBVBlock@@AEBVBlockPos@@_N@Z",
@@ -887,22 +896,23 @@ TInstanceHook(bool, "?useOn@SeedItemComponentLegacy@@QEAA_NAEAVItemStack@@AEAVAc
 */
 
 /////////////////// PlayerOpenContainer ///////////////////
-TClasslessInstanceHook(__int64, "?onEvent@VanillaServerGameplayEventListener@@UEAA?AW4EventResult@@AEBUPlayerOpenContainerEvent@@@Z", void* a2) {
-    Actor* pl = SymCall("??$tryUnwrap@VActor@@$$V@WeakEntityRef@@QEBAPEAVActor@@XZ", Actor*, void*)(a2);
-    if (pl->isPlayer()) {
-        IF_LISTENED(PlayerOpenContainerEvent) {
-            BlockPos bp = dAccess<BlockPos>(a2, 28);
-            PlayerOpenContainerEvent ev{};
-            ev.mPlayer = (Player*)pl;
-            ev.mBlockInstance = Level::getBlockInstance(bp, pl->getDimensionId());
-            ev.mContainer = ev.mBlockInstance.getContainer();
-            if (!ev.call())
-                return 0;
-        }
-        IF_LISTENED_END(PlayerOpenContainerEvent)
-    }
-    return original(this, a2);
-}
+// 没有这个符号
+// TClasslessInstanceHook(__int64, "?onEvent@VanillaServerGameplayEventListener@@UEAA?AW4EventResult@@AEBUPlayerOpenContainerEvent@@@Z", void* a2) {
+//     Actor* pl = SymCall("??$tryUnwrap@VActor@@$$V@WeakEntityRef@@QEBAPEAVActor@@XZ", Actor*, void*)(a2);
+//     if (pl->isPlayer()) {
+//         IF_LISTENED(PlayerOpenContainerEvent) {
+//             BlockPos bp = dAccess<BlockPos>(a2, 28);
+//             PlayerOpenContainerEvent ev{};
+//             ev.mPlayer = (Player*)pl;
+//             ev.mBlockInstance = Level::getBlockInstance(bp, pl->getDimensionId());
+//             ev.mContainer = ev.mBlockInstance.getContainer();
+//             if (!ev.call())
+//                 return 0;
+//         }
+//         IF_LISTENED_END(PlayerOpenContainerEvent)
+//     }
+//     return original(this, a2);
+// }
 
 /////////////////// PlayerCloseContainer ///////////////////
 // chest
@@ -956,19 +966,20 @@ TInstanceHook(void, "?inventoryChanged@Player@@UEAAXAEAVContainer@@HAEBVItemStac
 }
 
 /////////////////// PlayerMove ///////////////////
-TClasslessInstanceHook(void, "?sendPlayerMove@PlayerEventCoordinator@@QEAAXAEAVPlayer@@@Z",
-                       Player* pl) {
-    IF_LISTENED(PlayerMoveEvent) {
-        if (pl->isMoving()) {
-            PlayerMoveEvent ev{};
-            ev.mPlayer = pl;
-            ev.mPos = pl->getPosition();
-            ev.call();
-        }
-    }
-    IF_LISTENED_END(PlayerMoveEvent)
-    return original(this, pl);
-}
+// 没有这个符号
+// TClasslessInstanceHook(void, "?sendPlayerMove@PlayerEventCoordinator@@QEAAXAEAVPlayer@@@Z",
+//                        Player* pl) {
+//     IF_LISTENED(PlayerMoveEvent) {
+//         if (pl->isMoving()) {
+//             PlayerMoveEvent ev{};
+//             ev.mPlayer = pl;
+//             ev.mPos = pl->getPosition();
+//             ev.call();
+//         }
+//     }
+//     IF_LISTENED_END(PlayerMoveEvent)
+//     return original(this, pl);
+// }
 
 /////////////////// PlayerSprint ///////////////////
 TInstanceHook(void, "?setSprinting@Mob@@UEAAX_N@Z",
@@ -1168,34 +1179,36 @@ TClasslessInstanceHook(unsigned short,
 }
 
 /////////////////// BlockChanged ///////////////////
-TInstanceHook(void, "?_blockChanged@BlockSource@@IEAAXAEBVBlockPos@@IAEBVBlock@@1HPEBUActorBlockSyncMessage@@PEAVActor@@@Z",
-              BlockSource, BlockPos* bp, int a3, Block* afterBlock, Block* beforeBlock, int a6, void* a7, Actor* ac) {
-    IF_LISTENED(BlockChangedEvent) {
-        int dimId = this->getDimensionId();
-        BlockChangedEvent ev{};
-        ev.mPreviousBlockInstance = BlockInstance::createBlockInstance(beforeBlock, *bp, dimId);
-        ev.mNewBlockInstance = BlockInstance::createBlockInstance(afterBlock, *bp, dimId);
-        if (!ev.call())
-            return;
-    }
-    IF_LISTENED_END(BlockChangedEvent)
-    return original(this, bp, a3, afterBlock, beforeBlock, a6, a7, ac);
-}
+// 没有这个符号
+// TInstanceHook(void, "?_blockChanged@BlockSource@@IEAAXAEBVBlockPos@@IAEBVBlock@@1HPEBUActorBlockSyncMessage@@PEAVActor@@@Z",
+//               BlockSource, BlockPos* bp, int a3, Block* afterBlock, Block* beforeBlock, int a6, void* a7, Actor* ac) {
+//     IF_LISTENED(BlockChangedEvent) {
+//         int dimId = this->getDimensionId();
+//         BlockChangedEvent ev{};
+//         ev.mPreviousBlockInstance = BlockInstance::createBlockInstance(beforeBlock, *bp, dimId);
+//         ev.mNewBlockInstance = BlockInstance::createBlockInstance(afterBlock, *bp, dimId);
+//         if (!ev.call())
+//             return;
+//     }
+//     IF_LISTENED_END(BlockChangedEvent)
+//     return original(this, bp, a3, afterBlock, beforeBlock, a6, a7, ac);
+// }
 
 /////////////////// BlockExploded ///////////////////
-TInstanceHook(void, "?onExploded@Block@@QEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
-              Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
-    IF_LISTENED(BlockExplodedEvent) {
-        if (actor) {
-            BlockExplodedEvent ev{};
-            ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, bs->getDimensionId());
-            ev.mExplodeSource = actor;
-            ev.call();
-        }
-    }
-    IF_LISTENED_END(BlockExplodedEvent)
-    return original(this, bs, bp, actor);
-}
+// 没有这个符号
+// TInstanceHook(void, "?onExploded@Block@@QEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
+//               Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
+//     IF_LISTENED(BlockExplodedEvent) {
+//         if (actor) {
+//             BlockExplodedEvent ev{};
+//             ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, bs->getDimensionId());
+//             ev.mExplodeSource = actor;
+//             ev.call();
+//         }
+//     }
+//     IF_LISTENED_END(BlockExplodedEvent)
+//     return original(this, bs, bp, actor);
+// }
 
 
 /////////////////// FireSpread ///////////////////
@@ -1254,26 +1267,27 @@ TClasslessInstanceHook(bool, "?mayPlace@FireBlock@@UEBA_NAEAVBlockSource@@AEBVBl
 
 
 /////////////////// ProjectileHitBlock ///////////////////
-TInstanceHook(void, "?onProjectileHit@Block@@QEBAXAEAVBlockSource@@AEBVBlockPos@@AEBVActor@@@Z",
-              Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
-    // Exclude default position BlockPos::Zero
-    if ((bp->x | bp->y | bp->z) == 0) // actor->getPos().distanceTo(bp->center())>5)
-        return original(this, bs, bp, actor);
-    IF_LISTENED(ProjectileHitBlockEvent) {
-        if (this->getTypeName() != "minecraft:air") {
-            ProjectileHitBlockEvent ev{};
-            ev.mBlockInstance = Level::getBlockInstance(bp, bs);
-            ev.mSource = actor;
-            ev.call();
-        }
-    }
-    IF_LISTENED_END(ProjectileHitBlockEvent)
-    return original(this, bs, bp, actor);
-}
+// 没有这个符号
+// TInstanceHook(void, "?onProjectileHit@Block@@QEBAXAEAVBlockSource@@AEBVBlockPos@@AEBVActor@@@Z",
+//               Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
+//     // Exclude default position BlockPos::Zero
+//     if ((bp->x | bp->y | bp->z) == 0) // actor->getPos().distanceTo(bp->center())>5)
+//         return original(this, bs, bp, actor);
+//     IF_LISTENED(ProjectileHitBlockEvent) {
+//         if (this->getTypeName() != "minecraft:air") {
+//             ProjectileHitBlockEvent ev{};
+//             ev.mBlockInstance = Level::getBlockInstance(bp, bs);
+//             ev.mSource = actor;
+//             ev.call();
+//         }
+//     }
+//     IF_LISTENED_END(ProjectileHitBlockEvent)
+//     return original(this, bs, bp, actor);
+// }
 
 
 /////////////////// RedStoneUpdate ///////////////////
-// 红石�?
+// 红石�??
 TClasslessInstanceHook(void, "?onRedstoneUpdate@RedStoneWireBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@H_N@Z",
                        BlockSource* bs, BlockPos* bp, int level, bool isActive) {
     IF_LISTENED(RedStoneUpdateEvent) {
@@ -1305,7 +1319,7 @@ TClasslessInstanceHook(void, "?onRedstoneUpdate@RedstoneTorchBlock@@UEBAXAEAVBlo
     IF_LISTENED_END(RedStoneUpdateEvent)
     return original(this, bs, bp, level, isActive);
 }
-// 红石中继�?
+// 红石中继�??
 TClasslessInstanceHook(void, "?onRedstoneUpdate@DiodeBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@H_N@Z",
                        BlockSource* bs, BlockPos* bp, int level, bool isActive) {
     IF_LISTENED(RedStoneUpdateEvent) {
@@ -1321,7 +1335,7 @@ TClasslessInstanceHook(void, "?onRedstoneUpdate@DiodeBlock@@UEBAXAEAVBlockSource
     IF_LISTENED_END(RedStoneUpdateEvent)
     return original(this, bs, bp, level, isActive);
 }
-// 红石比较�?
+// 红石比较�??
 TClasslessInstanceHook(void, "?onRedstoneUpdate@ComparatorBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@H_N@Z",
                        BlockSource* bs, BlockPos* bp, int level, bool isActive) {
     IF_LISTENED(RedStoneUpdateEvent) {
@@ -1340,26 +1354,27 @@ TClasslessInstanceHook(void, "?onRedstoneUpdate@ComparatorBlock@@UEBAXAEAVBlockS
 
 
 /////////////////// HopperSearchItem ///////////////////
-TClasslessInstanceHook(bool, "?_tryPullInItemsFromAboveContainer@Hopper@@IEAA_NAEAVBlockSource@@AEAVContainer@@AEBVVec3@@@Z",
-                       BlockSource* bs, void* container, Vec3* pos) {
-    bool isMinecart = dAccess<bool>(this, 5); // IDA Hopper::Hopper
+// 没有这个符号
+// TClasslessInstanceHook(bool, "?_tryPullInItemsFromAboveContainer@Hopper@@IEAA_NAEAVBlockSource@@AEAVContainer@@AEBVVec3@@@Z",
+//                        BlockSource* bs, void* container, Vec3* pos) {
+//     bool isMinecart = dAccess<bool>(this, 5); // IDA Hopper::Hopper
 
-    IF_LISTENED(HopperSearchItemEvent) {
-        HopperSearchItemEvent ev{};
-        if (isMinecart) {
-            ev.isMinecart = true;
-            ev.mMinecartPos = *pos;
-        } else {
-            ev.isMinecart = false;
-            ev.mHopperBlock = Level::getBlockInstance(pos->toBlockPos(), bs);
-        }
-        ev.mDimensionId = bs->getDimensionId();
-        if (!ev.call())
-            return false;
-    }
-    IF_LISTENED_END(HopperSearchItemEvent)
-    return original(this, bs, container, pos);
-}
+//     IF_LISTENED(HopperSearchItemEvent) {
+//         HopperSearchItemEvent ev{};
+//         if (isMinecart) {
+//             ev.isMinecart = true;
+//             ev.mMinecartPos = *pos;
+//         } else {
+//             ev.isMinecart = false;
+//             ev.mHopperBlock = Level::getBlockInstance(pos->toBlockPos(), bs);
+//         }
+//         ev.mDimensionId = bs->getDimensionId();
+//         if (!ev.call())
+//             return false;
+//     }
+//     IF_LISTENED_END(HopperSearchItemEvent)
+//     return original(this, bs, container, pos);
+// }
 
 /////////////////// HopperPushOut ///////////////////
 TClasslessInstanceHook(bool, "?_pushOutItems@Hopper@@IEAA_NAEAVBlockSource@@AEAVContainer@@AEBVVec3@@H@Z",
@@ -1426,19 +1441,20 @@ TClasslessInstanceHook(void, "?transformOnFall@FarmBlock@@UEBAXAEAVBlockSource@@
 
 
 /////////////////// PlayerUseFrameBlockEvent  ///////////////////
-TClasslessInstanceHook(bool, "?use@ItemFrameBlock@@UEBA_NAEAVPlayer@@AEBVBlockPos@@E@Z",
-                       Player* a2, BlockPos* a3) {
-    IF_LISTENED(PlayerUseFrameBlockEvent) {
-        PlayerUseFrameBlockEvent ev{};
-        ev.mType = PlayerUseFrameBlockEvent::Type::Use;
-        ev.mBlockInstance = Level::getBlockInstance(a3, a2->getDimensionId());
-        ev.mPlayer = a2;
-        if (!ev.call())
-            return false;
-    }
-    IF_LISTENED_END(PlayerUseFrameBlockEvent)
-    return original(this, a2, a3);
-}
+// 没有这个符号
+// TClasslessInstanceHook(bool, "?use@ItemFrameBlock@@UEBA_NAEAVPlayer@@AEBVBlockPos@@E@Z",
+//                        Player* a2, BlockPos* a3) {
+//     IF_LISTENED(PlayerUseFrameBlockEvent) {
+//         PlayerUseFrameBlockEvent ev{};
+//         ev.mType = PlayerUseFrameBlockEvent::Type::Use;
+//         ev.mBlockInstance = Level::getBlockInstance(a3, a2->getDimensionId());
+//         ev.mPlayer = a2;
+//         if (!ev.call())
+//             return false;
+//     }
+//     IF_LISTENED_END(PlayerUseFrameBlockEvent)
+//     return original(this, a2, a3);
+// }
 
 TClasslessInstanceHook(bool, "?attack@ItemFrameBlock@@UEBA_NPEAVPlayer@@AEBVBlockPos@@@Z",
                        Player* a2, BlockPos* a3) {
@@ -1760,53 +1776,56 @@ TClasslessInstanceHook(void, "?explode@Explosion@@QEAAXXZ") {
 
 
 ////////////// WitherBossDestroy //////////////
-TInstanceHook(void, "?_destroyBlocks@WitherBoss@@AEAAXAEAVLevel@@AEBVAABB@@AEAVBlockSource@@HW4WitherAttackType@1@@Z",
-              Actor, Level* a2, AABB* aabb, BlockSource* a4, int a5, unsigned int a6) {
-    IF_LISTENED(WitherBossDestroyEvent) {
-        WitherBossDestroyEvent ev{};
-        ev.mWitherBoss = (WitherBoss*)this;
-        ev.mDestroyRange = *aabb;
-        if (!ev.call())
-            return;
+// 没有这个符号
+// TInstanceHook(void, "?_destroyBlocks@WitherBoss@@AEAAXAEAVLevel@@AEBVAABB@@AEAVBlockSource@@HW4WitherAttackType@1@@Z",
+//               Actor, Level* a2, AABB* aabb, BlockSource* a4, int a5, unsigned int a6) {
+//     IF_LISTENED(WitherBossDestroyEvent) {
+//         WitherBossDestroyEvent ev{};
+//         ev.mWitherBoss = (WitherBoss*)this;
+//         ev.mDestroyRange = *aabb;
+//         if (!ev.call())
+//             return;
 
-        *aabb = ev.mDestroyRange;
-    }
-    IF_LISTENED_END(WitherBossDestroyEvent)
-    original(this, a2, aabb, a4, a5, a6);
-}
+//         *aabb = ev.mDestroyRange;
+//     }
+//     IF_LISTENED_END(WitherBossDestroyEvent)
+//     original(this, a2, aabb, a4, a5, a6);
+// }
 
 
 ////////////// EntityRide //////////////
-TInstanceHook(bool, "?canAddPassenger@Actor@@UEBA_NAEAV1@@Z",
-              Actor, Actor* a2) {
-    auto rtn = original(this, a2);
-    if (!rtn)
-        return false;
-    IF_LISTENED(EntityRideEvent) {
-        EntityRideEvent ev{};
-        ev.mRider = a2;
-        ev.mVehicle = this;
-        if (!ev.call())
-            return false;
-    }
-    IF_LISTENED_END(EntityRideEvent)
-    return rtn;
-}
+// 没有这个符号
+// TInstanceHook(bool, "?canAddPassenger@Actor@@UEBA_NAEAV1@@Z",
+//               Actor, Actor* a2) {
+//     auto rtn = original(this, a2);
+//     if (!rtn)
+//         return false;
+//     IF_LISTENED(EntityRideEvent) {
+//         EntityRideEvent ev{};
+//         ev.mRider = a2;
+//         ev.mVehicle = this;
+//         if (!ev.call())
+//             return false;
+//     }
+//     IF_LISTENED_END(EntityRideEvent)
+//     return rtn;
+// }
 
 
 ////////////// EntityStepOnPressurePlate //////////////
-TClasslessInstanceHook(bool, "?shouldTriggerEntityInside@BasePressurePlateBlock@@UEBA_NAEAVBlockSource@@AEBVBlockPos@@AEAVActor@@@Z",
-                       BlockSource* a2, BlockPos* a3, Actor* a4) {
-    IF_LISTENED(EntityStepOnPressurePlateEvent) {
-        EntityStepOnPressurePlateEvent ev{};
-        ev.mActor = a4;
-        ev.mBlockInstance = Level::getBlockInstance(a3, a4->getDimensionId());
-        if (!ev.call())
-            return false;
-    }
-    IF_LISTENED_END(EntityStepOnPressurePlateEvent)
-    return original(this, a2, a3, a4);
-}
+// 没有这个符号
+// TClasslessInstanceHook(bool, "?shouldTriggerEntityInside@BasePressurePlateBlock@@UEBA_NAEAVBlockSource@@AEBVBlockPos@@AEAVActor@@@Z",
+//                        BlockSource* a2, BlockPos* a3, Actor* a4) {
+//     IF_LISTENED(EntityStepOnPressurePlateEvent) {
+//         EntityStepOnPressurePlateEvent ev{};
+//         ev.mActor = a4;
+//         ev.mBlockInstance = Level::getBlockInstance(a3, a4->getDimensionId());
+//         if (!ev.call())
+//             return false;
+//     }
+//     IF_LISTENED_END(EntityStepOnPressurePlateEvent)
+//     return original(this, a2, a3, a4);
+// }
 
 ////////////// ProjectileSpawn //////////////
 // TClasslessInstanceHook(Actor*,
@@ -1962,25 +1981,26 @@ TClasslessInstanceHook(void, "?onScoreChanged@ServerScoreboard@@UEAAXAEBUScorebo
 
 #include <MC/Minecraft.hpp>
 ////////////// ServerStarted //////////////
-TClasslessInstanceHook(void, "?sendServerThreadStarted@ServerInstanceEventCoordinator@@QEAAXAEAVServerInstance@@@Z",
-                       class ServerInstance& ins) {
-    if(!LL::isDebugMode())
-        _set_se_translator(seh_exception::TranslateSEHtoCE);
+// 没有这个符号
+// TClasslessInstanceHook(void, "?sendServerThreadStarted@ServerInstanceEventCoordinator@@QEAAXAEAVServerInstance@@@Z",
+//                        class ServerInstance& ins) {
+//     if(!LL::isDebugMode())
+//         _set_se_translator(seh_exception::TranslateSEHtoCE);
 
-    LL::globalConfig.tickThreadId = std::this_thread::get_id();
-    Global<Level> = Global<Minecraft>->getLevel();
-    Global<ServerLevel> = (ServerLevel*)Global<Minecraft>->getLevel();
-    // Global<ServerNetworkHandler> = Global<Minecraft>->getServerNetworkHandler();
-    LL::globalConfig.serverStatus = LL::LLServerStatus::Running;
+//     LL::globalConfig.tickThreadId = std::this_thread::get_id();
+//     Global<Level> = Global<Minecraft>->getLevel();
+//     Global<ServerLevel> = (ServerLevel*)Global<Minecraft>->getLevel();
+//     // Global<ServerNetworkHandler> = Global<Minecraft>->getServerNetworkHandler();
+//     LL::globalConfig.serverStatus = LL::LLServerStatus::Running;
 
-    IF_LISTENED(ServerStartedEvent) {
-        ServerStartedEvent ev{};
-        ev.call();
-    }
-    IF_LISTENED_END(ServerStartedEvent)
+//     IF_LISTENED(ServerStartedEvent) {
+//         ServerStartedEvent ev{};
+//         ev.call();
+//     }
+//     IF_LISTENED_END(ServerStartedEvent)
 
-    original(this, ins);
-}
+//     original(this, ins);
+// }
 
 ////////////// ServerStopped //////////////
 TClasslessInstanceHook(void, "??1DedicatedServer@@UEAA@XZ") {
@@ -2058,27 +2078,28 @@ TInstanceHook(void*, "?handle@ComplexInventoryTransaction@@UEBA?AW4InventoryTran
     return original(this, a2, a3);
 }
 
-TInstanceHook(void, "?dropSlot@Inventory@@QEAAXH_N00@Z",
-              Container, int a2, char a3, char a4, bool a5) {
-    auto pl = dAccess<Player*, 248>(this);
-    if (pl->isPlayer()) {
-        IF_LISTENED(PlayerDropItemEvent) {
-            PlayerDropItemEvent ev{};
-            if (a2 >= 0) {
-                auto& item = this->getItem(a2);
-                if (!item.isNull()) {
-                    ev.mItemStack = const_cast<ItemStack*>(&item);
-                    ev.mPlayer = pl;
-                }
-                if (!ev.call()) {
-                    return;
-                }
-            }
-        }
-        IF_LISTENED_END(PlayerDropItemEvent)
-    }
-    return original(this, a2, a3, a4, a5);
-}
+// 没有这个符号
+// TInstanceHook(void, "?dropSlot@Inventory@@QEAAXH_N00@Z",
+//               Container, int a2, char a3, char a4, bool a5) {
+//     auto pl = dAccess<Player*, 248>(this);
+//     if (pl->isPlayer()) {
+//         IF_LISTENED(PlayerDropItemEvent) {
+//             PlayerDropItemEvent ev{};
+//             if (a2 >= 0) {
+//                 auto& item = this->getItem(a2);
+//                 if (!item.isNull()) {
+//                     ev.mItemStack = const_cast<ItemStack*>(&item);
+//                     ev.mPlayer = pl;
+//                 }
+//                 if (!ev.call()) {
+//                     return;
+//                 }
+//             }
+//         }
+//         IF_LISTENED_END(PlayerDropItemEvent)
+//     }
+//     return original(this, a2, a3, a4, a5);
+// }
 
 ////////////// PlayerBedEnter //////////////
 TInstanceHook(int, "?startSleepInBed@Player@@UEAA?AW4BedSleepingResult@@AEBVBlockPos@@@Z",
