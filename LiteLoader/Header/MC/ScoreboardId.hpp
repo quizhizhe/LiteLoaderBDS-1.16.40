@@ -26,14 +26,14 @@ public:
         return id != a1.id;
     }
     bool isValid(){
-        return *this != ScoreboardId::INVALID;
+        return *this != 0xFFFFFFFF;
     }
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SCOREBOARDID
 public:
-    struct ScoreboardId& operator=(struct ScoreboardId const &);
-    // ScoreboardId(struct ScoreboardId const &)= delete;
-    // ScoreboardId()= delete;
+    struct ScoreboardId& operator=(struct ScoreboardId const &) = delete;
+    ScoreboardId(struct ScoreboardId const &)= delete;
+    //ScoreboardId()= delete;
 #endif
 public:
 #ifdef ENABLE_VIRTUAL_FAKESYMBOL_SCOREBOARDID

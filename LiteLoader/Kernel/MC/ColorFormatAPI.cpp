@@ -102,7 +102,7 @@ std::string consoleCodeFromColorCode(std::string const& mcCode) {
     return iter->second;
 }
 
-mce::Color ColorFromConsoleCode(std::string const& console) {
+Color ColorFromConsoleCode(std::string const& console) {
     unsigned char decoration = 0;
     unsigned char r = 0;
     unsigned char g = 0;
@@ -110,10 +110,10 @@ mce::Color ColorFromConsoleCode(std::string const& console) {
     std::istringstream iss(console);
     int c = 0;
     if (iss.get() != '\x1b' || iss.get() != '[')
-        return mce::Color::NIL;
+        return Color::NIL;
     c = __readUnsignedChar(decoration, iss);
     if (c == EOF)
-        return mce::Color::NIL;
+        return Color::NIL;
     if (c == 'm') {
         auto codeIter = decorationToColorCodeMap.find(decoration);
         if (codeIter != decorationToColorCodeMap.end())
@@ -124,19 +124,19 @@ mce::Color ColorFromConsoleCode(std::string const& console) {
         unsigned char unk;
         c = __readUnsignedChar(unk, iss);
         if (c != ';')
-            return mce::Color::NIL;
+            return Color::NIL;
         c = __readUnsignedChar(r, iss);
         if (c != ';')
-            return mce::Color::NIL;
+            return Color::NIL;
         c = __readUnsignedChar(g, iss);
         if (c != ';')
-            return mce::Color::NIL;
+            return Color::NIL;
         c = __readUnsignedChar(b, iss);
         if (c != 'm')
-            return mce::Color::NIL;
-        return mce::Color(r, g, b);
+            return Color::NIL;
+        return Color(r, g, b);
     }
-    return mce::Color::NIL;
+    return Color::NIL;
 }
 
 std::string nearestColorCodeFromConsoleCode(std::string const& code) {

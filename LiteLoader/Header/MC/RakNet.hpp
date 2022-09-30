@@ -25,7 +25,8 @@ namespace RakNet {
 
     struct SystemAddress {
         char filler[17 * 8]; // uncertain?
-        MCAPI void ToString_New(bool, char, char*);
+    private:
+        MCAPI void ToString_New(bool, char, char*) const;
     };
     struct RakNetGUID {
         uint64_t unk;

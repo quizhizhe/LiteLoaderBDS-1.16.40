@@ -139,9 +139,9 @@ public:
     LIAPI double deltaE94(mce::Color const& dst) const; // 1.0 for JND
     LIAPI double deltaE00(mce::Color const& dst) const; // 1.0 for JND
 
-    MCAPI static mce::Color const NIL;
-    MCAPI static class mce::Color fromHexString(std::string const&);
-    MCAPI bool operator==(class mce::Color const&) const;
+    MCAPI static Color const NIL;
+    MCAPI static class Color fromHexString(std::string const&);
+    MCAPI bool operator==(class Color const&) const;
     MCAPI int toABGR(void) const;
     MCAPI int toARGB(void) const;
     MCAPI std::string toHexString(void) const;
