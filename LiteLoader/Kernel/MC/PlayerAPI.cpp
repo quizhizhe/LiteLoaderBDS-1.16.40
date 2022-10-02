@@ -51,8 +51,8 @@ NetworkIdentifier* Player::getNetworkIdentifier() {
 
 
 Certificate* Player::getCertificate() const{
-    //ServerNetworkHandler::_onPlayerLeft Line145
-    return dAccess<Certificate*>(this, 342);
+    //KickCommand::_kickPlayer Line116
+    return dAccess<Certificate*>(this, 2736);
 }
 
 std::string Player::getRealName() {
