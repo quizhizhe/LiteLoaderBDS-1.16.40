@@ -322,33 +322,32 @@ TClasslessInstanceHook(void, "?sendLoginMessageLocal@ServerNetworkHandler@@QEAAX
 
 /////////////////// PlayerJoin ///////////////////
 //没有这个符号
-// TInstanceHook(bool, "?setLocalPlayerAsInitialized@ServerPlayer@@QEAAXXZ",
-//               ServerPlayer) {
-//     IF_LISTENED(PlayerJoinEvent) {
-//         PlayerJoinEvent ev{};
-//         ev.mPlayer = this;
+ TInstanceHook(bool, "?onReady_ClientGeneration@ServerNetworkHandler@@QEAAXAEAVPlayer@@AEBVNetworkIdentifier@@@Z",
+              ServerNetworkHandler,Player* player,NetworkIdentifier *net) {
+     IF_LISTENED(PlayerJoinEvent) {
+         PlayerJoinEvent ev{};
+         ev.mPlayer = player;
 
-//         if (!ev.call())
-//             return false;
-//     }
-//     IF_LISTENED_END(PlayerJoinEvent)
-//     return original(this);
-// }
+         if (!ev.call())
+             return false;
+     }
+     IF_LISTENED_END(PlayerJoinEvent)
+     return original(this,player,net);
+ }
 
 
 /////////////////// PlayerLeft ///////////////////
-//符号没有
-// THook(void, "?disconnect@ServerPlayer@@QEAAXXZ",
-//       ServerPlayer* sp) {
-//     IF_LISTENED(PlayerLeftEvent) {
-//         PlayerLeftEvent ev{};
-//         ev.mPlayer = sp;
-//         ev.mXUID = sp->getXuid();
-//         ev.call();
-//     }
-//     IF_LISTENED_END(PlayerLeftEvent)
-//     return original(sp);
-// }
+ THook(void, "?_onPlayerLeft@ServerNetworkHandler@@AEAAXPEAVServerPlayer@@_N@Z",
+       ServerNetworkHandler *_this,ServerPlayer* sp,char a3) {
+     IF_LISTENED(PlayerLeftEvent) {
+         PlayerLeftEvent ev{};
+         ev.mPlayer = sp;
+         ev.mXUID = sp->getXuid();
+         ev.call();
+     }
+     IF_LISTENED_END(PlayerLeftEvent)
+     return original(_this,sp,a3);
+ }
 
 /////////////////// PlayerRespawn ///////////////////
 TClasslessInstanceHook(void, "?handle@?$PacketHandlerDispatcherInstance@VPlayerActionPacket@@$0A@@@UEBAXAEBVNetworkIdentifier@@AEAVNetEventCallback@@AEAV?$shared_ptr@VPacket@@@std@@@Z",
@@ -376,11 +375,11 @@ TInstanceHook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@A
         if (!ev.mPlayer)
             return;
 
-        ev.mMessage = std::string(*(std::string*)((uintptr_t)text + 88));
+        ev.mMessage = std::string(*(std::string*)((uintptr_t)text + 80));
 
         if (!ev.call())
             return;
-        *(std::string*)((uintptr_t)text + 88) = ev.mMessage;
+        *(std::string*)((uintptr_t)text + 80) = ev.mMessage;
     }
     IF_LISTENED_END(PlayerChatEvent);
     return original(this, id, text);
