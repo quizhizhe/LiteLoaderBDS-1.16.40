@@ -16,6 +16,11 @@ std::string identifier;     // 32
 std::string event;          // 64
 std::string fullname;       // 96
 HashedString canonicalHash; // 128
+
+public:
+    inline const std::string getCanonicalName(){
+        return this->canonicalHash.getString();
+    }
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ACTORDEFINITIONIDENTIFIER
 public:
