@@ -73,8 +73,8 @@ public:
             storage_.policy_ = allocate & 0x3;
             storage_.length_ = length & 0x3FFFFFFF;
         }
-        //MCAPI CZString(CZString const& other);
-        //MCAPI ~CZString();
+        MCAPI CZString(CZString const& other);
+        MCAPI ~CZString();
         CZString& operator=(const CZString& other) {
             cstr_ = other.cstr_;
             index_ = other.index_;
@@ -153,34 +153,34 @@ public:
         bits_.value_type_ = realValue;
         value_.real_ = value;
     }
-    //MCAPI Value(const char* value);
+    MCAPI Value(const char* value);
     Value(bool value) {
         bits_.value_type_ = booleanValue;
         value_.bool_ = value;
     }
-    //MCAPI Value(const Value& other);
-    //MCAPI ~Value();
+    MCAPI Value(const Value& other);
+    MCAPI ~Value();
 
-    //MCAPI static Value const null;
+    MCAPI static Value const null;
 
-    //MCAPI void swap(Value& other);
+    MCAPI void swap(Value& other);
     ValueType type() const {
         return bits_.value_type_;
     }
 
-    //MCAPI Value& operator=(const Value& other);
+    MCAPI Value& operator=(const Value& other);
 
-    //MCAPI bool operator<(const Value& other) const;
-    //MCAPI bool operator==(const Value& other) const;
+    MCAPI bool operator<(const Value& other) const;
+    MCAPI bool operator==(const Value& other) const;
 
-    //MCAPI std::string asString(std::string const&) const;
-    //MCAPI Int asInt(Int) const;
-    //MCAPI UInt asUInt(UInt) const;
-    //MCAPI float asFloat(float) const;
-    //MCAPI double asDouble(double) const;
-    //MCAPI bool asBool(bool) const;
+    MCAPI std::string asString(std::string const&) const;
+    MCAPI Int asInt(Int) const;
+    MCAPI UInt asUInt(UInt) const;
+    MCAPI float asFloat(float) const;
+    MCAPI double asDouble(double) const;
+    MCAPI bool asBool(bool) const;
 
-    //MCAPI bool isNull() const;
+    MCAPI bool isNull() const;
     bool isBool() const {
         return type() == booleanValue;
     }
@@ -196,48 +196,48 @@ public:
     bool isDouble() const {
         return type() == realValue;
     }
-    //MCAPI bool isNumeric() const;
-    //MCAPI bool isString() const;
+    MCAPI bool isNumeric() const;
+    MCAPI bool isString() const;
     bool isArray() const {
         return type() == arrayValue;
     }
     bool isObject() const {
         return type() == objectValue;
     }
-    //MCAPI bool isConvertibleTo(ValueType other) const;
+    MCAPI bool isConvertibleTo(ValueType other) const;
 
-    //MCAPI ArrayIndex size() const;
-    //MCAPI bool empty() const;
+    MCAPI ArrayIndex size() const;
+    MCAPI bool empty() const;
     void clear() {
         if (type() == arrayValue || type() == objectValue) {
             value_.map_->clear();
         }
     }
-    //MCAPI void resize(ArrayIndex newSize);
-    //MCAPI Value& operator[](ArrayIndex index);
-    //MCAPI Value& operator[](int index);
-    //MCAPI const Value& operator[](ArrayIndex index) const;
-    //MCAPI const Value& operator[](int index) const;
-    //MCAPI Value& append(const Value& value);
+    MCAPI void resize(ArrayIndex newSize);
+    MCAPI Value& operator[](ArrayIndex index);
+    MCAPI Value& operator[](int index);
+    MCAPI const Value& operator[](ArrayIndex index) const;
+    MCAPI const Value& operator[](int index) const;
+    MCAPI Value& append(const Value& value);
 
-    //MCAPI Value& operator[](const char* key);
-    //MCAPI const Value& operator[](const char* key) const;
-    //MCAPI Value& operator[](const std::string& key);
-    //MCAPI const Value& operator[](const std::string& key) const;
-    //MCAPI Value removeMember(const char* key);
+    MCAPI Value& operator[](const char* key);
+    MCAPI const Value& operator[](const char* key) const;
+    MCAPI Value& operator[](const std::string& key);
+    MCAPI const Value& operator[](const std::string& key) const;
+    MCAPI Value removeMember(const char* key);
     void removeMember(const std::string& key) {
         removeMember(key.c_str());
     }
-    //MCAPI bool isMember(const char* key) const;
+    MCAPI bool isMember(const char* key) const;
     bool isMember(const std::string& key) const {
         return isMember(key.c_str());
     }
 
-    //MCAPI const_iterator begin() const;
-    //MCAPI const_iterator end() const;
+    MCAPI const_iterator begin() const;
+    MCAPI const_iterator end() const;
 
-    //MCAPI iterator begin();
-    //MCAPI iterator end();
+    MCAPI iterator begin();
+    MCAPI iterator end();
 
     MCAPI std::string toStyledString() const;
 
@@ -256,7 +256,7 @@ public:
     } bits_;
 
 private:
-    //MCAPI Value& resolveReference(const char* key, bool create);
+    MCAPI Value& resolveReference(const char* key, bool create);
 };
 
 class ValueIteratorBase {
@@ -273,11 +273,11 @@ public:
         return !isEqual(other);
     }
 
-    //MCAPI Value key() const;
+    MCAPI Value key() const;
 
 protected:
-    //MCAPI void increment(void);
-    //MCAPI class Json::Value& deref(void) const;
+    MCAPI void increment(void);
+    MCAPI class Json::Value& deref(void) const;
 
     bool isEqual(const SelfType& other) const {
         if (isNull_)
@@ -311,8 +311,8 @@ private:
     explicit ValueConstIterator(const Value::ObjectValues::iterator& current);
 
 public:
-    //MCAPI SelfType& operator++();
-    //MCAPI reference operator*() const;
+    MCAPI SelfType& operator++();
+    MCAPI reference operator*() const;
 };
 
 class ValueIterator : public ValueIteratorBase {
@@ -334,15 +334,15 @@ private:
     explicit ValueIterator(const Value::ObjectValues::iterator& current);
 
 public:
-    // SelfType& operator++() {
-    //     increment();
-    //     return *this;
-    // }
+     SelfType& operator++() {
+         increment();
+         return *this;
+     }
 
-    // Json::Value& operator*() {
-    //     return deref();
-    // }
-    // MCAPI reference operator*() const;
+     Json::Value& operator*() {
+         return deref();
+     }
+     MCAPI reference operator*() const;
 };
 
 class Features {
@@ -363,14 +363,14 @@ public:
         ptrdiff_t offset_limit;
         std::string message;
     };
-    //MCAPI Reader();
+    MCAPI Reader();
 
-    //MCAPI bool parse(const std::string& document, Value& root, bool collectComments = true);
-    //MCAPI bool parse(const char* beginDoc, const char* endDoc, Value& root, bool collectComments = true);
-    //MCAPI bool parse(const char* beginDoc, unsigned long long length, Value& root, bool collectComments = true);
-    //MCAPI bool parse(std::istream& is, Value& root, bool collectComments = true);
+    MCAPI bool parse(const std::string& document, Value& root, bool collectComments = true);
+    MCAPI bool parse(const char* beginDoc, const char* endDoc, Value& root, bool collectComments = true);
+    MCAPI bool parse(const char* beginDoc, unsigned long long length, Value& root, bool collectComments = true);
+    MCAPI bool parse(std::istream& is, Value& root, bool collectComments = true);
 
-    //MCAPI std::string getFormattedErrorMessages() const;
+    MCAPI std::string getFormattedErrorMessages() const;
 
 private:
     enum TokenType {
@@ -434,7 +434,7 @@ public:
     }
 
 public:
-    //MCAPI std::string write(const Value& root) override;
+    MCAPI std::string write(const Value& root) override;
 
 private:
     std::string document_;
@@ -451,7 +451,7 @@ public:
     }
 
 public:
-    //MCAPI std::string write(const Value& root) override;
+    MCAPI std::string write(const Value& root) override;
 
 private:
     typedef std::vector<std::string> ChildValues;

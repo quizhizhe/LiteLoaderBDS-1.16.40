@@ -49,9 +49,9 @@ THook(void, "?PlatformBedrockLogOut@@YAXIPEBD@Z", int a1, const char* ts) {
 }
 
 // Block BDS from adding LOG metadata
-// 没有这个符号，去掉这个应该也没有影响
-// THook(void, "?_appendLogEntryMetadata@LogDetails@BedrockLog@@AEAAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V34@W4LogAreaID@@I1HH@Z",
-//       void* a1, void* a2, void** a3, int a4, unsigned int a5, __int64 a6, unsigned int a7, unsigned int a8) {
+// 虽然这个是可用的，但开了以后BDS自身的后台记录没有了时间
+// THook(void, "?_appendLogEntryMetadata@LogDetails@BedrockLog@@AEAAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4LogAreaID@@IV34@HH@Z",
+//       void* a1, void* a2, int a3, unsigned int a4, size_t *a5, __int64 a6, int a7) {
 //     return;
 // }
 
