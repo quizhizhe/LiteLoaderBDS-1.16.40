@@ -177,7 +177,7 @@ std::unique_ptr<CompoundTag> getPlayerOriginTag(Player& player) {
 //     return MinecraftCommands::_runcmd(std::move(origin), cmd);
 // }
 
-// std::unordered_map<CommandOrigin const*, string*> resultOfOrigin = {};
+ std::unordered_map<CommandOrigin const*, string*> resultOfOrigin = {};
 
 // std::pair<bool, string> Level::executeCommandEx(const string& cmd) {
 //     auto origin = ::ServerCommandOrigin::load(getServerOriginTag(), *Global<ServerLevel>);

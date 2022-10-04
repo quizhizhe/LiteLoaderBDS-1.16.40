@@ -51,6 +51,11 @@ public:
         FactorCalculationData(FactorCalculationData const&&) = delete;
     };
 
+    std::string const & getResourceName() const{
+        //EffectCommand::execute Line247
+        return dAccess<std::string>(this,80);
+    };
+
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MOBEFFECT
 public:

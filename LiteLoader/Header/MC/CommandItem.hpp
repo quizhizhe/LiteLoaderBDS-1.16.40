@@ -10,13 +10,22 @@
 class CommandItem {
 
 #define AFTER_EXTRA
+    // Add Member There
+    int version; //0
+    int itemId; //4
+
+public:
+    CommandItem(){
+        this->version = 0;
+        this->itemId = 0;
+    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDITEM
 public:
     class CommandItem& operator=(class CommandItem const &) = delete;
     CommandItem(class CommandItem const &) = delete;
-    CommandItem() = delete;
+    //CommandItem() = delete;
 #endif
 
 public:

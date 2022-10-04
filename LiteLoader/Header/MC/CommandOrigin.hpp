@@ -3,14 +3,20 @@
 #define AUTO_GENERATED
 #include "../Global.h"
 #include "Json.hpp"
+#include "Bedrock.hpp"
 
 #define BEFORE_EXTRA
-
+class ServerPlayer;
+class CommandArea;
+enum CommandOriginType : char;
 #undef BEFORE_EXTRA
 
 class CommandOrigin {
 
 #define AFTER_EXTRA
+    // Add Member There
+public:
+    LIAPI ServerPlayer* getPlayer() const;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDORIGIN

@@ -18,7 +18,7 @@ std::string fullname;       // 96
 HashedString canonicalHash; // 128
 
 public:
-    inline const std::string getCanonicalName(){
+    inline std::string const& getCanonicalName() const{
         return this->canonicalHash.getString();
     }
 #undef AFTER_EXTRA

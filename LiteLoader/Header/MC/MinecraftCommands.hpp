@@ -4,12 +4,42 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+#include "CommandContext.hpp"
+#include "MCRESULT.hpp"
 #undef BEFORE_EXTRA
 
 class MinecraftCommands {
 
 #define AFTER_EXTRA
+    // Add Member There
+public:
+    [[deprecated]]
+    static MCRESULT _runcmd(void* origin, const std::string& cmd) {
+        if (!Global<MinecraftCommands>)
+            return {0};
+        try
+        {
+            return Global<MinecraftCommands>->executeCommand(std::make_shared<CommandContext>(cmd, std::unique_ptr<CommandOrigin>((CommandOrigin*)origin)), false);
+        }
+        catch (...)
+        {
+        }
+        return {0};
+    }
+    static MCRESULT _runcmd(std::unique_ptr<CommandOrigin> origin, const std::string& cmd)
+    {
+        if (!Global<MinecraftCommands>)
+            return {0};
+        try
+        {
+            return Global<MinecraftCommands>->executeCommand(std::make_shared<CommandContext>(cmd, std::move(origin)), false);
+        }
+        catch (...)
+        {
+        }
+        return {0};
+    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MINECRAFTCOMMANDS

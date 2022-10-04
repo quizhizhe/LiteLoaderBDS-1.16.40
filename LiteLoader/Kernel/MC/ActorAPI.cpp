@@ -18,10 +18,10 @@
 #include <MC/StringTag.hpp>
 #include <MC/SimpleContainer.hpp>
 #include <MC/TeleportCommand.hpp>
-//#include <MC/TeleportTarget.hpp>
+#include <MC/TeleportTarget.hpp>
 //#include <MC/UserEntityIdentifierComponent.hpp>
 //#include <MC/OnFireSystem.hpp>
-//#include <MC/TeleportRotationData.hpp>
+#include <MC/TeleportRotationData.hpp>
 //#include <MC/ClipDefaults.hpp>
 #include <MC/ItemStack.hpp>
 #include <MC/ActorDefinitionIdentifier.hpp>
@@ -59,9 +59,9 @@ bool Actor::isOnGround() const {
     return (dAccess<bool, 472>(this)); // IDA DirectActorProxyImpl<IMobMovementProxy>::isOnGround
 }
 
-// std::string Actor::getTypeName() const {
-//     return getActorIdentifier().getCanonicalName();
-// }
+ std::string Actor::getTypeName() const {
+     return getActorIdentifier().getCanonicalName();
+ }
  
 // bool Actor::hurtEntity(float damage, ActorDamageCause damageCause) {
 //     auto ads = new ActorDamageSource(damageCause);
@@ -93,23 +93,25 @@ ActorUniqueID Actor::getActorUniqueId() const {
 }
 
 // static_assert(sizeof(TeleportRotationData) == 32);
-// bool Actor::teleport(Vec3 to, int dimID) {
-//     if (!this->isAlive())
-//         return false;
+ bool Actor::teleport(Vec3 to, int dimID) {
+     if (!this->isAlive())
+         return false;
 //     char mem[48];
 //     auto computeTarget = (TeleportTarget * (*)(void*, class Actor&, class Vec3, class Vec3*, class AutomaticID<class Dimension, int>, std::optional<TeleportRotationData> const&, int))(&TeleportCommand::computeTarget);
 //     auto target = computeTarget(mem, *this, to, nullptr, dimID, TeleportRotationData{getRotation().x, getRotation().y, {}}, 15);
 //     TeleportCommand::applyTarget(*this, *target, false);
-//     return true;
-// }
+     TeleportCommand::teleport(*this,to,nullptr,dimID,getRotation().x, getRotation().y,15,this->getUniqueID());
+     return true;
+ }
 
-// bool Actor::teleport(Vec3 to, int dimID, float x, float y) {
+ bool Actor::teleport(Vec3 to, int dimID, float x, float y) {
 //     char mem[48];
 //     auto computeTarget = (TeleportTarget * (*)(void*, class Actor&, class Vec3, class Vec3*, class AutomaticID<class Dimension, int>, std::optional<TeleportRotationData> const&, int))(&TeleportCommand::computeTarget);
 //     auto target = computeTarget(mem, *this, to, nullptr, dimID, TeleportRotationData{x, y, {}}, 15);
 //     TeleportCommand::applyTarget(*this, *target, false);
-//     return true;
-// }
+     TeleportCommand::teleport(*this,to,nullptr,dimID,x,y,15,this->getUniqueID());
+     return true;
+ }
 
 SimpleContainer & Actor::getHandContainer(){
     //ScriptHandContainerComponent::hasComponent actor

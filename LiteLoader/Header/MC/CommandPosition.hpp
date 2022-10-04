@@ -4,13 +4,52 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+#include "CompoundTag.hpp"
 #undef BEFORE_EXTRA
 
 class CommandPosition {
 
 #define AFTER_EXTRA
+// Add Member There
+#define DISABLE_CONSTRUCTOR_PREVENTION_COMMANDPOSITION
+    float offsetX;
+    float offsetY;
+    float offsetZ;
+    bool relativeX;
+    bool relativeY;
+    bool relativeZ;
+    bool local;
 
+public:
+    CommandPosition(){
+        this->offsetX = 0;
+        this->offsetY = 0;
+        this->offsetZ = 0;
+        this->relativeX = 1;
+        this->relativeY = 1;
+        this->relativeZ = 1;
+        this->local = 0;
+    }
+    CommandPosition(Vec3 *pos){
+        this->offsetX = pos->x;
+        this->offsetY = pos->y;
+        this->offsetZ = pos->z;
+        this->relativeX = pos->x + 2;
+        this->relativeY = pos->y + 2;
+        this->relativeZ = pos->z + 2;
+        this->local = 0;
+    }
+    CompoundTag serialize() const{
+        CompoundTag tag;
+        tag.putFloat("OffsetX",0);
+        tag.putFloat("OffsetY",0);
+        tag.putFloat("OffsetZ",0);
+        tag.putBoolean("RelativeX",this->relativeX);
+        tag.putBoolean("RelativeY",this->relativeY);
+        tag.putBoolean("RelativeZ",this->relativeZ);
+        tag.putBoolean("Local",this->local);
+        return tag;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDPOSITION
 public:

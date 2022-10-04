@@ -253,7 +253,7 @@ void LLMain() {
     LL::LoadLLConfig();
 
     //Unzip packed Node Modules
-    UnzipNodeModules();
+    //UnzipNodeModules();
 
     //Decompress resource packs
     DecompressResourcePacks();
@@ -275,7 +275,7 @@ void LLMain() {
     FixPluginsLibDir();
 
     // Check whether allowlist.json exists/is empty or not
-    FixAllowList();
+    //FixAllowList();
 
     // Init LL Logger
     Logger::setDefaultFile("logs/LiteLoader-latest.log", false);
@@ -314,7 +314,7 @@ void LLMain() {
     LL::LoadMain();
 
     // Register built-in commands
-    //RegisterCommands();
+    RegisterCommands();
 
     // Register simple server logger
     RegisterSimpleServerLogger();

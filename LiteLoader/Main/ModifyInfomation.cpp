@@ -80,50 +80,50 @@ THook(void, "?log@BedrockLog@@YAXW4LogCategory@1@V?$bitset@$02@std@@W4LogRule@1@
     return BedrockLog::log_va(a1, a2, a3, a4, a5, a6, a7, a8, va);
 }
 
-//#include <MC/ColorFormat.hpp>
-//#include <MC/CommandOrigin.hpp>
-//#include <MC/CommandOutput.hpp>
-//extern std::unordered_map<CommandOrigin const*, string*> resultOfOrigin;
-//TClasslessInstanceHook(void*, "?send@CommandOutputSender@@UEAAXAEBVCommandOrigin@@AEBVCommandOutput@@@Z",
-//                       class CommandOrigin const& origin, class CommandOutput const& output) {
-//    std::stringbuf tmpBuf;
-//    auto oldBuf = std::cout.rdbuf();
-//    std::cout.rdbuf(&tmpBuf);
-//    auto rv = original(this, origin, output);
-//    std::cout.rdbuf(oldBuf);
-//    if (LL::isDebugMode() && LL::globalConfig.tickThreadId != std::this_thread::get_id()) {
-//        logger.warn("The thread executing the CommandOutputSender::send is not the \"MC_SERVER\" thread");
-//        logger.warn("Output: {}", tmpBuf.str());
-//    }
-//
-//    auto it = resultOfOrigin.find(&origin);
-//    if (it != resultOfOrigin.end()) {
-//        try {
-//            // May crash for incomprehensible reasons
-//            it->second->assign(tmpBuf.str());
-//            while (it->second->size() && (it->second->back() == '\n' || it->second->back() == '\r'))
-//                it->second->pop_back();
-//            it->second = nullptr;
-//            resultOfOrigin.erase(it);
-//            return rv;
-//        } catch (...) {
-//            if (LL::isDebugMode()) {
-//                logger.warn("Output: {}", tmpBuf.str());
-//                logger.warn("size of resultOfOrigin: {}", resultOfOrigin.size());
-//            }
-//#ifdef DEBUG
-//            __debugbreak();
-//#endif // DEBUG
-//        }
-//    }
-//    auto& log = output.getSuccessCount() > 0 ? serverLogger.info : serverLogger.error;
-//    std::istringstream iss(tmpBuf.str());
-//    string line;
-//    while (getline(iss, line)) {
-//        if (LL::globalConfig.colorLog)
-//            log << ColorFormat::convertToConsole(line, false) << Logger::endl;
-//        else
-//            log << ColorFormat::removeColorCode(line) << Logger::endl;
-//    }
-//    return rv;
-//}
+#include <MC/ColorFormat.hpp>
+#include <MC/CommandOrigin.hpp>
+#include <MC/CommandOutput.hpp>
+extern std::unordered_map<CommandOrigin const*, string*> resultOfOrigin;
+TClasslessInstanceHook(void*, "?send@CommandOutputSender@@UEAAXAEBVCommandOrigin@@AEBVCommandOutput@@@Z",
+                       class CommandOrigin const& origin, class CommandOutput const& output) {
+    std::stringbuf tmpBuf;
+    auto oldBuf = std::cout.rdbuf();
+    std::cout.rdbuf(&tmpBuf);
+    auto rv = original(this, origin, output);
+    std::cout.rdbuf(oldBuf);
+    if (LL::isDebugMode() && LL::globalConfig.tickThreadId != std::this_thread::get_id()) {
+        logger.warn("The thread executing the CommandOutputSender::send is not the \"MC_SERVER\" thread");
+        logger.warn("Output: {}", tmpBuf.str());
+    }
+
+    auto it = resultOfOrigin.find(&origin);
+    if (it != resultOfOrigin.end()) {
+        try {
+            // May crash for incomprehensible reasons
+            it->second->assign(tmpBuf.str());
+            while (it->second->size() && (it->second->back() == '\n' || it->second->back() == '\r'))
+                it->second->pop_back();
+            it->second = nullptr;
+            resultOfOrigin.erase(it);
+            return rv;
+        } catch (...) {
+            if (LL::isDebugMode()) {
+                logger.warn("Output: {}", tmpBuf.str());
+                logger.warn("size of resultOfOrigin: {}", resultOfOrigin.size());
+            }
+#ifdef DEBUG
+            __debugbreak();
+#endif // DEBUG
+        }
+    }
+    auto& log = output.getSuccessCount() > 0 ? serverLogger.info : serverLogger.error;
+    std::istringstream iss(tmpBuf.str());
+    string line;
+    while (getline(iss, line)) {
+        if (LL::globalConfig.colorLog)
+            log << ColorFormat::convertToConsole(line, false) << Logger::endl;
+        else
+            log << ColorFormat::removeColorCode(line) << Logger::endl;
+    }
+    return rv;
+}

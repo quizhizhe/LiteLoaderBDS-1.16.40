@@ -9,6 +9,7 @@
 #include "Tick.hpp"
 #include "ActorDamageSource.hpp"
 #include "SimpleContainer.hpp"
+#include "ActorDefinitionIdentifier.hpp"
 class Actor;
 class Player;
 class NetworkIdentifier;
@@ -52,8 +53,8 @@ public:
     //LIAPI bool stopFire();
     LIAPI bool hasTag(const string& tag);
     //LIAPI bool hurtEntity(float damage, ActorDamageCause damageCause = ActorDamageCause::ActorDamageCause_Override);
-    //LIAPI bool teleport(Vec3 to, int dimID, float x, float y);
-    //LIAPI bool teleport(Vec3 pos,int dimid);
+    LIAPI bool teleport(Vec3 to, int dimID, float x, float y);
+    LIAPI bool teleport(Vec3 pos,int dimid);
     LIAPI ItemStack* getHandSlot();
     LIAPI bool rename(const string& name);
     LIAPI std::unique_ptr<CompoundTag> getNbt();
@@ -83,6 +84,15 @@ public:
         // IDA Player::take Line123
         return (dAccess<ActorCategory>(this, 79) & actorCategory) !=0;
     };
+
+    Vec2 getRotation() const{
+        // Actor::getMapDecorationRotation
+        return dAccess<Vec2>(this, 65);
+    };
+    ActorDefinitionIdentifier getActorIdentifier() const{
+        //ServerPlayer::handleActorPickRequestOnServer Line144 1048-128-8 = 912;
+        return dAccess<ActorDefinitionIdentifier>(this, 912);
+    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ACTOR

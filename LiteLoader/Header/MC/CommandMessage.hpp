@@ -10,13 +10,24 @@
 class CommandMessage {
 
 #define AFTER_EXTRA
+    // Add Member There
+    struct MessageComponent
+    {
+        char filler[200];
+        void* unk[2];
+        std::vector<void*> unk2[5];
+    };
+    std::vector<MessageComponent> components;
+
+public:
+    CommandMessage(){};
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDMESSAGE
 public:
     class CommandMessage& operator=(class CommandMessage const &) = delete;
     CommandMessage(class CommandMessage const &) = delete;
-    CommandMessage() = delete;
+    //CommandMessage() = delete;
 #endif
 
 public:

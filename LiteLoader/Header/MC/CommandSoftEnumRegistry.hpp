@@ -4,13 +4,20 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+#include "UpdateSoftEnumPacket.hpp"
 #undef BEFORE_EXTRA
 
 class CommandSoftEnumRegistry {
 
 #define AFTER_EXTRA
-
+    // Add Member There
+    class CommandRegistry* registry;
+public:
+    CommandSoftEnumRegistry(class CommandRegistry *reg){
+        this->registry = reg;
+    };
+#define DISABLE_CONSTRUCTOR_PREVENTION_COMMANDSOFTENUMREGISTRY
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDSOFTENUMREGISTRY
 public:

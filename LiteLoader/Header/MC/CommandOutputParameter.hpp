@@ -10,12 +10,20 @@
 class CommandOutputParameter {
 
 #define AFTER_EXTRA
+    enum NoCountType;
+    std::string str;
+    int type;
 
+public:
+    CommandOutputParameter(class CommandOutputParameter const & output){
+        this->str = output.str;
+        this->type = output.type;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDOUTPUTPARAMETER
 public:
     class CommandOutputParameter& operator=(class CommandOutputParameter const &) = delete;
-    CommandOutputParameter(class CommandOutputParameter const &) = delete;
+//    CommandOutputParameter(class CommandOutputParameter const &) = delete;
     CommandOutputParameter() = delete;
 #endif
 
