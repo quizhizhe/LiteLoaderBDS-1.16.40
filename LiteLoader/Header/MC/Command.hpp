@@ -70,13 +70,22 @@ public:
     std::string getCommandName() const{
         return this->registry->symbolToString(this->symbol);
     };
+    Command(){
+        CommandFlag mflag;
+        mflag.value = CommandFlagValue::None;
+        *(void**)this = dlsym("??_7Command@@6B@");
+        this->version = 0;
+        this->registry = 0LL;
+        this->symbol = -1;
+        this->permission = CommandPermissionLevel(5);
+        this->flag = mflag;
+    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMAND
 public:
     class Command& operator=(class Command const &) = delete;
     Command(class Command const &) = delete;
-    Command(){};
 #endif
 
 public:

@@ -8,8 +8,8 @@
  static_assert(offsetof(CommandParameterData, options) == 73);
  static_assert(offsetof(CommandParameterData, name) == 16);
  static_assert(offsetof(CommandParameterData, unk56) == 56);
- static_assert(offsetof(CommandRegistry::Overload, unk) == 40);
- static_assert(sizeof(CommandRegistry::Overload) == 72);
+ static_assert(offsetof(CommandRegistry::Overload, versionOffset) == 40);
+ static_assert(sizeof(CommandRegistry::Overload) == 48);
  static_assert(offsetof(CommandRegistry::Signature, alt_symbol) == 96);
  static_assert(sizeof(CommandRegistry::Signature) == 120);
  /*
@@ -28,7 +28,7 @@
  : version(version)
  , factory(factory)
  , params(std::forward<std::vector<CommandParameterData>>(args))
- , unk(255){};
+ , versionOffset(255){};
 
  CommandRegistry::Overload::~Overload(){};
 

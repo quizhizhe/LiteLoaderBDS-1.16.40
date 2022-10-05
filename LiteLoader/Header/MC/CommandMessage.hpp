@@ -4,7 +4,7 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+#include "CommandSelector.hpp"
 #undef BEFORE_EXTRA
 
 class CommandMessage {
@@ -13,9 +13,11 @@ class CommandMessage {
     // Add Member There
     struct MessageComponent
     {
-        char filler[200];
-        void* unk[2];
-        std::vector<void*> unk2[5];
+//        char filler[200];
+//        void* unk[2];
+//        std::vector<void*> unk2[5];
+        std::string str;
+        std::unique_ptr<CommandSelector<Actor>> select;
     };
     std::vector<MessageComponent> components;
 
