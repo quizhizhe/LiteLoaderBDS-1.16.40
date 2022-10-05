@@ -175,9 +175,7 @@ public:
         CommandVersion version;                   // 0
         FactoryFn factory;                        // 8
         std::vector<CommandParameterData> params; // 16
-        int versionOffset;
-//        unsigned char unk;                        // 40
-//        std::vector<Symbol> syms = {};            // 48
+        int versionOffset;                        // 40
 
         LIAPI Overload(CommandVersion version,
                        FactoryFn factory,
