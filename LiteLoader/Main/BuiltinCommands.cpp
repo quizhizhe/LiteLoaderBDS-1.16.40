@@ -378,12 +378,12 @@ public:
 };
 
 void RegisterCommands() {
-//    Event::RegCmdEvent::subscribe([](Event::RegCmdEvent ev) { // Register commands
-//        LLCommand::setup(ev.mCommandRegistry);
-//        VersionCommand::setup(ev.mCommandRegistry);
-//        if (LL::globalConfig.enableTpdimCommand) {
-//            TeleportDimensionCommand::setup(ev.mCommandRegistry);
-//        }
-//        return true;
-//    });
+    Event::RegCmdEvent::subscribe([](Event::RegCmdEvent ev) { // Register commands
+        LLCommand::setup(ev.mCommandRegistry);
+        VersionCommand::setup(ev.mCommandRegistry);
+        if (LL::globalConfig.enableTpdimCommand) {
+            TeleportDimensionCommand::setup(ev.mCommandRegistry);
+        }
+        return true;
+    });
 }
