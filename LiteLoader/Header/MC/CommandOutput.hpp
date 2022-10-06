@@ -23,13 +23,13 @@ public:
 
     int getSuccessCount() const{
         //DayLockCommand::execute Line91
-        return dAccess<int>(this,10);
+        return dAccess<int>(this,0x28);
     };
 
     void success(){
-        int successCount = dAccess<int>(this,10);
+        int successCount = dAccess<int>(this,0x28);
         ++successCount;
-        dAccess<int>(this,10) = successCount;
+        dAccess<int>(this,0x28) = successCount;
     };
     /**
      * @brief Output a message(without I18nBase).
