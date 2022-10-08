@@ -4,13 +4,40 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
+// Include Headers or Declare Types Here
+#include "ActorDefinitionIdentifier.hpp"
+#include "CommandPosition.hpp"
+#include <functional>
+class CommandOrigin;
+class Actor;
+class Player;
 
 #undef BEFORE_EXTRA
 
 class CommandSelectorBase {
 
 #define AFTER_EXTRA
-
+// Add Member There
+private:
+uint32_t version;
+uint32_t type;
+uint32_t order;
+std::vector<InvertableFilter<std::string>> nameFilters;
+char pad_0040[24];
+std::vector<InvertableFilter<ActorDefinitionIdentifier>> familyFilters;
+std::vector<InvertableFilter<std::string>> tagFilters;
+std::vector<std::function<bool(CommandOrigin const&, Actor const&)>> customFilters;
+CommandPosition position;
+BlockPos box;
+float radiusMin;
+float radiusMax;
+uint64_t resultCount;
+bool includeDeadPlayers;
+char pad_0185[5];
+bool playerOnly;
+char explicitIdSelector;
+char unk192;
+    
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDSELECTORBASE
 public:
