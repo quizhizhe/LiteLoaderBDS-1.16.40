@@ -64,23 +64,23 @@ Block* Level::getBlock(const BlockPos& pos, BlockSource* blockSource) {
 
 
 // Return nullptr when failing to get block
-// Block* Level::getBlockEx(const BlockPos& pos, int dimId) {
-//     auto dim = Global<Level>->getDimension(dimId);
-//     if (!dim)
-//         return nullptr;
+ Block* Level::getBlockEx(const BlockPos& pos, int dimId) {
+     auto dim = Global<Level>->getDimension(dimId);
+     if (!dim)
+         return nullptr;
 
-//     auto bs = &dim->getBlockSourceFromMainChunkSource();
-//     auto lc = bs->getChunkAt(pos);
-//     if (!lc)
-//         return nullptr;
+     auto bs = &dim->getBlockSourceFromMainChunkSource();
+     auto lc = bs->getChunkAt(pos);
+     if (!lc)
+         return nullptr;
 
-//     short minHeight = dim->getMinHeight();
-//     if (pos.y < minHeight || pos.y > dim->getHeight())
-//         return nullptr;
+     short minHeight = dim->getHeight();
+     if (pos.y < minHeight || pos.y > dim->getHeight())
+         return nullptr;
 
-//     ChunkBlockPos cbpos = ChunkBlockPos(pos, minHeight);
-//     return const_cast<Block*>(&lc->getBlock(cbpos));
-// }
+     ChunkBlockPos cbpos = ChunkBlockPos(pos, minHeight);
+     return const_cast<Block*>(&lc->getBlock(cbpos));
+ }
 
 BlockInstance Level::getBlockInstance(BlockPos* pos, int dimId) {
     return {*pos, dimId};
@@ -158,7 +158,7 @@ Actor* Level::getDamageSourceEntity(ActorDamageSource* ads) {
     return Global<Level>->getEntity(v6);
 }
 
-void* Level::ServerCommandOrigin::fake_vtbl[26];
+//void* Level::ServerCommandOrigin::fake_vtbl[26];
 
 CompoundTag& getServerOriginTag() {
     static auto cached = CompoundTag::fromSNBT(R"({"CommandPermissionLevel":4b,"DimensionId":"Overworld","OriginType":7b,"RequestId":"00000000-0000-0000-0000-000000000000"})");
@@ -172,31 +172,35 @@ std::unique_ptr<CompoundTag> getPlayerOriginTag(Player& player) {
     return std::move(tag);
 }
 
-// bool Level::executeCommand(const string& cmd) {
-//     auto origin = ::ServerCommandOrigin::load(getServerOriginTag(), *Global<ServerLevel>);
-//     return MinecraftCommands::_runcmd(std::move(origin), cmd);
-// }
+ bool Level::executeCommand(const string& cmd) {
+     //auto origin = ::ServerCommandOrigin::load(getServerOriginTag(), *Global<ServerLevel>);
+     std::string requestID = "00000000-0000-0000-0000-000000000000";
+     std::unique_ptr<ServerCommandOrigin> origin(new ServerCommandOrigin(requestID,*Global<ServerLevel>, CommandPermissionLevel(4)));
+     return MinecraftCommands::_runcmd(std::move(origin), cmd);
+ }
 
  std::unordered_map<CommandOrigin const*, string*> resultOfOrigin = {};
 
-// std::pair<bool, string> Level::executeCommandEx(const string& cmd) {
-//     auto origin = ::ServerCommandOrigin::load(getServerOriginTag(), *Global<ServerLevel>);
-//     string val;
-//     auto ptr = origin.get();
-//     resultOfOrigin[ptr] = &val;
-//     bool rv = MinecraftCommands::_runcmd(std::move(origin), cmd);
-//     if (resultOfOrigin.count(ptr))
-//         resultOfOrigin.erase(ptr);
-//     return {rv, std::move(val)};
-// }
+ std::pair<bool, string> Level::executeCommandEx(const string& cmd) {
+     //auto origin = ::ServerCommandOrigin::load(getServerOriginTag(), *Global<ServerLevel>);
+     const std::string requestID = "00000000-0000-0000-0000-000000000000";
+     std::unique_ptr<ServerCommandOrigin> origin(new ServerCommandOrigin(requestID,*Global<ServerLevel>, CommandPermissionLevel(4)));
+     string val;
+     auto ptr = origin.get();
+     resultOfOrigin[ptr] = &val;
+     bool rv = MinecraftCommands::_runcmd(std::move(origin), cmd);
+     if (resultOfOrigin.count(ptr))
+         resultOfOrigin.erase(ptr);
+     return {rv, std::move(val)};
+ }
 
 
 // static void* FAKE_PORGVTBL[26];
-// bool Level::executeCommandAs(Player* pl, const string& cmd) {
-//     auto tag = getPlayerOriginTag(*pl);
-//     auto origin = PlayerCommandOrigin::load(*tag, *Global<Level>);
-//     return MinecraftCommands::_runcmd(std::move(origin), cmd);
-// }
+ bool Level::executeCommandAs(Player* pl, const string& cmd) {
+     auto tag = getPlayerOriginTag(*pl);
+     std::unique_ptr<PlayerCommandOrigin> origin(new PlayerCommandOrigin(*pl));
+     return MinecraftCommands::_runcmd(std::move(origin), cmd);
+ }
 
 
 std::vector<Player*> Level::getAllPlayers() {

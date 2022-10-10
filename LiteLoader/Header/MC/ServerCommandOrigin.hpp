@@ -13,6 +13,9 @@ class ServerCommandOrigin : public CommandOrigin {
 
 #define AFTER_EXTRA
 
+    ServerLevel *mServerLevel;
+    std::string mRequestID;
+    CommandPermissionLevel mCommandPermissionLevel;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SERVERCOMMANDORIGIN
 public:

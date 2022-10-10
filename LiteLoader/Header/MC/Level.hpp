@@ -54,7 +54,7 @@ public:
     LIAPI static Block* getBlock(BlockPos* pos, BlockSource* blockSource);
     LIAPI static Block* getBlock(const BlockPos& pos, int dimId);
     LIAPI static Block* getBlock(const BlockPos& pos, BlockSource *blockSource);
-    //LIAPI static Block* getBlockEx(const BlockPos& pos, int dimId);
+    LIAPI static Block* getBlockEx(const BlockPos& pos, int dimId);
     LIAPI static BlockInstance getBlockInstance(BlockPos* pos, int dimId);
     LIAPI static BlockInstance getBlockInstance(BlockPos* pos, BlockSource* blockSource);
     LIAPI static BlockInstance getBlockInstance(const BlockPos& pos, int dimId);
@@ -98,47 +98,47 @@ public:
 
  public:
     static void dummy() { ; }
-    struct ServerCommandOrigin {
-        void* myVTBL;
-        void* UUID[2];
-        ServerLevel* lvl;
-        string Name;
-        unsigned char Perm;
-        static void* fake_vtbl[26];
+//    struct ServerCommandOrigin {
+//        void* myVTBL;
+//        void* UUID[2];
+//        ServerLevel* lvl;
+//        string Name;
+//        unsigned char Perm;
+//        static void* fake_vtbl[26];
+//
+//        [[deprecated]]
+//        ServerCommandOrigin()
+//        {
+//            if (fake_vtbl[1] == nullptr) {
+//                memcpy(fake_vtbl, (void**)(SYM("??_7ServerCommandOrigin@@6B@")) - 1, sizeof(fake_vtbl));
+//                fake_vtbl[1] = (void*)dummy;
+//            }
+//            myVTBL = fake_vtbl + 1;
+//            Name = "Server";
+//            Perm = 4;
+//            lvl = Global<ServerLevel>;
+//        }
+//    };
 
-        [[deprecated]]
-        ServerCommandOrigin()
-        {
-            if (fake_vtbl[1] == nullptr) {
-                memcpy(fake_vtbl, (void**)(SYM("??_7ServerCommandOrigin@@6B@")) - 1, sizeof(fake_vtbl));
-                fake_vtbl[1] = (void*)dummy;
-            }
-            myVTBL = fake_vtbl + 1;
-            Name = "Server";
-            Perm = 4;
-            lvl = Global<ServerLevel>;
-        }
-    };
-
-//    LIAPI static bool executeCommandAs(Player* player, const string& cmd);
-//    LIAPI static std::pair<bool, string> executeCommandEx(const string& cmd);
-//    LIAPI static bool executeCommand(const string& cmd);
+    LIAPI static bool executeCommandAs(Player* player, const string& cmd);
+    LIAPI static std::pair<bool, string> executeCommandEx(const string& cmd);
+    LIAPI static bool executeCommand(const string& cmd);
 
 
 
     //For compatibility
-//    LIAPI static bool runcmdAs(Player* pl, const string& cmd)
-//    {
-//        return executeCommandAs(pl, cmd);
-//    }
-//    LIAPI static std::pair<bool, string> runcmdEx(const string& cmd)
-//    {
-//        return executeCommandEx(cmd);
-//    }
-//    LIAPI static bool runcmd(const string& cmd)
-//    {
-//        return executeCommand(cmd);
-//    }
+    LIAPI static bool runcmdAs(Player* pl, const string& cmd)
+    {
+        return executeCommandAs(pl, cmd);
+    }
+    LIAPI static std::pair<bool, string> runcmdEx(const string& cmd)
+    {
+        return executeCommandEx(cmd);
+    }
+    LIAPI static bool runcmd(const string& cmd)
+    {
+        return executeCommand(cmd);
+    }
     
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LEVEL

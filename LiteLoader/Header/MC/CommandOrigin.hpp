@@ -15,6 +15,7 @@ class CommandOrigin {
 
 #define AFTER_EXTRA
     // Add Member There
+    mce::UUID mUUID;
 public:
     LIAPI ServerPlayer* getPlayer() const;
 
