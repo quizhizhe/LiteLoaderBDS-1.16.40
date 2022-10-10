@@ -323,6 +323,7 @@ TClasslessInstanceHook(void, "?sendLoginMessageLocal@ServerNetworkHandler@@QEAAX
 /////////////////// PlayerJoin ///////////////////
  TInstanceHook(bool, "?onReady_ClientGeneration@ServerNetworkHandler@@QEAAXAEAVPlayer@@AEBVNetworkIdentifier@@@Z",
               ServerNetworkHandler,Player* player,NetworkIdentifier *net) {
+     //std::cout<<"PlayerJoin"<<std::endl;
      IF_LISTENED(PlayerJoinEvent) {
          PlayerJoinEvent ev{};
          ev.mPlayer = player;
@@ -336,8 +337,9 @@ TClasslessInstanceHook(void, "?sendLoginMessageLocal@ServerNetworkHandler@@QEAAX
 
 
 /////////////////// PlayerLeft ///////////////////
- THook(void, "?_onPlayerLeft@ServerNetworkHandler@@AEAAXPEAVServerPlayer@@_N@Z",
-       ServerNetworkHandler *_this,ServerPlayer* sp,char a3) {
+ TInstanceHook(void, "?_onPlayerLeft@ServerNetworkHandler@@AEAAXPEAVServerPlayer@@_N@Z",
+       ServerNetworkHandler,ServerPlayer* sp,char a3) {
+     //std::cout<<"PlayerJoin"<<std::endl;
      IF_LISTENED(PlayerLeftEvent) {
          PlayerLeftEvent ev{};
          ev.mPlayer = sp;
@@ -345,7 +347,7 @@ TClasslessInstanceHook(void, "?sendLoginMessageLocal@ServerNetworkHandler@@QEAAX
          ev.call();
      }
      IF_LISTENED_END(PlayerLeftEvent)
-     return original(_this,sp,a3);
+     return original(this,sp,a3);
  }
 
 /////////////////// PlayerRespawn ///////////////////

@@ -43,7 +43,12 @@ ChunkBlockPos(char x, short y, char z)
     : x(x)
     , y(y)
     , z(z){};
-
+ChunkBlockPos(class BlockPos const & pos, short a2){
+    ChunkBlockPos(pos.x & 16,pos.y - a2,pos.z & 16);
+};
+ChunkBlockPos(unsigned char x, class ChunkLocalHeight y, unsigned char z){
+    ChunkBlockPos(x, y, z);
+}
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_CHUNKBLOCKPOS
 public:
@@ -57,26 +62,26 @@ public:
      * @symbol ??0ChunkBlockPos@@QEAA@EVChunkLocalHeight@@E@Z
      * @hash   -1288855647
      */
-    MCAPI ChunkBlockPos(unsigned char, class ChunkLocalHeight, unsigned char);
+    //MCAPI ChunkBlockPos(unsigned char, class ChunkLocalHeight, unsigned char);
     /**
      * @symbol ??0ChunkBlockPos@@QEAA@AEBVBlockPos@@F@Z
      * @hash   -1853558367
      */
-    MCAPI ChunkBlockPos(class BlockPos const &, short);
+    //MCAPI ChunkBlockPos(class BlockPos const &, short);
     /**
      * @symbol ?toPos@ChunkBlockPos@@QEBA?AVPos@@XZ
      * @hash   1137411744
      */
-    MCAPI class Pos toPos() const;
+    //MCAPI class Pos toPos() const;
     /**
      * @symbol ?from2D@ChunkBlockPos@@SA?AV1@EE@Z
      * @hash   2007391019
      */
-    MCAPI static class ChunkBlockPos from2D(unsigned char, unsigned char);
+    //MCAPI static class ChunkBlockPos from2D(unsigned char, unsigned char);
     /**
      * @symbol ?fromLegacyIndex@ChunkBlockPos@@SA?AV1@G@Z
      * @hash   -1358394925
      */
-    MCAPI static class ChunkBlockPos fromLegacyIndex(unsigned short);
+    //MCAPI static class ChunkBlockPos fromLegacyIndex(unsigned short);
 
 };

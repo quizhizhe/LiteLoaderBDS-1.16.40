@@ -332,8 +332,7 @@
              for (auto& actor : actors) {
                  if (!first)
                      oss << ", ";
-                 oss << actor->getNameTag();
-                 //oss << CommandUtils::getActorName(*actor,1);
+                 oss << CommandUtils::getActorName(*actor);
              }
              oss << "]";
              return fmt::format("name: {:15s}, type: {:15s}, isSet: {:5}, value: {}", name, typeName, isSet, oss.str());

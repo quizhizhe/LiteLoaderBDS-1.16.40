@@ -26,7 +26,7 @@ public:
         Dimension* mDimension = dAccess< Dimension*>(this, 4);
         return dAccess<AutomaticID<class Dimension, int>>(mDimension, 192);
     };
-    LevelChunk * getChunkAt(BlockPos& pos) const{
+    LevelChunk * getChunkAt(const BlockPos& pos) const{
         ChunkPos chunkPos = ChunkPos(pos.x>>4, pos.z>>4);
         return getChunk(chunkPos);
     }

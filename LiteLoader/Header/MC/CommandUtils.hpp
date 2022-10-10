@@ -12,12 +12,11 @@ namespace CommandUtils {
 
 #define AFTER_EXTRA
 
-//    std::string getActorName(Actor &actor,int a1) {
-//        //a1是没啥用的，只是为了改变符号
-//        std::string (*rv)(Actor &);
-//        *((void**)&rv) = dlsym("?getEntityName@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVActor@@@Z");
-//        return (*rv)(actor);
-//    }
+    inline std::string getActorName(class Actor const &actor) {
+        std::string (*rv)(class Actor const &);
+        *((void**)&rv) = dlsym("?getEntityName@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVActor@@@Z");
+        return (*rv)(actor);
+    }
 #undef AFTER_EXTRA
     MCAPI extern std::vector<struct std::pair<std::string, char>> const CMD_INPUT_UNICODE_TRANSLATE_MAP;
     MCAPI bool addItemInstanceComponents(class ItemInstance &, class Json::Value const &, std::string &);

@@ -12,8 +12,12 @@ class Dimension {
 #define AFTER_EXTRA
 public:
     BlockSource& getBlockSourceFromMainChunkSource() const{
-        return *dAccess<BlockSource*>(this, 96);
+        //ExplorationMapFunction::apply Line57
+        return *dAccess<BlockSource*>(this, 72);
     };
+    int getHeight(){
+        return dAccess<int>(this,202);
+    }
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_DIMENSION
 public:
