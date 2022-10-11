@@ -59,13 +59,13 @@ public:
     std::vector<ConstrainedValueData> mConstrainedValueDatas; //168
     inline void test()
     {
-        static_assert(sizeof(AvailableCommandsPacket) == 192);
+        static_assert(sizeof(AvailableCommandsPacket) == 184);
         static_assert(sizeof(EnumData) == 56);
         static_assert(sizeof(CommandData) == 104);
         static_assert(offsetof(CommandData, perm) == 66);
-        static_assert(offsetof(AvailableCommandsPacket, mAllEnums) == 48);
-        static_assert(offsetof(AvailableCommandsPacket, mAllSuffix) == 72);
-        static_assert(offsetof(AvailableCommandsPacket, mConstrainedValueDatas) == 168);
+        static_assert(offsetof(AvailableCommandsPacket, mAllEnums) == 40);
+        static_assert(offsetof(AvailableCommandsPacket, mAllSuffix) == 64);
+        static_assert(offsetof(AvailableCommandsPacket, mConstrainedValueDatas) == 160);
     }
 
 public:

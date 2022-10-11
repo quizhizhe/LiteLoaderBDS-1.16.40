@@ -12,14 +12,23 @@ class TextPacket : public Packet {
 
 #define AFTER_EXTRA
 // Add Member There
-    char filler[168];
+//    char filler[168];
+    TextType mType;
+    std::string mAuthor;
+    std::string mMessage;
+    std::vector<std::string> params;
+    bool mLocalize;
+    std::string mXuid;
+    std::string mPlatformId;
+public:
+    TextPacket(){};
     
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_TEXTPACKET
 public:
     class TextPacket& operator=(class TextPacket const &) = delete;
     TextPacket(class TextPacket const &) = delete;
-    TextPacket() = delete;
+    //TextPacket() = delete;
 #endif
 
 public:

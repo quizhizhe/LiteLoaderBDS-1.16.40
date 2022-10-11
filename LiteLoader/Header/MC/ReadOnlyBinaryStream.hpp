@@ -12,7 +12,8 @@ class ReadOnlyBinaryStream {
 #define AFTER_EXTRA
 // Add Member There
 public:
-    size_t      readPointer{},unk{};
+    size_t      readPointer{};
+    bool mHasOverflowed;
     std::string ownBuf, *pBuf;
 
 public:

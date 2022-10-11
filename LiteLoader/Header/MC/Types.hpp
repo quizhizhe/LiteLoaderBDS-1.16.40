@@ -789,8 +789,8 @@ enum class TextType : char {
     SYSTEM        = 6,
     WHISPER       = 7,
     ANNOUNCEMENT  = 8,
-    JSON_WHISPER  = 9,
-    JSON          = 10
+    JSON          = 9,
+    JSON_WHISPER  = 10
 };
 
 enum class TitleType : int {

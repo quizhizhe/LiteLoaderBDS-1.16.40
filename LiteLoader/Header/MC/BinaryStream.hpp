@@ -42,13 +42,13 @@ public:
     LIAPI void writeCompoundTag(class CompoundTag const& tag);
 
     inline void reset(){
-        this->pwBuf->clear();
+        this->writeBuf.clear();
         ReadOnlyBinaryStream::setReadPointer(0);
     }
 
     inline std::string getAndReleaseData(){
-        std::string *str = std::move(this->pwBuf);
-        return *str;
+        std::string str = std::move(this->writeBuf);
+        return str;
     }
 
 

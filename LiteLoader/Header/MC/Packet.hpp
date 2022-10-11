@@ -22,16 +22,16 @@ class Packet {
 #define AFTER_EXTRA
     // Add Member There
 public:
-    unsigned unk2 = 2;                                                     // 8
+    unsigned mPriority = 2;  //PacketPriority                              // 8
     PacketReliability reliableOrdered = PacketReliability::RelibleOrdered; // 12
     unsigned char clientSubId = 0;                                         // 16
-    uint64_t unk24 = 0;                                                    // 24
-    uint64_t unk40 = 0;                                                    // 32
-    uint32_t incompressible = 0;                                           // 40
+    uint64_t mHandler = 0;                                                 // 24
+    uint64_t mCompressible = 0;                                            // 32
+    //uint32_t incompressible = 0;                                           // 40
 
-    inline Packet(unsigned compress)
-    : incompressible(!compress)
-    { }
+//    inline Packet(unsigned compress)
+//    : incompressible(!compress)
+//    { }
 #define DISABLE_CONSTRUCTOR_PREVENTION_PACKET
     inline Packet() {}
     class Packet& operator=(class Packet const&) = delete;

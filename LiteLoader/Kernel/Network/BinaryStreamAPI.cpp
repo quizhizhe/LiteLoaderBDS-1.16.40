@@ -65,10 +65,11 @@ void BinaryStream::writeVarInt64(__int64 value){
 void BinaryStream::reserve(size_t size) {
     // std::string* mBuffer = dAccess<std::string*>(this, 15);
     // mBuffer->reserve(size);
-    this->pwBuf->reserve(size);
+    this->writeBuf.reserve(size);
 }
 std::string& BinaryStream::getRaw() {
-    return *dAccess<std::string*, 15>(this); // BinaryStream::getAndReleaseData
+    //return *dAccess<std::string*, 15>(this); // BinaryStream::getAndReleaseData
+    return *this->pwBuf;
 }
 
 

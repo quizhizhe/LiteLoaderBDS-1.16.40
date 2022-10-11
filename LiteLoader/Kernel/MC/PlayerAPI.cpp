@@ -493,8 +493,8 @@ void Player::removeBossEvent(int64_t uid) {
 
 ////////////////////////// Packet //////////////////////////
 
-static_assert(sizeof(TextPacket) == 216);
-static_assert(sizeof(TransferPacket) == 88);
+static_assert(sizeof(TextPacket) == 208);
+static_assert(sizeof(TransferPacket) == 80);
 
 bool Player::sendTextPacket(string text, TextType Type) const {
     BinaryStream wp;
