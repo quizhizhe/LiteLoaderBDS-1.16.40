@@ -4,14 +4,29 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
+#include "RakNet.hpp"
 
+struct sockaddr_storage
+{
+    __int16 ss_family;
+    char __ss_padding[118];
+    unsigned __int64 __ss_align;
+};
 #undef BEFORE_EXTRA
 
 class NetworkIdentifier {
 
 #define AFTER_EXTRA
 // Add Member There
-    char filler[160];
+enum Type{
+    RakNet = 0x0,
+    Address = 0x1,
+    Address6 = 0x2,
+    Generic = 0x3,
+};
+    RakNet::RakNetGUID mGuid;
+    sockaddr_storage mSock;
+    NetworkIdentifier::Type mType;
 public:
     LIAPI std::string getIP();
 

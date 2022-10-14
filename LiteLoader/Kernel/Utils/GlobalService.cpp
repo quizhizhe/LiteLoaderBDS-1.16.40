@@ -16,11 +16,11 @@ TInstanceHook(void, "?initAsDedicatedServer@Minecraft@@QEAAXXZ", Minecraft) {
     original(this);
 }
 //NetworkHandler
-TInstanceHook(void, "??0WorldTemplateInfo@@QEAA@AEBVWorldTemplatePackManifest@@@Z", WorldTemplateInfo,
-              NetworkHandler* a1) {
-    Global<NetworkHandler> = a1;
-    original(this,a1);
-}
+//TInstanceHook(void, "??0WorldTemplateInfo@@QEAA@AEBVWorldTemplatePackManifest@@@Z", WorldTemplateInfo,
+//              NetworkHandler* a1) {
+//    Global<NetworkHandler> = a1;
+//    original(this,a1);
+//}
 // ServerNetworkHandler
 TInstanceHook(void, "?allowIncomingConnections@ServerNetworkHandler@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z",
               ServerNetworkHandler, std::string const& a1, bool a2) {

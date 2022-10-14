@@ -10,7 +10,8 @@
 class PacketSender {
 
 #define AFTER_EXTRA
-
+__int64 _vptr;
+uint8_t mSenderSubId;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_PACKETSENDER
 public:

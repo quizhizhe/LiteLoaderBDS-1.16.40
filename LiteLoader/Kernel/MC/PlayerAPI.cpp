@@ -60,11 +60,11 @@ std::string Player::getRealName() {
 }
 
 int Player::getAvgPing() {
-    return Global<NetworkHandler>->getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mAveragePing;
+    return Global<Minecraft>->getNetworkHandler().getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mAveragePing;
 }
 
 int Player::getLastPing() {
-    return Global<NetworkHandler>->getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mCurrentPing;
+    return Global<Minecraft>->getNetworkHandler().getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mCurrentPing;
 }
 
 string Player::getIP() {
@@ -162,9 +162,19 @@ string Player::getDeviceTypeName() {
 }
 
 bool Player::kick(const std::string& msg) {
-    NetworkIdentifier* pNetworkIdentifier = getNetworkIdentifier();
-    unsigned char subID = dAccess<unsigned char>(this,3520);
-    Global<ServerNetworkHandler>->disconnectClient(*pNetworkIdentifier, subID, msg, 0);
+//    NetworkIdentifier* pNetworkIdentifier = getNetworkIdentifier();
+//    Global<Minecraft>->getServerNetworkHandler()->disconnectClient(*pNetworkIdentifier, 0, msg, 0);
+    BinaryStream wp;
+    if(msg.empty()){
+        wp.writeBool(1);
+    }
+    else{
+        wp.writeBool(0);
+        wp.writeString(msg);
+    }
+    auto pkt = MinecraftPackets::createPacket(MinecraftPacketIds::Disconnect);
+    pkt->read(wp);
+    this->sendNetworkPacket(*pkt);
     return true;
 }
 
@@ -311,15 +321,16 @@ string Player::getXuid() const{
 }
 
 unsigned char Player::getClientSubId() {
-    return -1;
+    //ServerPlayer::sendNetworkPacket 参4
+    return dAccess<unsigned char>(this,3520);
 }
 
 float Player::getAvgPacketLoss() {
-    return Global<NetworkHandler>->getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mAveragePacketLoss;
+    return Global<Minecraft>->getNetworkHandler().getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mAveragePacketLoss;
 }
 
 float Player::getLastPacketLoss() {
-    return Global<NetworkHandler>->getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mCurrentPacketLoss;
+    return Global<Minecraft>->getNetworkHandler().getPeerForUser(*getNetworkIdentifier())->getNetworkStatus().mCurrentPacketLoss;
 }
 
 // string Player::getClientId() {

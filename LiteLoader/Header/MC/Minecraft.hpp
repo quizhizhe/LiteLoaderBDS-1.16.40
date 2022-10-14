@@ -11,7 +11,11 @@
 class Minecraft {
 
 #define AFTER_EXTRA
-
+public:
+    inline NetworkHandler & getNetworkHandler(){
+        //lambda_b490644342a3912d59dc52eb79c3a67f_::operator() Line410
+        return dAccess<NetworkHandler>(this,24);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MINECRAFT
 public:

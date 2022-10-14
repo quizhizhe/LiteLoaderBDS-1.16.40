@@ -61,6 +61,7 @@
 // #include <MC/ResourcePackPaths.hpp>
 #include <MC/DirectoryPackSource.hpp> 
 #include <MC/PackSource.hpp>
+#include <MC/TextPacket.hpp>
 
 static_assert(offsetof(InventoryAction, source) == 0x0);
 static_assert(offsetof(InventoryAction, slot) == 0x0c);
@@ -369,18 +370,16 @@ TClasslessInstanceHook(void, "?handle@?$PacketHandlerDispatcherInstance@VPlayerA
 
 /////////////////// PlayerChat ///////////////////
 TInstanceHook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVTextPacket@@@Z",
-              ServerNetworkHandler, NetworkIdentifier* id, void* text) {
+              ServerNetworkHandler, NetworkIdentifier* id, TextPacket* text) {
     IF_LISTENED(PlayerChatEvent) {
         Event::PlayerChatEvent ev{};
         ev.mPlayer = this->getServerPlayer(*id);
         if (!ev.mPlayer)
             return;
-
-        ev.mMessage = std::string(*(std::string*)((uintptr_t)text + 80));
-
+        ev.mMessage = text->mMessage;
         if (!ev.call())
             return;
-        *(std::string*)((uintptr_t)text + 80) = ev.mMessage;
+        text->mMessage = ev.mMessage;
     }
     IF_LISTENED_END(PlayerChatEvent);
     return original(this, id, text);

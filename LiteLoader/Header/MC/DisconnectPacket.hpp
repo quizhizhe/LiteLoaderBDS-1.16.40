@@ -11,7 +11,9 @@
 class DisconnectPacket : public Packet {
 
 #define AFTER_EXTRA
-
+public:
+    bool mSkipMessage;
+    std::string mMessage;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_DISCONNECTPACKET
 public:
