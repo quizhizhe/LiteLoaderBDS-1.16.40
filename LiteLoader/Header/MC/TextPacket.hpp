@@ -13,22 +13,23 @@ class TextPacket : public Packet {
 #define AFTER_EXTRA
 // Add Member There
 //    char filler[168];
+public:
     TextType mType;
     std::string mAuthor;
     std::string mMessage;
-    std::vector<std::string> params;
-    bool mLocalize;
+    std::vector<std::string> params;//参数用于替换mMessage里的%
+    bool mLocalize = 0;//是否本地化
     std::string mXuid;
     std::string mPlatformId;
-public:
-    TextPacket(){};
+
+    //TextPacket(){};
     
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_TEXTPACKET
 public:
     class TextPacket& operator=(class TextPacket const &) = delete;
     TextPacket(class TextPacket const &) = delete;
-    //TextPacket() = delete;
+    TextPacket() = delete;
 #endif
 
 public:

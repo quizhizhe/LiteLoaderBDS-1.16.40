@@ -42,7 +42,7 @@ public:
     LIAPI std::string getIP();
     LIAPI string getLanguageCode();
     LIAPI string getServerAddress();
-    LIAPI NetworkIdentifier* getNetworkIdentifier();
+    LIAPI NetworkIdentifier* getNetworkIdentifier() const;
     LIAPI Certificate* getCertificate()const;
     LIAPI std::pair<BlockPos, int> getRespawnPosition();
     LIAPI float getAvgPacketLoss();
@@ -167,6 +167,8 @@ public:
 
     LIAPI bool sendRawFormPacket(unsigned formId, const string& data) const;
     //LIAPI bool sendToastPacket(string title, string msg);
+
+    void sendNetworkPacket(class Packet &) const;
 
     LIAPI static bool isValid(Player* player);
 
@@ -360,7 +362,7 @@ public:
     /*418*/ virtual bool isItemInCooldown(enum CooldownType) const;
     /*419*/ virtual void sendInventoryTransaction(class InventoryTransaction const &) const = 0;
     /*420*/ virtual void sendComplexInventoryTransaction(std::unique_ptr<class ComplexInventoryTransaction>) const = 0;
-    /*421*/ virtual void sendNetworkPacket(class Packet &) const;
+//    /*421*/ virtual void sendNetworkPacket(class Packet &) const;
     /*422*/ virtual class PlayerEventCoordinator & getPlayerEventCoordinator() = 0;
     /*423*/ virtual class MoveInputHandler * getMoveInputHandler() = 0;
     /*424*/ virtual enum InputMode getInputMode() const = 0;

@@ -10,7 +10,16 @@
 class NetworkHandler {
 
 #define AFTER_EXTRA
-
+    // Add Member There
+public:
+    enum NetworkStatisticsConfig;
+    class Connection
+    {
+    public:
+        Connection() = delete;
+        Connection(Connection const&) = delete;
+        Connection(Connection const&&) = delete;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_NETWORKHANDLER
 public:

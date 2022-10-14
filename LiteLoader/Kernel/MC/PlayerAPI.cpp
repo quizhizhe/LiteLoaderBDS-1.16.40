@@ -44,7 +44,7 @@
 
 extern Logger logger;
 
-NetworkIdentifier* Player::getNetworkIdentifier() {
+NetworkIdentifier* Player::getNetworkIdentifier() const{
     //ServerPlayer::isHostingPlayer
     return dAccess<NetworkIdentifier*>(this, 2432);
 }
@@ -116,6 +116,12 @@ int Player::getPlayerLevel(){
     return attr.getCurrentValue();
 }
 
+void Player::sendNetworkPacket(class Packet &pkt) const{
+    void (Player::*rv)(class Packet&) const;
+    *((void**)&rv) = dlsym("?sendNetworkPacket@ServerPlayer@@UEBAXAEAVPacket@@@Z");
+    return (this->*rv)(pkt);
+}
+
 string Player::getDeviceTypeName() {
     switch ((int)getPlatform()) {
         case -1:
@@ -157,7 +163,8 @@ string Player::getDeviceTypeName() {
 
 bool Player::kick(const std::string& msg) {
     NetworkIdentifier* pNetworkIdentifier = getNetworkIdentifier();
-    Global<ServerNetworkHandler>->disconnectClient(*pNetworkIdentifier, 0, msg, 0);
+    unsigned char subID = dAccess<unsigned char>(this,3520);
+    Global<ServerNetworkHandler>->disconnectClient(*pNetworkIdentifier, subID, msg, 0);
     return true;
 }
 
@@ -497,35 +504,36 @@ static_assert(sizeof(TextPacket) == 208);
 static_assert(sizeof(TransferPacket) == 80);
 
 bool Player::sendTextPacket(string text, TextType Type) const {
-    BinaryStream wp;
-    wp.reserve(8 + text.size());
-    wp.writeUnsignedChar((char)Type);
-    wp.writeBool(true);
-    switch (Type) {
-        case TextType::CHAT:
-        case TextType::WHISPER:
-        case TextType::ANNOUNCEMENT:
-            wp.writeString("Server");
-        case TextType::RAW:
-        case TextType::TIP:
-        case TextType::SYSTEM:
-        case TextType::JSON_WHISPER:
-        case TextType::JSON:
-            wp.writeString(text);
-            break;
-        case TextType::TRANSLATION:
-        case TextType::POPUP:
-        case TextType::JUKEBOX_POPUP:
-            wp.writeString(text);
-            wp.writeUnsignedVarInt(0);
-            break;
-    }
-    wp.writeString("");
-    wp.writeString("");
-
-    auto pkt = MinecraftPackets::createPacket(MinecraftPacketIds::Text);
-    pkt->read(wp);
-    sendNetworkPacket(*pkt);
+//    BinaryStream wp;
+//    wp.reserve(8 + text.size());
+//    wp.writeUnsignedChar((char)Type);
+//    wp.writeBool(true);
+//    switch (Type) {
+//        case TextType::CHAT:
+//        case TextType::WHISPER:
+//        case TextType::ANNOUNCEMENT:
+//            wp.writeString("Server");
+//        case TextType::RAW:
+//        case TextType::TIP:
+//        case TextType::SYSTEM:
+//        case TextType::JSON_WHISPER:
+//        case TextType::JSON:
+//            wp.writeString(text);
+//            break;
+//        case TextType::TRANSLATION:
+//        case TextType::POPUP:
+//        case TextType::JUKEBOX_POPUP:
+//            wp.writeString(text);
+//            wp.writeUnsignedVarInt(0);
+//            break;
+//    }
+//    wp.writeString("");
+//    wp.writeString("");
+//
+//    auto pkt = MinecraftPackets::createPacket(MinecraftPacketIds::Text);
+//    pkt->read(wp);
+    auto pkt = TextPacket::createSystemMessage(text);
+    this->sendNetworkPacket(pkt);
     return true;
 }
 
