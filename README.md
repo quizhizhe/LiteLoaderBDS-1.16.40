@@ -1,4 +1,5 @@
 # support not completed!!!
+# LL is Support, LLSE not completed!!!
 
 # LiteLoaderBDS - Epoch-making & Cross-language Bedrock Dedicated Servers Plugin Loader
 

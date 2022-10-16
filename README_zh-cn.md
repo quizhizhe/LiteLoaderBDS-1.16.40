@@ -1,4 +1,9 @@
 # 适配尚未完成！！！
+Liteloader 已经能用了，事件系统应该有很多错误
+
+Liteloader ScriptEngine是不可用的，只能过编译
+
+随缘更新
 
 # LiteLoaderBDS - 划时代 x 跨语言BDS插件加载器
 
