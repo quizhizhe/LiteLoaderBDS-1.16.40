@@ -60,16 +60,23 @@ public:
             return nullptr;
     };
 
+    inline std::unique_ptr<class ListTag> copyList() const{
+        auto listTag = std::make_unique<ListTag>();
+        listTag->elementType = this->elementType;
+        listTag->val = this->val;
+        return listTag;
+    };
+    ~ListTag(){};
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LISTTAG
 public:
     class ListTag& operator=(class ListTag const &) = delete;
     ListTag(class ListTag const &) = delete;
-    ListTag() = delete;
+    ListTag(){};
 #endif
 
 public:
-    /*0*/ virtual ~ListTag();
+//    /*0*/ virtual ~ListTag();
     /*1*/ virtual void deleteChildren();
     /*2*/ virtual void write(class IDataOutput &) const;
     /*3*/ virtual void load(class IDataInput &);

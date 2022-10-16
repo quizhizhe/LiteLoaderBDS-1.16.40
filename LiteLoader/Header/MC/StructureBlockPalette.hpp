@@ -10,7 +10,12 @@
 class StructureBlockPalette {
 
 #define AFTER_EXTRA
-
+public:
+    struct BlockPositionData {
+        BlockPositionData() = delete;
+        BlockPositionData(BlockPositionData const&) = delete;
+        BlockPositionData(BlockPositionData const&&) = delete;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_STRUCTUREBLOCKPALETTE
 public:

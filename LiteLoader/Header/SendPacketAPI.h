@@ -6,13 +6,13 @@ template <int pid, bool batching = true, bool compress = true>
 class NetworkPacket : public Packet {
 public:
     std::string_view view;
-    NetworkPacket() {
-        incompressible = compress;
-    }
-    NetworkPacket(std::string_view sv)
-    : view(sv) {
-        incompressible = compress;
-    }
+//    NetworkPacket() {
+//        incompressible = compress;
+//    }
+//    NetworkPacket(std::string_view sv)
+//    : view(sv) {
+//        incompressible = compress;
+//    }
     inline virtual ~NetworkPacket() {
     }
 

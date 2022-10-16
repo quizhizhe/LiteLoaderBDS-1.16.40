@@ -253,7 +253,7 @@ void LLMain() {
     LL::LoadLLConfig();
 
     //Unzip packed Node Modules
-    //UnzipNodeModules();
+    UnzipNodeModules();
 
     //Decompress resource packs
     DecompressResourcePacks();

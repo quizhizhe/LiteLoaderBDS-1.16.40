@@ -4,13 +4,27 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+#include "StructureBlockPalette.hpp"
 #undef BEFORE_EXTRA
 
 class StructureTemplateData {
 
 #define AFTER_EXTRA
-
+    // Add Member There
+private:
+    void* __vftable;
+    int mFormatVersion;
+    BlockPos mSize;
+    BlockPos mStructureWorldOrigin;
+    std::vector<int> mBlockIndices;
+    std::vector<int> mExtraBlockIndices;
+    std::unordered_map<std::string, StructureBlockPalette> mPalettes;
+    std::vector<std::unique_ptr<CompoundTag>> mEntityData;
+public:
+    inline BlockPos const & getSize() const{
+        return mSize;
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_STRUCTURETEMPLATEDATA
 public:

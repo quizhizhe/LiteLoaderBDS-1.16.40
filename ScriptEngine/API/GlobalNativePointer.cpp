@@ -37,9 +37,9 @@ Local<Value> GlobalNativePointer::getScoreboardPtr(const Arguments& args) {
     return NativePointer::newNativePointer(Global<Scoreboard>);
 }
 
-Local<Value> GlobalNativePointer::getAllowListFilePtr(const Arguments& args) {
-    return NativePointer::newNativePointer(Global<AllowListFile>);
-}
+//Local<Value> GlobalNativePointer::getAllowListFilePtr(const Arguments& args) {
+//    return NativePointer::newNativePointer(Global<AllowListFile>);
+//}
 
 Local<Value> GlobalNativePointer::getPropertiesSettingsPtr(const Arguments& args) {
     return NativePointer::newNativePointer(Global<PropertiesSettings>);
@@ -57,6 +57,6 @@ ClassDefine<GlobalNativePointer> GlobalNativePointerBuilder =
         .function("RakNetServerLocator", &GlobalNativePointer::getRakNetServerLocatorPtr)
         .function("RakNetRakPeer", &GlobalNativePointer::getRakNetRakPeerPtr)
         .function("Scoreboard", &GlobalNativePointer::getScoreboardPtr)
-        .function("AllowListFile", &GlobalNativePointer::getAllowListFilePtr)
+//        .function("AllowListFile", &GlobalNativePointer::getAllowListFilePtr)
         .function("PropertiesSettings", &GlobalNativePointer::getPropertiesSettingsPtr)
         .build();

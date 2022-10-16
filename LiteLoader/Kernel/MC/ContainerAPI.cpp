@@ -2,12 +2,13 @@
 #include <MC/Container.hpp>
 #include <MC/ItemStack.hpp>
 #include <MC/Level.hpp>
+#include "third-party/magic_enum/magic_enum.hpp"
 
-// LIAPI std::string Container::getTypeName() {
-//     ContainerType type = dAccess<ContainerType>(this, 8); //IDA Container::Container
-//     // ContainerType type = getContainerType();
-//     return getContainerTypeName(type);
-// }
+ LIAPI std::string Container::getTypeName() {
+     ContainerType type = dAccess<ContainerType>(this, 8); //IDA Container::Container
+     // ContainerType type = getContainerType();
+     return std::string{magic_enum::enum_name(type)};
+ }
 
 // Safely add items to the container
 LIAPI bool Container::addItem_s(ItemStack* item) {

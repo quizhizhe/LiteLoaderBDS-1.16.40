@@ -82,10 +82,10 @@ class ByteTag const* CompoundTag::getByteTag(class gsl::basic_string_span<char c
 };
 
 // BDS has implemented this interface
-// class ShortTag const* CompoundTag::getShortTag(class gsl::basic_string_span<char const, -1> key) const
-//{
-//    return const_cast<Tag*>(get(key))->asShortTag();
-//};
+ class ShortTag const* CompoundTag::getShortTag(class gsl::basic_string_span<char const, -1> key) const
+{
+    return const_cast<Tag*>(get(key))->asShortTag();
+};
 
 class FloatTag const* CompoundTag::getFloatTag(class gsl::basic_string_span<char const, -1> key) const {
     return const_cast<Tag*>(get(key))->asFloatTag();
@@ -103,9 +103,9 @@ class IntArrayTag const* CompoundTag::getIntArrayTag(class gsl::basic_string_spa
     return const_cast<Tag*>(get(key))->asIntArrayTag();
 };
 
-// class StringTag const* CompoundTag::getStringTag(class gsl::basic_string_span<char const, -1> key) const {
-//     return const_cast<Tag*>(get(key))->asStringTag();
-// };
+ class StringTag const* CompoundTag::getStringTag(class gsl::basic_string_span<char const, -1> key) const {
+     return const_cast<Tag*>(get(key))->asStringTag();
+ };
 
 class ListTag const* CompoundTag::getListTag(class gsl::basic_string_span<char const, -1> key) const {
     return getList(key);
@@ -113,6 +113,14 @@ class ListTag const* CompoundTag::getListTag(class gsl::basic_string_span<char c
 
 class CompoundTag const* CompoundTag::getCompoundTag(class gsl::basic_string_span<char const, -1> key) const {
     return getCompound(key);
+};
+
+class IntTag const* CompoundTag::getIntTag(class gsl::basic_string_span<char const, -1> key) const {
+    return const_cast<Tag*>(get(key))->asIntTag();;
+};
+
+class Int64Tag const* CompoundTag::getInt64Tag(class gsl::basic_string_span<char const, -1> key) const {
+    return const_cast<Tag*>(get(key))->asInt64Tag();;
 };
 
 Tag* CompoundTag::operator[](class gsl::basic_string_span<char const, -1> key) {

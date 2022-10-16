@@ -302,23 +302,23 @@ Player* Level::getPlayer(ActorUniqueID id) {
     //return SymCall("?getPlayer@Level@@UEBAPEAVPlayer@@UActorUniqueID@@@Z", Player*, Level*, ActorUniqueID)(Global<Level>, id);
 }
 
-// Actor* Level::spawnMob(Vec3 pos, int dimId, std::string name) {
+ Actor* Level::spawnMob(Vec3 pos, int dimId, std::string name) {
 
-//     Spawner* sp = &Global<Level>->getSpawner();
-//     return sp->spawnMob(pos, dimId, std::move(name));
-// }
+     Spawner* sp = &Global<Level>->getSpawner();
+     return sp->spawnMob(pos, dimId, std::move(name));
+ }
 
-// Actor* Level::cloneMob(Vec3 pos, int dimId, Actor* ac) {
-//     Spawner* sp = &Global<Level>->getSpawner();
-//     Mob* mob = sp->spawnMob(pos, dimId, std::move(ac->getTypeName()));
-//     mob->setNbt(ac->getNbt().get());
-//     return mob;
-// }
+ Actor* Level::cloneMob(Vec3 pos, int dimId, Actor* ac) {
+     Spawner* sp = &Global<Level>->getSpawner();
+     Mob* mob = sp->spawnMob(pos, dimId, std::move(ac->getTypeName()));
+     mob->setNbt(ac->getNbt().get());
+     return mob;
+ }
 
-// Actor* Level::spawnItem(Vec3 pos, int dimId, ItemStack* item) {
-//     Spawner* sp = &Global<Level>->getSpawner();
-//     return sp->spawnItem(pos, dimId, item);
-// }
+ Actor* Level::spawnItem(Vec3 pos, int dimId, ItemStack* item) {
+     Spawner* sp = &Global<Level>->getSpawner();
+     return sp->spawnItem(pos, dimId, item);
+ }
 
 bool Level::createExplosion(Vec3 pos, int dimId, Actor* source, float radius, bool createFire, bool canBreak, float maxResistance) {
     Global<Level>->explode(*Level::getBlockSource(dimId), source, pos, radius, createFire, canBreak, maxResistance, false);

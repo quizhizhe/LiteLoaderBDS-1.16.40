@@ -17,6 +17,7 @@ class CompoundTag;
 #include "ScorePacketInfo.hpp"
 #include "DataItem.hpp"
 #include "../I18nAPI.h"
+#include "AttributeInstance.hpp"
 #undef BEFORE_EXTRA
 
 class Player : public Mob {
@@ -47,7 +48,7 @@ public:
     LIAPI std::pair<BlockPos, int> getRespawnPosition();
     LIAPI float getAvgPacketLoss();
     LIAPI float getLastPacketLoss();
-    //LIAPI string getClientId();
+    LIAPI string getClientId();
     LIAPI int getDeviceType();
     LIAPI bool isOperator();
     LIAPI bool isOP();
@@ -132,9 +133,9 @@ public:
     LIAPI bool setNbt(CompoundTag* nbt);
     LIAPI bool refreshAttribute(class Attribute const& attribute);
     LIAPI bool refreshAttributes(std::vector<Attribute const*> const& attributes);
-    //LIAPI void addBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay = 0);
+    LIAPI void addBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay = 0);
     LIAPI void removeBossEvent(int64_t uid);
-    //LIAPI void updateBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay = 0);
+    LIAPI void updateBossEvent(int64_t uid, string name, float percent, BossEventColour colour, int overlay = 0);
 
     LIAPI int getScore(const string& key);
     LIAPI bool setScore(const string& key, int value);
@@ -154,13 +155,13 @@ public:
     LIAPI bool sendSpawnParticleEffectPacket(Vec3 spawnPos, int dimid, string ParticleName, int64_t EntityUniqueID = -1) const;
     /*bad*/ LIAPI bool sendPlaySoundPacket(string SoundName, Vec3 Position, float Volume, float Pitch) const;
     //LIAPI bool sendAddItemEntityPacket(unsigned long long runtimeID, class Item const& item, int stackSize, short aux, Vec3 pos, vector<std::unique_ptr<DataItem>> dataItems = {}) const;
-    //LIAPI bool sendAddEntityPacket(unsigned long long runtimeID, string entityType, Vec3 pos, Vec2 rotation, float headYaw, vector<std::unique_ptr<DataItem>> dataItems = {});
+    LIAPI bool sendAddEntityPacket(unsigned long long runtimeID, string entityType, Vec3 pos, Vec2 rotation, float headYaw, vector<std::unique_ptr<DataItem>> dataItems = {});
     LIAPI bool sendUpdateBlockPacket(BlockPos const& blockPos, unsigned int runtimeId, UpdateBlockFlags flag = UpdateBlockFlags::BlockUpdateAll, UpdateBlockLayer layer = UpdateBlockLayer::UpdateBlockDefault);
     LIAPI bool sendUpdateBlockPacket(BlockPos const& blockPos, const Block& block, UpdateBlockFlags flag = UpdateBlockFlags::BlockUpdateAll, UpdateBlockLayer layer = UpdateBlockLayer::UpdateBlockDefault);
     LIAPI bool sendTransferPacket(const string& address, short port) const;
     LIAPI bool sendSetDisplayObjectivePacket(const string& title, const string& name, char sortOrder) const;
     LIAPI bool sendSetScorePacket(char type, const vector<ScorePacketInfo>& data);
-    //LIAPI bool sendBossEventPacket(BossEvent type, string name, float percent, BossEventColour colour, int overlay = 0);
+    LIAPI bool sendBossEventPacket(BossEvent type, string name, float percent, BossEventColour colour, int overlay = 0);
     LIAPI bool sendCommandRequestPacket(const string& cmd);
     LIAPI bool sendTextTalkPacket(const string& msg);
     LIAPI bool sendTextTalkPacket(const string& msg, Player* target /* = nullptr*/);
@@ -176,6 +177,19 @@ public:
     inline string getDeviceName() {
         return getDeviceTypeName();
     }
+    inline std::string* getDeviceId(){
+        //AddPlayerPacket::AddPlayerPacket Line58
+        return dAccess<std::string*>(this,7872);
+    };
+    inline bool isFlying(){
+        //Actor::onAboveBubbleColumn Line5 照抄的，不知行不行
+        return (dAccess<int>(this,2228) == 1 || !dAccess<bool>(this,2232)) && (dAccess<int>(this, 2324) == 1 || !dAccess<bool>(this, 2328));
+    };
+    inline bool isHungry(){
+        void* Player_HUNGER = dlsym("?HUNGER@Player@@2VAttribute@@B");
+        return getAttribute(*(Attribute*)Player_HUNGER).getMaxValue() > getAttribute(*(Attribute*)Player_HUNGER).getCurrentValue();
+    }
+
     LIAPI bool sendSimpleFormPacket(const string& title, const string& content, const vector<string>& buttons, const std::vector<std::string>& images, std::function<void(int)> callback) const;
     LIAPI bool sendModalFormPacket(const string& title, const string& content, const string& button1, const string& button2, std::function<void(bool)> callback);
     LIAPI bool sendCustomFormPacket(const std::string& data, std::function<void(string)> callback);

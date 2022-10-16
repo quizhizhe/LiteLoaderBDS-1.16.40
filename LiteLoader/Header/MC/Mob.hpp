@@ -23,6 +23,9 @@ enum TravelType;
 public:
 
     LIAPI bool refreshInventory();
+    inline bool isGliding(){
+        return getStatusFlag(ActorFlags::GLIDING);
+    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MOB

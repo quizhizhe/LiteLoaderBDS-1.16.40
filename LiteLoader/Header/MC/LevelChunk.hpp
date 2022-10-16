@@ -44,6 +44,11 @@ public:
         //CommandAreaFactory::_getArea Line156
         return *dAccess<Tick*>(this, 144);
     };
+    inline int getHeightmap(const ChunkBlockPos *pos){
+        //LevelChunk::_lightingCallbacks Line31 应该是这样的
+        auto chunk = pos->x +16 * pos->z;
+        return dAccess<int>(this,chunk+1960);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LEVELCHUNK
 public:

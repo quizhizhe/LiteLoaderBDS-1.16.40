@@ -4,7 +4,7 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+#include "HashedString.hpp"
 #undef BEFORE_EXTRA
 
 class MobEffect {
@@ -51,9 +51,13 @@ public:
         FactorCalculationData(FactorCalculationData const&&) = delete;
     };
 
-    std::string const & getResourceName() const{
+    inline std::string const & getResourceName() const{
         //EffectCommand::execute Line247
         return dAccess<std::string>(this,80);
+    };
+    inline HashedString const & getComponentName() const{
+        //MobEffect::MobEffect Line43;
+        return dAccess<HashedString>(this,152);
     };
 
 #undef AFTER_EXTRA

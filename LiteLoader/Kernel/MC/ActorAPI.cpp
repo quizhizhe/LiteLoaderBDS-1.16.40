@@ -63,13 +63,13 @@ bool Actor::isOnGround() const {
      return getActorIdentifier().getCanonicalName();
  }
  
-// bool Actor::hurtEntity(float damage, ActorDamageCause damageCause) {
-//     auto ads = new ActorDamageSource(damageCause);
-//     auto res = ((Mob*)this)->_hurt(*ads, damage, true, false);
-//     ads->~ActorDamageSource();
-//     delete ads;
-//     return res;
-// }
+ bool Actor::hurtEntity(float damage,ActorDamageCause damageCause) {
+     auto ads = new ActorDamageSource(damageCause);
+     auto res = ((Mob*)this)->_hurt(*ads, damage, true, false);
+     ads->~ActorDamageSource();
+     delete ads;
+     return res;
+ }
 
 
 Vec2* Actor::getDirection() const {
@@ -211,18 +211,18 @@ Vec3 Actor::getCameraPos() const {
 //     return getBlockFromViewVector(face, includeLiquid, solidOnly, maxDistance, ignoreBorderBlocks, fullOnly);
 // }
 
-// Actor* Actor::getActorFromViewVector(float maxDistance) {
-//     auto& bs = getRegion();
-//     auto pos = getCameraPos();
-//     auto viewVec = getViewVector(1.0f);
-//     auto aabb = *(AABB*)&getAABB();
-//     auto player = isPlayer() ? (Player*)this : nullptr;
-//     Actor* result = nullptr;
-//     float distance = 0.0f;
-//     Vec3 resultPos{};
-//     // HitDetection::searchActors(viewVec, maxDistance, pos, aabb, this, (Player*)this, distance, result, resultPos, player);
-//     return result;
-// }
+ Actor* Actor::getActorFromViewVector(float maxDistance) {
+     auto& bs = getRegion();
+     auto pos = getCameraPos();
+     auto viewVec = getViewVector(1.0f);
+     auto aabb = *(AABB*)&getAABB();
+     auto player = isPlayer() ? (Player*)this : nullptr;
+     Actor* result = nullptr;
+     float distance = 0.0f;
+     Vec3 resultPos{};
+     // HitDetection::searchActors(viewVec, maxDistance, pos, aabb, this, (Player*)this, distance, result, resultPos, player);
+     return result;
+ }
 
 // bool Actor::addEffect(MobEffect::EffectType type, int tick, int level, bool ambient, bool showParticles, bool showAnimation) {
 //     MobEffectInstance ins = MobEffectInstance((unsigned int)type, tick, -1,-1,-1,level, ambient, showParticles, showAnimation);

@@ -23,7 +23,6 @@
 #include <MC/ScoreboardId.hpp>
 #include <MC/ListTag.hpp>
 #include <MC/CompoundTag.hpp>
-#include <MC/SimulatedPlayer.hpp>
 #include <MC/BlockSource.hpp>
 #include <PlayerInfoAPI.h>
 #include <SafeGuardRecord.h>
@@ -88,7 +87,7 @@ ClassDefine<PlayerClass> PlayerClassBuilder =
         .instanceProperty("isAdventure", &PlayerClass::isAdventure)
         .instanceProperty("isGliding", &PlayerClass::isGliding)
         .instanceProperty("isSurvival", &PlayerClass::isSurvival)
-        .instanceProperty("isSpectator", &PlayerClass::isSpectator)
+//        .instanceProperty("isSpectator", &PlayerClass::isSpectator)
         .instanceProperty("isRiding", &PlayerClass::isRiding)
         .instanceProperty("isDancing", &PlayerClass::isDancing)
         .instanceProperty("isCreative", &PlayerClass::isCreative)
@@ -112,12 +111,12 @@ ClassDefine<PlayerClass> PlayerClassBuilder =
         .instanceFunction("transServer", &PlayerClass::transServer)
         .instanceFunction("crash", &PlayerClass::crash)
         .instanceFunction("hurt", &PlayerClass::hurt)
-        .instanceFunction("refreshChunks", &PlayerClass::refreshChunks)
+//        .instanceFunction("refreshChunks", &PlayerClass::refreshChunks)
         .instanceFunction("giveItem", &PlayerClass::giveItem)
         .instanceFunction("clearItem", &PlayerClass::clearItem)
         .instanceFunction("isSprinting", &PlayerClass::isSprinting)
         .instanceFunction("setSprinting", &PlayerClass::setSprinting)
-        .instanceFunction("sendToast", &PlayerClass::sendToast)
+//        .instanceFunction("sendToast", &PlayerClass::sendToast)
 
         .instanceFunction("getBlockStandingOn", &PlayerClass::getBlockStandingOn)
         .instanceFunction("getDevice", &PlayerClass::getDevice)
@@ -165,35 +164,35 @@ ClassDefine<PlayerClass> PlayerClassBuilder =
         .instanceFunction("setNbt", &PlayerClass::setNbt)
         .instanceFunction("getNbt", &PlayerClass::getNbt)
         .instanceFunction("addTag", &PlayerClass::addTag)
-        .instanceFunction("removeTag", &PlayerClass::removeTag)
+//        .instanceFunction("removeTag", &PlayerClass::removeTag)
         .instanceFunction("hasTag", &PlayerClass::hasTag)
         .instanceFunction("getAllTags", &PlayerClass::getAllTags)
         .instanceFunction("getAbilities", &PlayerClass::getAbilities)
         .instanceFunction("getAttributes", &PlayerClass::getAttributes)
         .instanceFunction("getEntityFromViewVector", &PlayerClass::getEntityFromViewVector)
-        .instanceFunction("getBlockFromViewVector", &PlayerClass::getBlockFromViewVector)
-        .instanceFunction("quickEvalMolangScript", &PlayerClass::quickEvalMolangScript)
+//        .instanceFunction("getBlockFromViewVector", &PlayerClass::getBlockFromViewVector)
+//        .instanceFunction("quickEvalMolangScript", &PlayerClass::quickEvalMolangScript)
 
         // SimulatedPlayer API
-        .instanceFunction("isSimulatedPlayer", &PlayerClass::isSimulatedPlayer)
-        .instanceFunction("simulateSneak", &PlayerClass::simulateSneak)
-        .instanceFunction("simulateAttack", &PlayerClass::simulateAttack)
-        .instanceFunction("simulateDestroy", &PlayerClass::simulateDestroy)
-        .instanceFunction("simulateDisconnect", &PlayerClass::simulateDisconnect)
-        .instanceFunction("simulateInteract", &PlayerClass::simulateInteract)
-        .instanceFunction("simulateJump", &PlayerClass::simulateJump)
-        .instanceFunction("simulateLocalMove", &PlayerClass::simulateLocalMove)
-        .instanceFunction("simulateWorldMove", &PlayerClass::simulateWorldMove)
-        .instanceFunction("simulateMoveTo", &PlayerClass::simulateMoveTo)
-        .instanceFunction("simulateLookAt", &PlayerClass::simulateLookAt)
-        .instanceFunction("simulateSetBodyRotation", &PlayerClass::simulateSetBodyRotation)
-        .instanceFunction("simulateNavigateTo", &PlayerClass::simulateNavigateTo)
-        .instanceFunction("simulateUseItem", &PlayerClass::simulateUseItem)
-        .instanceFunction("simulateStopDestroyingBlock", &PlayerClass::simulateStopDestroyingBlock)
-        .instanceFunction("simulateStopInteracting", &PlayerClass::simulateStopInteracting)
-        .instanceFunction("simulateStopMoving", &PlayerClass::simulateStopMoving)
-        .instanceFunction("simulateStopUsingItem", &PlayerClass::simulateStopUsingItem)
-        .instanceFunction("simulateStopSneaking", &PlayerClass::simulateStopSneaking)
+//        .instanceFunction("isSimulatedPlayer", &PlayerClass::isSimulatedPlayer)
+//        .instanceFunction("simulateSneak", &PlayerClass::simulateSneak)
+//        .instanceFunction("simulateAttack", &PlayerClass::simulateAttack)
+//        .instanceFunction("simulateDestroy", &PlayerClass::simulateDestroy)
+//        .instanceFunction("simulateDisconnect", &PlayerClass::simulateDisconnect)
+//        .instanceFunction("simulateInteract", &PlayerClass::simulateInteract)
+//        .instanceFunction("simulateJump", &PlayerClass::simulateJump)
+//        .instanceFunction("simulateLocalMove", &PlayerClass::simulateLocalMove)
+//        .instanceFunction("simulateWorldMove", &PlayerClass::simulateWorldMove)
+//        .instanceFunction("simulateMoveTo", &PlayerClass::simulateMoveTo)
+//        .instanceFunction("simulateLookAt", &PlayerClass::simulateLookAt)
+//        .instanceFunction("simulateSetBodyRotation", &PlayerClass::simulateSetBodyRotation)
+//        .instanceFunction("simulateNavigateTo", &PlayerClass::simulateNavigateTo)
+//        .instanceFunction("simulateUseItem", &PlayerClass::simulateUseItem)
+//        .instanceFunction("simulateStopDestroyingBlock", &PlayerClass::simulateStopDestroyingBlock)
+//        .instanceFunction("simulateStopInteracting", &PlayerClass::simulateStopInteracting)
+//        .instanceFunction("simulateStopMoving", &PlayerClass::simulateStopMoving)
+//        .instanceFunction("simulateStopUsingItem", &PlayerClass::simulateStopUsingItem)
+//        .instanceFunction("simulateStopSneaking", &PlayerClass::simulateStopSneaking)
 
         // For Compatibility
         .instanceProperty("ip", &PlayerClass::getIP)
@@ -339,15 +338,16 @@ Local<Value> PlayerClass::getBlockPos() {
     }
     CATCH("Fail in getPlayerBlockPos!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getLastDeathPos() {
     try {
-        Player* player = get();
-        if (!player || player->hasDiedBefore()) {
-            return Local<Value>();
-        }
-
-        return IntPos::newPos(player->getLastDeathPos().value(), player->getLastDeathDimension().value());
+//        Player* player = get();
+//        if (!player || player->hasDiedBefore()) {
+//            return Local<Value>();
+//        }
+//
+//        return IntPos::newPos(player->getLastDeathPos().value(), player->getLastDeathDimension().value());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getLastDeathPos!")
 }
@@ -420,36 +420,39 @@ Local<Value> PlayerClass::getPermLevel() {
     }
     CATCH("Fail in getPlayerPermLevel!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getGameMode() {
     try {
         Player* player = get();
         if (!player)
             return Local<Value>();
 
-        return Number::newNumber((int)player->getPlayerGameType()); //==========???
+//        return Number::newNumber((int)player->getPlayerGameType()); //==========???
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getGameMode!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getCanSleep() {
     try {
         Player* player = get();
         if (!player)
             return Local<Value>();
 
-        return Boolean::newBoolean(player->canSleep());
+//        return Boolean::newBoolean(player->canSleep());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanSleep!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getCanFly() {
     try {
         Player* player = get();
         if (!player)
             return Local<Value>();
 
-        return Boolean::newBoolean(player->canFly());
+//        return Boolean::newBoolean(player->canFly());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanFly!")
 }
@@ -465,7 +468,7 @@ Local<Value> PlayerClass::getCanBeSeenOnMap() {
     }
     CATCH("Fail in getCanBeSeenOnMap!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getCanFreeze() {
     try {
         Player* player = get();
@@ -473,11 +476,12 @@ Local<Value> PlayerClass::getCanFreeze() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->canFreeze());
+//        return Boolean::newBoolean(player->canFreeze());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanFreeze!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getCanSeeDaylight() {
     try {
         Player* player = get();
@@ -485,7 +489,8 @@ Local<Value> PlayerClass::getCanSeeDaylight() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->canSeeDaylight());
+//        return Boolean::newBoolean(player->canSeeDaylight());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanSeeDaylight!")
 }
@@ -513,7 +518,7 @@ Local<Value> PlayerClass::getCanStartSleepInBed() {
     }
     CATCH("Fail in getCanStartSleepInBed!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getCanPickupItems() {
     try {
         Player* player = get();
@@ -521,7 +526,8 @@ Local<Value> PlayerClass::getCanPickupItems() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->getCanPickupItems());
+//        return Boolean::newBoolean(player->getCanPickupItems());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanPickupItems!")
 }
@@ -559,25 +565,27 @@ Local<Value> PlayerClass::getDirection() {
     }
     CATCH("Fail in getDirection!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getMaxHealth() {
     try {
         Player* player = get();
         if (!player)
             return Local<Value>();
 
-        return Number::newNumber(player->getMaxHealth());
+//        return Number::newNumber(player->getMaxHealth());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in GetMaxHealth!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getHealth() {
     try {
         Player* player = get();
         if (!player)
             return Local<Value>();
 
-        return Number::newNumber(player->getHealth());
+//        return Number::newNumber(player->getHealth());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in GetHealth!")
 }
@@ -625,14 +633,15 @@ Local<Value> PlayerClass::getInRain() {
     }
     CATCH("Fail in getInRain!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getInSnow() {
     try {
         Player* player = get();
         if (!player)
             return Local<Value>();
 
-        return Boolean::newBoolean(player->isInSnow());
+//        return Boolean::newBoolean(player->isInSnow());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getInSnow!")
 }
@@ -658,18 +667,19 @@ Local<Value> PlayerClass::getInWaterOrRain() {
     }
     CATCH("Fail in getInWaterOrRain!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getInWorld() {
     try {
         Player* player = get();
         if (!player)
             return Local<Value>();
 
-        return Boolean::newBoolean(player->isInWorld());
+//        return Boolean::newBoolean(player->isInWorld());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getInWorld!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::getInClouds() {
     try {
         Player* player = get();
@@ -677,7 +687,8 @@ Local<Value> PlayerClass::getInClouds() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->isInClouds());
+//        return Boolean::newBoolean(player->isInClouds());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getInClouds!")
 }
@@ -735,7 +746,7 @@ Local<Value> PlayerClass::isInvisible() {
     }
     CATCH("Fail in isInvisible!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::isInsidePortal() {
     try {
         Player* player = get();
@@ -743,11 +754,12 @@ Local<Value> PlayerClass::isInsidePortal() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->isInsidePortal());
+//        return Boolean::newBoolean(player->isInsidePortal());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isInsidePortal!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::isHurt() {
     try {
         Player* player = get();
@@ -755,11 +767,12 @@ Local<Value> PlayerClass::isHurt() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->isHurt());
+//        return Boolean::newBoolean(player->isHurt());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isHurt!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::isTrusting() {
     try {
         Player* player = get();
@@ -767,11 +780,12 @@ Local<Value> PlayerClass::isTrusting() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->isTrusting());
+//        return Boolean::newBoolean(player->isTrusting());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isTrusting!")
 }
-
+//TODO 有函数没有
 Local<Value> PlayerClass::isTouchingDamageBlock() {
     try {
         Player* player = get();
@@ -779,7 +793,8 @@ Local<Value> PlayerClass::isTouchingDamageBlock() {
             return Local<Value>();
         }
 
-        return Boolean::newBoolean(player->isTouchingDamageBlock());
+//        return Boolean::newBoolean(player->isTouchingDamageBlock());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isTouchingDamageBlock!")
 }
@@ -879,18 +894,18 @@ Local<Value> PlayerClass::isSurvival() {
     }
     CATCH("Fail in isSurvival!")
 }
-
-Local<Value> PlayerClass::isSpectator() {
-    try {
-        Player* player = get();
-        if (!player) {
-            return Local<Value>();
-        }
-
-        return Boolean::newBoolean(player->isSpectator());
-    }
-    CATCH("Fail in isSpectator!")
-}
+//1.16.40还没有完整的旁观模式
+//Local<Value> PlayerClass::isSpectator() {
+//    try {
+//        Player* player = get();
+//        if (!player) {
+//            return Local<Value>();
+//        }
+//
+//        return Boolean::newBoolean(player->isSpectator());
+//    }
+//    CATCH("Fail in isSpectator!")
+//}
 
 Local<Value> PlayerClass::isRiding() {
     try {
@@ -1210,7 +1225,7 @@ Local<Value> PlayerClass::getEnderChest(const Arguments& args) {
         if (!player)
             return Local<Value>();
 
-        return ContainerClass::newContainer(player->getEnderChestContainer());
+        return ContainerClass::newContainer((Container*)player->getEnderChestContainer());
     }
     CATCH("Fail in getEnderChest!");
 }
@@ -1974,8 +1989,8 @@ Local<Value> PlayerClass::setFire(const Arguments& args) {
         int time = args[0].toInt();
         bool isEffectValue = args[1].asBoolean().value();
 
-        bool result = player->setOnFire(time, isEffectValue);
-        return Boolean::newBoolean(result);
+        player->setOnFire(time);
+        return Boolean::newBoolean(1);
     }
     CATCH("Fail in setOnFire!");
 }
@@ -1992,23 +2007,23 @@ Local<Value> PlayerClass::setOnFire(const Arguments& args) {
 
         int time = args[0].toInt();
 
-        bool result = player->setOnFire(time, true);
-        return Boolean::newBoolean(result);
+        player->setOnFire(time);
+        return Boolean::newBoolean(1);
     }
     CATCH("Fail in setOnFire!");
 }
 
-Local<Value> PlayerClass::refreshChunks(const Arguments& args) {
-    try {
-        Player* player = get();
-        if (!player)
-            return Local<Value>();
-
-        player->resendAllChunks();
-        return Boolean::newBoolean(true);
-    }
-    CATCH("Fail in refreshChunks!");
-}
+//Local<Value> PlayerClass::refreshChunks(const Arguments& args) {
+//    try {
+//        Player* player = get();
+//        if (!player)
+//            return Local<Value>();
+//
+//        player->resendAllChunks();
+//        return Boolean::newBoolean(true);
+//    }
+//    CATCH("Fail in refreshChunks!");
+//}
 
 Local<Value> PlayerClass::giveItem(const Arguments& args) {
     CHECK_ARGS_COUNT(args, 1);
@@ -2111,19 +2126,19 @@ Local<Value> PlayerClass::addTag(const Arguments& args) {
     CATCH("Fail in addTag!");
 }
 
-Local<Value> PlayerClass::removeTag(const Arguments& args) {
-    CHECK_ARGS_COUNT(args, 1);
-    CHECK_ARG_TYPE(args[0], ValueKind::kString);
-
-    try {
-        Player* player = get();
-        if (!player)
-            return Local<Value>();
-
-        return Boolean::newBoolean(player->removeTag(args[0].toStr()));
-    }
-    CATCH("Fail in removeTag!");
-}
+//Local<Value> PlayerClass::removeTag(const Arguments& args) {
+//    CHECK_ARGS_COUNT(args, 1);
+//    CHECK_ARG_TYPE(args[0], ValueKind::kString);
+//
+//    try {
+//        Player* player = get();
+//        if (!player)
+//            return Local<Value>();
+//
+//        return Boolean::newBoolean(player->removeTag(args[0].toStr()));
+//    }
+//    CATCH("Fail in removeTag!");
+//}
 
 Local<Value> PlayerClass::hasTag(const Arguments& args) {
     CHECK_ARGS_COUNT(args, 1);
@@ -2213,58 +2228,58 @@ Local<Value> PlayerClass::getEntityFromViewVector(const Arguments& args) {
     CATCH("Fail in getEntityFromViewVector!");
 }
 
-Local<Value> PlayerClass::getBlockFromViewVector(const Arguments& args) {
-    try {
-        Player* player = get();
-        if (!player)
-            return Local<Value>();
-        bool includeLiquid = false;
-        bool solidOnly = false;
-        float maxDistance = 5.25f;
-        bool ignoreBorderBlocks = true;
-        bool fullOnly = false;
-        if (args.size() > 0) {
-            CHECK_ARG_TYPE(args[0], ValueKind::kBoolean);
-            includeLiquid = args[0].asBoolean().value();
-        }
-        if (args.size() > 1) {
-            CHECK_ARG_TYPE(args[1], ValueKind::kBoolean);
-            solidOnly = args[1].asBoolean().value();
-        }
-        if (args.size() > 2) {
-            CHECK_ARG_TYPE(args[2], ValueKind::kNumber);
-            maxDistance = args[2].asNumber().toFloat();
-        }
-        if (args.size() > 3) {
-            CHECK_ARG_TYPE(args[3], ValueKind::kBoolean);
-            fullOnly = args[3].asBoolean().value();
-        }
-        auto blockInstance = player->getBlockFromViewVector(includeLiquid, solidOnly, maxDistance, ignoreBorderBlocks, fullOnly);
-        if (blockInstance.isNull())
-            return Local<Value>();
-        return BlockClass::newBlock(std::move(blockInstance));
-    }
-    CATCH("Fail in getBlockFromViewVector!");
-}
+//Local<Value> PlayerClass::getBlockFromViewVector(const Arguments& args) {
+//    try {
+//        Player* player = get();
+//        if (!player)
+//            return Local<Value>();
+//        bool includeLiquid = false;
+//        bool solidOnly = false;
+//        float maxDistance = 5.25f;
+//        bool ignoreBorderBlocks = true;
+//        bool fullOnly = false;
+//        if (args.size() > 0) {
+//            CHECK_ARG_TYPE(args[0], ValueKind::kBoolean);
+//            includeLiquid = args[0].asBoolean().value();
+//        }
+//        if (args.size() > 1) {
+//            CHECK_ARG_TYPE(args[1], ValueKind::kBoolean);
+//            solidOnly = args[1].asBoolean().value();
+//        }
+//        if (args.size() > 2) {
+//            CHECK_ARG_TYPE(args[2], ValueKind::kNumber);
+//            maxDistance = args[2].asNumber().toFloat();
+//        }
+//        if (args.size() > 3) {
+//            CHECK_ARG_TYPE(args[3], ValueKind::kBoolean);
+//            fullOnly = args[3].asBoolean().value();
+//        }
+//        auto blockInstance = player->getBlockFromViewVector(includeLiquid, solidOnly, maxDistance, ignoreBorderBlocks, fullOnly);
+//        if (blockInstance.isNull())
+//            return Local<Value>();
+//        return BlockClass::newBlock(std::move(blockInstance));
+//    }
+//    CATCH("Fail in getBlockFromViewVector!");
+//}
 
-Local<Value> PlayerClass::isSimulatedPlayer(const Arguments& args) {
-    try {
-        return Boolean::newBoolean(get()->isSimulatedPlayer());
-    }
-    CATCH("Fail in isSimulatedPlayer!");
-}
+//Local<Value> PlayerClass::isSimulatedPlayer(const Arguments& args) {
+//    try {
+//        return Boolean::newBoolean(get()->isSimulatedPlayer());
+//    }
+//    CATCH("Fail in isSimulatedPlayer!");
+//}
 
-Local<Value> PlayerClass::quickEvalMolangScript(const Arguments& args) {
-    CHECK_ARGS_COUNT(args, 1);
-    CHECK_ARG_TYPE(args[0], ValueKind::kString);
-    try {
-        Player* actor = get();
-        if (!actor)
-            return Local<Value>();
-        return Number::newNumber(actor->quickEvalMolangScript(args[0].toStr()));
-    }
-    CATCH("Fail in quickEvalMolangScript!");
-}
+//Local<Value> PlayerClass::quickEvalMolangScript(const Arguments& args) {
+//    CHECK_ARGS_COUNT(args, 1);
+//    CHECK_ARG_TYPE(args[0], ValueKind::kString);
+//    try {
+//        Player* actor = get();
+//        if (!actor)
+//            return Local<Value>();
+//        return Number::newNumber(actor->quickEvalMolangScript(args[0].toStr()));
+//    }
+//    CATCH("Fail in quickEvalMolangScript!");
+//}
 
 
 //////////////////// For Compatibility ////////////////////
@@ -2279,7 +2294,8 @@ Local<Value> PlayerClass::getAllItems(const Arguments& args) {
         ItemStack* offHand = (ItemStack*)&player->getOffhandSlot();
         vector<const ItemStack*> inventory = player->getInventory().getAllSlots();
         vector<const ItemStack*> armor = player->getArmorContainer().getAllSlots();
-        vector<const ItemStack*> endChest = player->getEnderChestContainer()->getAllSlots();
+        auto temp = (Container*)player->getEnderChestContainer();
+        vector<const ItemStack*> endChest = temp->getAllSlots();
 
         Local<Object> result = Object::newObject();
 
@@ -2335,18 +2351,18 @@ Local<Value> PlayerClass::removeItem(const Arguments& args) {
 }
 
 
-Local<Value> PlayerClass::sendToast(const Arguments& args) {
-    CHECK_ARGS_COUNT(args, 2);
-    CHECK_ARG_TYPE(args[0], ValueKind::kString);
-    CHECK_ARG_TYPE(args[1], ValueKind::kString);
-    try {
-        Player* player = get();
-
-        if (!player)
-            return Local<Value>();
-
-        player->sendToastPacket(args[0].toStr(), args[1].toStr());
-        return Boolean::newBoolean(true);
-    }
-    CATCH("Fail in sendToast!");
-}
+//Local<Value> PlayerClass::sendToast(const Arguments& args) {
+//    CHECK_ARGS_COUNT(args, 2);
+//    CHECK_ARG_TYPE(args[0], ValueKind::kString);
+//    CHECK_ARG_TYPE(args[1], ValueKind::kString);
+//    try {
+//        Player* player = get();
+//
+//        if (!player)
+//            return Local<Value>();
+//
+//        player->sendToastPacket(args[0].toStr(), args[1].toStr());
+//        return Boolean::newBoolean(true);
+//    }
+//    CATCH("Fail in sendToast!");
+//}

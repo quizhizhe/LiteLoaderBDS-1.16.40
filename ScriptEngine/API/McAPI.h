@@ -23,7 +23,7 @@ public:
     static Local<Value> newItem(const Arguments& args);
     static Local<Value> spawnMob(const Arguments& args);
     static Local<Value> spawnItem(const Arguments& args);
-    static Local<Value> spawnSimulatedPlayer(const Arguments& args);
+//    static Local<Value> spawnSimulatedPlayer(const Arguments& args);
     static Local<Value> explode(const Arguments& args);
     static Local<Value> cloneMob(const Arguments& args);
 
@@ -39,7 +39,7 @@ public:
     static Local<Value> sendCmdOutput(const Arguments& args);
     static Local<Value> crashBDS(const Arguments& args);
 
-    static Local<Value> setMaxNumPlayers(const Arguments& args);
+//    static Local<Value> setMaxNumPlayers(const Arguments& args);
 
     static Local<Value> newIntPos(const Arguments& args);
     static Local<Value> newFloatPos(const Arguments& args);

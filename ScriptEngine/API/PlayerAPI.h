@@ -16,7 +16,7 @@ public:
 
     void set(Player* player);
     Player* get();
-    SimulatedPlayer* asSimulatedPlayer();
+    //SimulatedPlayer* asSimulatedPlayer();
 
     static Local<Object> newPlayer(Player* p);
     static Player* extract(Local<Value> v);
@@ -69,7 +69,8 @@ public:
     Local<Value> isAdventure();
     Local<Value> isGliding();
     Local<Value> isSurvival();
-    Local<Value> isSpectator();
+//    1.16.40还没有完整的旁观模式
+//    Local<Value> isSpectator();
     Local<Value> isRiding();
     Local<Value> isDancing();
     Local<Value> isCreative();
@@ -93,12 +94,12 @@ public:
     Local<Value> hurt(const Arguments& args);
     Local<Value> setOnFire(const Arguments& args);
     Local<Value> setFire(const Arguments& args);
-    Local<Value> refreshChunks(const Arguments& args);
+//    Local<Value> refreshChunks(const Arguments& args);
     Local<Value> giveItem(const Arguments& args);
     Local<Value> clearItem(const Arguments& args);
     Local<Value> isSprinting(const Arguments& args);
     Local<Value> setSprinting(const Arguments& args);
-    Local<Value> sendToast(const Arguments& args);
+//    Local<Value> sendToast(const Arguments& args);
 
     Local<Value> getBlockStandingOn(const Arguments& args);
     Local<Value> getDevice(const Arguments& args);
@@ -147,36 +148,36 @@ public:
     Local<Value> setNbt(const Arguments& args);
     Local<Value> addTag(const Arguments& args);
     Local<Value> hasTag(const Arguments& args);
-    Local<Value> removeTag(const Arguments& args);
+//    Local<Value> removeTag(const Arguments& args);
     Local<Value> getAllTags(const Arguments& args);
     Local<Value> getAbilities(const Arguments& args);
     Local<Value> getAttributes(const Arguments& args);
     Local<Value> getEntityFromViewVector(const Arguments& args);
-    Local<Value> getBlockFromViewVector(const Arguments& args);
+//    Local<Value> getBlockFromViewVector(const Arguments& args);
 
-    Local<Value> isSimulatedPlayer(const Arguments& args);
-    Local<Value> quickEvalMolangScript(const Arguments& args);
+    //Local<Value> isSimulatedPlayer(const Arguments& args);
+//    Local<Value> quickEvalMolangScript(const Arguments& args);
 
     // SimulatedPlayer API (API/SimulatedPlayerAPI.cpp)
 
-    Local<Value> simulateSneak(const Arguments& args);
-    Local<Value> simulateAttack(const Arguments& args);
-    Local<Value> simulateDestroy(const Arguments& args);
-    Local<Value> simulateDisconnect(const Arguments& args);
-    Local<Value> simulateInteract(const Arguments& args);
-    Local<Value> simulateJump(const Arguments& args);
-    Local<Value> simulateLocalMove(const Arguments& args);
-    Local<Value> simulateWorldMove(const Arguments& args);
-    Local<Value> simulateMoveTo(const Arguments& args);
-    Local<Value> simulateLookAt(const Arguments& args);
-    Local<Value> simulateSetBodyRotation(const Arguments& args);
-    Local<Value> simulateNavigateTo(const Arguments& args);
-    Local<Value> simulateUseItem(const Arguments& args);
-    Local<Value> simulateStopDestroyingBlock(const Arguments& args);
-    Local<Value> simulateStopInteracting(const Arguments& args);
-    Local<Value> simulateStopMoving(const Arguments& args);
-    Local<Value> simulateStopUsingItem(const Arguments& args);
-    Local<Value> simulateStopSneaking(const Arguments& args);
+//    Local<Value> simulateSneak(const Arguments& args);
+//    Local<Value> simulateAttack(const Arguments& args);
+//    Local<Value> simulateDestroy(const Arguments& args);
+//    Local<Value> simulateDisconnect(const Arguments& args);
+//    Local<Value> simulateInteract(const Arguments& args);
+//    Local<Value> simulateJump(const Arguments& args);
+//    Local<Value> simulateLocalMove(const Arguments& args);
+//    Local<Value> simulateWorldMove(const Arguments& args);
+//    Local<Value> simulateMoveTo(const Arguments& args);
+//    Local<Value> simulateLookAt(const Arguments& args);
+//    Local<Value> simulateSetBodyRotation(const Arguments& args);
+//    Local<Value> simulateNavigateTo(const Arguments& args);
+//    Local<Value> simulateUseItem(const Arguments& args);
+//    Local<Value> simulateStopDestroyingBlock(const Arguments& args);
+//    Local<Value> simulateStopInteracting(const Arguments& args);
+//    Local<Value> simulateStopMoving(const Arguments& args);
+//    Local<Value> simulateStopUsingItem(const Arguments& args);
+//    Local<Value> simulateStopSneaking(const Arguments& args);
 
     // bool simulateSetItem(class ItemStack&, bool, int);
     // bool simulateGiveItem(class ItemStack&, bool);

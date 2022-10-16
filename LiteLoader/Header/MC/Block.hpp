@@ -6,7 +6,7 @@
 #define BEFORE_EXTRA
 // Add include headers & pre-declares
 #include "CompoundTag.hpp"
-
+#include "BlockLegacy.hpp"
 #undef BEFORE_EXTRA
 
 class Block {
@@ -18,11 +18,18 @@ public:
     LIAPI static Block* create(CompoundTag* nbt);
 
     LIAPI string getTypeName() const;
-    //LIAPI int getId() const;
+    LIAPI int getId() const;
     LIAPI unsigned short getTileData();
     LIAPI std::unique_ptr<CompoundTag> getNbt();
     LIAPI bool setNbt(CompoundTag* nbt);
     LIAPI unsigned int const & getRuntimeId() const;
+
+    inline bool hasBlockEntity(){
+        return getLegacyBlock().hasBlockEntity();
+    }
+    inline enum BlockActorType getBlockEntityType() const{
+        return getLegacyBlock().getBlockEntityType();
+    };
 
     inline bool operator==(class Block const& a2) const {
         __int64 v2; // r8

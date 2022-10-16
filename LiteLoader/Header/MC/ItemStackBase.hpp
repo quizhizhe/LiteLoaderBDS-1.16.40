@@ -5,7 +5,9 @@
 #include "Json.hpp"
 
 #define BEFORE_EXTRA
-
+#include "Item.hpp"
+#include "BlockLegacy.hpp"
+#include <cstddef>
 #undef BEFORE_EXTRA
 
 class ItemStackBase {
@@ -13,11 +15,28 @@ class ItemStackBase {
 #define AFTER_EXTRA
 // Add Member There
 private:
-//void* vtbl;
-    char filler[128];
+    WeakPtr<Item> mItem;
+    std::unique_ptr<CompoundTag> mUserData;
+    const Block *mBlock;
+    int mAuxValue;
+    std::byte mCount;
+    bool mValid;
+    std::chrono::steady_clock::time_point mPickupTime;
+    bool mShowPickUp;
+    bool mWasPickedUp;
+    bool mCanUseOn;
+    std::vector<const BlockLegacy*> mCanPlaceOn;
+    size_t mCanPlaceOnHash;
+    std::vector<const BlockLegacy*> mCanDestroy;
+    size_t mCanDestroyHash;
+    int mBlockingTick;
+    std::unique_ptr<ItemInstance> mChargedItem;
 
 public:
 LIAPI int getCount() const;
+inline void setAuxValue(short a1){
+    this->mAuxValue = a1;
+};
 
 #undef AFTER_EXTRA
 public:

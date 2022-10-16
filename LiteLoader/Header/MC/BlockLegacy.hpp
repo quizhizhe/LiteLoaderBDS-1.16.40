@@ -23,6 +23,23 @@ public:
     LIAPI bool applyBoneMeal(BlockSource*, BlockPos*);
     LIAPI ItemStack* getBlockDrops();
 
+    inline int getBlockItemId() const{
+        //ItemStackBase::init(ItemStackBase *this, const struct BlockLegacy *a2, int a3) Line14
+        int id = dAccess<int>(this,134);
+        if(id < 0x100u)
+            return id;
+        else
+            return 255-id;
+    };
+    inline bool hasBlockEntity() const{
+        // LevelChunk::_removeCallbacks Line28
+        return getBlockEntityType();
+    }
+    inline enum BlockActorType getBlockEntityType() const{
+        // LevelChunk::_removeCallbacks Line28
+        return dAccess<BlockActorType>(this,168);;
+    };
+
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BLOCKLEGACY
 public:

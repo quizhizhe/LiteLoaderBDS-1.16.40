@@ -418,7 +418,7 @@ Local<Value> BinaryStreamClass::writeVec3(const Arguments& args) {
             return Local<Value>();
         }
         FloatPos* posObj = FloatPos::extractPos(args[0]);
-        pkt->writeType<Vec3>(posObj->getVec3());
+        pkt->writeType(posObj->getVec3());
         return Boolean::newBoolean(true);
     }
     CATCH("Fail in BinaryStream writeVec3!");

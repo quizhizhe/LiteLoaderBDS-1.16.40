@@ -18,6 +18,7 @@ class CommandOrigin {
     mce::UUID mUUID;
 public:
     LIAPI ServerPlayer* getPlayer() const;
+//    LIAPI CompoundTag serialize_1() const;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMANDORIGIN

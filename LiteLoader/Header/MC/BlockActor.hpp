@@ -5,6 +5,8 @@
 
 #define BEFORE_EXTRA
 // Add include headers & pre-declares
+#include "BlockActorDataPacket.hpp"
+
 class Block;
 class Container;
 class CompoundTag;
@@ -18,11 +20,11 @@ class BlockActor {
     // Add new members to class
 public:
     LIAPI bool refreshData();
-    // LIAPI bool refreshData(BlockSource* bs);
+     LIAPI bool refreshData(BlockSource* bs);
     LIAPI std::unique_ptr<CompoundTag> getNbt();
     LIAPI bool setNbt(CompoundTag* nbt);
     LIAPI bool setNbt(CompoundTag* nbt, BlockSource* bs);
-    //static unsigned int getBlockEntityType(Block* block);
+    static unsigned int getBlockEntityType(Block* block);
 
     inline void setChanged(){
         //EndGatewayBlockActor::teleportEntity Line115
@@ -33,6 +35,14 @@ public:
         return dAccess<BlockPos>(this,44);
     };
 
+    inline enum BlockActorType getType(){
+        //FlowerPotBlock::playerWillDestroy Line16
+        return dAccess<BlockActorType>(this,21);
+    }
+
+    inline std::unique_ptr<BlockActorDataPacket> getServerUpdatePacket(BlockSource &bs){
+        return _getUpdatePacket(bs);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BLOCKACTOR
 public:

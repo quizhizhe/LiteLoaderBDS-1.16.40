@@ -52,6 +52,9 @@ class ActorDamageSource {
     char filler[4];
 
 public:
+    ActorDamageSource(ActorDamageCause cause){
+        this->mCause = cause;
+    };
     LIAPI Actor* getEntity();
 
 #undef AFTER_EXTRA

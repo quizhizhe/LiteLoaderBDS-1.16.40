@@ -75,12 +75,12 @@ ClassDefine<EntityClass> EntityClassBuilder =
         .instanceFunction("setNbt", &EntityClass::setNbt)
         .instanceFunction("getNbt", &EntityClass::getNbt)
         .instanceFunction("addTag", &EntityClass::addTag)
-        .instanceFunction("removeTag", &EntityClass::removeTag)
+//        .instanceFunction("removeTag", &EntityClass::removeTag)
         .instanceFunction("hasTag", &EntityClass::hasTag)
         .instanceFunction("getAllTags", &EntityClass::getAllTags)
         .instanceFunction("getEntityFromViewVector", &EntityClass::getEntityFromViewVector)
-        .instanceFunction("getBlockFromViewVector", &EntityClass::getBlockFromViewVector)
-        .instanceFunction("quickEvalMolangScript", &EntityClass::quickEvalMolangScript)
+//        .instanceFunction("getBlockFromViewVector", &EntityClass::getBlockFromViewVector)
+//        .instanceFunction("quickEvalMolangScript", &EntityClass::quickEvalMolangScript)
 
         // For Compatibility
         .instanceFunction("setTag", &EntityClass::setNbt)
@@ -202,7 +202,8 @@ Local<Value> EntityClass::isInsidePortal() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->isInsidePortal());
+//        return Boolean::newBoolean(entity->isInsidePortal());
+        Boolean::newBoolean(-1);
     }
     CATCH("Fail in isInsidePortal!")
 }
@@ -213,7 +214,8 @@ Local<Value> EntityClass::isTrusting() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->isTrusting());
+//        return Boolean::newBoolean(entity->isTrusting());
+        Boolean::newBoolean(-1);
     }
     CATCH("Fail in isTrusting!")
 }
@@ -224,7 +226,8 @@ Local<Value> EntityClass::isTouchingDamageBlock() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->isTouchingDamageBlock());
+//        return Boolean::newBoolean(entity->isTouchingDamageBlock());
+        Boolean::newBoolean(-1);
     }
     CATCH("Fail in isTouchingDamageBlock!")
 }
@@ -312,7 +315,8 @@ Local<Value> EntityClass::isAngry() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->isAngry());
+//        return Boolean::newBoolean(entity->isAngry());
+        Boolean::newBoolean(-1);
     }
     CATCH("Fail in isAngry!")
 }
@@ -379,7 +383,8 @@ Local<Value> EntityClass::getMaxHealth() {
         if (!entity)
             return Local<Value>();
 
-        return Number::newNumber(entity->getMaxHealth());
+//        return Number::newNumber(entity->getMaxHealth());
+        return Number::newNumber(-1);
     }
     CATCH("Fail in GetMaxHealth!")
 }
@@ -390,7 +395,8 @@ Local<Value> EntityClass::getHealth() {
         if (!entity)
             return Local<Value>();
 
-        return Number::newNumber(entity->getHealth());
+//        return Number::newNumber(entity->getHealth());
+        return Number::newNumber(-1);
     }
     CATCH("Fail in GetHealth!")
 }
@@ -401,7 +407,8 @@ Local<Value> EntityClass::getCanFly() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->canFly());
+//        return Boolean::newBoolean(entity->canFly());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanFly!")
 }
@@ -412,7 +419,8 @@ Local<Value> EntityClass::getCanFreeze() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->canFreeze());
+//        return Boolean::newBoolean(entity->canFreeze());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanFreeze!")
 }
@@ -423,7 +431,8 @@ Local<Value> EntityClass::getCanSeeDaylight() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->canSeeDaylight());
+//        return Boolean::newBoolean(entity->canSeeDaylight());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanSeeDaylight!")
 }
@@ -434,7 +443,8 @@ Local<Value> EntityClass::getCanPickupItems() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->getCanPickupItems());
+//        return Boolean::newBoolean(entity->getCanPickupItems());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getCanPickupItems!")
 }
@@ -467,7 +477,8 @@ Local<Value> EntityClass::getInClouds() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->isInClouds());
+//        return Boolean::newBoolean(entity->isInClouds());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getInClouds!")
 }
@@ -500,7 +511,8 @@ Local<Value> EntityClass::getInSnow() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->isInSnow());
+//        return Boolean::newBoolean(entity->isInSnow());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getInSnow!")
 }
@@ -533,7 +545,8 @@ Local<Value> EntityClass::getInWorld() {
         if (!entity)
             return Local<Value>();
 
-        return Boolean::newBoolean(entity->isInWorld());
+//        return Boolean::newBoolean(entity->isInWorld());
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in getInWorld!")
 }
@@ -544,7 +557,8 @@ Local<Value> EntityClass::getSpeed() {
         if (!entity)
             return Local<Value>();
 
-        return Number::newNumber(entity->getSpeedInMetersPerSecond());
+//        return Number::newNumber(entity->getSpeedInMetersPerSecond());
+        return Number::newNumber(-1);
     }
     CATCH("Fail in getSpeed!")
 }
@@ -773,8 +787,8 @@ Local<Value> EntityClass::setOnFire(const Arguments& args) {
             return Local<Value>();
 
         int time = args[0].toInt();
-        bool result = entity->setOnFire(time, true);
-        return Boolean::newBoolean(result);
+        entity->setOnFire(time);
+        return Boolean::newBoolean(1);
     }
     CATCH("Fail in setOnFire!")
 }
@@ -821,19 +835,19 @@ Local<Value> EntityClass::addTag(const Arguments& args) {
     CATCH("Fail in addTag!");
 }
 
-Local<Value> EntityClass::removeTag(const Arguments& args) {
-    CHECK_ARGS_COUNT(args, 1);
-    CHECK_ARG_TYPE(args[0], ValueKind::kString);
-
-    try {
-        Actor* entity = get();
-        if (!entity)
-            return Local<Value>();
-
-        return Boolean::newBoolean(entity->removeTag(args[0].toStr()));
-    }
-    CATCH("Fail in removeTag!");
-}
+//Local<Value> EntityClass::removeTag(const Arguments& args) {
+//    CHECK_ARGS_COUNT(args, 1);
+//    CHECK_ARG_TYPE(args[0], ValueKind::kString);
+//
+//    try {
+//        Actor* entity = get();
+//        if (!entity)
+//            return Local<Value>();
+//
+//        return Boolean::newBoolean(entity->removeTag(args[0].toStr()));
+//    }
+//    CATCH("Fail in removeTag!");
+//}
 
 Local<Value> EntityClass::hasTag(const Arguments& args) {
     CHECK_ARGS_COUNT(args, 1);
@@ -883,51 +897,51 @@ Local<Value> EntityClass::getEntityFromViewVector(const Arguments& args) {
     CATCH("Fail in getEntityFromViewVector!");
 }
 
-Local<Value> EntityClass::getBlockFromViewVector(const Arguments& args) {
-    try {
-        Actor* actor = get();
-        if (!actor)
-            return Local<Value>();
-        bool includeLiquid = false;
-        bool solidOnly = false;
-        float maxDistance = 5.25f;
-        bool ignoreBorderBlocks = true;
-        bool fullOnly = false;
-        if (args.size() > 0) {
-            CHECK_ARG_TYPE(args[0], ValueKind::kBoolean);
-            includeLiquid = args[0].asBoolean().value();
-        }
-        if (args.size() > 1) {
-            CHECK_ARG_TYPE(args[1], ValueKind::kBoolean);
-            solidOnly = args[1].asBoolean().value();
-        }
-        if (args.size() > 2) {
-            CHECK_ARG_TYPE(args[2], ValueKind::kNumber);
-            maxDistance = args[2].asNumber().toFloat();
-        }
-        if (args.size() > 3) {
-            CHECK_ARG_TYPE(args[3], ValueKind::kBoolean);
-            fullOnly = args[3].asBoolean().value();
-        }
-        auto blockInstance = actor->getBlockFromViewVector(includeLiquid, solidOnly, maxDistance, ignoreBorderBlocks, fullOnly);
-        if (blockInstance.isNull())
-            return Local<Value>();
-        return BlockClass::newBlock(std::move(blockInstance));
-    }
-    CATCH("Fail in getBlockFromViewVector!");
-}
+//Local<Value> EntityClass::getBlockFromViewVector(const Arguments& args) {
+//    try {
+//        Actor* actor = get();
+//        if (!actor)
+//            return Local<Value>();
+//        bool includeLiquid = false;
+//        bool solidOnly = false;
+//        float maxDistance = 5.25f;
+//        bool ignoreBorderBlocks = true;
+//        bool fullOnly = false;
+//        if (args.size() > 0) {
+//            CHECK_ARG_TYPE(args[0], ValueKind::kBoolean);
+//            includeLiquid = args[0].asBoolean().value();
+//        }
+//        if (args.size() > 1) {
+//            CHECK_ARG_TYPE(args[1], ValueKind::kBoolean);
+//            solidOnly = args[1].asBoolean().value();
+//        }
+//        if (args.size() > 2) {
+//            CHECK_ARG_TYPE(args[2], ValueKind::kNumber);
+//            maxDistance = args[2].asNumber().toFloat();
+//        }
+//        if (args.size() > 3) {
+//            CHECK_ARG_TYPE(args[3], ValueKind::kBoolean);
+//            fullOnly = args[3].asBoolean().value();
+//        }
+//        auto blockInstance = actor->getBlockFromViewVector(includeLiquid, solidOnly, maxDistance, ignoreBorderBlocks, fullOnly);
+//        if (blockInstance.isNull())
+//            return Local<Value>();
+//        return BlockClass::newBlock(std::move(blockInstance));
+//    }
+//    CATCH("Fail in getBlockFromViewVector!");
+//}
 
-Local<Value> EntityClass::quickEvalMolangScript(const Arguments& args) {
-    CHECK_ARGS_COUNT(args, 1);
-    CHECK_ARG_TYPE(args[0], ValueKind::kString);
-    try {
-        Actor* actor = get();
-        if (!actor)
-            return Local<Value>();
-        return Number::newNumber(actor->quickEvalMolangScript(args[0].toStr()));
-    }
-    CATCH("Fail in quickEvalMolangScript!");
-}
+//Local<Value> EntityClass::quickEvalMolangScript(const Arguments& args) {
+//    CHECK_ARGS_COUNT(args, 1);
+//    CHECK_ARG_TYPE(args[0], ValueKind::kString);
+//    try {
+//        Actor* actor = get();
+//        if (!actor)
+//            return Local<Value>();
+//        return Number::newNumber(actor->quickEvalMolangScript(args[0].toStr()));
+//    }
+//    CATCH("Fail in quickEvalMolangScript!");
+//}
 
 Local<Value> McClass::getAllEntities(const Arguments& args) {
     try {

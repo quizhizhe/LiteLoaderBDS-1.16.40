@@ -4,28 +4,44 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+// Include Headers or Declare Types Here
+#include "StructureSettings.hpp"
+#include "StructureTemplateData.hpp"
 #undef BEFORE_EXTRA
 
 class StructureTemplate {
 
 #define AFTER_EXTRA
-// Add Member There
-//     string mName;
-//     StructureTemplateData mStructureTemplateData;
-//     unsigned __int8 mStructureVersion;
+ //Add Member There
+     string mName;
+     StructureTemplateData mStructureTemplateData;
 
-//     public:
-// #define DISABLE_CONSTRUCTOR_PREVENTION_STRUCTURETEMPLATE
-//     class StructureTemplate& operator=(class StructureTemplate const&) = delete;
-//     StructureTemplate(class StructureTemplate const&);
-//     StructureTemplate() = delete;
-//     LIAPI static StructureTemplate fromTag(std::string name, CompoundTag const& tag);
-//     LIAPI static StructureTemplate fromWorld(std::string name, int dimid, BlockPos p1, BlockPos p2, bool ignoreEntities = true, bool ignoreBlocks = false);
-//     //LIAPI bool load(CompoundTag const& tag);
-//     LIAPI std::unique_ptr<CompoundTag> toTag();
-//     LIAPI bool toWorld(int dimid, BlockPos const& p1, Mirror mirror = Mirror::None_15, Rotation rotation = Rotation::None_14);
-//     LIAPI StructureTemplateData* getData();
+     public:
+ #define DISABLE_CONSTRUCTOR_PREVENTION_STRUCTURETEMPLATE
+     class StructureTemplate& operator=(class StructureTemplate const&) = delete;
+     StructureTemplate(class StructureTemplate const&);
+     StructureTemplate() = delete;
+     LIAPI static StructureTemplate fromTag(std::string name, CompoundTag const& tag);
+     LIAPI static StructureTemplate fromWorld(std::string name, int dimid, BlockPos p1, BlockPos p2, bool ignoreEntities = true, bool ignoreBlocks = false);
+     //LIAPI bool load(CompoundTag const& tag);
+     LIAPI std::unique_ptr<CompoundTag> toTag();
+     LIAPI bool toWorld(int dimid, BlockPos const& p1, Mirror mirror = Mirror::None_15, Rotation rotation = Rotation::None_14);
+     LIAPI StructureTemplateData* getData();
+
+     inline bool load(class CompoundTag const & a0){
+         return mStructureTemplateData.load(a0);
+     };
+
+     inline std::unique_ptr<class CompoundTag> save() const{
+         return mStructureTemplateData.save();
+     };
+
+     inline std::string const & getName() const{
+         return this->mName;
+     };
+     inline BlockPos const & getSize() const{
+         return mStructureTemplateData.getSize();
+     };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_STRUCTURETEMPLATE

@@ -25,8 +25,3 @@ bool Objective::setDisplay(const std::string& slotName, ObjectiveSortOrder sort)
     }
     return false;
 }
-
-std::string Objective::getName(){
-    //ScoreboardCommand::applyPlayerOperation Line186
-    return dAccess<std::string>(this, 64);
-};

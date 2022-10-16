@@ -21,15 +21,19 @@ class CommandOutput {
     // Add Member There
 public:
 
-    int getSuccessCount() const{
+    inline int getSuccessCount() const{
         //DayLockCommand::execute Line91
         return dAccess<int>(this,0x28);
     };
 
-    void success(){
+    inline void success(){
         int successCount = dAccess<int>(this,0x28);
         ++successCount;
         dAccess<int>(this,0x28) = successCount;
+    };
+
+    inline bool empty() const{
+        return *(int*)this != 4;
     };
     /**
      * @brief Output a message(without I18nBase).

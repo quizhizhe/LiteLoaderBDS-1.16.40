@@ -17,7 +17,7 @@ ClassDefine<void> McClassBuilder =
         .function("spawnMob", &McClass::spawnMob)
         .function("cloneMob", &McClass::cloneMob)
         .function("spawnItem", &McClass::spawnItem)
-        .function("spawnSimulatedPlayer", &McClass::spawnSimulatedPlayer)
+//        .function("spawnSimulatedPlayer", &McClass::spawnSimulatedPlayer)
         .function("explode", &McClass::explode)
         .function("getBlock", &McClass::getBlock)
         .function("setBlock", &McClass::setBlock)
@@ -43,5 +43,5 @@ ClassDefine<void> McClassBuilder =
         .function("getAllScoreObjective", &McClass::getAllScoreObjectives)
         .function("getDisplayObjectives", &McClass::getDisplayObjective)
         .function("crash", &McClass::crashBDS)
-        .function("setMaxPlayers", &McClass::setMaxNumPlayers)
+//        .function("setMaxPlayers", &McClass::setMaxNumPlayers)
         .build();

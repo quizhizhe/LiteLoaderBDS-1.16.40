@@ -4,13 +4,31 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
+#include "math.h"
+namespace glm{
+template <typename t,int>
+struct tmat3x3{
+    tmat3x3() = delete;
+    tmat3x3(tmat3x3 const&) = delete;
+    tmat3x3(tmat3x3 const&&) = delete;
+};
+
+}
 
 #undef BEFORE_EXTRA
 
 class Facing {
 
 #define AFTER_EXTRA
+enum Name;
+enum Rotation;
+public:
 
+static int convertYRotationToFacingDirection(float yRotation){
+    int cardinalDirection = (int)floor(((4.0 * yRotation)/360.0)+0.5) & 3;
+    void* Facing_Plane_HORIZONTAL = dlsym("?HORIZONTAL@Plane@Facing@@2V?$vector@EV?$allocator@E@std@@@std@@A");
+    return dAccess<int>(Facing_Plane_HORIZONTAL,cardinalDirection);
+}
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_FACING
 public:

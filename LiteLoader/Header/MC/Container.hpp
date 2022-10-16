@@ -5,7 +5,7 @@
 
 #define BEFORE_EXTRA
 // Add include headers & pre-declares
-class ItemStack;
+#include "ItemStack.hpp"
 #undef BEFORE_EXTRA
 
 class Container {
@@ -13,7 +13,7 @@ class Container {
 #define AFTER_EXTRA
 // Add new members to class
 public:
-    //LIAPI std::string getTypeName();
+    LIAPI std::string getTypeName();
 
     LIAPI bool addItem_s(ItemStack* item);
     LIAPI bool addItemToFirstEmptySlot_s(ItemStack* item);
@@ -26,6 +26,20 @@ public:
     LIAPI bool hasContainer(Vec3& pos, int dim);
     // static??
     LIAPI Container* getContainerAt(Vec3& pos, int dim);
+
+    inline bool isEmpty() const{
+        int size = getContainerSize();
+        if( size <= 0)
+            return 1;
+        for(int i = 0; i < size;i++){
+            ItemStack item = getItem(i);
+            if(!item.isNull())
+                break ;
+            if(i+1 >= size)
+                return 1;
+        }
+        return 0;
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_CONTAINER

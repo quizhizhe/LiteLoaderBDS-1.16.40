@@ -11,13 +11,18 @@ class Dimension {
 
 #define AFTER_EXTRA
 public:
-    BlockSource& getBlockSourceFromMainChunkSource() const{
+    inline BlockSource& getBlockSourceFromMainChunkSource() const{
         //ExplorationMapFunction::apply Line57
         return *dAccess<BlockSource*>(this, 72);
     };
-    int getHeight(){
+    inline int getHeight(){
         return dAccess<int>(this,202);
-    }
+    };
+    inline AutomaticID<class Dimension, int> getDimensionId() const{
+        //Player::moveSpawnView Line33
+        //Player::checkSpawnBlock Line19
+        return dAccess<AutomaticID<Dimension,int>>(this,192);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_DIMENSION
 public:

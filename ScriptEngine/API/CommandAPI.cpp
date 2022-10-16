@@ -22,7 +22,7 @@
 #include <ScriptEngine/API/BaseAPI.h>
 #include <ScriptEngine/API/EntityAPI.h>
 #include <magic_enum/magic_enum.hpp>
-#include <MC/JsonHelpers.hpp>
+#include <third-party/Nlohmann/json.hpp>
 
 
 //////////////////// Class Definition ////////////////////
@@ -101,7 +101,7 @@ Local<Value> convertResult(DynamicCommand::Result const& result) {
         case DynamicCommand::ParameterType::RawText:
             return String::newString(result.getRaw<std::string>());
         case DynamicCommand::ParameterType::JsonValue:
-            return String::newString(JsonHelpers::serialize(result.getRaw<Json::Value>()));
+            return String::newString(result.getRaw<Json::Value>().toStyledString());//这里可能会有问题原本使用JsonHelpers::serialize
         case DynamicCommand::ParameterType::Item:
             return ItemClass::newItem(new ItemStack(result.getRaw<CommandItem>().createInstance(1, 1, nullptr, true).value_or(ItemInstance::EMPTY_ITEM)));
         case DynamicCommand::ParameterType::Block:

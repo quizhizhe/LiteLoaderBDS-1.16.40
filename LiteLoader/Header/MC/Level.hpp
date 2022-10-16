@@ -24,6 +24,7 @@ class Container;
 class Dimension;
 struct ActorUniqueID;
 class Packet;
+class Spawner;
 
 #undef BEFORE_EXTRA
 
@@ -43,11 +44,11 @@ public:
     LIAPI static Actor* getEntity(ActorUniqueID id);
     LIAPI static std::vector<Actor*> getAllEntities(int dimId);
     LIAPI static std::vector<Actor*> getAllEntities();
-    //LIAPI static Actor* spawnMob(Vec3 pos, int dimId, std::string typeName);
-    //LIAPI static Actor* spawnItem(Vec3 pos, int dimId, ItemStack *item);
+    LIAPI static Actor* spawnMob(Vec3 pos, int dimId, std::string typeName);
+    LIAPI static Actor* spawnItem(Vec3 pos, int dimId, ItemStack *item);
     LIAPI static bool createExplosion(Vec3 pos, int dimId, Actor* source, float radius, bool createFire, bool canBreak, float maxResistance = 3.40282347e+38);
     //LIAPI static class MapItemSavedData* getMapSavedData(struct ActorUniqueID a0);
-    //LIAPI static Actor* cloneMob(Vec3 pos, int dimId, Actor* ac);
+    LIAPI static Actor* cloneMob(Vec3 pos, int dimId, Actor* ac);
 
     //Block
     LIAPI static Block* getBlock(BlockPos* pos, int dimId);
@@ -139,6 +140,10 @@ public:
     {
         return executeCommand(cmd);
     }
+
+    inline Spawner& getSpawner() const{
+        return *dAccess<std::unique_ptr<Spawner>>(this,1968).get();
+    };
     
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LEVEL

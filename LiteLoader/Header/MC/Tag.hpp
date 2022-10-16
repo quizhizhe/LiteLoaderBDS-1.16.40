@@ -99,7 +99,7 @@ public:
 public:
     class Tag& operator=(class Tag const &) = delete;
     Tag(class Tag const &) = delete;
-    Tag() = delete;
+    Tag(){};
 #endif
 
 public:

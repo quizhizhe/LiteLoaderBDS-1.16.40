@@ -12,7 +12,11 @@
 class MobEffectInstance {
 
 #define AFTER_EXTRA
-
+public:
+    inline HashedString const & getComponentName() const{
+        void* mMobEffects = dlsym("?mMobEffects@MobEffect@@2PAV?$unique_ptr@VMobEffect@@U?$default_delete@VMobEffect@@@std@@@std@@A");
+        return dAccess<MobEffect>(mMobEffects,*(int*)this).getComponentName();
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MOBEFFECTINSTANCE
 public:

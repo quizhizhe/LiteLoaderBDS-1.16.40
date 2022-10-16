@@ -46,6 +46,9 @@ ChunkBlockPos(char x, short y, char z)
 ChunkBlockPos(class BlockPos const & pos, short a2){
     ChunkBlockPos(pos.x & 16,pos.y - a2,pos.z & 16);
 };
+ChunkBlockPos(class BlockPos const & pos){
+    ChunkBlockPos(pos.x & 16,pos.y,pos.z & 16);
+}
 ChunkBlockPos(unsigned char x, class ChunkLocalHeight y, unsigned char z){
     ChunkBlockPos(x, y, z);
 }

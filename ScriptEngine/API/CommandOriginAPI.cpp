@@ -34,7 +34,7 @@ ClassDefine<CommandOriginClass> CommandOriginClassBuilder =
         .instanceProperty("entity", &CommandOriginClass::getEntity)
         .instanceProperty("player", &CommandOriginClass::getPlayer)
 
-        .instanceFunction("getNbt", &CommandOriginClass::getNbt)
+//        .instanceFunction("getNbt", &CommandOriginClass::getNbt)
         .instanceFunction("toString", &CommandOriginClass::toString)
 
         .build();
@@ -107,12 +107,12 @@ Local<Value> CommandOriginClass::getPlayer() {
     CATCH("Fail in getPlayer!");
 }
 
-Local<Value> CommandOriginClass::getNbt(const Arguments& args) {
-    try {
-        return NbtCompoundClass::pack(std::make_unique<CompoundTag>(get()->serialize()));
-    }
-    CATCH("Fail in getNbt!");
-}
+//Local<Value> CommandOriginClass::getNbt(const Arguments& args) {
+//    try {
+//        return NbtCompoundClass::pack(std::make_unique<CompoundTag>(get()->serialize_1()));
+//    }
+//    CATCH("Fail in getNbt!");
+//}
 
 Local<Value> CommandOriginClass::toString() {
     try {

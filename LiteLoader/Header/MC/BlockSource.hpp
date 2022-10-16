@@ -21,15 +21,41 @@ public:
 //     MCAPI static const std::function<bool(class Block const&)> CHECK_ALL_BLOCKS;
 // };
     LIAPI BlockInstance getBlockInstance(BlockPos);
-    AutomaticID<class Dimension, int> getDimensionId(){
+    inline Dimension* getDimension() const{
+        return dAccess< Dimension*>(this, 4);
+    }
+    inline AutomaticID<class Dimension, int> getDimensionId() const{
         //Dimension::onBlockEvent Line24
         Dimension* mDimension = dAccess< Dimension*>(this, 4);
         return dAccess<AutomaticID<class Dimension, int>>(mDimension, 192);
     };
-    LevelChunk * getChunkAt(const BlockPos& pos) const{
+    inline LevelChunk * getChunkAt(const BlockPos& pos) const{
         ChunkPos chunkPos = ChunkPos(pos.x>>4, pos.z>>4);
         return getChunk(chunkPos);
     }
+    inline std::shared_ptr<class BlockActor> removeBlockEntity(class BlockPos const &bp){
+        auto levelChunk = getChunkAt(bp);
+        if(levelChunk)
+            return levelChunk->removeBlockEntity(bp);
+        else
+            return nullptr;
+    }
+    inline Dimension const & getDimensionConst() const{
+        //BegGoal::canUse Line6
+        return dAccess<Dimension>(this,808);
+    };
+//    inline short getHeightmap(class BlockPos const &bs) const{
+//        auto levelchunk = getChunkAt(bs);
+//        if(!levelchunk)
+//            return 0;
+//        ChunkBlockPos cpos = ChunkBlockPos(bs);
+//        return levelchunk->getHeightmap(&cpos);
+//    };
+    inline BlockPos getHeightmapPos(class BlockPos const &a1) const{
+        int heightmap = this->getHeightmap(a1);
+        BlockPos result = BlockPos(a1.x,heightmap,a1.z);
+        return result;
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BLOCKSOURCE

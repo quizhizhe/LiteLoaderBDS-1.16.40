@@ -27,9 +27,9 @@ string Block::getTypeName() const {
 }
 
 
-// int Block::getId() const {
-//     return getLegacyBlock().getBlockItemId();
-// }
+ int Block::getId() const {
+     return getLegacyBlock().getBlockItemId();
+ }
 
 unsigned short Block::getTileData() {
     // 等待大佬改进

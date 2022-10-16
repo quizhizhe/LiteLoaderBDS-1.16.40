@@ -27,7 +27,17 @@ class StructureSettings {
 #define AFTER_EXTRA
 // Add Member There
 private:
-char filler[104];
+    std::string mPaletteName;
+    bool mIgnoreEntities;
+    bool mIgnoreBlocks;
+    BlockPos mStructureSize;
+    BlockPos mStructureOffset;
+    Vec3 mPivot;
+    ActorUniqueID mLastTouchedByPlayer;
+    Rotation mRotation;
+    Mirror mMirror;
+    float mIntegrityValue;
+    unsigned int mIntegritySeed;
 
 // public:
 // inline StructureSettings(BlockPos const& size, bool ignoreEntities, bool ignoreBlocks)
@@ -37,6 +47,22 @@ char filler[104];
 //     setIgnoreEntities(ignoreEntities);
 //     setStructureSize(size);
 // };
+public:
+    inline void setIgnoreBlocks(bool a0){
+        this->mIgnoreBlocks = a0;
+    };
+    inline void setIgnoreEntities(bool a0){
+        this->mIgnoreEntities = a0;
+    };
+    inline void setStructureSize(class BlockPos const & bp){
+        this->mStructureSize = bp;
+    };
+    inline void setMirror(enum Mirror a0){
+        this->mMirror = a0;
+    };
+    inline void setRotation(enum Rotation a0){
+        this->mRotation = a0;
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_STRUCTURESETTINGS

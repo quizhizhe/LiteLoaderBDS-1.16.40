@@ -26,14 +26,14 @@ Local<Value> McClass::crashBDS(const Arguments& args) //===========???
     return Boolean::newBoolean(false);
 }
 
-Local<Value> McClass::setMaxNumPlayers(const Arguments& args) {
-    CHECK_ARGS_COUNT(args, 1)
-    CHECK_ARG_TYPE(args[0], ValueKind::kNumber)
-
-    try {
-        int back = Global<ServerNetworkHandler>->setMaxNumPlayers(args[0].asNumber().toInt32());
-        Global<ServerNetworkHandler>->updateServerAnnouncement();
-        return Boolean::newBoolean(back == 0 ? true : false);
-    }
-    CATCH("Fail in setMaxPlayers!")
-}
+//Local<Value> McClass::setMaxNumPlayers(const Arguments& args) {
+//    CHECK_ARGS_COUNT(args, 1)
+//    CHECK_ARG_TYPE(args[0], ValueKind::kNumber)
+//
+//    try {
+//        int back = Global<ServerNetworkHandler>->setMaxNumPlayers(args[0].asNumber().toInt32());
+//        Global<ServerNetworkHandler>->updateServerAnnouncement();
+//        return Boolean::newBoolean(back == 0 ? true : false);
+//    }
+//    CATCH("Fail in setMaxPlayers!")
+//}
