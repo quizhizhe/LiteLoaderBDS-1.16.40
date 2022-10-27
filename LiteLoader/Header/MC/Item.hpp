@@ -17,7 +17,11 @@ public:
 class Item {
 
 #define AFTER_EXTRA
-
+public:
+    inline std::string const & getFullItemName() const{
+        //ItemRegistry::registerItem Line25
+        return dAccess<std::string>(this,216);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ITEM
 public:
