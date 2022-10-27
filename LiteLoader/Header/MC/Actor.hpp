@@ -175,7 +175,7 @@ public:
     };
     inline bool hasCategory(enum ActorCategory actorCategory) const{
         // IDA Player::take Line123
-        return (dAccess<ActorCategory>(this, 79) & actorCategory) !=0;
+        return (dAccess<ActorCategory>(this, 316) & actorCategory) !=0;
     };
     inline BlockSource & getRegion() {
         //VanillaServerGameplayEventListener::onBlockPlacedByPlayer Line35
