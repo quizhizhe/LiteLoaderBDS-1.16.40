@@ -57,6 +57,10 @@ public:
     };
     LIAPI Actor* getEntity();
 
+    inline ActorDamageCause getCause() const{
+        return this->mCause;
+    };
+
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ACTORDAMAGESOURCE
 public:
