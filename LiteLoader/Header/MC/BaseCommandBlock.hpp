@@ -10,7 +10,11 @@
 class BaseCommandBlock {
 
 #define AFTER_EXTRA
-
+public:
+    inline std::string const & getCommand() const{
+        //BaseCommandBlock::_setCommand a4 is Command;
+        return dAccess<std::string>(this,56);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BASECOMMANDBLOCK
 public:
