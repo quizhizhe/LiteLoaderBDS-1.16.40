@@ -382,7 +382,7 @@ public:
     BlockInstance mPreviousBlockInstance;
     BlockInstance mNewBlockInstance;
 };
-
+// TODO 没找到合适点位
 class BlockExplodedEvent : public EventTemplate<BlockExplodedEvent> {
 public:
     BlockInstance mBlockInstance;

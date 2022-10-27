@@ -294,6 +294,7 @@ Player* Level::getPlayer(const string& info) {
 
 Player* Level::getPlayer(ActorUniqueID id) {
     // 裂开，这个符号也没有
+    //根据伪代码重新写实现
     Actor* actor = Level::fetchEntity(id,0);
     if(actor && actor->hasCategory((ActorCategory)1))
         return (Player*)actor;
