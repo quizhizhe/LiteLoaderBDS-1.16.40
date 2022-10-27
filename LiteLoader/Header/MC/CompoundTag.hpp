@@ -97,6 +97,7 @@ public:
         auto iter = val.find(key.data());
         if(iter != val.end())
             return iter->second.get();
+        return nullptr;
     };
 
     inline bool isEmpty(){
