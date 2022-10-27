@@ -203,7 +203,7 @@ Local<Value> EntityClass::isInsidePortal() {
             return Local<Value>();
 
 //        return Boolean::newBoolean(entity->isInsidePortal());
-        Boolean::newBoolean(-1);
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isInsidePortal!")
 }
@@ -215,7 +215,7 @@ Local<Value> EntityClass::isTrusting() {
             return Local<Value>();
 
 //        return Boolean::newBoolean(entity->isTrusting());
-        Boolean::newBoolean(-1);
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isTrusting!")
 }
@@ -227,7 +227,7 @@ Local<Value> EntityClass::isTouchingDamageBlock() {
             return Local<Value>();
 
 //        return Boolean::newBoolean(entity->isTouchingDamageBlock());
-        Boolean::newBoolean(-1);
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isTouchingDamageBlock!")
 }
@@ -316,7 +316,7 @@ Local<Value> EntityClass::isAngry() {
             return Local<Value>();
 
 //        return Boolean::newBoolean(entity->isAngry());
-        Boolean::newBoolean(-1);
+        return Boolean::newBoolean(-1);
     }
     CATCH("Fail in isAngry!")
 }
