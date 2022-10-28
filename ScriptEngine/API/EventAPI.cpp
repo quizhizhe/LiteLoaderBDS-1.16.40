@@ -765,10 +765,9 @@ void EnableEventListener(int eventId) {
                         else
                             source = Level::getEntity(ev.mDamageSource->getDamagingEntityUniqueID());
                     }
-                    //TODO 此处的伤害无法获取
                     CallEvent(EVENT_TYPES::onMobHurt, EntityClass::newEntity(ev.mMob),
                               source ? EntityClass::newEntity(source) : Local<Value>(),
-                              float(ev.mDamage), Number::newNumber(0));
+                              float(ev.mDamage), Number::newNumber((int)ev.mDamageSource->getCause()));
                 }
                 IF_LISTENED_END(EVENT_TYPES::onMobHurt)
             });
@@ -792,9 +791,8 @@ void EnableEventListener(int eventId) {
                         if (ev.mDamageSource->isChildEntitySource())
                             source = source->getOwner();
                     }
-                    //TODO 此处的伤害无法获取
                     CallEvent(EVENT_TYPES::onMobDie, EntityClass::newEntity((Actor*)ev.mMob),
-                              (source ? EntityClass::newEntity(source) : Local<Value>()), Number::newNumber(0));
+                              (source ? EntityClass::newEntity(source) : Local<Value>()), Number::newNumber((int)ev.mDamageSource->getCause()));
                 }
                 IF_LISTENED_END(EVENT_TYPES::onMobDie);
             });
