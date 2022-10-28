@@ -26,6 +26,10 @@ public:
     inline bool isGliding(){
         return getStatusFlag(ActorFlags::GLIDING);
     }
+    inline bool getDead(){
+        //mob::die Line83
+        return dAccess<bool>(this,1850);
+    };
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MOB
