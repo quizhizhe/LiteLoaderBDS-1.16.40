@@ -60,7 +60,12 @@ bool Actor::isOnGround() const {
 }
 
  std::string Actor::getTypeName() const {
-     return getActorIdentifier().getCanonicalName();
+//     return getActorIdentifier().getCanonicalName();
+     //以下根据EntityTypeToLocString的逻辑写的
+    int actorTypeId = this->getEntityTypeId();
+    //以下函数原型std::string EntityTypeToString(int actorTypeId,int rules)
+    return SymCall("?EntityTypeToString@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4ActorType@@W4ActorTypeNamespaceRules@@@Z",
+               std::string, int, int)(actorTypeId,0);
  }
  
  bool Actor::hurtEntity(float damage,ActorDamageCause damageCause) {
