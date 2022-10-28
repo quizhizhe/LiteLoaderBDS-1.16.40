@@ -49,7 +49,7 @@ public:
     LIAPI std::vector<Tag*>::const_iterator begin() const;
     LIAPI std::vector<Tag*>::const_iterator end() const;
 
-    inline int size() const{
+    inline size_t size() const{
         return this->val.size();
     };
 
