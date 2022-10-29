@@ -1589,7 +1589,7 @@ TInstanceHook(bool, "?useItemOn@GameMode@@UEAA_NAEAVItemStack@@AEBVBlockPos@@EAE
 
 /////////////////// MobHurt ///////////////////
  TInstanceHook(bool, "?_hurt@Mob@@MEAA_NAEBVActorDamageSource@@H_N1@Z",
-               Mob, ActorDamageSource& src, float damage, bool unk1_1, bool unk2_0) {
+               Mob, ActorDamageSource& src, int damage, bool unk1_1, bool unk2_0) {
      IF_LISTENED(MobHurtEvent) {
          if (this) {
              MobHurtEvent ev{};
