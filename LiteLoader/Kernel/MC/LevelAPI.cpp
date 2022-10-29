@@ -365,26 +365,26 @@ void Level::sendPacketForAllPlayer(Packet& pkt) {
     sendPacketForAllPlayers(pkt);
 }
 
-// std::string Level::getCurrentLevelName() {
-//     if (Global<PropertiesSettings>)
-//         return Global<PropertiesSettings>->getLevelName();
-//     std::ifstream fin("server.properties");
-//     string buf;
-//     while (getline(fin, buf)) {
-//         if (buf.find("level-name=") != string::npos) {
-//             if (buf.back() == '\n')
-//                 buf.pop_back();
-//             if (buf.back() == '\r')
-//                 buf.pop_back();
-//             return buf.substr(11);
-//         }
-//     }
-//     return "";
-// }
+ std::string Level::getCurrentLevelName() {
+     if (Global<PropertiesSettings>)
+         return Global<PropertiesSettings>->getLevelName();
+     std::ifstream fin("server.properties");
+     string buf;
+     while (getline(fin, buf)) {
+         if (buf.find("level-name=") != string::npos) {
+             if (buf.back() == '\n')
+                 buf.pop_back();
+             if (buf.back() == '\r')
+                 buf.pop_back();
+             return buf.substr(11);
+         }
+     }
+     return "";
+ }
 
-// std::string Level::getCurrentLevelPath() {
-//     return "./worlds/" + getCurrentLevelName();
-// }
+ std::string Level::getCurrentLevelPath() {
+     return "./worlds/" + getCurrentLevelName();
+ }
 
 int64_t BossID = 7492341231332ull;
 
