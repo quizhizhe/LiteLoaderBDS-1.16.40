@@ -101,7 +101,7 @@ Local<Value> convertResult(DynamicCommand::Result const& result) {
         case DynamicCommand::ParameterType::RawText:
             return String::newString(result.getRaw<std::string>());
         case DynamicCommand::ParameterType::JsonValue:
-            return String::newString(result.getRaw<Json::Value>().toStyledString());//这里可能会有问题原本使用JsonHelpers::serialize
+            return String::newString(result.getRaw<Json::Value>().toStyledString());//其实应该与JsonHelpers::serialize是一样的
         case DynamicCommand::ParameterType::Item:
             return ItemClass::newItem(new ItemStack(result.getRaw<CommandItem>().createInstance(1, 1, nullptr, true).value_or(ItemInstance::EMPTY_ITEM)));
         case DynamicCommand::ParameterType::Block:
