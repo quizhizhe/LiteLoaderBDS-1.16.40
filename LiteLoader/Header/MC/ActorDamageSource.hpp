@@ -49,7 +49,6 @@ class ActorDamageSource {
 #define AFTER_EXTRA
     // Add Member There
     ActorDamageCause mCause;
-    char filler[4];
 
 public:
     ActorDamageSource(ActorDamageCause cause){
