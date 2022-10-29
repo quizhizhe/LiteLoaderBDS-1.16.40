@@ -15,6 +15,10 @@ public:
         //PropertiesSettings::PropertiesSettings Line550;
         return dAccess<bool>(this, 417);
     }
+    inline std::string getLevelName(){
+        //PropertiesSettings::PropertiesSettings Line518
+        return dAccess<std::string>(this,32);
+    }
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_PROPERTIESSETTINGS
 public:
