@@ -5,13 +5,24 @@
 #include "Core.hpp"
 
 #define BEFORE_EXTRA
-
+#include "ResourcePack.hpp"
 #undef BEFORE_EXTRA
 
 class ResourcePackRepository {
 
 #define AFTER_EXTRA
+public:
+    struct KnownPackContainer {
+        KnownPackContainer() = delete;
+        KnownPackContainer(KnownPackContainer const&) = delete;
+        KnownPackContainer(KnownPackContainer const&&) = delete;
+    };
+    LIAPI void setCustomResourcePackPath(PackType, const std::string& path);
 
+    inline class PackSourceFactory & getPackSourceFactory(){
+        //ResourcePackRepository::_initializeWorldPackSource Line62
+        return dAccess<PackSourceFactory>(this, 46 * 8);
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_RESOURCEPACKREPOSITORY
 public:

@@ -306,9 +306,9 @@ void LLMain() {
     CheckDevMode();
 
     // Addon Helper
-//    if (LL::globalConfig.enableAddonsHelper) {
-//        InitAddonsHelper();
-//    }
+    if (LL::globalConfig.enableAddonsHelper) {
+        InitAddonsHelper();
+    }
 
     // Load plugins
     LL::LoadMain();
