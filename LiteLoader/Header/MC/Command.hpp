@@ -48,7 +48,7 @@ class Command {
 
 #define AFTER_EXTRA
     // Add Member There
-
+#define DISABLE_CONSTRUCTOR_PREVENTION_COMMAND
 protected:
     int version;                       // 8
     CommandRegistry* registry;         // 16
@@ -68,18 +68,16 @@ public:
         return sym(a, b);
     }
     std::string getCommandName() const{
-        return this->registry->symbolToString(this->symbol);
+        return registry->symbolToString(symbol);
     };
-    Command(){
-        CommandFlag mflag;
-        mflag.value = CommandFlagValue::None;
-        *(void**)this = dlsym("??_7Command@@6B@");
-        this->version = 0;
-        this->registry = 0LL;
-        this->symbol = -1;
-        this->permission = CommandPermissionLevel(5);
-        this->flag = mflag;
-    }
+//    Command(){
+//        this->version = 0;
+//        this->registry = 0LL;
+//        this->symbol = -1;
+//        this->permission = CommandPermissionLevel(5);
+//        this->flag.value = CommandFlagValue::None;
+//        this->unk = 0;
+//    }
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_COMMAND

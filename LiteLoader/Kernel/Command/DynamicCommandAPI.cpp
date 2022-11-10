@@ -395,7 +395,8 @@
  inline char DynamicCommand::builderCallbackHanler(DCCallback* cb, DCArgs* args, DCValue* result, void* userdata) {
      DynamicCommandInstance& command = *(DynamicCommandInstance*)userdata;
      auto arg1 = (std::unique_ptr<Command>*)dcbArgPointer(args);
-     DynamicCommand::commandBuilder(arg1, command.getCommandName());
+     arg1->release();
+     result->p = DynamicCommand::commandBuilder(arg1, command.getCommandName());
      return 'p';
  }
 
@@ -503,7 +504,7 @@
  #ifdef USE_PARSE_ENUM_STRING
              Global<CommandRegistry>->addEnumValuesInternal(fixedView.data(), values, typeid_t<CommandRegistry>::count++, &CommandRegistry::parseEnumStringAndInt).val;
  #else
-             Global<CommandRegistry>->_addEnumValuesInternal(fixedView.data(), values, typeid_t<CommandRegistry>::count++, &CommandRegistry::parseEnum<int>).val;
+             Global<CommandRegistry>->addEnumValuesInternal(fixedView.data(), values, typeid_t<CommandRegistry>::count++, &CommandRegistry::parseEnum<int>).val;
  #endif // USE_PARSE_ENUM_STRING
          }
          commandInstance->enumRanges.swap(convertedEnumRanges);
