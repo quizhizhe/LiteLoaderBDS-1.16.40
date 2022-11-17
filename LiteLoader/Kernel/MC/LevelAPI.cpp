@@ -294,13 +294,24 @@ Player* Level::getPlayer(const string& info) {
 
 Player* Level::getPlayer(ActorUniqueID id) {
     // 裂开，这个符号也没有
-    //根据伪代码重新写实现
+    // 根据伪代码重新写实现
     Actor* actor = Level::fetchEntity(id,0);
     if(actor && actor->hasCategory((ActorCategory)1))
         return (Player*)actor;
     else
         return nullptr;
     //return SymCall("?getPlayer@Level@@UEBAPEAVPlayer@@UActorUniqueID@@@Z", Player*, Level*, ActorUniqueID)(Global<Level>, id);
+}
+
+Player* Level::getPlayer(const mce::UUID& uuid) const{
+    // 根据函数
+    // std::_Func_impl_no_alloc__lambda_71cde901375eb38deb56f48a96514d77__bool_Player_const___::_Do_call
+    Player* findPlayer = this->findPlayer([&](const Player& pl)->bool {
+        if (pl.getClientUUID() == uuid)
+            return true;
+        return false;
+    });
+    return findPlayer;
 }
 
  Actor* Level::spawnMob(Vec3 pos, int dimId, std::string name) {

@@ -41,6 +41,7 @@ public:
     LIAPI static std::vector<Player*> getAllPlayers();
     LIAPI Player* getPlayer(const string& info);     // name or xuid
     LIAPI Player* getPlayer(ActorUniqueID id);       // UniqueID
+    LIAPI Player* getPlayer(const mce::UUID& uuid)const; //原生函数Level::getPlayer(mce::UUID)
     LIAPI static Actor* getEntity(ActorUniqueID id);
     LIAPI static std::vector<Actor*> getAllEntities(int dimId);
     LIAPI static std::vector<Actor*> getAllEntities();
