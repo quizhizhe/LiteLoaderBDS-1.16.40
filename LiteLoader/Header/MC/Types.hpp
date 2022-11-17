@@ -64,7 +64,9 @@ class UUID {
 public:
     MCAPI std::string asString() const;
     MCAPI static UUID fromString(std::string const&);
-    MCAPI bool isEmpty() const;
+    inline bool isEmpty() const{
+        return a && b;
+    };
     MCAPI static UUID seedFromString(std::string const&);
     MCAPI static class mce::UUID EMPTY;
 
