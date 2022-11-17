@@ -24,6 +24,9 @@ class Player : public Mob {
 
 #define AFTER_EXTRA
     // Add new members to class
+    // mClientUUID 2720
+    // mCertificate 2736
+    // mClientSubId 3520
 public:
     enum PositionMode : char {
         NORMAL,
@@ -34,8 +37,9 @@ public:
 
     LIAPI std::string getName();
     LIAPI std::string getRealName();
-    LIAPI std::string getUuid();
+    LIAPI std::string getUuid()const;
     LIAPI std::string getXuid()const;
+    LIAPI mce::UUID getClientUUID()const;
     LIAPI unsigned char getClientSubId();
     LIAPI string getDeviceTypeName();
     LIAPI int getAvgPing();

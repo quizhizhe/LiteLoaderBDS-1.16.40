@@ -311,7 +311,7 @@ bool Player::refreshAttributes(std::vector<Attribute const*> const& attributes) 
     return true;
 }
 
-string Player::getUuid() {
+string Player::getUuid() const{
     auto result = ExtendedCertificate::getIdentity(*getCertificate());
     return result.asString();
 }
@@ -319,6 +319,10 @@ string Player::getUuid() {
 string Player::getXuid() const{
     return ExtendedCertificate::getXuid(*getCertificate());
 }
+
+mce::UUID Player::getClientUUID()const{
+    return dAccess<mce::UUID>(this,2720);
+};
 
 unsigned char Player::getClientSubId() {
     //ServerPlayer::sendNetworkPacket 参4
