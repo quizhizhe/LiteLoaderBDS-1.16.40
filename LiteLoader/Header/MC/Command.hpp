@@ -70,6 +70,9 @@ public:
     std::string getCommandName() const{
         return registry->symbolToString(symbol);
     };
+    static Player * getPlayerFromOrigin(CommandOrigin const& origin){
+        return (Player*)origin.getEntity();
+    };
 //    Command(){
 //        this->version = 0;
 //        this->registry = 0LL;
