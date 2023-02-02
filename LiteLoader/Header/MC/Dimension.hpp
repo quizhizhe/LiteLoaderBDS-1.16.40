@@ -4,7 +4,16 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-#include "MC/BlockSource.hpp"
+class BlockSource;
+
+class DimensionHeightRange
+{
+public:
+    short min = 0;
+    short max;
+
+    DimensionHeightRange(short a):max(a){};
+};
 #undef BEFORE_EXTRA
 
 class Dimension {
@@ -22,6 +31,14 @@ public:
         //Player::moveSpawnView Line33
         //Player::checkSpawnBlock Line19
         return dAccess<AutomaticID<Dimension,int>>(this,192);
+    };
+    inline DimensionHeightRange const & getHeightRange() const{
+        // 0为主世界，1为下界，2为末地
+        if(this->getDimensionId() == 2 || this->getDimensionId() == 0)
+            return DimensionHeightRange(255);
+        else if(this->getDimensionId() == 1)
+            return DimensionHeightRange(127);
+        return DimensionHeightRange(0);
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_DIMENSION

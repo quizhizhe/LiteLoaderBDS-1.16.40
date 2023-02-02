@@ -27,7 +27,7 @@ public:
     inline AutomaticID<class Dimension, int> getDimensionId() const{
         //Dimension::onBlockEvent Line24
 //        Dimension* mDimension = dAccess< Dimension*>(this, 4);
-        return dAccess<AutomaticID<class Dimension, int>>(getDimension(), 192);
+        return this->getDimension()->getDimensionId();
     };
     inline LevelChunk * getChunkAt(const BlockPos& pos) const{
         ChunkPos chunkPos = ChunkPos(pos.x>>4, pos.z>>4);
