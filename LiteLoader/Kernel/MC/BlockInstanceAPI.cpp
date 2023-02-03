@@ -35,9 +35,9 @@ Block* BlockInstance::getBlock() {
     return isNull() ? nullptr : block;
 };
 
-// bool BlockInstance::hasBlockEntity() {
-//     return block->hasBlockEntity();
-// }
+bool BlockInstance::hasBlockEntity() {
+    return block->hasBlockEntity();
+}
 
 BlockActor* BlockInstance::getBlockEntity() {
     return Level::getBlockSource(dim)->getBlockEntity(pos);

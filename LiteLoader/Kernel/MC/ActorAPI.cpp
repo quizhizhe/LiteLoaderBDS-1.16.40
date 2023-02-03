@@ -56,7 +56,8 @@ bool Actor::isPlayer(bool allowSimulatedPlayer) const {
  }
 
 bool Actor::isOnGround() const {
-    return (dAccess<bool, 472>(this)); // IDA DirectActorProxyImpl<IMobMovementProxy>::isOnGround
+//    return (dAccess<bool, 416>(this)); //猜的
+     return this->mOnGround;
 }
 
  std::string Actor::getTypeName() const {
@@ -76,9 +77,9 @@ bool Actor::isOnGround() const {
      return res;
  }
 
-
+[[deprecated]]
 Vec2* Actor::getDirection() const {
-    return (Vec2*)(this + 312); // IDA: Actor::getRotation()
+    return (Vec2*)(this + 256); // 猜的 mRos
 }
 
 BlockPos Actor::getBlockPos() {
@@ -120,7 +121,8 @@ ActorUniqueID Actor::getActorUniqueId() const {
 
 SimpleContainer & Actor::getHandContainer(){
     //ScriptHandContainerComponent::hasComponent actor
-    return dAccess<SimpleContainer>(this, 176);
+//    return dAccess<SimpleContainer>(this, 176);
+     return *this->mHand;
 }
 
 ItemStack* Actor::getHandSlot() {
@@ -131,7 +133,7 @@ ItemStack* Actor::getHandSlot() {
 
 SimpleContainer & Actor::getArmorContainer(){
     // ItemStackNetManagerServer::_handleLegacyTransactionRequest Line46
-    return dAccess<SimpleContainer>(this, 1400);
+    return *this->mArmor;
 }
 
 bool Actor::rename(const string& name) {
