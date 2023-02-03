@@ -10,6 +10,53 @@
 #include "ActorDamageSource.hpp"
 #include "SimpleContainer.hpp"
 #include "ActorDefinitionIdentifier.hpp"
+#include "OwnerStorageEntity.hpp"
+#include "ActorDefinitionGroup.hpp"
+#include "ActorDefinitionDescriptor.hpp"
+#include "RopeSystem.hpp"
+#include "SynchedActorData.hpp"
+#include "SpatialActorNetworkData.hpp"
+#include "BaseAttributeMap.hpp"
+#include "EconomyTradeableComponent.hpp"
+#include "Dimension.hpp"
+#include "AnimationComponent.hpp"
+#include "ActorDefinitionDiffList.hpp"
+#include "ActorTerrainInterlockData.hpp"
+#include "MolangVariableMap.hpp"
+#include "AnimationComponent.hpp"
+#include "CompoundTag.hpp"
+
+template <typename T>
+class  OwnerPtrT : OwnerStorageEntity {
+};
+
+const class VariantParameterList
+{
+    struct Parameter {
+        unsigned __int64 type;
+        void* data;
+    };
+
+private:
+    VariantParameterList::Parameter parameters[8];
+};
+class PredictedMovementComponent {
+public:
+    class PredictedMovementComponent& operator=(class PredictedMovementComponent const&) = delete;
+    PredictedMovementComponent(class PredictedMovementComponent const&) = delete;
+    PredictedMovementComponent() = delete;
+};
+
+class PredictedMovementValues {
+public:
+    bool mUseAggressiveTickInterval;
+    unsigned __int64 mInterpolationWindowSizeInTicks;
+
+    class PredictedMovementValues& operator=(class PredictedMovementValues const&) = delete;
+    PredictedMovementValues(class PredictedMovementValues const&) = delete;
+    PredictedMovementValues() = delete;
+};
+
 class Actor;
 class Player;
 class NetworkIdentifier;
@@ -115,14 +162,227 @@ enum ActorFlags : int{
     CELEBRATING = 0x5B,
     Count_7 = 0x5C,
 };
+enum class FocusImpact : __int8 {
+    Neutral = 0x0,
+    ActivateFocus = 0x1,
+    DeactivateFocus = 0x2,
+};
 
+class _declspec(align(4)) ActionEvent {
+    int mActionId;
+    enum class ActionState : int {
+        Start = 0x1,
+        Stop = 0x2,
+    } mActionState;
+
+    bool mIsExclusive;
+    FocusImpact mFocusImpact;
+};
+
+
+const struct AABBShapeComponent {
+public:
+    AABB mAABB;
+    Vec2 mBBDim;
+};
+
+const struct StateVectorComponent {
+public:
+    Vec3 mPos;
+    Vec3 mPosPrev;
+    Vec3 mPosDelta;
+};
+
+struct ActionQueue {
+    std::deque<ActionEvent> mQueue;
+};
 #undef BEFORE_EXTRA
 
 class Actor {
+public:
+    OwnerPtrT<EntityRefTraits> mEntity;
+    enum class InitializationMethod : unsigned char {
+        INVALID = 0x0,
+        LOADED = 0x1,
+        SPAWNED = 0x2,
+        BORN = 0x3,
+        TRANSFORMED = 0x4,
+        UPDATED = 0x5,
+        EVENT = 0x6,
+        LEGACY = 0x7,
+    } mInitMethod;
+    std::string mCustomInitEventName;
+    VariantParameterList mInitParams;
+    bool mForceInitMethodToSpawnOnReload;
+    AutomaticID<Dimension, int> mDimensionId;
+    bool mAdded;
+    ActorDefinitionGroup* mDefinitions;
+    std::unique_ptr<ActorDefinitionDescriptor> mCurrentDescription;
+    ActorUniqueID mUniqueID;
+    std::shared_ptr<RopeSystem> mLeashRopeSystem;
+    Vec2 mRot;//256
+    Vec2 mRotPrev;
+    float mSwimAmount;
+    float mSwimPrev;
+    ChunkPos mChunkPos;
+    Vec3 mRenderPos;
+    Vec2 mRenderRot;
+    int mCategories;
+    int mAmbientSoundTime;
+    int mLastHurtByPlayerTime;
+    SynchedActorData mEntityData;
+    std::unique_ptr<SpatialActorNetworkData> mNetworkData;
+    Vec3 mSentDelta;
+    bool mSentOnGround;
+    float mScale;
+    float mScalePrev;
+    unsigned __int64 mNameTagHash;
+    const Block* mInsideBlock;
+    BlockPos mInsideBlockPos;
+    float mFallDistance;
+    bool mOnGround; //416
+    bool mWasOnGround;
+    bool mHorizontalCollision;
+    bool mVerticalCollision;
+    bool mCollision;
+    bool mIgnoreLighting;
+    bool mFilterLighting;
+    mce::Color mTintColor;
+    mce::Color mTintColor2;
+    float mStepSoundVolume;
+    float mStepSoundPitch;
+    AABB* mLastHitBB;
+    std::vector<AABB> mSubBBs;
+    float mTerrainSurfaceOffset;
+    float mHeightOffset;
+    float mExplosionOffset;
+    float mShadowOffset;
+    float mMaxAutoStep;
+    float mPushthrough;
+    float mWalkDistPrev;
+    float mWalkDist;
+    float mMoveDist;
+    float mBlockMovementSlowdownMultiplier;
+    float mNextStep;
+    bool mImmobile;
+    bool mWasInWater;
+    bool mHasEnteredWater;
+    bool mHeadInWater;
+    bool mIsWet;
+    Vec2 mSlideOffset;
+    Vec3 mHeadOffset;
+    Vec3 mEyeOffset;
+    Vec3 mBreathingOffset;
+    Vec3 mMouthOffset;
+    Vec3 mDropOffset;
+    bool mFirstTick;
+    int mTickCount;
+    int mInvulnerableTime;
+    int mLastHealth;
+    bool mFallDamageImmune;
+    bool mHurtMarked;
+    bool mWasHurtLastFrame;
+    bool mInvulnerable;
+    int mOnFire;//636
+    int mFlameTexFrameIndex;
+    int mClientSideFireTransitionStartTick;
+    float mFlameFrameIncrementTime;
+    bool mOnHotBlock;
+    bool mClientSideFireTransitionLatch;
+    bool mAlwaysFireImmune;
+    int mPortalCooldown;
+    BlockPos mPortalBlockPos;
+    uint8_t mPortalEntranceAxis[4];
+    int mInsidePortalTime;
+    std::vector<ActorUniqueID> mRiderIDs;
+    std::vector<ActorUniqueID> mRiderIDsToRemove;
+    ActorUniqueID mRidingID;
+    ActorUniqueID mRidingPrevID;
+    ActorUniqueID mPushedByID;
+    bool mInheritRotationWhenRiding;
+    bool mRidersChanged;
+    bool mBlocksBuilding;
+    bool mUsesOneWayCollision;
+    bool mForcedLoading;
+    bool mPrevPosRotSetThisTick;
+    bool mTeleportedThisTick;
+    bool mForceSendMotionPacket;
+    float mSoundVolume;
+    int mShakeTime;
+    float mWalkAnimSpeedMultiplier;
+    float mWalkAnimSpeedO;
+    float mWalkAnimSpeed;
+    float mWalkAnimPos;
+    ActorUniqueID mLegacyUniqueID;
+    bool mHighlightedThisFrame;
+    bool mInitialized;
+    BlockSource* mRegion;
+    Dimension* mDimension;
+    Level* mLevel;//816
+    HashedString mActorRendererId;
+    HashedString mActorRendererIdThatAnimationComponentWasInitializedWith;
+    bool mChanged;
+    bool mRemoved;
+    bool mGlobal;
+    bool mAutonomous;
+    ActorType mActorType;
+    ActorDefinitionIdentifier mActorIdentifier;
+    std::unique_ptr<BaseAttributeMap> mAttributes;
+    std::unique_ptr<EconomyTradeableComponent> mEconomyTradeableComponent;
+    std::shared_ptr<AnimationComponent> mAnimationComponent;
+    AABBShapeComponent mAABBComponent;
+    StateVectorComponent mStateVectorComponent;
+    ActorUniqueID mTargetId;
+    float mRestrictRadius;
+    BlockPos mRestrictCenter;
+    ActorUniqueID mInLovePartner;
+    std::vector<MobEffectInstance> mMobEffects;
+    bool mEffectsDirty;
+    bool mLootDropped;
+    bool mPersistingTrade;
+    std::unique_ptr<CompoundTag> mPersistingTradeOffers;
+    int mPersistingTradeRiches;
+    ActorRuntimeID mRuntimeID;
+    mce::Color mHurtColor;
+    std::unique_ptr<ActorDefinitionDiffList> mDefinitionList;
+    bool mIsMovedByScript;
+    bool mHasLimitedLife;
+    int mLimitedLifeTicks;
+    int mForceVisibleTimerTicks;
+    float mRidingExitDistance;
+    std::string mFilteredNameTag;
+    bool mIsSafeToSleepNear;
+    bool mIsStuckItem;
+    ActorTerrainInterlockData mTerrainInterlockData;
+    float mArmorDropChance[4];
+    float mHandDropChance[2];
+    std::unique_ptr<SimpleContainer> mArmor;//1400
+    std::unique_ptr<SimpleContainer> mHand;
+    bool mIsKnockedBackOnDeath;
+    std::vector<AABB> mOnewayPhysicsBlocks;
+    bool mStuckInCollider;
+    bool mPenetratingLastFrame;
+    bool mCollidableMobNear;
+    bool mCollidableMob;
+    bool mCanPickupItems;
+    bool mChainedDamageEffects;
+    bool mWasInBubbleColumn;
+    bool mWasInWallLastTick;
+    int mTicksInWall;
+    int mDamageNearbyMobsTick;
+    enum class SpawnRuleEnum : int {
+        Undefined = 0xFF,
+        NoSpawnRules = 0x0,
+        HasSpawnRules = 0x1,
+    } mSpawnRulesEnum;
+    std::unique_ptr<ActionQueue> mActionQueue;
+    MolangVariableMap mMolangVariables;
+    CompoundTag mCachedComponentData;
+    ActorUniqueID mFishingHookID;
 
 #define AFTER_EXTRA
 public:
-    enum InitializationMethod;
+//    enum InitializationMethod;
 
     LIAPI std::string getTypeName() const;
     LIAPI Vec3 getFeetPosition() const;
@@ -168,22 +428,26 @@ public:
         return getPosOld();
     }
     inline BlockSource const & getRegionConst() const{
-        return dAccess<BlockSource>(this,100);
+        // return dAccess<BlockSource>(this,100);
+        return *mRegion;
     };
     inline bool isMoving() const{
         return getStatusFlag(ActorFlags::MOVING);
     };
     inline bool hasCategory(enum ActorCategory actorCategory) const{
         // IDA Player::take Line123
-        return (dAccess<ActorCategory>(this, 316) & actorCategory) !=0;
+        // return (dAccess<ActorCategory>(this, 316) & actorCategory) !=0;
+        return mCategories != 0;
     };
     inline BlockSource & getRegion() {
-        //VanillaServerGameplayEventListener::onBlockPlacedByPlayer Line35
-        return dAccess<BlockSource>(this,100);
+        // VanillaServerGameplayEventListener::onBlockPlacedByPlayer Line35
+        // return dAccess<BlockSource>(this,100);
+        return *mRegion;
     };
     inline AABB const & getAABB() const{
         //FollowMobGoal::_setWantedMob Line52
-        return dAccess<AABB>(this,1112);
+        //return dAccess<AABB>(this,1112);
+        return mAABBComponent.mAABB;
     };
     inline bool isDancing(){
         return getStatusFlag(ActorFlags::DANCING);
@@ -192,13 +456,15 @@ public:
         return getTradingPlayer() != nullptr;
     };
 
-    Vec2 getRotation() const{
+    inline Vec2 getRotation() const{
         // Actor::getMapDecorationRotation
-        return dAccess<Vec2>(this, 65);
+        //return dAccess<Vec2>(this, 65);
+        return mRot;
     };
     ActorDefinitionIdentifier getActorIdentifier() const{
         //ServerPlayer::handleActorPickRequestOnServer Line144 1048-128-8 = 912;
-        return dAccess<ActorDefinitionIdentifier>(this, 912);
+        //return dAccess<ActorDefinitionIdentifier>(this, 912);
+        return mActorIdentifier;
     }
 
 #undef AFTER_EXTRA

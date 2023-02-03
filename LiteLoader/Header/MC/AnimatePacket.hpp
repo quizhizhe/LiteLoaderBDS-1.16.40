@@ -11,7 +11,20 @@
 class AnimatePacket : public Packet {
 
 #define AFTER_EXTRA
-
+public:
+    enum Action
+    {
+        NoAction = 0,
+        Swing = 1,
+        WakeUp = 3,
+        CriticalHit = 4,
+        // MagicCriticalHit=5,
+        RowRight = 128,
+        RowLeft = 129,
+    };
+    ActorRuntimeID mRuntimeId;
+    Action mAction;
+    float mData;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ANIMATEPACKET
 public:

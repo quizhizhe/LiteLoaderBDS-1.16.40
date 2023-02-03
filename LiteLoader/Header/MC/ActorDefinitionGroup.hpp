@@ -6,13 +6,38 @@
 #include "Json.hpp"
 
 #define BEFORE_EXTRA
-
+#include "ActorDefinition.hpp"
+#include "ResourcePackManager.hpp"
+#include "ActorDefinitionPtr.hpp"
+#include "ActorComponentFactory.hpp"
 #undef BEFORE_EXTRA
+
+class ActorEventResponseFactory {
+public:
+    class ActorEventResponseFactory& operator=(class ActorEventResponseFactory const &) = delete;
+    ActorEventResponseFactory(class ActorEventResponseFactory const &) = delete;
+    ActorEventResponseFactory() = delete;
+};
 
 class ActorDefinitionGroup {
 
 #define AFTER_EXTRA
+public:
+    struct LoadActorResult;
+    struct EDLWrapper {
+        std::unordered_map<std::string, std::unique_ptr<ActorDefinition>> mList;
+    };
 
+public:
+    void** __vftable /*VFT*/;
+    std::unordered_set<ActorDefinitionPtr*> mRegisteredPtrs;
+    std::unordered_map<std::string, std::unique_ptr<ActorDefinition>> mDefinitions;
+    std::unordered_map<std::string, ActorDefinitionGroup::EDLWrapper> mTemplateMap;
+    ResourcePackManager* mResourcePackManager;
+    std::mutex mReferenceMutex;
+    IMinecraftEventing* mEventing;
+    ActorComponentFactory* mComponentFactory;
+    std::unique_ptr<ActorEventResponseFactory> mResponseFactory;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ACTORDEFINITIONGROUP
 public:

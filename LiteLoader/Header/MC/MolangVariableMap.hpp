@@ -10,6 +10,12 @@
 class MolangVariableMap {
 
 #define AFTER_EXTRA
+public:
+    std::vector<short> mMapFromVariableIndexToVariableArrayOffset;
+    std::vector<std::unique_ptr<class MolangVariable>> mVariables;
+    bool mHasPublicVariables;
+    bool mHasVariablesThatShouldSync;
+    bool mHasVariablesThatShouldSave;
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MOLANGVARIABLEMAP

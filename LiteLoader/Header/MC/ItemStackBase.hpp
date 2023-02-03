@@ -33,10 +33,13 @@ private:
     std::unique_ptr<ItemInstance> mChargedItem;
 
 public:
-LIAPI int getCount() const;
-inline void setAuxValue(short a1){
-    this->mAuxValue = a1;
-};
+    LIAPI int getCount() const;
+    inline void setAuxValue(short a1){
+        this->mAuxValue = a1;
+    };
+    inline Block const * getBlock() const{
+        return this->mBlock;
+    };
 
 #undef AFTER_EXTRA
 public:

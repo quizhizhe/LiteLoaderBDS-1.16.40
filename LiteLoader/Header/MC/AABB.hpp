@@ -49,6 +49,10 @@ public:
     MCAPI class AABB shrink(class Vec3 const &) const;
     MCAPI static class AABB const EMPTY;
 
+    inline Vec3 getCenter() const{
+        return (min + max)/2;
+    };
+
     inline Vec3& operator[](int index) {
         if (index < 0 || index > 1) {
             return (&min)[0];

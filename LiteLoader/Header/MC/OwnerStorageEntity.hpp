@@ -7,10 +7,46 @@
 
 #undef BEFORE_EXTRA
 
+using EntityId = unsigned int;
+
+template <typename T>
+struct EnableGetWeakRef {
+};
+
+struct EntityRefTraits {
+};
+
+struct  __declspec(align(8)) EntityRegistryBase {
+    struct ICanModifyComponentPoolDuringView {
+    };
+
+public:
+    entt::basic_registry<EntityId>* mRegistry;
+    EntityId mViewedEntity;
+    std::unique_ptr<EntityRegistryBase::ICanModifyComponentPoolDuringView> mCanModifyDuringView;
+    bool mViewUsesViewedContext;
+
+};
+
+
+struct __declspec(align(8)) EntityContextBase {
+    EntityRegistryBase* mRegistry;
+    const EntityId mEntity;
+};
+
+struct EntityContext : EntityContextBase, EnableGetWeakRef<EntityRefTraits> {
+
+};
+
 class OwnerStorageEntity {
 
 #define AFTER_EXTRA
+    struct EntityContextOwned : EntityContext {
 
+    };
+
+private:
+    std::optional<OwnerStorageEntity::EntityContextOwned> mContext;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_OWNERSTORAGEENTITY
 public:

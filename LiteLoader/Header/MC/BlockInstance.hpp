@@ -26,7 +26,7 @@ public:
     LIAPI BlockSource* getBlockSource();
     LIAPI int getDimensionId();
 
-    //LIAPI bool hasBlockEntity();
+    LIAPI bool hasBlockEntity();
     LIAPI BlockActor* getBlockEntity();
     LIAPI bool hasContainer();
     LIAPI Container* getContainer();

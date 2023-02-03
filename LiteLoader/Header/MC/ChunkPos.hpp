@@ -12,6 +12,7 @@ class ChunkPos {
 #define AFTER_EXTRA
     // Add Member There
 public:
+    __int64 packed;
     int       x, z;
     long long hash() {
         return *((long long*)this);

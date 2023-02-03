@@ -10,9 +10,13 @@
 class HashedString {
 
 #define AFTER_EXTRA
-public: 
+public:
+    unsigned __int64 mStrHash;
+    std::string mStr;
+//    const HashedString* mLastMatch;
     inline std::string const & getString()const{
-        return dAccess<std::string>(this, 8);
+//        return dAccess<std::string>(this, 8);
+        return mStr;
     };
 
 #undef AFTER_EXTRA
