@@ -50,7 +50,7 @@ public:
     MCAPI static class AABB const EMPTY;
 
     inline Vec3 getCenter() const{
-        return (min + max)/2;
+        return min+(max-min)*0.5;
     };
 
     inline Vec3& operator[](int index) {
