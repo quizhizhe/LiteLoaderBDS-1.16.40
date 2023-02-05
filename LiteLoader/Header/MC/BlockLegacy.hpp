@@ -25,8 +25,8 @@ public:
 
     inline int getBlockItemId() const{
         //ItemStackBase::init(ItemStackBase *this, const struct BlockLegacy *a2, int a3) Line14
-        int id = dAccess<int>(this,134);
-        if(id < 0x100u)
+        unsigned int id = dAccess<int>(this,268);//mID
+        if(id < 256u)
             return id;
         else
             return 255-id;
