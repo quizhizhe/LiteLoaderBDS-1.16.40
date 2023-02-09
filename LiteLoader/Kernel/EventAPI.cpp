@@ -1355,7 +1355,7 @@ TClasslessInstanceHook(void, "?onRedstoneUpdate@ComparatorBlock@@UEBAXAEAVBlockS
 // 没有这个符号
  TClasslessInstanceHook(bool, "?_pullInItems@Hopper@@IEAA_NAEAVBlockSource@@AEAVContainer@@AEBVVec3@@@Z",
                         BlockSource* bs, void* container, Vec3* pos) {
-     bool isMinecart = dAccess<bool>(this, 5); // IDA Hopper::Hopper 未知正确
+     bool isMinecart = dAccess<bool>(this, 5); // IDA Hopper::Hopper 正确
 
      IF_LISTENED(HopperSearchItemEvent) {
          HopperSearchItemEvent ev{};
@@ -1775,20 +1775,34 @@ TClasslessInstanceHook(void, "?explode@Explosion@@QEAAXXZ") {
 
 ////////////// WitherBossDestroy //////////////
 // 没有这个符号
- THook(void, "?destroyBlocks@@YAXAEAVLevel@@AEBVAABB@@AEAVBlockSource@@H@Z",
-               Level* level, AABB* aabb, BlockSource* bs, int range) {
-     IF_LISTENED(WitherBossDestroyEvent) {
-         WitherBossDestroyEvent ev{};
-         ev.mWitherBoss = dAccess<WitherBoss*>(level,-102); // WitherBoss::newServerAiStep Line515
-         ev.mDestroyRange = *aabb;
-         if (!ev.call())
-             return;
+// 在1.16.40里destroyBlocks不是WitherBoss类的成员
+// 只能从调用destroyBlocks的WitherBoss::newServerAiStep获取实体指针
+namespace{
+    WitherBoss* mWitherBoss;
+}
+TClasslessInstanceHook(void,"?newServerAiStep@WitherBoss@@UEAAXXZ"){
+    IF_LISTENED(WitherBossDestroyEvent) {
+        mWitherBoss = (WitherBoss*)this;
+    }
+    IF_LISTENED_END(WitherBossDestroyEvent)
+    return original(this);
+}
 
-         *aabb = ev.mDestroyRange;
-     }
-     IF_LISTENED_END(WitherBossDestroyEvent)
-     original(level, aabb, bs, range);
- }
+THook(void, "?destroyBlocks@@YAXAEAVLevel@@AEBVAABB@@AEAVBlockSource@@H@Z",
+      Level* level, AABB* aabb, BlockSource* bs, int range) {
+    IF_LISTENED(WitherBossDestroyEvent) {
+        WitherBossDestroyEvent ev{};
+//         ev.mWitherBoss = dAccess<WitherBoss*>(level,-816); // WitherBoss::newServerAiStep Line515
+        ev.mWitherBoss = mWitherBoss;
+        ev.mDestroyRange = *aabb;
+        if (!ev.call())
+            return;
+
+        *aabb = ev.mDestroyRange;
+    }
+    IF_LISTENED_END(WitherBossDestroyEvent)
+    original(level, aabb, bs, range);
+}
 
 
 ////////////// EntityRide //////////////
