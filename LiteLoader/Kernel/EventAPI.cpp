@@ -2133,26 +2133,21 @@ TInstanceHook(int, "?startSleepInBed@Player@@UEAA?AW4BedSleepingResult@@AEBVBloc
 
 #include "Impl/FormPacketHelper.h"
 #include <MC/Json.hpp>
+#include <MC/ModalFormResponsePacket.hpp>
 ////////////// FormResponsePacket //////////////
 
 TClasslessInstanceHook(void, "?handle@?$PacketHandlerDispatcherInstance@VModalFormResponsePacket@@$0A@@@UEBAXAEBVNetworkIdentifier@@AEAVNetEventCallback@@AEAV?$shared_ptr@VPacket@@@std@@@Z",
-                       NetworkIdentifier* id, ServerNetworkHandler* handler, void* pPacket) {
-    Packet* packet = *(Packet**)pPacket;
+                       NetworkIdentifier* id, ServerNetworkHandler* handler, std::shared_ptr<Packet> pPacket) {
+    Packet* packet = pPacket.get();
+    ModalFormResponsePacket* mPacket = (ModalFormResponsePacket*)packet;
     ServerPlayer* sp = handler->getServerPlayer(*id, 0);
     if (sp) {
         string data;
-        auto formId = dAccess<int>(packet, 48);//未验证
-		
-        if (!dAccess<bool>(packet, 81)) {//未验证
-            if (dAccess<bool>(packet, 72)) {//未验证
-                auto json = dAccess<Json::Value>(packet, 56);//未验证
-                data = json.toStyledString();
-            }
-        }
-		
-        if (data.empty()) {
+        auto formId = mPacket->mFormId;
+        if(!mPacket->mJSONResponse.empty())
+            data = mPacket->mJSONResponse;
+		else
             data = "null";
-        }
 		
         if (data.back() == '\n')
             data.pop_back();

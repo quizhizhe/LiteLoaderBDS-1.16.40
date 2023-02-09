@@ -11,7 +11,9 @@
 class ModalFormRequestPacket : public Packet {
 
 #define AFTER_EXTRA
-
+public:
+    unsigned int mFormId;
+    std::string mFormJSON;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MODALFORMREQUESTPACKET
 public:
