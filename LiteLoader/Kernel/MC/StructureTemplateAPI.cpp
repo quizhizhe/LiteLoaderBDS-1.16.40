@@ -41,13 +41,13 @@
 
  #include <MC/BlockPalette.hpp>
  bool StructureTemplate::toWorld(int dimID, BlockPos const& p1, Mirror mirror, Rotation rotation) {
-     auto& palette = Global<Level>->getBlockPalette();
+     auto palette = Global<Level>->getBlockPalettePtr();
      auto bs = Level::getBlockSource(dimID);
      auto setting = StructureSettings();
      setting.setMirror(mirror);
      setting.setStructureSize(getSize());
      setting.setRotation(rotation);
-     placeInWorld(*bs, palette, p1, setting, nullptr, false);
+     placeInWorld(*bs, *palette, p1, setting, nullptr, false);
      return true;
  };
 

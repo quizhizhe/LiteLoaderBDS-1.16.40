@@ -83,7 +83,7 @@ public:
     //Helper
     LIAPI static BlockSource* getBlockSource(int dimid);
     LIAPI static BlockSource* getBlockSource(Actor* actor);
-    //LIAPI static BlockPalette* getBlockPalette();
+    LIAPI static BlockPalette* getBlockPalettePtr();
     //LIAPI static Dimension* getDimension(class AutomaticID<class Dimension, int> a0);
     LIAPI static Actor* getDamageSourceEntity(ActorDamageSource* ads);
     LIAPI static void broadcastText(const string& text, TextType type);

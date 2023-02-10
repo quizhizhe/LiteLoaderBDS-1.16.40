@@ -62,6 +62,10 @@ Block* Level::getBlock(const BlockPos& pos, BlockSource* blockSource) {
     return (Block*)&(blockSource->getBlock(pos));
 }
 
+BlockPalette* Level::getBlockPalettePtr(){
+    // MovingBlockActor::load Line69
+    return dAccess<BlockPalette*>(Global<Level>,2000);
+};
 
 // Return nullptr when failing to get block
  Block* Level::getBlockEx(const BlockPos& pos, int dimId) {

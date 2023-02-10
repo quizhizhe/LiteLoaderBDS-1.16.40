@@ -9,8 +9,8 @@
 #include <MC/Level.hpp>
 
 Block* Block::create(const string& name, unsigned short tileData) {
-    BlockPalette& generator = Global<Level>->getBlockPalette();
-    auto blk = generator.getBlockLegacy(name);
+    BlockPalette* generator = Global<Level>->getBlockPalettePtr();
+    auto blk = generator->getBlockLegacy(name);
     if (!blk)
         return nullptr;
     return (Block*)((BlockLegacy*)blk)->toBlock(tileData);

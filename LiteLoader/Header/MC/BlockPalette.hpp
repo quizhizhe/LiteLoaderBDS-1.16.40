@@ -4,13 +4,20 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
-
+class BlockLegacy;
+#include <MC/Bedrock.hpp>
 #undef BEFORE_EXTRA
 
 class BlockPalette {
 
 #define AFTER_EXTRA
-
+public:
+    std::mutex mLegacyBlockStatesConversionWarningMutex;
+    std::set<std::pair<int,int>> mLegacyBlockStatesConversionWarningSet;
+    std::map<std::string,BlockLegacy const*> mNameLookup;
+    std::map<CompoundTag,Block const*>mBlockFromSerId;
+    std::vector<Block const*>mBlockFromRuntimeId;
+    Level *mLevel;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BLOCKPALETTE
 public:
