@@ -65,13 +65,16 @@ public:
     MCAPI std::string asString() const;
     MCAPI static UUID fromString(std::string const&);
     inline bool isEmpty() const{
-        return a && b;
+        return *this == mce::UUID::EMPTY;
     };
     MCAPI static UUID seedFromString(std::string const&);
     MCAPI static class mce::UUID EMPTY;
 
     inline operator bool() const {
         return !isEmpty();
+    }
+    inline bool operator==(mce::UUID &res) const {
+        return (this->a == res.a) && (this->b == res.b);
     }
 };
 
