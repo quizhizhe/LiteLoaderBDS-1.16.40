@@ -6,7 +6,7 @@
 #include <map>
 #include <unordered_map>
 #include <memory>
-#include <LoggerAPI.h>
+#include "LiteLoader/include/llapi/LoggerAPI.h"
 #include <ScriptEngine/third-party/dyncall/include/dyncall.h>
 
 struct FormCallbackData {

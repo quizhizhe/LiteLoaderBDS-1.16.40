@@ -11,7 +11,7 @@
 #include <Engine/LocalShareData.h>
 #include <Engine/EngineOwnData.h>
 #include <Utils/STLHelper.h>
-#include <RegCommandAPI.h>
+#include "LiteLoader/include/llapi/RegCommandAPI.h"
 #include <filesystem>
 #include <Configs.h>
 #include <vector>

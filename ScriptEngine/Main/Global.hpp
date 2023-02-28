@@ -8,10 +8,10 @@
 #endif
 
 #include <Configs.h>
-#include <Global.h>
+#include "LiteLoader/include/llapi/Global.h"
 #include <Tools/JsonHelper.h>
 #include <MC/Types.hpp>
-#include <LoggerAPI.h>
+#include "LiteLoader/include/llapi/LoggerAPI.h"
 #include <vector>
 #include <string>
 using std::string;

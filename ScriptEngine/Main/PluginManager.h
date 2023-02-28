@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <map>
-#include <LLAPI.h>
+#include "LiteLoader/include/llapi/LLAPI.h"
 
 class PluginManager
 {

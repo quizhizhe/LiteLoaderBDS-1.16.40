@@ -1,4 +1,4 @@
-#include "Global.h"
+#include "LiteLoader/include/llapi/Global.h"
 using namespace std;
 
 //声明

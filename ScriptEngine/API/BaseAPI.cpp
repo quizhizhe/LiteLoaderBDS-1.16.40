@@ -3,7 +3,7 @@
 #include <Global.hpp>
 #include <MC/BlockSource.hpp>
 #include <MC/Facing.hpp>
-#include <ServerAPI.h>
+#include "LiteLoader/include/llapi/ServerAPI.h"
 #include "McAPI.h"
 #include <cmath>
 #include <MC/ActorDamageSource.hpp>

@@ -6,7 +6,7 @@
 #include <fstream>
 #include <Tools/Utils.h>
 #include <SafeGuardRecord.h>
-#include <ScheduleAPI.h>
+#include "LiteLoader/include/llapi/ScheduleAPI.h"
 
 using namespace std::filesystem;
 

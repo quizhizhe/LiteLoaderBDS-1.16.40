@@ -1,7 +1,7 @@
 #include "APIHelp.h"
 #include "APIHelp.h"
 #include "ServerAPI.h"
-#include <ServerAPI.h>
+#include "LiteLoader/include/llapi/ServerAPI.h"
 #include "McAPI.h"
 #include <MC/ServerNetworkHandler.hpp>
 #include <SafeGuardRecord.h>

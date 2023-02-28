@@ -24,7 +24,7 @@
 #include <MC/ListTag.hpp>
 #include <MC/CompoundTag.hpp>
 #include <MC/BlockSource.hpp>
-#include <PlayerInfoAPI.h>
+#include "LiteLoader/include/llapi/PlayerInfoAPI.h"
 #include <SafeGuardRecord.h>
 #include <string>
 #include <vector>

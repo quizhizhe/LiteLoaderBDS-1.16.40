@@ -2,7 +2,7 @@
 #include <API/APIHelp.h>
 #include <Utils/StringHelper.h>
 #include <string>
-#include <LoggerAPI.h>
+#include "LiteLoader/include/llapi/LoggerAPI.h"
 using namespace std;
 extern Logger logger;
 

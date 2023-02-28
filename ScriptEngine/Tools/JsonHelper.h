@@ -4,7 +4,7 @@
 #include <string>
 #include <filesystem>
 #include <Utils/FileHelper.h>
-#include <LoggerAPI.h>
+#include "LiteLoader/include/llapi/LoggerAPI.h"
 
 using namespace nlohmann;
 using namespace std;

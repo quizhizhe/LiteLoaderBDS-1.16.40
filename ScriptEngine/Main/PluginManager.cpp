@@ -10,9 +10,9 @@
 #include <Engine/TimeTaskSystem.h>
 #include <Engine/EngineManager.h>
 #include <Utils/STLHelper.h>
-#include <LiteLoader/Main/PluginManager.h>
+#include "LiteLoader/include/liteloader/PluginManager.h"
 #include <Loader.h>
-#include <ScheduleAPI.h>
+#include "LiteLoader/include/llapi/ScheduleAPI.h"
 #include <API/CommandAPI.h>
 #include <API/EventAPI.h>
 #include <Utils/Hash.h>

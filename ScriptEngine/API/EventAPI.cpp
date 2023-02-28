@@ -25,8 +25,8 @@
 #include "PlayerAPI.h"
 #include <Loader.h>
 #include <Configs.h>
-#include <EventAPI.h>
-#include <ScheduleAPI.h>
+#include "LiteLoader/include/llapi/EventAPI.h"
+#include "LiteLoader/include/llapi/ScheduleAPI.h"
 #include <MC/Player.hpp>
 #include <MC/BlockSource.hpp>
 #include <MC/Actor.hpp>

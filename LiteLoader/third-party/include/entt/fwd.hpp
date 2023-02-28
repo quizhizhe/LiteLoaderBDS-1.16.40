@@ -1,0 +1,5 @@
+#include "third-party/include/entt/core/fwd.hpp"
+#include "third-party/include/entt/entity/fwd.hpp"
+#include "third-party/include/entt/poly/fwd.hpp"
+#include "third-party/include/entt/resource/fwd.hpp"
+#include "third-party/include/entt/signal/fwd.hpp"

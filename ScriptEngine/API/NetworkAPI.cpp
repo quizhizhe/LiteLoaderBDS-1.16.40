@@ -8,8 +8,8 @@
 #include <SafeGuardRecord.h>
 #include <string>
 #include <vector>
-#include <ScheduleAPI.h>
-#include <LiteLoader/Main/Config.h>
+#include "LiteLoader/include/llapi/ScheduleAPI.h"
+#include "LiteLoader/include/liteloader/Config.h"
 using namespace std;
 
 using namespace cyanray;

@@ -6,7 +6,7 @@
 #include <sstream>
 #include <exception>
 #include <Engine/EngineOwnData.h>
-#include <PlayerInfoAPI.h>
+#include "LiteLoader/include/llapi/PlayerInfoAPI.h"
 #include <Utils/CryptHelper.h>
 #include <Utils/FileHelper.h>
 #include <Utils/StringHelper.h>

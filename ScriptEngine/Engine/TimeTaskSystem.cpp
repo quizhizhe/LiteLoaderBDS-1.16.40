@@ -3,7 +3,7 @@
 #include "MessageSystem.h"
 #include <Engine/EngineOwnData.h>
 #include <Engine/EngineManager.h>
-#include <ScheduleAPI.h>
+#include "LiteLoader/include/llapi/ScheduleAPI.h"
 #include <Utils/STLHelper.h>
 #include <map>
 #include <vector>

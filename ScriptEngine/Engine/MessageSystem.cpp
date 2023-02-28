@@ -1,14 +1,14 @@
 #include "MessageSystem.h"
 #include <API/APIHelp.h>
 #include <Tools/Utils.h>
-#include <LLAPI.h>
-#include <EventAPI.h>
+#include "LiteLoader/include/llapi/LLAPI.h"
+#include "LiteLoader/include/llapi/EventAPI.h"
 #include "LocalShareData.h"
 #include "GlobalShareData.h"
 #include <processthreadsapi.h>
 #include <process.h>
 #include <exception>
-#include <LiteLoader/Main/Config.h>
+#include "LiteLoader/include/liteloader/Config.h"
 using namespace std;
 using namespace script;
 
