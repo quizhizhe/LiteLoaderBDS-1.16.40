@@ -2,27 +2,60 @@
 #pragma once
 #define AUTO_GENERATED
 #include "../Global.h"
+#include "AttributeInstanceDelegate.hpp"
 
 #define BEFORE_EXTRA
+class BaseAttributeMap;
+class Attribute;
 
 #undef BEFORE_EXTRA
 
 class AttributeInstance {
+public:
+
+    BaseAttributeMap *mAttributeMap;
+    const Attribute *mAttribute;
+    std::vector<AttributeModifier> mModifierList;
+    std::vector<TemporalAttributeBuff> mTemporalBuffs;
+    std::vector<AttributeInstanceHandle> mListeners;
+    std::shared_ptr<AttributeInstanceDelegate> mDelegate;
+    union{
+        float mDefaultValues[3];
+        struct
+        {
+            float mDefaultMinValue;
+            float mDefaultMaxValue;
+            float mDefaultValue;
+        } __s1;
+    } _anon_0;
+    union{
+        float mCurrentValues[3];
+        struct
+        {
+            float mCurrentMinValue;
+            float mCurrentMaxValue;
+            float mCurrentValue;
+        } __s1;
+    } _anon_1;
 
 #define AFTER_EXTRA
 public:
     inline float getMinValue()const{
-        return dAccess<float>(this, 31);
+        // return dAccess<float>(this, 124);
+        return _anon_1.__s1.mCurrentMinValue;
     };
     inline float getMaxValue()const{
-        return dAccess<float>(this, 32);
+        // return dAccess<float>(this, 128);
+        return _anon_1.__s1.mCurrentMaxValue;
     };
     inline float getCurrentValue()const{
-        return dAccess<float>(this, 33);
+        // return dAccess<float>(this, 132);
+        return _anon_1.__s1.mCurrentValue;
     };
     //maybe error
-    inline void setCurrentValue(float value)const{
-        dAccess<float, 33>((void*)this)= value;
+    inline void setCurrentValue(float value){
+        //dAccess<float, 33>((void*)this)= value;
+        this->_anon_1.__s1.mCurrentValue = value;
         //AttributeInstance::resetToMaxValue Line11~Line28
         // if (this + 3)
         // {
@@ -42,7 +75,8 @@ public:
         // }
     };
     inline float getDefaultValue(int a)const{
-        return dAccess<float>(this, 30);
+        // return dAccess<float>(this, 120);
+        return _anon_0.__s1.mDefaultValue;
     };
 
 #undef AFTER_EXTRA

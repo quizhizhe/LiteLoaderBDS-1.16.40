@@ -4,13 +4,20 @@
 #include "../Global.h"
 
 #define BEFORE_EXTRA
+class BaseAttributeMap;
+struct AttributeInstanceHandle
+{
+    unsigned int mAttributeID;
+    BaseAttributeMap *mAttributeMap;
+};
 
 #undef BEFORE_EXTRA
 
 class AttributeInstanceDelegate {
 
 #define AFTER_EXTRA
-
+public:
+    AttributeInstanceHandle mAttributeHandle;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ATTRIBUTEINSTANCEDELEGATE
 public:
