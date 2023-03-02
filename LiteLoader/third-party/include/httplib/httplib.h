@@ -149,8 +149,8 @@ using ssize_t = long;
 #endif // NOMINMAX
 
 #include <io.h>
-#include <WinSock2.h>
-#include <WS2tcpip.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
 
 #ifndef WSA_FLAG_NO_HANDLE_INHERIT
 #define WSA_FLAG_NO_HANDLE_INHERIT 0x80
@@ -235,10 +235,10 @@ using socket_t = int;
 #endif
 #endif //_WIN32
 
-#include "third-party/include/openssl/err.h"
-#include "third-party/include/openssl/evp.h"
-#include "third-party/include/openssl/ssl.h"
-#include "third-party/include/openssl/x509v3.h"
+#include <openssl/err.h>
+#include <openssl/evp.h>
+#include <openssl/ssl.h>
+#include <openssl/x509v3.h>
 
 #if defined(_WIN32) && defined(OPENSSL_USE_APPLINK)
 #include <openssl/applink.c>

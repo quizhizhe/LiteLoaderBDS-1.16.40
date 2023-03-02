@@ -11,7 +11,7 @@
 # define OPENSSL_SSL2_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_SSL2_H
 # endif

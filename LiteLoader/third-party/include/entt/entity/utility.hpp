@@ -2,7 +2,7 @@
 #define ENTT_ENTITY_UTILITY_HPP
 
 
-#include "third-party/include/entt/core/type_traits.hpp"
+#include "../core/type_traits.hpp"
 
 
 namespace entt {

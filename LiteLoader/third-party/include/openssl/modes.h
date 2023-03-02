@@ -11,13 +11,13 @@
 # define OPENSSL_MODES_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_MODES_H
 # endif
 
 # include <stddef.h>
-# include "types.h"
+# include <openssl/types.h>
 
 # ifdef  __cplusplus
 extern "C" {

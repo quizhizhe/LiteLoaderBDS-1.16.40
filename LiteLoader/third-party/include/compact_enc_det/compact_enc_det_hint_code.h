@@ -19,8 +19,8 @@
 
 #include <string>                        // for string
 
-#include "third-party/include/compact_enc_det/util/basictypes.h"             // for uint32
-#include "third-party/include/compact_enc_det/util/encodings/encodings.h"    // for Encoding
+#include "util/basictypes.h"             // for uint32
+#include "util/encodings/encodings.h"    // for Encoding
 
 using std::string;
 

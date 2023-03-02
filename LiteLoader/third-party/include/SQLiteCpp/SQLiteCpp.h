@@ -18,12 +18,12 @@
 
 
 // Include useful headers of SQLiteC++
-#include "Assertion.h"
-#include "Exception.h"
-#include "Database.h"
-#include "Statement.h"
-#include "Column.h"
-#include "Transaction.h"
+#include <SQLiteCpp/Assertion.h>
+#include <SQLiteCpp/Exception.h>
+#include <SQLiteCpp/Database.h>
+#include <SQLiteCpp/Statement.h>
+#include <SQLiteCpp/Column.h>
+#include <SQLiteCpp/Transaction.h>
 
 
 /**

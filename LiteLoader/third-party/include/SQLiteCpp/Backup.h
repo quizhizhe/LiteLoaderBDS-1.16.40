@@ -11,7 +11,7 @@
  */
 #pragma once
 
-#include "Database.h"
+#include <SQLiteCpp/Database.h>
 
 #include <string>
 

@@ -11,15 +11,15 @@
 # define OPENSSL_MD5_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_MD5_H
 # endif
 
-# include "opensslconf.h"
+# include <openssl/opensslconf.h>
 
 # ifndef OPENSSL_NO_MD5
-#  include "e_os2.h"
+#  include <openssl/e_os2.h>
 #  include <stddef.h>
 #  ifdef  __cplusplus
 extern "C" {

@@ -109,7 +109,7 @@ authenticated_as when proxy mapping should be done by the server.
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 struct MYSQL_PLUGIN_VIO_INFO {

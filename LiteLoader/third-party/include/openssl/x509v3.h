@@ -16,15 +16,15 @@
 # define OPENSSL_X509V3_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_X509V3_H
 # endif
 
-# include "bio.h"
-# include "x509.h"
-# include "conf.h"
-# include "x509v3err.h"
+# include <openssl/bio.h>
+# include <openssl/x509.h>
+# include <openssl/conf.h>
+# include <openssl/x509v3err.h>
 
 #ifdef __cplusplus
 extern "C" {

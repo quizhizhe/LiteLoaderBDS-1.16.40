@@ -11,12 +11,12 @@
 # define OPENSSL_AES_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_AES_H
 # endif
 
-# include "opensslconf.h"
+# include <openssl/opensslconf.h>
 
 # include <stddef.h>
 # ifdef  __cplusplus

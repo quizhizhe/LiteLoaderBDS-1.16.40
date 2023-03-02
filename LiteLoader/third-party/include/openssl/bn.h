@@ -12,19 +12,19 @@
 # define OPENSSL_BN_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_BN_H
 # endif
 
-# include "e_os2.h"
+# include <openssl/e_os2.h>
 # ifndef OPENSSL_NO_STDIO
 #  include <stdio.h>
 # endif
-# include "opensslconf.h"
-# include "types.h"
-# include "crypto.h"
-# include "bnerr.h"
+# include <openssl/opensslconf.h>
+# include <openssl/types.h>
+# include <openssl/crypto.h>
+# include <openssl/bnerr.h>
 
 #ifdef  __cplusplus
 extern "C" {

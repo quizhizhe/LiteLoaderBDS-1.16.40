@@ -17,9 +17,9 @@
 extern "C" {
 # endif
 
-# include "e_os2.h"
-# include "safestack.h"
-# include "macros.h"
+# include <openssl/e_os2.h>
+# include <openssl/safestack.h>
+# include <openssl/macros.h>
 
 typedef struct ossl_provider_st OSSL_PROVIDER; /* Provider Object */
 

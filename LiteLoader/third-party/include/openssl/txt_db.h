@@ -11,15 +11,15 @@
 # define OPENSSL_TXT_DB_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_TXT_DB_H
 # endif
 
-# include "opensslconf.h"
-# include "bio.h"
-# include "safestack.h"
-# include "lhash.h"
+# include <openssl/opensslconf.h>
+# include <openssl/bio.h>
+# include <openssl/safestack.h>
+# include <openssl/lhash.h>
 
 # define DB_ERROR_OK                     0
 # define DB_ERROR_MALLOC                 1

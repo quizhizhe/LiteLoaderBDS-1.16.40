@@ -55,9 +55,9 @@ typedef uint64_t my_ulonglong;
 #ifndef my_socket_defined
 #define my_socket_defined
 #ifdef _WIN32
-#include <Windows.h>
+#include <windows.h>
 #ifdef WIN32_LEAN_AND_MEAN
-#include <WinSock2.h>
+#include <winsock2.h>
 #endif
 #define my_socket SOCKET
 #else
@@ -80,7 +80,7 @@ typedef int my_socket;
 #include "mysql_com.h"
 
 /* Include declarations of plug-in API */
-#include "third-party/include/mysql/mysql/client_plugin.h"  // IWYU pragma: keep
+#include "mysql/client_plugin.h"  // IWYU pragma: keep
 
 /*
   The client should be able to know which version it is compiled against,

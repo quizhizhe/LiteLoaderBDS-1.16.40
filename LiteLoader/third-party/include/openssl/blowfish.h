@@ -11,15 +11,15 @@
 # define OPENSSL_BLOWFISH_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_BLOWFISH_H
 # endif
 
-# include "opensslconf.h"
+# include <openssl/opensslconf.h>
 
 # ifndef OPENSSL_NO_BF
-# include "e_os2.h"
+# include <openssl/e_os2.h>
 # ifdef  __cplusplus
 extern "C" {
 # endif

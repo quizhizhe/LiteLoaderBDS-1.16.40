@@ -12,9 +12,9 @@
 # define OPENSSL_PKCS7ERR_H
 # pragma once
 
-# include "opensslconf.h"
-# include "symhacks.h"
-# include "cryptoerr_legacy.h"
+# include <openssl/opensslconf.h>
+# include <openssl/symhacks.h>
+# include <openssl/cryptoerr_legacy.h>
 
 
 

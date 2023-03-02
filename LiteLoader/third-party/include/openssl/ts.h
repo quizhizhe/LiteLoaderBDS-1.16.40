@@ -11,31 +11,31 @@
 # define OPENSSL_TS_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_TS_H
 # endif
 
-# include "opensslconf.h"
+# include <openssl/opensslconf.h>
 
 # ifndef OPENSSL_NO_TS
-# include "symhacks.h"
-# include "buffer.h"
-# include "evp.h"
-# include "bio.h"
-# include "asn1.h"
-# include "safestack.h"
-# include "rsa.h"
-# include "dsa.h"
-# include "dh.h"
-# include "tserr.h"
-# include "ess.h"
+# include <openssl/symhacks.h>
+# include <openssl/buffer.h>
+# include <openssl/evp.h>
+# include <openssl/bio.h>
+# include <openssl/asn1.h>
+# include <openssl/safestack.h>
+# include <openssl/rsa.h>
+# include <openssl/dsa.h>
+# include <openssl/dh.h>
+# include <openssl/tserr.h>
+# include <openssl/ess.h>
 # ifdef  __cplusplus
 extern "C" {
 # endif
 
-# include "x509.h"
-# include "x509v3.h"
+# include <openssl/x509.h>
+# include <openssl/x509v3.h>
 
 typedef struct TS_msg_imprint_st TS_MSG_IMPRINT;
 typedef struct TS_req_st TS_REQ;

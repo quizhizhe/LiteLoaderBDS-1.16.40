@@ -1072,7 +1072,7 @@ struct rand_struct {
 };
 
 /* Include the types here so existing UDFs can keep compiling */
-#include "third-party/include/mysql/mysql/udf_registration_types.h"
+#include "mysql/udf_registration_types.h"
 
 /**
   @addtogroup group_cs_compresson_constants Constants when using compression

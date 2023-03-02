@@ -11,7 +11,7 @@
 # define OPENSSL_CMAC_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_CMAC_H
 # endif
@@ -22,7 +22,7 @@
 extern "C" {
 #  endif
 
-#  include "evp.h"
+#  include <openssl/evp.h>
 
 #  ifndef OPENSSL_NO_DEPRECATED_3_0
 /* Opaque */

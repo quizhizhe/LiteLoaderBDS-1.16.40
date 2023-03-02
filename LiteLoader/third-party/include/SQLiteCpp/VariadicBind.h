@@ -13,7 +13,7 @@
 
 #if (__cplusplus >= 201402L) || ( defined(_MSC_VER) && (_MSC_VER >= 1900) ) // c++14: Visual Studio 2015
 
-#include "Statement.h"
+#include <SQLiteCpp/Statement.h>
 
 /// @cond
 #include <utility>

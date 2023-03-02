@@ -7,7 +7,7 @@
 #include <Psapi.h>
 #include <iostream>
 #include <vector>
-#include <Xinput.h>
+#include <xinput.h>
 #include <sstream>
 #include <map>
 #include <chrono>

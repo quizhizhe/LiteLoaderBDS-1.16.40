@@ -12,8 +12,8 @@
 # define OPENSSL_PARAMS_H
 # pragma once
 
-# include "core.h"
-# include "bn.h"
+# include <openssl/core.h>
+# include <openssl/bn.h>
 
 # ifdef  __cplusplus
 extern "C" {

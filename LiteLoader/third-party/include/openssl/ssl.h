@@ -18,30 +18,30 @@
 # define OPENSSL_SSL_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_SSL_H
 # endif
 
-# include "e_os2.h"
-# include "opensslconf.h"
-# include "comp.h"
-# include "bio.h"
+# include <openssl/e_os2.h>
+# include <openssl/opensslconf.h>
+# include <openssl/comp.h>
+# include <openssl/bio.h>
 # ifndef OPENSSL_NO_DEPRECATED_1_1_0
-#  include "x509.h"
-#  include "crypto.h"
-#  include "buffer.h"
+#  include <openssl/x509.h>
+#  include <openssl/crypto.h>
+#  include <openssl/buffer.h>
 # endif
-# include "lhash.h"
-# include "pem.h"
-# include "hmac.h"
-# include "async.h"
+# include <openssl/lhash.h>
+# include <openssl/pem.h>
+# include <openssl/hmac.h>
+# include <openssl/async.h>
 
-# include "safestack.h"
-# include "symhacks.h"
-# include "ct.h"
-# include "sslerr.h"
-# include "prov_ssl.h"
+# include <openssl/safestack.h>
+# include <openssl/symhacks.h>
+# include <openssl/ct.h>
+# include <openssl/sslerr.h>
+# include <openssl/prov_ssl.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -960,11 +960,11 @@ uint32_t SSL_get_recv_max_early_data(const SSL *s);
 }
 #endif
 
-# include "ssl2.h"
-# include "ssl3.h"
-# include "tls1.h"      /* This is mostly sslv3 with a few tweaks */
-# include "dtls1.h"     /* Datagram TLS */
-# include "srtp.h"      /* Support for the use_srtp extension */
+# include <openssl/ssl2.h>
+# include <openssl/ssl3.h>
+# include <openssl/tls1.h>      /* This is mostly sslv3 with a few tweaks */
+# include <openssl/dtls1.h>     /* Datagram TLS */
+# include <openssl/srtp.h>      /* Support for the use_srtp extension */
 
 #ifdef  __cplusplus
 extern "C" {

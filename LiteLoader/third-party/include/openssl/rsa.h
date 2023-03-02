@@ -11,22 +11,22 @@
 # define OPENSSL_RSA_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_RSA_H
 # endif
 
-# include "opensslconf.h"
+# include <openssl/opensslconf.h>
 
-# include "asn1.h"
-# include "bio.h"
-# include "crypto.h"
-# include "types.h"
+# include <openssl/asn1.h>
+# include <openssl/bio.h>
+# include <openssl/crypto.h>
+# include <openssl/types.h>
 # ifndef OPENSSL_NO_DEPRECATED_1_1_0
-#  include "bn.h"
+#  include <openssl/bn.h>
 # endif
-# include "rsaerr.h"
-# include "safestack.h"
+# include <openssl/rsaerr.h>
+# include <openssl/safestack.h>
 
 # ifdef  __cplusplus
 extern "C" {

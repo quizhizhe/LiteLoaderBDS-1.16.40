@@ -13,7 +13,7 @@
 # define OPENSSL_ASYNC_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_ASYNC_H
 # endif
@@ -28,7 +28,7 @@
 #define OSSL_ASYNC_FD       int
 #define OSSL_BAD_ASYNC_FD   -1
 #endif
-# include "asyncerr.h"
+# include <openssl/asyncerr.h>
 
 
 # ifdef  __cplusplus

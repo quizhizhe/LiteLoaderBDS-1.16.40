@@ -4,9 +4,9 @@
 
 #include <cstddef>
 #include <tuple>
-#include "third-party/include/entt/core/type_info.hpp"
-#include "third-party/include/entt/core/type_traits.hpp"
-#include "third-party/include/entt/poly/poly.hpp"
+#include "../core/type_info.hpp"
+#include "../core/type_traits.hpp"
+#include "../poly/poly.hpp"
 #include "fwd.hpp"
 
 

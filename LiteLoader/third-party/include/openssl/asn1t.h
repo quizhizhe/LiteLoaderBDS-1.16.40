@@ -16,14 +16,14 @@
 # define OPENSSL_ASN1T_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_ASN1T_H
 # endif
 
 # include <stddef.h>
-# include "e_os2.h"
-# include "asn1.h"
+# include <openssl/e_os2.h>
+# include <openssl/asn1.h>
 
 # ifdef OPENSSL_BUILD_SHLIBCRYPTO
 #  undef OPENSSL_EXTERN

@@ -13,14 +13,14 @@
 # define OPENSSL_TLS1_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_TLS1_H
 # endif
 
-# include "buffer.h"
-# include "x509.h"
-# include "prov_ssl.h"
+# include <openssl/buffer.h>
+# include <openssl/x509.h>
+# include <openssl/prov_ssl.h>
 
 #ifdef  __cplusplus
 extern "C" {

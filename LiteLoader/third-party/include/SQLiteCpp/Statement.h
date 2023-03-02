@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include "Exception.h"
+#include <SQLiteCpp/Exception.h>
 
 #include <string>
 #include <map>

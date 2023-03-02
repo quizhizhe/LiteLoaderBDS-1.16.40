@@ -10,8 +10,8 @@
  */
 #pragma once
 
-#include "Statement.h"
-#include "Exception.h"
+#include <SQLiteCpp/Statement.h>
+#include <SQLiteCpp/Exception.h>
 
 #include <string>
 #include <climits> // For INT_MAX

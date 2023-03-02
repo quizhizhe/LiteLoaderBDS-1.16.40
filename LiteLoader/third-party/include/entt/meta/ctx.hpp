@@ -2,8 +2,8 @@
 #define ENTT_META_CTX_HPP
 
 
-#include "third-party/include/entt/core/attribute.h"
-#include "third-party/include/entt/config/config.h"
+#include "../core/attribute.h"
+#include "../config/config.h"
 
 
 namespace entt {

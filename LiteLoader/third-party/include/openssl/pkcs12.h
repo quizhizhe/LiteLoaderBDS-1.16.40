@@ -16,15 +16,15 @@
 # define OPENSSL_PKCS12_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_PKCS12_H
 # endif
 
-# include "bio.h"
-# include "core.h"
-# include "x509.h"
-# include "pkcs12err.h"
+# include <openssl/bio.h>
+# include <openssl/core.h>
+# include <openssl/x509.h>
+# include <openssl/pkcs12err.h>
 
 #ifdef __cplusplus
 extern "C" {

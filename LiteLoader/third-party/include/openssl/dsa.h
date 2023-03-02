@@ -11,13 +11,13 @@
 # define OPENSSL_DSA_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_DSA_H
 # endif
 
-# include "opensslconf.h"
-# include "types.h"
+# include <openssl/opensslconf.h>
+# include <openssl/types.h>
 
 # ifdef  __cplusplus
 extern "C" {
@@ -42,15 +42,15 @@ int EVP_PKEY_CTX_set_dsa_paramgen_md(EVP_PKEY_CTX *ctx, const EVP_MD *md);
 # define EVP_PKEY_CTRL_DSA_PARAMGEN_MD           (EVP_PKEY_ALG_CTRL + 3)
 
 # ifndef OPENSSL_NO_DSA
-#  include "e_os2.h"
-#  include "asn1.h"
-#  include "bio.h"
-#  include "crypto.h"
-#  include "bn.h"
+#  include <openssl/e_os2.h>
+#  include <openssl/asn1.h>
+#  include <openssl/bio.h>
+#  include <openssl/crypto.h>
+#  include <openssl/bn.h>
 #  ifndef OPENSSL_NO_DEPRECATED_1_1_0
-#   include "dh.h"
+#   include <openssl/dh.h>
 #  endif
-#  include "dsaerr.h"
+#  include <openssl/dsaerr.h>
 
 #  ifndef OPENSSL_DSA_MAX_MODULUS_BITS
 #   define OPENSSL_DSA_MAX_MODULUS_BITS   10000

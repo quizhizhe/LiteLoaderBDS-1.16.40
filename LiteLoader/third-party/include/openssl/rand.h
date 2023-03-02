@@ -11,16 +11,16 @@
 # define OPENSSL_RAND_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_RAND_H
 # endif
 
 # include <stdlib.h>
-# include "types.h"
-# include "e_os2.h"
-# include "randerr.h"
-# include "evp.h"
+# include <openssl/types.h>
+# include <openssl/e_os2.h>
+# include <openssl/randerr.h>
+# include <openssl/evp.h>
 
 #ifdef  __cplusplus
 extern "C" {

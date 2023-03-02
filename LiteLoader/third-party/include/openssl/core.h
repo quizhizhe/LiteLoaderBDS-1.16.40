@@ -12,7 +12,7 @@
 # pragma once
 
 # include <stddef.h>
-# include "types.h"
+# include <openssl/types.h>
 
 # ifdef __cplusplus
 extern "C" {

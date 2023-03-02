@@ -13,11 +13,11 @@
 # define OPENSSL_CMP_UTIL_H
 # pragma once
 
-# include "opensslconf.h"
+# include <openssl/opensslconf.h>
 # ifndef OPENSSL_NO_CMP
 
-#  include "macros.h"
-#  include "trace.h"
+#  include <openssl/macros.h>
+#  include <openssl/trace.h>
 
 #  ifdef __cplusplus
 extern "C" {

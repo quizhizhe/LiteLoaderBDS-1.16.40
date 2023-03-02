@@ -11,12 +11,12 @@
 # define OPENSSL_CAMELLIA_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_CAMELLIA_H
 # endif
 
-# include "opensslconf.h"
+# include <openssl/opensslconf.h>
 
 # ifndef OPENSSL_NO_CAMELLIA
 # include <stddef.h>

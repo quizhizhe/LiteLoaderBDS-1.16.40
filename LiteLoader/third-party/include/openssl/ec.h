@@ -12,13 +12,13 @@
 # define OPENSSL_EC_H
 # pragma once
 
-# include "macros.h"
+# include <openssl/macros.h>
 # ifndef OPENSSL_NO_DEPRECATED_3_0
 #  define HEADER_EC_H
 # endif
 
-# include "opensslconf.h"
-# include "types.h"
+# include <openssl/opensslconf.h>
+# include <openssl/types.h>
 
 # include <string.h>
 
@@ -89,18 +89,18 @@ typedef enum {
 const char *OSSL_EC_curve_nid2name(int nid);
 
 # ifndef OPENSSL_NO_EC
-#  include "asn1.h"
-#  include "symhacks.h"
+#  include <openssl/asn1.h>
+#  include <openssl/symhacks.h>
 #  ifndef OPENSSL_NO_DEPRECATED_1_1_0
-#   include "bn.h"
+#   include <openssl/bn.h>
 #  endif
-#  include "ecerr.h"
+#  include <openssl/ecerr.h>
 
 #  ifndef OPENSSL_ECC_MAX_FIELD_BITS
 #   define OPENSSL_ECC_MAX_FIELD_BITS 661
 #  endif
 
-#  include "params.h"
+#  include <openssl/params.h>
 #  ifndef OPENSSL_NO_DEPRECATED_3_0
 typedef struct ec_method_st EC_METHOD;
 #  endif

@@ -11,7 +11,7 @@
 # define OPENSSL_SELF_TEST_H
 # pragma once
 
-# include "core.h" /* OSSL_CALLBACK */
+# include <openssl/core.h> /* OSSL_CALLBACK */
 
 # ifdef __cplusplus
 extern "C" {

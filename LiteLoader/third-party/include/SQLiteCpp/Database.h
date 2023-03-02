@@ -10,8 +10,8 @@
  */
 #pragma once
 
-#include "Column.h"
-#include "Utils.h"    // definition of nullptr for C++98/C++03 compilers
+#include <SQLiteCpp/Column.h>
+#include <SQLiteCpp/Utils.h>    // definition of nullptr for C++98/C++03 compilers
 
 #include <string.h>
 
