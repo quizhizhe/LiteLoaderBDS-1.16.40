@@ -15,7 +15,7 @@
 #include "ScriptEngine/src/main/Configs.h"
 
 using namespace RegisterCommandHelper;
-using namespace LL;
+using namespace ll;
 
 //static_assert(sizeof(CommandSelector<Player>) == 200);
 
@@ -149,7 +149,7 @@ public:
 };
 
 void LLListPluginsCommand(CommandOutput& output) {
-    auto plugins = LL::getAllPlugins();
+    auto plugins = ll::getAllPlugins();
     output.trSuccess("ll.cmd.listPlugin.overview", plugins.size());
 
     std::ostringstream oss;
@@ -170,7 +170,7 @@ void LLListPluginsCommand(CommandOutput& output) {
 }
 
 void LLPluginInfoCommand(CommandOutput& output, const string& pluginName) {
-    auto plugin = LL::getPlugin(pluginName);
+    auto plugin = ll::getPlugin(pluginName);
     if (plugin) {
         std::map<std::string, std::string> outs;
         std::ostringstream oss;
@@ -201,7 +201,7 @@ void LLPluginInfoCommand(CommandOutput& output, const string& pluginName) {
 }
 
 void LLVersionCommand(CommandOutput& output) {
-    output.trSuccess("ll.cmd.version.msg", LL::getBdsVersion(), LL::getLoaderVersionString(), LL::getServerProtocolVersion());
+    output.trSuccess("ll.cmd.version.msg", ll::getBdsVersion(), ll::getLoaderVersionString(), ll::getServerProtocolVersion());
 }
 
 void LLHelpCommand(CommandOutput& output) {
@@ -209,7 +209,7 @@ void LLHelpCommand(CommandOutput& output) {
 }
 
 void LLLoadPluginCommand(CommandOutput& output, const string& path) {
-    // if (!LL::isDebugMode())
+    // if (!ll::isDebugMode())
     //     return;
     if (PluginManager::loadPlugin(path, true)) {
         output.trSuccess("ll.cmd.loadPlugin.success", path);
@@ -219,7 +219,7 @@ void LLLoadPluginCommand(CommandOutput& output, const string& path) {
 }
 
 void LLUnloadPluginCommand(CommandOutput& output, const string& pluginName) {
-    // if (!LL::isDebugMode())
+    // if (!ll::isDebugMode())
     //     return;
     if (PluginManager::unloadPlugin(pluginName, true)) {
         output.trSuccess("ll.cmd.unloadPlugin.success", pluginName);
@@ -229,7 +229,7 @@ void LLUnloadPluginCommand(CommandOutput& output, const string& pluginName) {
 }
 
 void LLReloadPluginCommand(CommandOutput& output, const string& pluginName, bool reloadAll) {
-    // if (!LL::isDebugMode())
+    // if (!ll::isDebugMode())
     //     return;
     if (!reloadAll) {
         if (PluginManager::reloadPlugin(pluginName, true)) {
@@ -316,7 +316,7 @@ public:
 
         // Register softenum
         vector<string> pluginList;
-        for (auto& [name, p] : LL::getAllPlugins()) {
+        for (auto& [name, p] : ll::getAllPlugins()) {
             pluginList.push_back(name);
         }
         registry->addSoftEnum("PluginName", pluginList);
@@ -381,7 +381,7 @@ void RegisterCommands() {
     Event::RegCmdEvent::subscribe([](Event::RegCmdEvent ev) { // Register commands
         LLCommand::setup(ev.mCommandRegistry);
         VersionCommand::setup(ev.mCommandRegistry);
-        if (LL::globalConfig.enableTpdimCommand) {
+        if (ll::globalConfig.enableTpdimCommand) {
             TeleportDimensionCommand::setup(ev.mCommandRegistry);
         }
         return true;

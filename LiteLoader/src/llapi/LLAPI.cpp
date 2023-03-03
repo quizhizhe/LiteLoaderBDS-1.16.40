@@ -10,7 +10,7 @@
 
 using namespace std;
 
-std::string LL::getDataPath(const std::string& pluginName) {
+std::string ll::getDataPath(const std::string& pluginName) {
     string dataPath = "plugins\\LiteLoader\\" + pluginName;
     if (!filesystem::exists(str2wstr(dataPath))) {
         std::error_code ec;
@@ -19,53 +19,53 @@ std::string LL::getDataPath(const std::string& pluginName) {
     return dataPath;
 }
 
-std::string LL::getLoaderVersionString() {
+std::string ll::getLoaderVersionString() {
     return getLoaderVersion().toString();
 }
 
-LL::Version LL::getLoaderVersion() {
-    return Version(LITELOADER_VERSION_MAJOR, LITELOADER_VERSION_MINOR, LITELOADER_VERSION_REVISION, (LL::Version::Status)LITELOADER_VERSION_STATUS);
+ll::Version ll::getLoaderVersion() {
+    return Version(LITELOADER_VERSION_MAJOR, LITELOADER_VERSION_MINOR, LITELOADER_VERSION_REVISION, (ll::Version::Status)LITELOADER_VERSION_STATUS);
 }
 
-bool LL::isDebugMode() {
-    return LL::globalConfig.debugMode;
+bool ll::isDebugMode() {
+    return ll::globalConfig.debugMode;
 }
 
-LL::Plugin* LL::getPlugin(std::string name) {
+ll::Plugin* ll::getPlugin(std::string name) {
     return PluginManager::getPlugin(name);
 }
 
-LL::Plugin* LL::getPlugin(HMODULE handle) {
+ll::Plugin* ll::getPlugin(HMODULE handle) {
     return PluginManager::getPlugin(handle);
 }
 
-bool LL::hasPlugin(std::string name) {
+bool ll::hasPlugin(std::string name) {
     return PluginManager::hasPlugin(name);
 }
 
-std::unordered_map<std::string, LL::Plugin*> LL::getAllPlugins() {
+std::unordered_map<std::string, ll::Plugin*> ll::getAllPlugins() {
     return PluginManager::getAllPlugins();
 }
 
-HMODULE LL::getLoaderHandle() {
+HMODULE ll::getLoaderHandle() {
     return GetCurrentModule();
 }
 
 // Version
-LL::Version::Version(int major, int minor, int revision, Status status)
+ll::Version::Version(int major, int minor, int revision, Status status)
 : major(major), minor(minor), revision(revision), status(status) {
 }
 
-bool LL::Version::operator<(LL::Version b) {
+bool ll::Version::operator<(ll::Version b) {
     return major < b.major || (major == b.major && minor < b.minor) ||
            (major == b.major && minor == b.minor && revision < b.revision);
 }
 
-bool LL::Version::operator==(LL::Version b) {
+bool ll::Version::operator==(ll::Version b) {
     return major == b.major && minor == b.minor && revision == b.revision;
 }
 
-std::string LL::Version::toString(bool needStatus) {
+std::string ll::Version::toString(bool needStatus) {
     string res = to_string(major) + "." + to_string(minor) + "." + to_string(revision);
     if (needStatus) {
         if (status == Status::Beta)
@@ -77,7 +77,7 @@ std::string LL::Version::toString(bool needStatus) {
 }
 
 
-LL::Version LL::Version::parse(const std::string& str) {
+ll::Version ll::Version::parse(const std::string& str) {
     Version ver;
     std::string a = str;
     std::string status;
@@ -106,18 +106,18 @@ LL::Version LL::Version::parse(const std::string& str) {
     return ver;
 }
 
-LL::ServerStatus LL::getServerStatus() {
-    return (LL::ServerStatus)(LL::globalConfig.serverStatus);
+ll::ServerStatus ll::getServerStatus() {
+    return (ll::ServerStatus)(ll::globalConfig.serverStatus);
 }
 
-bool LL::isServerStarting() {
-    return getServerStatus() == LL::ServerStatus::Starting;
+bool ll::isServerStarting() {
+    return getServerStatus() == ll::ServerStatus::Starting;
 }
 
-bool LL::isServerStopping() {
-    return getServerStatus() == LL::ServerStatus::Stopping;
+bool ll::isServerStopping() {
+    return getServerStatus() == ll::ServerStatus::Stopping;
 }
 
-std::string LL::getLanguage() {
-    return LL::globalConfig.language;
+std::string ll::getLanguage() {
+    return ll::globalConfig.language;
 }

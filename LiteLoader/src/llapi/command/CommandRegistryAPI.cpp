@@ -93,7 +93,7 @@
 
  #include <liteloader/Config.h>
  bool CommandRegistry::unregisterCommand(std::string const& name) {
-     if (!LL::globalConfig.debugMode) {
+     if (!ll::globalConfig.debugMode) {
          logger.error("unregister command is only enabled in debug mode");
          return false;
      }

@@ -1752,7 +1752,7 @@ Local<Value> PlayerClass::sendSimpleForm(const Arguments& args) {
         player->sendSimpleFormPacket(args[0].toStr(), args[1].toStr(), texts, images,
                                      [id{player->getUniqueID()}, engine{EngineScope::currentEngine()},
                                       callback{script::Global(args[4].asFunction())}](int chosen) {
-                                         if (LL::isServerStopping())
+                                         if (ll::isServerStopping())
                                              return;
                                          if (!EngineManager::isValid(engine))
                                              return;
@@ -1790,7 +1790,7 @@ Local<Value> PlayerClass::sendModalForm(const Arguments& args) {
         player->sendModalFormPacket(args[0].toStr(), args[1].toStr(), args[2].toStr(), args[3].toStr(),
                                     [id{player->getUniqueID()}, engine{EngineScope::currentEngine()},
                                      callback{script::Global(args[4].asFunction())}](bool chosen) {
-                                        if (LL::isServerStopping())
+                                        if (ll::isServerStopping())
                                             return;
                                         if (!EngineManager::isValid(engine))
                                             return;
@@ -1827,7 +1827,7 @@ Local<Value> PlayerClass::sendCustomForm(const Arguments& args) {
         player->sendCustomFormPacket(data,
                                      [id{player->getUniqueID()}, engine{EngineScope::currentEngine()},
                                       callback{script::Global(args[1].asFunction())}](string result) {
-                                         if (LL::isServerStopping())
+                                         if (ll::isServerStopping())
                                              return;
                                          if (!EngineManager::isValid(engine))
                                              return;

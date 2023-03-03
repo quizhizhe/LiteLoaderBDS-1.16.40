@@ -18,7 +18,7 @@
 #include "llapi/utils/PluginOwnData.h"
 
 // LL types
-namespace LL {
+namespace ll {
 
 struct Version {
     enum Status {
@@ -67,23 +67,23 @@ struct Plugin {
     }
 };
 
-} // namespace LL
-inline bool operator<=(LL::Version a, LL::Version b) {
+} // namespace ll
+inline bool operator<=(ll::Version a, ll::Version b) {
     return a < b || a == b;
 }
-inline bool operator>(LL::Version a, LL::Version b) {
+inline bool operator>(ll::Version a, ll::Version b) {
     return b < a;
 }
-inline bool operator>=(LL::Version a, LL::Version b) {
+inline bool operator>=(ll::Version a, ll::Version b) {
     return b < a || b == a;
 }
 
 // helper
-LIAPI bool RegisterPlugin(HMODULE hPlugin, std::string name, std::string desc, LL::Version version,
+LIAPI bool RegisterPlugin(HMODULE hPlugin, std::string name, std::string desc, ll::Version version,
                           std::map<std::string, std::string> others);
 
 // Loader APIs
-namespace LL {
+namespace ll {
 
 /**
  * @brief Get the loader version as a string
@@ -94,7 +94,7 @@ LIAPI std::string getLoaderVersionString();
 /**
  * @brief Get the loader version as a Version object
  *
- * @return LL::Version  The loader version
+ * @return ll::Version  The loader version
  */
 LIAPI Version getLoaderVersion();
 /**
@@ -117,14 +117,14 @@ LIAPI std::string getDataPath(const std::string& pluginName);
  *
  * @param  name     The name of the plugin
  * @param  desc     The description(introduction) of the plugin
- * @param  version  The version of the plugin(LL::Version)
+ * @param  version  The version of the plugin(ll::Version)
  * @param  git      The git information of the plugin
  * @param  license  The license of the plugin
  * @param  website  The website
  * @return bool     True if the plugin is registered successfully
  * @note   The implementation of this function must be in header file(because of `GetCurrentModule`)
  */
-inline bool registerPlugin(std::string name, std::string desc, LL::Version version,
+inline bool registerPlugin(std::string name, std::string desc, ll::Version version,
                            std::string git = "", std::string license = "", std::string website = "") {
     std::map<std::string, std::string> others;
     if (!git.empty())
@@ -141,17 +141,17 @@ inline bool registerPlugin(std::string name, std::string desc, LL::Version versi
  *
  * @param  name     The name of the plugin
  * @param  desc     The descirption(introduction) of the plugin
- * @param  version  The version of the plugin(LL::Version)
+ * @param  version  The version of the plugin(ll::Version)
  * @param  others   The other information of the plugin(key-value)
  * @return bool     True if the plugin is registered successfully
  * @note   The implementation of this function must be in header file(because of `GetCurrentModule`)
  *
  * @par Example
  * @code
- * LL::registerPlugin("Test", "A test plugin", Version(0, 0, 1, Version::Dev), {{"Note","This is Note"}});
+ * ll::registerPlugin("Test", "A test plugin", Version(0, 0, 1, Version::Dev), {{"Note","This is Note"}});
  * @endcode
  */
-inline bool registerPlugin(std::string name, std::string desc, LL::Version version,
+inline bool registerPlugin(std::string name, std::string desc, ll::Version version,
                            std::map<std::string, std::string> others) {
     return ::RegisterPlugin(GetCurrentModule(), name, desc, version, others);
 }
@@ -160,16 +160,16 @@ inline bool registerPlugin(std::string name, std::string desc, LL::Version versi
  * @brief Get a loaded plugin by name
  *
  * @param  name         The name of the plugin
- * @return LL::Plugin*  The plugin(nullptr if not found)
+ * @return ll::Plugin*  The plugin(nullptr if not found)
  */
-LIAPI LL::Plugin* getPlugin(std::string name);
+LIAPI ll::Plugin* getPlugin(std::string name);
 /**
  * @brief Get a loaded plugin by HMODULE handle
  *
  * @param  name         The name of the plugin
- * @return LL::Plugin*  The plugin(nullptr if not found)
+ * @return ll::Plugin*  The plugin(nullptr if not found)
  */
-LIAPI LL::Plugin* getPlugin(HMODULE handle);
+LIAPI ll::Plugin* getPlugin(HMODULE handle);
 
 /**
  * @brief Get whether the plugin is loaded
@@ -182,9 +182,9 @@ LIAPI bool hasPlugin(std::string name);
 /**
  * @brief Get the All the loaded plugins
  *
- * @return std::unordered_map<std::string, LL::Plugin*>  The loaded plugins(name-plugin)
+ * @return std::unordered_map<std::string, ll::Plugin*>  The loaded plugins(name-plugin)
  */
-LIAPI std::unordered_map<std::string, LL::Plugin*> getAllPlugins();
+LIAPI std::unordered_map<std::string, ll::Plugin*> getAllPlugins();
 
 /**
  * @breif Get the handle of LiteLoader.dll.
@@ -209,4 +209,4 @@ LIAPI bool isServerStopping();
  * @return std::string  Language(such as: en, zh_CN, ja, ru)
  */
 std::string getLanguage();
-}; // namespace LL
+}; // namespace ll

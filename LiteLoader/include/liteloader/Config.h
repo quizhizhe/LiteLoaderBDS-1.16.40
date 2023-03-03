@@ -15,7 +15,7 @@ constexpr const char* NoCrashLogger[] = {"AntiCheats"};
 /////////////////////// LL Configs ///////////////////////
 #define LITELOADER_CONFIG_FILE "plugins/LiteLoader/LiteLoader.json"
 
-namespace LL {
+namespace ll {
 struct CommandLineOption {
     bool noColorOption = false;
 };
@@ -77,7 +77,7 @@ void inline from_json(const nlohmann::json& j, LLConfig& conf);
 bool LoadLLConfig();
 
 bool SaveLLConfig();
-} // namespace LL
+} // namespace ll
 
 /////////////////////// Addon Helper ///////////////////////
 

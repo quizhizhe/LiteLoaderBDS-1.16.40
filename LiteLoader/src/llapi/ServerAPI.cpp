@@ -6,7 +6,7 @@
 #include <string>
 class UserEntityIdentifierComponent;
 
-namespace LL {
+namespace ll {
 std::string getBdsVersion() {
     return Common::getGameVersionString();
 }
@@ -22,4 +22,4 @@ bool setServerMotd(const std::string& motd) {
     Global<ServerNetworkHandler>->allowIncomingConnections(motd, true);
     return true;
 }
-} // namespace LL
+} // namespace ll

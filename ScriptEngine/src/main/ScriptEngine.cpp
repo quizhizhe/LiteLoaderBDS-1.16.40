@@ -34,15 +34,15 @@ extern void LoadDebugEngine();
 
 void entry() {
     // Enable thread SEH protection
-    if (!LL::isDebugMode())
+    if (!ll::isDebugMode())
         _set_se_translator(seh_exception::TranslateSEHtoCE);
 
     // Register myself
-    LL::registerPlugin(LLSE_LOADER_NAME, LLSE_LOADER_DESCRIPTION, LITELOADER_VERSION,
+    ll::registerPlugin(LLSE_LOADER_NAME, LLSE_LOADER_DESCRIPTION, LITELOADER_VERSION,
                        {{"GitHub", "github.com/LiteLDev/LiteLoaderBDS"}});
 
     // Load i18n files
-    Translation::loadFromImpl(GetCurrentModule(), LL::getLoaderHandle());
+    Translation::loadFromImpl(GetCurrentModule(), ll::getLoaderHandle());
 
     // Init global share data
     InitLocalShareData();
@@ -55,7 +55,7 @@ void entry() {
     }
 
     // Init builtin economy system
-    if (LL::globalConfig.enableEconomyCore) {
+    if (ll::globalConfig.enableEconomyCore) {
         EconomySystem::init();
     }
 

@@ -2,8 +2,8 @@
 #include <string>
 #include "Global.h"
 
-namespace LL {
+namespace ll {
 LIAPI std::string getBdsVersion();
 LIAPI int getServerProtocolVersion();
 LIAPI bool setServerMotd(const std::string& motd);
-} // namespace LL
+} // namespace ll

@@ -1141,7 +1141,7 @@ void InitBasicEventListeners() {
 
     // Plugin Hot Management
     Event::ScriptPluginManagerEvent::subscribe_ref([](ScriptPluginManagerEvent& ev) {
-        // if (!LL::isDebugMode())
+        // if (!ll::isDebugMode())
         //     return false;
 
         switch (ev.operation) {

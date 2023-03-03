@@ -127,7 +127,7 @@
      logger.error(errorMsg);
      logger.error("Error: Code [{}] {}", errorCode, errorWhat);
      logger.error("In Function ({})", func);
-     if (auto plugin = LL::getPlugin(handle))
+     if (auto plugin = ll::getPlugin(handle))
          logger.error("In Plugin <{}>", plugin->name);
  }
 
@@ -537,7 +537,7 @@
          std::string name = command->getCommandName();
          auto handle = command->handle;
          try {
-             if (!LL::getPlugin(handle) && handle != GetCurrentModule())
+             if (!ll::getPlugin(handle) && handle != GetCurrentModule())
                  throw std::runtime_error("Plugin that registered command \"" + name + "\" not found");
              auto res = DynamicCommand::_setup(std::move(command));
              if (!res)
@@ -698,7 +698,7 @@
  }
 
  inline std::unique_ptr<DynamicCommandInstance> DynamicCommandInstance::create(std::string const& name, std::string const& description, CommandPermissionLevel permission, CommandFlag flag, HMODULE handle) {
-     if (LL::globalConfig.serverStatus != LL::LLServerStatus::Running) {
+     if (ll::globalConfig.serverStatus != ll::LLServerStatus::Running) {
          for (auto& cmd : delaySetupCommandInstances) {
              if (cmd->name == name) {
                  logger.error("Command \"{}\" already exists", name);
@@ -1279,7 +1279,7 @@
 
  TClasslessInstanceHook(void, "?compile@BaseCommandBlock@@AEAAXAEBVCommandOrigin@@AEAVLevel@@@Z",
                         class CommandOrigin const& origin, class Level& level) {
-     if (LL::globalConfig.tickThreadId != std::this_thread::get_id()) {
+     if (ll::globalConfig.tickThreadId != std::this_thread::get_id()) {
          SRWLockSharedHolder locker(delaySetupLock);
          return original(this, origin, level);
      }

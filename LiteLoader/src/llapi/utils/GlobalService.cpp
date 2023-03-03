@@ -111,7 +111,7 @@ TInstanceHook(Scoreboard*, "??0ServerScoreboard@@QEAA@VCommandSoftEnumRegistry@@
 #include <llapi/mc/PropertiesSettings.hpp>
 TInstanceHook(size_t, "??0PropertiesSettings@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z", PropertiesSettings, const std::string& file) {
     auto out = original(this, file);
-//    if (LL::globalConfig.enableUnoccupyPort19132) {
+//    if (ll::globalConfig.enableUnoccupyPort19132) {
 //        // logger.warn("If you turn on this feature, your server will not be displayed on the LAN");
 //        DWORD v4Flag, v6Flag;
 //        VirtualProtect((void*)&SharedConstants::NetworkDefaultGamePort, 4, PAGE_READWRITE, &v4Flag);

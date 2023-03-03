@@ -153,10 +153,10 @@ void WSClientClass::initListeners() {
 
 void WSClientClass::initListeners_s() {
     ws->OnTextReceived([nowList{&listeners[int(WSClientEvents::onTextReceived)]}, engine = EngineScope::currentEngine()](WebSocketClient& client, string msg) {
-        if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+        if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
             return;
         Schedule::nextTick([nowList, engine, msg = std::move(msg)]() {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             EngineScope enter(engine);
             if (!nowList->empty())
@@ -167,10 +167,10 @@ void WSClientClass::initListeners_s() {
     });
 
     ws->OnBinaryReceived([nowList{&listeners[int(WSClientEvents::onBinaryReceived)]}, engine = EngineScope::currentEngine()](WebSocketClient& client, vector<uint8_t> data) {
-        if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+        if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
             return;
         Schedule::nextTick([nowList, engine, data = std::move(data)]() mutable {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             EngineScope enter(engine);
             if (!nowList->empty())
@@ -181,10 +181,10 @@ void WSClientClass::initListeners_s() {
     });
 
     ws->OnError([nowList{&listeners[int(WSClientEvents::onError)]}, engine = EngineScope::currentEngine()](WebSocketClient& client, string msg) {
-        if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+        if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
             return;
         Schedule::nextTick([nowList, engine, msg = std::move(msg)]() {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             EngineScope enter(engine);
             if (!nowList->empty())
@@ -195,10 +195,10 @@ void WSClientClass::initListeners_s() {
     });
 
     ws->OnLostConnection([nowList{&listeners[int(WSClientEvents::onLostConnection)]}, engine = EngineScope::currentEngine()](WebSocketClient& client, int code) {
-        if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+        if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
             return;
         Schedule::nextTick([nowList, engine, code]() {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             EngineScope enter(engine);
             if (!nowList->empty())
@@ -277,7 +277,7 @@ Local<Value> WSClientClass::connectAsync(const Arguments& args) {
 #ifdef DEBUG
                 SetThreadDescription(GetCurrentThread(), L"LLSE Connect WebSocket");
 #endif // DEBUG
-                if (!LL::isDebugMode())
+                if (!ll::isDebugMode())
                     _set_se_translator(seh_exception::TranslateSEHtoCE);
                 try {
                     bool result = false;
@@ -287,7 +287,7 @@ Local<Value> WSClientClass::connectAsync(const Arguments& args) {
                     } catch (const std::runtime_error& e) {
                         result = false;
                     }
-                    if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+                    if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                         return;
                     EngineScope enter(engine);
                     // fix get on empty Global
@@ -381,10 +381,10 @@ using namespace httplib;
 #define ADD_CALLBACK(method, path, func)                                                                                                                 \
     callbacks.emplace(make_pair(path, HttpServerCallback{EngineScope::currentEngine(), script::Global<Function>{func}, HttpRequestType::method, path})); \
     svr->##method##(path.c_str(), [this, engine = EngineScope::currentEngine()](const Request& req, Response& resp) {                                    \
-        if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())                                                         \
+        if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())                                                         \
             return;                                                                                                                                      \
         auto task = Schedule::nextTick([this, engine, req, &resp] {                                                                                      \
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())                                                     \
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())                                                     \
                 return;                                                                                                                                  \
             EngineScope enter(engine);                                                                                                                   \
             for (auto& [k, v] : this->callbacks) {                                                                                                       \
@@ -436,10 +436,10 @@ Local<Value> HttpServerClass::onGet(const Arguments& args) {
         /* for debug
         callbacks.emplace(make_pair(path, HttpServerCallback{EngineScope::currentEngine(), script::Global<Function>{func}, HttpRequestType::Get, path}));
         svr->Get(path.c_str(), [this, engine = EngineScope::currentEngine()](const Request& req, Response& resp) {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             auto task = Schedule::nextTick([this, engine, req, &resp] {
-                if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+                if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                     return;
                 EngineScope enter(engine);
                 for (auto& [k, v] : this->callbacks)
@@ -547,11 +547,11 @@ Local<Value> HttpServerClass::onPreRouting(const Arguments& args) {
     try {
         preRoutingCallback = {EngineScope::currentEngine(), script::Global{args[0].asFunction()}};
         svr->set_pre_routing_handler([this, engine = EngineScope::currentEngine()](const Request& req, Response& resp) {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return Server::HandlerResponse::Unhandled;
             bool handled = false;
             auto task = Schedule::nextTick([this, engine, req, &resp, &handled] {
-                if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+                if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                     return;
                 EngineScope enter(engine);
                 auto reqObj = new HttpRequestClass(req);
@@ -578,10 +578,10 @@ Local<Value> HttpServerClass::onPostRouting(const Arguments& args) {
     try {
         postRoutingCallback = {EngineScope::currentEngine(), script::Global{args[0].asFunction()}};
         svr->set_post_routing_handler([this, engine = EngineScope::currentEngine()](const Request& req, Response& resp) {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             auto task = Schedule::nextTick([this, engine, req, &resp] {
-                if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+                if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                     return;
                 EngineScope enter(engine);
                 auto reqObj = new HttpRequestClass(req);
@@ -604,10 +604,10 @@ Local<Value> HttpServerClass::onError(const Arguments& args) {
     try {
         errorCallback = {EngineScope::currentEngine(), script::Global{args[0].asFunction()}};
         svr->set_error_handler([this, engine = EngineScope::currentEngine()](const Request& req, Response& resp) {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             auto task = Schedule::nextTick([this, engine, req, &resp] {
-                if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+                if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                     return;
                 EngineScope enter(engine);
                 auto reqObj = new HttpRequestClass(req);
@@ -630,10 +630,10 @@ Local<Value> HttpServerClass::onException(const Arguments& args) {
     try {
         exceptionCallback = {EngineScope::currentEngine(), script::Global{args[0].asFunction()}};
         svr->set_exception_handler([this, engine = EngineScope::currentEngine()](const Request& req, Response& resp, std::exception_ptr e) {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
             auto task = Schedule::nextTick([this, engine, req, &resp, e] {
-                if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+                if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                     return;
                 EngineScope enter(engine);
                 auto reqObj = new HttpRequestClass(req);
@@ -1009,7 +1009,7 @@ Local<Value> NetworkClass::httpGet(const Arguments& args) {
         script::Global<Function> callbackFunc{args[args.size() - 1].asFunction()};
 
         auto lambda = [callback{std::move(callbackFunc)}, engine{EngineScope::currentEngine()}](int status, string body) {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
 
             EngineScope scope(engine);
@@ -1055,7 +1055,7 @@ Local<Value> NetworkClass::httpPost(const Arguments& args) {
         script::Global<Function> callbackFunc{args[args.size() - 1].asFunction()};
 
         auto lambda = [callback{std::move(callbackFunc)}, engine{EngineScope::currentEngine()}](int status, string body) {
-            if (LL::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
+            if (ll::isServerStopping() || !EngineManager::isValid(engine) || engine->isDestroying())
                 return;
 
             EngineScope scope(engine);

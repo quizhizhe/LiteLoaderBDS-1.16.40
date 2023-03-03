@@ -79,7 +79,7 @@ std::optional<Addon> parseAddonFromPath(std::filesystem::path addonPath) {
         addon.directory = UTF82String(addonPath.u8string());
 
         auto ver = header["version"];
-        addon.version = LL::Version(ver[0], ver[1], ver[2]);
+        addon.version = ll::Version(ver[0], ver[1], ver[2]);
 
         string type = manifest["modules"][0]["type"];
         if (type == "resources")
@@ -239,7 +239,7 @@ void FindManifest(vector<string>& result, const string& path) {
 }
 
 std::string Addon::getPrintName() const {
-    if (LL::globalConfig.colorLog)
+    if (ll::globalConfig.colorLog)
         return ColorFormat::convertToConsole(std::string(name));
     else
         return ColorFormat::removeColorCode(std::string(name));
@@ -619,7 +619,7 @@ bool AutoInstallAddons(string path) {
     std::error_code ec;
     if (!filesystem::exists(str2wstr(path))) {
         filesystem::create_directories(str2wstr(path), ec);
-        addonLogger.info(tr("ll.addonsHelper.autoInstall.tip.dirCreated", LL::globalConfig.addonsInstallPath));
+        addonLogger.info(tr("ll.addonsHelper.autoInstall.tip.dirCreated", ll::globalConfig.addonsInstallPath));
         return false;
     }
     std::vector<string> toInstallList;
@@ -659,13 +659,13 @@ bool AutoInstallAddons(string path) {
 }
 
 void InitAddonsHelper() {
-    if (LL::isDebugMode())
+    if (ll::isDebugMode())
         addonLogger.consoleLevel = addonLogger.debug.level;
 
     filesystem::remove_all(ADDON_INSTALL_TEMP_DIR);
     filesystem::create_directories(ADDON_INSTALL_TEMP_DIR);
 
-    AutoInstallAddons(LL::globalConfig.addonsInstallPath);
+    AutoInstallAddons(ll::globalConfig.addonsInstallPath);
     BuildAddonsList();
 
     filesystem::remove_all(ADDON_INSTALL_TEMP_DIR);

@@ -7,11 +7,11 @@
 #include <llapi/mc/Common.hpp>
 #include <llapi/mc/SharedConstants.hpp>
 using namespace std;
-using namespace LL;
+using namespace ll;
 
 Logger crashLogger("CrashLogger");
 
-bool LL::StartCrashLoggerProcess() {
+bool ll::StartCrashLoggerProcess() {
     if (IsDebuggerPresent()) {
         crashLogger.info(tr("ll.crashLogger.existsingDebuggerDetected"));
         return true;
@@ -45,7 +45,7 @@ bool LL::StartCrashLoggerProcess() {
     return true;
 }
 
-void LL::InitCrashLogger(bool enableCrashLogger) {
+void ll::InitCrashLogger(bool enableCrashLogger) {
     // Enable PreLog Module
     try {
         LoadLibrary(CL_PRELOG_MODULE);
