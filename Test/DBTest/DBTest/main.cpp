@@ -1,7 +1,7 @@
 #define LLDB_DEBUG_MODE
 #define _AMD64_
 #include <DB/Session.h>
-#include <LoggerAPI.h>
+#include "include/llapi/LoggerAPI.h"
 #include <iostream>
 #include <filesystem>
 #include <third-party/mysql/mysql.h>

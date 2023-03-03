@@ -1,3 +1,9 @@
-[submodule "RELEASE/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI"]
-	path = RELEASE/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI
+[submodule "assets/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI"]
+	path = assets/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI
 	url = https://github.com/OEOTYAN/LiteLoaderBDS-CUI.git
+[submodule "ParticleAPI-1.16.40"]
+	path = ParticleAPI-1.16.40
+	url = https://github.com/quizhizhe/ParticleAPI-1.16.40
+[submodule "PermissionAPI-1.16.40"]
+	path = PermissionAPI-1.16.40
+	url = https://github.com/quizhizhe/PermissionAPI-1.16.40
