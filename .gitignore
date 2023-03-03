@@ -7,7 +7,7 @@
 **/bedrock_server_api.lib
 **/bedrock_server_var.lib
 **/SymDB_DelayLoadHelper.lib
-LiteLoader/Lib/SymDBHelper.lib
+LiteLoader/lib/SymDBHelper.lib
 **/*.lastcodeanalysissucceeded
 *.zip
 
@@ -27,8 +27,8 @@ RELEASE/plugins/LiteLoader/pdb
 
 cmake-build-release/
 /out
-LiteLoader/Lib/Demangler.pdb
-LiteLoader/Lib/Demangler.lib
+LiteLoader/lib/Demangler.pdb
+LiteLoader/lib/Demangler.lib
 
 /build
 **/Directory.build.props

@@ -1,5 +1,5 @@
-[submodule "RELEASE/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI"]
-	path = RELEASE/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI
+[submodule "assets/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI"]
+	path = assets/plugins/LiteLoader/ResourcePacks/LiteLoaderBDS-CUI
 	url = https://github.com/OEOTYAN/LiteLoaderBDS-CUI.git
 [submodule "ParticleAPI-1.16.40"]
 	path = ParticleAPI-1.16.40

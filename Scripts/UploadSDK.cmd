@@ -3,7 +3,7 @@
 cd %~dp0..
 setlocal enabledelayedexpansion
 
-set LL_SDK_REMOTE_PATH=https://github.com/LiteLDev/LiteLoaderSDK.git
+set LL_SDK_REMOTE_PATH=https://github.com/quizhizhe/LL-SDK-cpp-1.16.40.git
 
 @REM rem Process System Proxy
 @REM for /f "tokens=3* delims= " %%i in ('Reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable') do (
@@ -78,8 +78,8 @@ if "%LL_SDK_NOW_STATUS%" neq "" (
         git push origin %LL_SDK_NOW_BRANCH%
         git push --tags origin %LL_SDK_NOW_BRANCH%
     ) else (
-        git push https://%USERNAME%:%REPO_KEY%@github.com/LiteLDev/LiteLoaderSDK.git %LL_SDK_NOW_BRANCH%
-        git push --tags https://%USERNAME%:%REPO_KEY%@github.com/LiteLDev/LiteLoaderSDK.git %LL_SDK_NOW_BRANCH%
+        git push https://%USERNAME%:%REPO_KEY%@github.com/quizhizhe/LL-SDK-cpp-1.16.40.git %LL_SDK_NOW_BRANCH%
+        git push --tags https://%USERNAME%:%REPO_KEY%@github.com/quizhizhe/LL-SDK-cpp-1.16.40.git %LL_SDK_NOW_BRANCH%
     )
     cd ..
     echo.
