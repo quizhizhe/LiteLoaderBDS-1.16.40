@@ -9,10 +9,10 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  runs-on: self-hosted
   build:
     name: Build
-    runs-on: windows-2022
+    runs-on: self-hosted
+#    runs-on: windows-2022
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.2.0
