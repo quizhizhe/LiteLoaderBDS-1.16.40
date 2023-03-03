@@ -1,14 +1,16 @@
 # The support is almost complete. Some events are not supported
 
+# LiteLoaderBDS For BDS1.16.40.02
+
 # LiteLoaderBDS - Epoch-making & Cross-language Bedrock Dedicated Servers Plugin Loader
 
-[![status](https://img.shields.io/github/workflow/status/LiteLDev/LiteLoader/Build%20LiteLoader?style=for-the-badge)](https://github.com/LiteLDev/LiteLoader/actions)
+[![status](https://img.shields.io/github/workflow/status/quizhizhe/LiteLoaderBDS-1.16.40/Build%20LiteLoader?style=for-the-badge)](https://github.com/quizhizhe/LiteLoaderBDS-1.16.40/actions)
 [![Discord](https://img.shields.io/discord/849252980430864384?color=blue&label=Discord&style=for-the-badge)](https://discord.gg/27KTrxHc9t)
 [![Telegram](https://img.shields.io/badge/telegram-LiteLoader-%232CA5E0?style=for-the-badge&logo=Telegram)](https://t.me/liteloader)
 [
-![Latest Tag](https://img.shields.io/github/v/tag/LiteLDev/LiteLoader?label=LATEST%20TAG&style=for-the-badge)
-![GitHub Releases (by Asset)](https://img.shields.io/github/downloads/LiteLDev/LiteLoader/latest/total?style=for-the-badge)
-](https://github.com/LiteLDev/LiteLoader/releases/latest)  
+![Latest Tag](https://img.shields.io/github/v/tag/quizhizhe/LiteLoaderBDS-1.16.40?label=LATEST%20TAG&style=for-the-badge)
+![GitHub Releases (by Asset)](https://img.shields.io/github/downloads/quizhizhe/LiteLoaderBDS-1.16.40/latest/total?style=for-the-badge)
+](https://github.com/quizhizhe/LiteLoaderBDS-1.16.40/releases/latest)  
 QQ Group: [656669024](https://jq.qq.com/?_wv=1027&k=lagwtrfh) QQ Group 2: [850517473](https://jq.qq.com/?_wv=1027&k=zeUbrETH)
 
 ##### English | [简体中文](README_zh-cn.md)
