@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    name: Build And Push
+    name: Build
     runs-on: self-hosted
 #    runs-on: windows-2022
     steps:
