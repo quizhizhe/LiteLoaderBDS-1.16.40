@@ -1,7 +1,7 @@
-#include "include/llapi/Global.h"
-#include "include/liteloader/Config.h"
-#include <MC/CommandParameterData.hpp>
-#include "include/llapi/LoggerAPI.h"
+#include "llapi/Global.h"
+#include "liteloader/Config.h"
+#include <llapi/mc/CommandParameterData.hpp>
+#include "llapi/HookAPI.h"
 /////////////////// Built in UnlockCmd ///////////////////
 
 bool isUnlockCmdEnabled = true;
@@ -40,9 +40,9 @@ class CommandOrigin;
 //}
 
 //#include <MC/AllowListCommand.hpp>
-#include <MC/CommandVersion.hpp>
-#include <MC/CommandRegistry.hpp>
-#include <MC/CommandParameterData.hpp>
+#include <llapi/mc/CommandVersion.hpp>
+#include <llapi/mc/CommandRegistry.hpp>
+#include <llapi/mc/CommandParameterData.hpp>
  inline void tryChangeStringToRawText(CommandParameterData& data)
 {
     if (false /* config.xxxx*/ && data.tid.value == type_id<CommandRegistry, std::string>().value)

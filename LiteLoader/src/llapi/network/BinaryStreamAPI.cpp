@@ -1,7 +1,7 @@
-#include <MC/BinaryStream.hpp>
-#include <MC/VarIntDataOutput.hpp>
-#include <MC/NbtIo.hpp>
-#include <MC/IDataOutput.hpp>
+#include <llapi/mc/BinaryStream.hpp>
+#include <llapi/mc/VarIntDataOutput.hpp>
+#include <llapi/mc/NbtIo.hpp>
+#include <llapi/mc/IDataOutput.hpp>
 
 void BinaryStream::write(const void* origin, size_t num){
         //BatchedNetworkPeer::flush Line24

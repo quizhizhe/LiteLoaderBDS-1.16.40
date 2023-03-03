@@ -1,5 +1,5 @@
 #pragma once
-#include "include/llapi/Global.h"
+#include "llapi/Global.h"
 
 struct IShellLinkW;
 struct IPersistFile;

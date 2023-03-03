@@ -1,14 +1,14 @@
 //
 // Created by OEOTYAN on 2022/08/27.
 //
-#include "include/llapi/ParticleAPI.h"
-#include "MC/Player.hpp"
-#include "MC/Dimension.hpp"
-#include "MC/Level.hpp"
-#include <MC/ResourcePackRepository.hpp>
-#include <MC/ResourcePackStack.hpp>
-#include "include/llapi/EventAPI.h"
-#include <MC/ResourcePackRepository.hpp>
+#include <llapi/ParticleAPI.h>
+#include <llapi/mc/Player.hpp>
+#include <llapi/mc/Dimension.hpp>
+#include <llapi/mc/Level.hpp>
+#include <llapi/mc/ResourcePackRepository.hpp>
+#include <llapi/mc/ResourcePackStack.hpp>
+#include <llapi/EventAPI.h>
+#include <llapi/mc/ResourcePackRepository.hpp>
 //void InitParticle() {
 //    Event::ResourcePackInitEvent::subscribe([](const Event::ResourcePackInitEvent& ev) {
 //        ev.mRepo->setCustomResourcePackPath(PackType::PackType_Resources, R"(plugins/LiteLoader/ResourcePacks)");

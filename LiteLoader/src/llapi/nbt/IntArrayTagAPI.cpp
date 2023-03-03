@@ -1,4 +1,5 @@
-#include <MC/IntArrayTag.hpp>
+#include <llapi/mc/IntArrayTag.hpp>
+#include <llapi/HookAPI.h>
 
 TagMemoryChunk& IntArrayTag::value() {
     return dAccess<TagMemoryChunk, 8>(this);

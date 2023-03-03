@@ -1,9 +1,9 @@
-#include "include/llapi/Global.h"
-#include <MC/Level.hpp>
-#include <MC/Mob.hpp>
-#include <MC/Spawner.hpp>
-#include <MC/ItemStack.hpp>
-#include <MC/ActorDefinitionIdentifier.hpp>
+#include <llapi/Global.h>
+#include <llapi/mc/Level.hpp>
+#include <llapi/mc/Mob.hpp>
+#include <llapi/mc/Spawner.hpp>
+#include <llapi/mc/ItemStack.hpp>
+#include <llapi/mc/ActorDefinitionIdentifier.hpp>
 
 Mob* Spawner::spawnMob(Vec3& pos, int dim, std::string name) {
     try {

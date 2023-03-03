@@ -1,8 +1,9 @@
-#include "include/llapi/Global.h"
-#include <MC/Container.hpp>
-#include <MC/ItemStack.hpp>
-#include <MC/Level.hpp>
-#include "third-party/magic_enum/magic_enum.hpp"
+#include <llapi/Global.h>
+#include <llapi/mc/Container.hpp>
+#include <llapi/mc/ItemStack.hpp>
+#include <llapi/mc/Level.hpp>
+#include <magic_enum/magic_enum.hpp>
+#include <llapi/HookAPI.h>
 
  LIAPI std::string Container::getTypeName() {
      ContainerType type = dAccess<ContainerType>(this, 8); //IDA Container::Container

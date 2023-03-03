@@ -30,16 +30,16 @@
 #endif
 
 #include <filesystem>
-#include "third-party/FMT/chrono.h"
-#include "third-party/FMT/color.h"
-#include "third-party/FMT/core.h"
-#include "third-party/FMT/os.h"
-#include "third-party/FMT/printf.h"
-#include "include/llapi/utils/CsLock.h"
-#include "include/llapi/utils/WinHelper.h"
-#include "include/llapi/utils/FileHelper.h"
-#include "include/llapi/utils/PluginOwnData.h"
-#include "include/llapi/utils/StringHelper.h"
+#include "FMT/chrono.h"
+#include "FMT/color.h"
+#include "FMT/core.h"
+#include "FMT/os.h"
+#include "FMT/printf.h"
+#include "llapi/utils/CsLock.h"
+#include "llapi/utils/WinHelper.h"
+#include "llapi/utils/FileHelper.h"
+#include "llapi/utils/PluginOwnData.h"
+#include "llapi/utils/StringHelper.h"
 #include "I18nAPI.h"
 #include <string>
 #include <sstream>

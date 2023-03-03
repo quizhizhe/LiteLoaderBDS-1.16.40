@@ -1,4 +1,5 @@
-#include <MC/ShortTag.hpp>
+#include <llapi/mc/ShortTag.hpp>
+#include <llapi/HookAPI.h>
 
 short& ShortTag::value() {
     return dAccess<short, 8>(this);

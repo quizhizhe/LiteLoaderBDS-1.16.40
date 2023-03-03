@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "include/llapi/Global.h"
+#include "llapi/Global.h"
 class ServerPlayer;
 struct DePlayerCB {
     void* userdata;

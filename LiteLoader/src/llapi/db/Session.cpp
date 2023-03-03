@@ -1,7 +1,7 @@
-#include <DB/Session.h>
-#include "include/llapi/LoggerAPI.h"
-#include <DB/Impl/SQLite/Session.h>
-#include <DB/Impl/MySQL/Session.h>
+#include <llapi/db/Session.h>
+#include <llapi/LoggerAPI.h>
+#include <llapi/db/impl/sqlite/Session.h>
+#include <llapi/db/impl/mysql/Session.h>
 
 namespace DB {
 

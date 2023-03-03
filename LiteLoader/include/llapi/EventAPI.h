@@ -26,18 +26,17 @@
 //
 ////////////////////////////////////////////////////////////////////////
 
-
-#include "Global.h"
-#include "LoggerAPI.h"
-#include "MC/BlockInstance.hpp"
-#include "MC/MCRESULT.hpp"
 #include <functional>
 #include <iterator>
 #include <list>
 #include <string>
 #include <unordered_map>
+#include "Global.h"
+#include "LoggerAPI.h"
+#include "llapi/mc/BlockInstance.hpp"
+#include "llapi/mc/MCRESULT.hpp"
 #include "LLAPI.h"
-#include "include/llapi/utils/WinHelper.h"
+#include "utils/WinHelper.h"
 
 class Actor;
 class ServerPlayer;

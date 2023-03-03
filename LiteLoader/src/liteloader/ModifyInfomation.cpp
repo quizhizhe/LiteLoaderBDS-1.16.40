@@ -1,10 +1,10 @@
-#include "include/llapi/HookAPI.h"
-#include "include/llapi/LLAPI.h"
-#include "include/llapi/LoggerAPI.h"
-#include "include/llapi/ServerAPI.h"
+#include <llapi/HookAPI.h>
+#include <llapi/LLAPI.h>
+#include <llapi/LoggerAPI.h>
+#include <llapi/ServerAPI.h>
 #include <regex>
 #include <string>
-#include "include/liteloader/Config.h"
+#include <liteloader/Config.h>
 using namespace std;
 
 Logger serverLogger("Server");
@@ -55,8 +55,8 @@ THook(void, "?PlatformBedrockLogOut@@YAXIPEBD@Z", int a1, const char* ts) {
 //     return;
 // }
 
-#include "include/liteloader/LiteLoader.h"
-#include <MC/BedrockLog.hpp>
+#include <liteloader/LiteLoader.h>
+#include <llapi/mc/BedrockLog.hpp>
 namespace ModifyInfomation {
 int telemetryText = 0;
 }
@@ -80,9 +80,9 @@ THook(void, "?log@BedrockLog@@YAXW4LogCategory@1@V?$bitset@$02@std@@W4LogRule@1@
     return BedrockLog::log_va(a1, a2, a3, a4, a5, a6, a7, a8, va);
 }
 
-#include <MC/ColorFormat.hpp>
-#include <MC/CommandOrigin.hpp>
-#include <MC/CommandOutput.hpp>
+#include <llapi/mc/ColorFormat.hpp>
+#include <llapi/mc/CommandOrigin.hpp>
+#include <llapi/mc/CommandOutput.hpp>
 extern std::unordered_map<CommandOrigin const*, string*> resultOfOrigin;
 TClasslessInstanceHook(void*, "?send@CommandOutputSender@@UEAAXAEBVCommandOrigin@@AEBVCommandOutput@@@Z",
                        class CommandOrigin const& origin, class CommandOutput const& output) {

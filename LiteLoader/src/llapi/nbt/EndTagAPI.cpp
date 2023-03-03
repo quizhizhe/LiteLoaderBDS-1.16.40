@@ -1,4 +1,4 @@
-#include <MC/EndTag.hpp>
+#include <llapi/mc/EndTag.hpp>
 
 nullptr_t EndTag::value() {
     return nullptr;

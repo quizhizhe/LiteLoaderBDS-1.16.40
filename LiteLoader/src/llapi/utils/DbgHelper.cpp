@@ -1,13 +1,13 @@
-﻿#include <Utils/DbgHelper.h>
+﻿#include <llapi/utils/DbgHelper.h>
 #include <Windows.h>
 #include <dbghelp/dbghelp.h>
-#include <Utils/WinHelper.h>
-#include <Utils/StringHelper.h>
-#include "include/liteloader/Config.h"
+#include <llapi/utils/WinHelper.h>
+#include <llapi/utils/StringHelper.h>
+#include <liteloader/Config.h>
 #include <thread>
 #include <string>
 #include <map>
-#include "include/llapi/LoggerAPI.h"
+#include <llapi/LoggerAPI.h>
 #include <Psapi.h>
 using namespace std;
 extern Logger logger;

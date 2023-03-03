@@ -1,17 +1,18 @@
-#include <MC/ByteArrayTag.hpp>
-#include <MC/ByteTag.hpp>
-#include <MC/CompoundTag.hpp>
-#include <MC/CompoundTagVariant.hpp>
-#include <MC/DoubleTag.hpp>
-#include <MC/FloatTag.hpp>
-#include <MC/Int64Tag.hpp>
-#include <MC/IntArrayTag.hpp>
-#include <MC/IntTag.hpp>
-#include <MC/ListTag.hpp>
-#include <MC/ShortTag.hpp>
-#include <MC/StringTag.hpp>
-#include <MC/EndTag.hpp>
-#include <MC/Tag.hpp>
+#include <llapi/mc/ByteArrayTag.hpp>
+#include <llapi/mc/ByteTag.hpp>
+#include <llapi/mc/CompoundTag.hpp>
+#include <llapi/mc/CompoundTagVariant.hpp>
+#include <llapi/mc/DoubleTag.hpp>
+#include <llapi/mc/FloatTag.hpp>
+#include <llapi/mc/Int64Tag.hpp>
+#include <llapi/mc/IntArrayTag.hpp>
+#include <llapi/mc/IntTag.hpp>
+#include <llapi/mc/ListTag.hpp>
+#include <llapi/mc/ShortTag.hpp>
+#include <llapi/mc/StringTag.hpp>
+#include <llapi/mc/EndTag.hpp>
+#include <llapi/mc/Tag.hpp>
+#include <llapi/HookAPI.h>
 
 std::unique_ptr<ListTag> ListTag::create() {
     return std::unique_ptr<ListTag>((ListTag*)Tag::newTag(Tag::Type::List).release());

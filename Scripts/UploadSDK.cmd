@@ -1,6 +1,6 @@
 @echo off
 
-cd ..
+cd %~dp0..
 setlocal enabledelayedexpansion
 
 set LL_SDK_REMOTE_PATH=https://github.com/LiteLDev/LiteLoaderSDK.git
@@ -46,14 +46,16 @@ echo.
 echo [INFO] Fetching LiteLoaderSDK to GitHub finished
 echo.
 
-@REM if [%1] neq [action] (
-    cd Scripts
-    echo [INFO] Packing LiteLoaderSDK ...
-    start /wait cmd /c PackSDK.cmd
-    echo [INFO] Packing LiteLoaderSDK finished.
-    echo.
-    cd ..
-@REM )
+@REM remove all directory except .git in LiteLoaderSDK
+for /f "delims=" %%i in ('dir /b /ad LiteLoaderSDK') do (
+    if not "%%i"==".git" (
+        echo [INFO] Removing LiteLoaderSDK\%%i
+        rd /s /q LiteLoaderSDK\%%i
+    )
+)
+
+@REM copy all from build/sdk to LiteLoaderSDK
+xcopy /e /y /i /q build\SDK\* LiteLoaderSDK
 
 cd LiteLoaderSDK
 for /f "delims=" %%i in ('git status . -s') do set LL_SDK_NOW_STATUS=%%i
@@ -63,7 +65,9 @@ if "%LL_SDK_NOW_STATUS%" neq "" (
     git add .
     if "%LL_SDK_NOW_BRANCH%" == "main" (
         git commit -m "From LiteLoader %LL_NOW_TAG%"
-        git tag %LL_NOW_TAG%
+        if [%2] == [release] (
+            git tag %LL_NOW_TAG%
+        )
     ) else (
         git commit -m "From LiteLoader %LL_NOW_TAG_LONG%"
     )

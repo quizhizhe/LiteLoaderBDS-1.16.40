@@ -1,7 +1,7 @@
-#include <Utils/FileHelper.h>
-#include <Utils/StringHelper.h>
-#include <Utils/WinHelper.h>
-#include "include/liteloader/Config.h"
+#include <llapi/utils/FileHelper.h>
+#include <llapi/utils/StringHelper.h>
+#include <llapi/utils/WinHelper.h>
+#include <liteloader/Config.h>
 #include <io.h>
 #include <filesystem>
 using namespace std;

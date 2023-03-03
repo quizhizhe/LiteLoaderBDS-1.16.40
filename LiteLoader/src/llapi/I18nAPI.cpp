@@ -1,6 +1,8 @@
-#include "include/llapi/I18nAPI.h"
-#include <Utils/StringHelper.h>
-#include "include/liteloader/LiteLoader.h"
+#include <llapi/I18nAPI.h>
+#include <llapi/utils/StringHelper.h>
+#include <liteloader/LiteLoader.h>
+#include <stringapiset.h>
+
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -241,7 +243,14 @@ I18nBase* loadFromImpl(HMODULE hPlugin, HMODULE hTarget) {
 
 
 ///////////////////////////// Encoding-CodePage Map /////////////////////////////
+#ifdef UNICODE
+#include <compact_enc_det/compact_enc_det.h>
+#define UNICODE
+#else
+#include <compact_enc_det/compact_enc_det.h>
+#endif
 #undef UNICODE
+
 namespace TextEncoding {
 const std::unordered_map<Encoding, UINT> Encoding_CodePage_Map = {
     {Encoding::ISO_8859_1, 28591},

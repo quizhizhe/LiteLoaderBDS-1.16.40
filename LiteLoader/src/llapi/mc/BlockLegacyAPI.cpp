@@ -1,7 +1,9 @@
-#include <MC/Block.hpp>
-#include <MC/BlockLegacy.hpp>
-#include <MC/BlockSource.hpp>
-#include <MC/ComposterBlock.hpp>
+#include <llapi/mc/Block.hpp>
+#include <llapi/mc/BlockLegacy.hpp>
+#include <llapi/mc/BlockSource.hpp>
+#include <llapi/mc/ComposterBlock.hpp>
+#include <llapi/HookAPI.h>
+
 Block* BlockLegacy::toBlock(unsigned short tileData) {
     auto* bl = (Block*)&getStateFromLegacyData(tileData);
     // 某些方块在 tileData 太大时会变成其他方块，原版 /setblock 指令就存在这个问题（也有可能是被设计成这样的？）

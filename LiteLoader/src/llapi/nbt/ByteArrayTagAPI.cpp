@@ -1,4 +1,5 @@
-#include <MC/ByteArrayTag.hpp>
+#include <llapi/mc/ByteArrayTag.hpp>
+#include <llapi/HookAPI.h>
 
 TagMemoryChunk& ByteArrayTag::value() {
     return dAccess<TagMemoryChunk, 8>(this);

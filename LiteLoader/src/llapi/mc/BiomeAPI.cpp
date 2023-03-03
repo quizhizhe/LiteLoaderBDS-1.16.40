@@ -1,7 +1,8 @@
-#include <MC/Biome.hpp>
-#include <MC/BiomeRegistry.hpp>
-#include <MC/VanillaBiomes.hpp>
-#include <MC/Level.hpp>
+#include <llapi/mc/Biome.hpp>
+#include <llapi/mc/BiomeRegistry.hpp>
+#include <llapi/mc/VanillaBiomes.hpp>
+#include <llapi/mc/Level.hpp>
+#include <llapi/HookAPI.h>
 
 int Biome::getId() const {
     return dAccess<int, 120>(this);
@@ -34,7 +35,7 @@ std::vector<Biome*> Biome::getBiomesByType(VanillaBiomeTypes type) {
 #ifdef DEBUG
 
 #include <LoggerAPI.h>
-#include <MC/Minecraft.hpp>
+#include <llapi/mc/Minecraft.hpp>
 extern Logger logger;
 
 TClasslessInstanceHook2("startServerThread_TestBiome", void, "?startServerThread@ServerInstance@@QEAAXXZ") {

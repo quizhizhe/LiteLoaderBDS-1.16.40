@@ -1,4 +1,5 @@
-#include <MC/IntTag.hpp>
+#include <llapi/mc/IntTag.hpp>
+#include <llapi/HookAPI.h>
 
 int& IntTag::value() {
     return dAccess<int, 8>(this);

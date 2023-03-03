@@ -1,6 +1,6 @@
-#include <MC/Objective.hpp>
-#include <MC/ServerScoreboard.hpp>
-#include "include/llapi/GlobalServiceAPI.h"
+#include <llapi/mc/Objective.hpp>
+#include <llapi/mc/ServerScoreboard.hpp>
+#include <llapi/GlobalServiceAPI.h>
 
 // helper
 #define H do_hash

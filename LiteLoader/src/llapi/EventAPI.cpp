@@ -1,67 +1,67 @@
-#include "include/liteloader/Config.h"
-#include "include/llapi/EventAPI.h"
-#include "include/llapi/Global.h"
-#include "include/llapi/LoggerAPI.h"
-#include <MC/ActorDamageSource.hpp>
-#include <MC/BaseCommandBlock.hpp>
-#include <MC/Block.hpp>
-#include <MC/BlockActor.hpp>
-#include <MC/BlockSource.hpp>
-#include <MC/CommandContext.hpp>
-#include <MC/CommandOrigin.hpp>
-#include <MC/ConnectionRequest.hpp>
-#include <MC/GameMode.hpp>
-#include <MC/HitResult.hpp>
-#include <MC/ItemActor.hpp>
-#include <MC/PistonBlockActor.hpp>
-#include <MC/ComplexInventoryTransaction.hpp>
-#include <MC/SignItem.hpp>
-#include <MC/InventoryTransaction.hpp>
-#include <MC/ItemStack.hpp>
-#include <MC/Level.hpp>
-#include <MC/ChestBlockActor.hpp>
-#include <MC/NetworkIdentifier.hpp>
-#include <MC/Objective.hpp>
-#include <MC/Player.hpp>
-#include <MC/PlayerActionPacket.hpp>
-#include <MC/RespawnPacket.hpp>
-#include <MC/Scoreboard.hpp>
-// #include <MC/NpcActionsContainer.hpp>
-// #include <MC/NpcSceneDialogueData.hpp>
-#include <MC/ArmorStand.hpp>
-#include <MC/NpcAction.hpp>
-#include <MC/NpcComponent.hpp>
-#include <MC/Container.hpp>
-#include <MC/ScoreboardId.hpp>
-#include <MC/ServerNetworkHandler.hpp>
-#include <MC/VanillaBlocks.hpp>
-#include <MC/ActorDamageSource.hpp>
-#include "include/llapi/ScheduleAPI.h"
-#include <MC/ServerPlayer.hpp>
+#include <liteloader/Config.h>
+#include <llapi/EventAPI.h>
+#include <llapi/Global.h>
+#include <llapi/LoggerAPI.h>
+#include <llapi/mc/ActorDamageSource.hpp>
+#include <llapi/mc/BaseCommandBlock.hpp>
+#include <llapi/mc/Block.hpp>
+#include <llapi/mc/BlockActor.hpp>
+#include <llapi/mc/BlockSource.hpp>
+#include <llapi/mc/CommandContext.hpp>
+#include <llapi/mc/CommandOrigin.hpp>
+#include <llapi/mc/ConnectionRequest.hpp>
+#include <llapi/mc/GameMode.hpp>
+#include <llapi/mc/HitResult.hpp>
+#include <llapi/mc/ItemActor.hpp>
+#include <llapi/mc/PistonBlockActor.hpp>
+#include <llapi/mc/ComplexInventoryTransaction.hpp>
+#include <llapi/mc/SignItem.hpp>
+#include <llapi/mc/InventoryTransaction.hpp>
+#include <llapi/mc/ItemStack.hpp>
+#include <llapi/mc/Level.hpp>
+#include <llapi/mc/ChestBlockActor.hpp>
+#include <llapi/mc/NetworkIdentifier.hpp>
+#include <llapi/mc/Objective.hpp>
+#include <llapi/mc/Player.hpp>
+#include <llapi/mc/PlayerActionPacket.hpp>
+#include <llapi/mc/RespawnPacket.hpp>
+#include <llapi/mc/Scoreboard.hpp>
+// #include <llapi/mc/NpcActionsContainer.hpp>
+// #include <llapi/mc/NpcSceneDialogueData.hpp>
+#include <llapi/mc/ArmorStand.hpp>
+#include <llapi/mc/NpcAction.hpp>
+#include <llapi/mc/NpcComponent.hpp>
+#include <llapi/mc/Container.hpp>
+#include <llapi/mc/ScoreboardId.hpp>
+#include <llapi/mc/ServerNetworkHandler.hpp>
+#include <llapi/mc/VanillaBlocks.hpp>
+#include <llapi/mc/ActorDamageSource.hpp>
+#include <llapi/ScheduleAPI.h>
+#include <llapi/mc/ServerPlayer.hpp>
 // #include <RegCommandAPI.h>
-#include <Utils/StringHelper.h>
-#include <Utils/DbgHelper.h>
-#include "include/llapi/I18nAPI.h"
+#include <llapi/utils/StringHelper.h>
+#include <llapi/utils/DbgHelper.h>
+#include <llapi/I18nAPI.h>
 #include <functional>
 #include <tuple>
 #include <iostream>
 #include <string>
 #include <typeinfo>
 #include <vector>
-#include <MC/ComplexInventoryTransaction.hpp>
-#include <MC/InventoryTransaction.hpp>
-#include <MC/InventoryAction.hpp>
-// #include <MC/InventorySource.hpp>
-#include <MC/Util.hpp>
-#include "include/llapi/DynamicCommandAPI.h"
-#include <MC/ResourcePackManager.hpp>
-#include <MC/ResourceLocation.hpp>
-#include <MC/PackSourceFactory.hpp>
-#include <MC/CompositePackSource.hpp>
-// #include <MC/ResourcePackPaths.hpp>
-#include <MC/DirectoryPackSource.hpp> 
-#include <MC/PackSource.hpp>
-#include <MC/TextPacket.hpp>
+#include <llapi/mc/ComplexInventoryTransaction.hpp>
+#include <llapi/mc/InventoryTransaction.hpp>
+#include <llapi/mc/InventoryAction.hpp>
+// #include <llapi/mc/InventorySource.hpp>
+#include <llapi/mc/Util.hpp>
+#include <llapi/DynamicCommandAPI.h>
+#include <llapi/mc/ResourcePackManager.hpp>
+#include <llapi/mc/ResourceLocation.hpp>
+#include <llapi/mc/PackSourceFactory.hpp>
+#include <llapi/mc/CompositePackSource.hpp>
+// #include <llapi/mc/ResourcePackPaths.hpp>
+#include <llapi/mc/DirectoryPackSource.hpp>
+#include <llapi/mc/PackSource.hpp>
+#include <llapi/mc/TextPacket.hpp>
 
 static_assert(offsetof(InventoryAction, source) == 0x0);
 static_assert(offsetof(InventoryAction, slot) == 0x0c);
@@ -586,7 +586,7 @@ TInstanceHook(void, "?onEffectRemoved@ServerPlayer@@MEAAXAEAVMobEffectInstance@@
  }
 
 /////////////////// PlayerPlaceBlock ///////////////////
-#include <MC/ItemUseInventoryTransaction.hpp>
+#include <llapi/mc/ItemUseInventoryTransaction.hpp>
 // 符号变更
  TInstanceHook(char, "?checkBlockPermissions@BlockSource@@QEAA_NAEAVActor@@AEBVBlockPos@@EAEBVItemStack@@_N@Z",
                BlockSource, Actor* ac, BlockPos* bp, unsigned __int8 facing, ItemStackBase* item, bool a6) {
@@ -621,8 +621,8 @@ TClasslessInstanceHook(void, "?sendBlockPlacedByPlayer@BlockEventCoordinator@@QE
 }
 
 /*
-#include <MC/BedrockBlocks.hpp>
-#include <mc/BlockLegacy.hpp>
+#include <llapi/mc/BedrockBlocks.hpp>
+#include <llapi/mc/BlockLegacy.hpp>
 TInstanceHook(bool, "?_useOn@BlockItem@@MEBA_NAEAVItemStack@@AEAVActor@@VBlockPos@@EAEBVVec3@@@Z",
               Item, ItemStack* a2, Actor* ac, BlockPos* a4, unsigned __int8 a5, class Vec3* a6)
 {
@@ -869,7 +869,7 @@ TInstanceHook(bool, "?_calculatePlacePos@SignItem@@EEBA_NAEAVItemStackBase@@AEAV
 //    return original(a1, a2, a3, a4, a5, a6);
 //}
 
-#include <MC/SeedItemComponentLegacy.hpp>
+#include <llapi/mc/SeedItemComponentLegacy.hpp>
 TInstanceHook(bool, "?useOn@SeedItemComponentLegacy@@QEAA_NAEAVItemStack@@AEAVActor@@AEBVBlockPos@@EAEBVVec3@@@Z",
       SeedItemComponentLegacy, ItemStack* a2, Actor* a3, BlockPos const* a4, unsigned char a5, Vec3 const* a6)
 {
@@ -996,8 +996,8 @@ TInstanceHook(void, "?setSprinting@Mob@@UEAAX_N@Z",
     IF_LISTENED_END(PlayerSprintEvent)
     return original(this, sprinting);
 }
-#include <MC/PlayerInventory.hpp>
-#include <MC/SimpleContainer.hpp>
+#include <llapi/mc/PlayerInventory.hpp>
+#include <llapi/mc/SimpleContainer.hpp>
 /////////////////// PlayerSetArmor ///////////////////
  TInstanceHook(void, "?setArmor@Player@@UEAAXW4ArmorSlot@@AEBVItemStack@@@Z",
                Player, unsigned slot, ItemStack* it) {
@@ -1238,7 +1238,7 @@ TClasslessInstanceHook(bool, "?mayPlace@FireBlock@@UEBA_NAEAVBlockSource@@AEBVBl
 
 
 /////////////////// ContainerChange ///////////////////
-// #include <MC/LevelContainerModel.hpp>
+// #include <llapi/mc/LevelContainerModel.hpp>
 
 // TInstanceHook(void, "?_onItemChanged@LevelContainerModel@@MEAAXHAEBVItemStack@@0@Z",
 //               LevelContainerModel, int slotNumber, ItemStack* oldItem, ItemStack* newItem) {
@@ -1469,7 +1469,7 @@ TClasslessInstanceHook(bool, "?attack@ItemFrameBlock@@UEBA_NPEAVPlayer@@AEBVBloc
 }
 
 /////////////////// LiquidSpreadEvent ///////////////////
-#include <MC/LiquidBlockDynamic.hpp>
+#include <llapi/mc/LiquidBlockDynamic.hpp>
 TInstanceHook(bool, "?_canSpreadTo@LiquidBlockDynamic@@AEBA_NAEAVBlockSource@@AEBVBlockPos@@1E@Z",
               LiquidBlockDynamic, class BlockSource& bs, class BlockPos const& to, class BlockPos const& from, unsigned char unk) {
     auto rtn = original(this, bs, to, from, unk);
@@ -1527,7 +1527,7 @@ TInstanceHook(void*, "?die@ServerPlayer@@UEAAXAEBVActorDamageSource@@@Z", Server
     return out;
 }
 
-#include <MC/SurvivalMode.hpp>
+#include <llapi/mc/SurvivalMode.hpp>
 /////////////////// PlayerDestroy ///////////////////
 
 // TInstanceHook(bool, "?destroyBlock@SurvivalMode@@UEAA_NAEBVBlockPos@@E@Z",
@@ -1625,7 +1625,7 @@ TInstanceHook(bool, "?useItemOn@GameMode@@UEAA_NAEAVItemStack@@AEBVBlockPos@@EAE
 // }
 
 //////////////// PlayerUseItem & PlayerEat ////////////////
-// #include <MC/ComponentItem.hpp>
+// #include <llapi/mc/ComponentItem.hpp>
  TInstanceHook(bool, "?baseUseItem@GameMode@@QEAA_NAEAVItemStack@@@Z", GameMode, ItemStack& it) {
      auto pl = this->getPlayer();
      IF_LISTENED(PlayerUseItemEvent) {
@@ -1867,8 +1867,8 @@ THook(void, "?destroyBlocks@@YAXAEAVLevel@@AEBVAABB@@AEAVBlockSource@@H@Z",
 //     return projectile;
 // }
 
-// #include <MC/CrossbowItem.hpp>
-#include <MC/ActorDefinitionIdentifier.hpp>
+// #include <llapi/mc/CrossbowItem.hpp>
+#include <llapi/mc/ActorDefinitionIdentifier.hpp>
 // static_assert(sizeof(ActorDefinitionIdentifier) == 176);
 // TInstanceHook(void, "?_shootFirework@CrossbowItem@@AEBAXAEBVItemInstance@@AEAVPlayer@@@Z",
 //               CrossbowItem, void* a1, Player* a2) {
@@ -1902,8 +1902,8 @@ THook(void, "?destroyBlocks@@YAXAEAVLevel@@AEBVAABB@@AEAVBlockSource@@H@Z",
 //     return original(this, a2, a3, a4);
 // }
 
-// #include <MC/WeakEntityRef.hpp>
-// #include <mc/EntityContext.hpp>
+// #include <llapi/mc/WeakEntityRef.hpp>
+// #include <llapi/mc/EntityContext.hpp>
 
 ////////////// NpcCmd //////////////
 // TInstanceHook(void,
@@ -1991,7 +1991,7 @@ TClasslessInstanceHook(void, "?onScoreChanged@ServerScoreboard@@UEAAXAEBUScorebo
 }
 
 
-#include <MC/Minecraft.hpp>
+#include <llapi/mc/Minecraft.hpp>
 ////////////// ServerStarted //////////////
 // 没有这个符号
  TClasslessInstanceHook(void, "?onServerThreadStarted@MinecraftServerScriptEngine@@UEAA?AW4EventResult@@AEAVServerInstance@@@Z",
@@ -2128,7 +2128,7 @@ TInstanceHook(int, "?startSleepInBed@Player@@UEAA?AW4BedSleepingResult@@AEBVBloc
     return original(this, blk);
 }
 
-#include <MC/Spawner.hpp>
+#include <llapi/mc/Spawner.hpp>
 
 ////////////// MobSpawn //////////////
  TInstanceHook(Mob*, "?spawnMob@Spawner@@QEAAPEAVMob@@AEAVBlockSource@@AEBUActorDefinitionIdentifier@@PEAVActor@@AEBVVec3@@_N44@Z",
@@ -2145,9 +2145,9 @@ TInstanceHook(int, "?startSleepInBed@Player@@UEAA?AW4BedSleepingResult@@AEBVBloc
      return original(this, a2, a3, a4, a5, a6, a7, a8);
  }
 
-#include "Impl/FormPacketHelper.h"
-#include <MC/Json.hpp>
-#include <MC/ModalFormResponsePacket.hpp>
+#include <llapi/impl/FormPacketHelper.h>
+#include <llapi/mc/Json.hpp>
+#include <llapi/mc/ModalFormResponsePacket.hpp>
 ////////////// FormResponsePacket //////////////
 
 TClasslessInstanceHook(void, "?handle@?$PacketHandlerDispatcherInstance@VModalFormResponsePacket@@$0A@@@UEBAXAEBVNetworkIdentifier@@AEAVNetEventCallback@@AEAV?$shared_ptr@VPacket@@@std@@@Z",

@@ -1,10 +1,10 @@
-#include "include/llapi/LoggerAPI.h"
-#include <MC/ServerPlayer.hpp>
-#include "include/llapi/EventAPI.h"
-#include "include/liteloader/Config.h"
-#include <MC/ItemStack.hpp>
-#include <MC/CommandParameterData.hpp>
-#include <MC/CommandRegistry.hpp>
+#include <llapi/LoggerAPI.h>
+#include <llapi/mc/ServerPlayer.hpp>
+#include <llapi/EventAPI.h>
+#include <liteloader/Config.h>
+#include <llapi/mc/ItemStack.hpp>
+#include <llapi/mc/CommandParameterData.hpp>
+#include <llapi/mc/CommandRegistry.hpp>
 #include <magic_enum/magic_enum.hpp>
 using namespace Event;
 
@@ -24,7 +24,8 @@ void RegisterSimpleServerLogger() {
     }
 }
 
-#include <MC/Command.hpp>
+#include <llapi/mc/Command.hpp>
+#include <llapi/HookAPI.h>
 TInstanceHook(void, "?setPermissions@ServerPlayer@@UEAAXW4CommandPermissionLevel@@@Z",
               Player, CommandPermissionLevel perm) {
     if (LL::globalConfig.enableSimpleServerLogger) {
@@ -36,7 +37,7 @@ TInstanceHook(void, "?setPermissions@ServerPlayer@@UEAAXW4CommandPermissionLevel
 }
 
 // ==> LiteLoader/Main/BuiltinUnlockCmd.cpp
-#include <MC/I18n.hpp>
+#include <llapi/mc/I18n.hpp>
 void LogCommandRegistration(std::string const& name, char const* description, enum CommandPermissionLevel perm, short flag1, short flag2) {
     static Logger logger("RegsterCommand");
     logger.consoleLevel = logger.debug.level;

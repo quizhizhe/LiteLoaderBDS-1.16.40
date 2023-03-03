@@ -1,5 +1,7 @@
-#include "include/llapi/Global.h"
-#include <Utils/PlayerMap.h>
+#include <llapi/Global.h>
+#include <llapi/utils/PlayerMap.h>
+#include <llapi/HookAPI.h>
+
 // PlayerMap.h
 // BUG: DON'T USE GLOBAL VAR WITH A CUSTOM CONSTRUCTION!!!!
 // static std::vector<DePlayerCB> depcbs;

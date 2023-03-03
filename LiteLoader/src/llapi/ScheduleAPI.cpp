@@ -1,13 +1,13 @@
-#include "include/llapi/ScheduleAPI.h"
-#include <Utils/CsLock.h>
+#include <llapi/ScheduleAPI.h>
+#include <llapi/utils/CsLock.h>
 #include <queue>
 #include <atomic>
-#include "include/liteloader/Config.h"
-#include "include/liteloader/LiteLoader.h"
-#include "include/llapi/LoggerAPI.h"
-#include "include/llapi/LLAPI.h"
-#include <Utils/DbgHelper.h>
-#include "include/llapi/I18nAPI.h"
+#include <liteloader/Config.h>
+#include <liteloader/LiteLoader.h>
+#include <llapi/LoggerAPI.h>
+#include <llapi/LLAPI.h>
+#include <llapi/utils/DbgHelper.h>
+#include <llapi/I18nAPI.h>
 
 using namespace std;
 

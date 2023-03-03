@@ -1,12 +1,13 @@
-#include "include/llapi/Global.h"
-#include "MC/Item.hpp"
-#include "MC/ItemStack.hpp"
-#include "MC/Spawner.hpp"
-#include "MC/Level.hpp"
-#include "MC/ItemInstance.hpp"
-#include "MC/I18n.hpp"
-#include "MC/PropertiesSettings.hpp"
-#include <MC/CompoundTag.hpp>
+#include <llapi/Global.h>
+#include <llapi/mc/Item.hpp>
+#include <llapi/mc/ItemStack.hpp>
+#include <llapi/mc/Spawner.hpp>
+#include <llapi/mc/Level.hpp>
+#include <llapi/mc/ItemInstance.hpp>
+#include <llapi/mc/I18n.hpp>
+#include <llapi/mc/PropertiesSettings.hpp>
+#include <llapi/mc/CompoundTag.hpp>
+#include <llapi/HookAPI.h>
 #include <string>
 #include <utility>
 #include <vector>
@@ -32,7 +33,7 @@ ItemStack* ItemStack::create(std::unique_ptr<CompoundTag> tag) {
     return item;
 }
 
-#include <MC/ItemRegistry.hpp>
+#include <llapi/mc/ItemRegistry.hpp>
 ItemStack* ItemStack::create(short itemId, int aux, int count) {
     auto item = ItemRegistry::getItem(itemId);
     if (item)

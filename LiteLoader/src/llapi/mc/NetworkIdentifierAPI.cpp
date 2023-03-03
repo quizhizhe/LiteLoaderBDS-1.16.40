@@ -1,5 +1,5 @@
-#include <MC/NetworkIdentifier.hpp>
-#include <MC/RakNet.hpp>
+#include <llapi/mc/NetworkIdentifier.hpp>
+#include <llapi/mc/RakNet.hpp>
 
 string NetworkIdentifier::getIP() {
     string rv =getAddress();

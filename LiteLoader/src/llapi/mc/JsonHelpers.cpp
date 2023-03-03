@@ -1,7 +1,7 @@
 //
 // Created by User on 2022/10/29.
 //
-#include "MC/JsonHelpers.hpp"
+#include <llapi/mc/JsonHelpers.hpp>
 
 bool JsonHelpers::parseJson(std::string const &str, class Json::Value &value){
     auto jsonRead = new Json::Reader();

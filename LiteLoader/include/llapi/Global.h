@@ -56,20 +56,20 @@
 // windows types
 #include <minwindef.h>
 
-#include "third-party/entt/entt.hpp"
-#include "third-party/gsl/gsl"
-#include "third-party/seh_exception/seh_exception.hpp"
-#include "third-party/FMT/chrono.h"
-#include "third-party/FMT/color.h"
-#include "third-party/FMT/core.h"
-#include "third-party/FMT/os.h"
-#include "third-party/FMT/printf.h"
+#include "entt/entt.hpp"
+#include "gsl/gsl"
+#include <seh_exception/seh_exception.hpp>
+#include "FMT/chrono.h"
+#include "FMT/color.h"
+#include "FMT/core.h"
+#include "FMT/os.h"
+#include "FMT/printf.h"
 
 #include "GlobalServiceAPI.h"
-#include "include/llapi/utils/Optional.h"
+#include "llapi/utils/Optional.h"
 
 // basic mc types
-#include "MC/Types.hpp"
+#include "llapi/mc/Types.hpp"
 // clang-format off
 #define M_E        2.71828182845904523536    // e
 #define M_LOG2E    1.44269504088896340736    // log2(e)

@@ -1,24 +1,25 @@
 ﻿ //#define COMMAND_REGISTRY_EXTRA
- #include "include/llapi/DynamicCommandAPI.h"
- #include "include/llapi/I18nAPI.h"
- #include "include/llapi/LLAPI.h"
- #include "include/llapi/LoggerAPI.h"
- #include <MC/AvailableCommandsPacket.hpp>
- #include <MC/CommandMessage.hpp>
- #include <MC/CommandOutput.hpp>
- #include <MC/CommandRegistry.hpp>
- #include <MC/ItemInstance.hpp>
- #include <MC/MobEffect.hpp>
- #include <MC/ActorDefinitionIdentifier.hpp>
- #include <MC/Level.hpp>
- #include <MC/Block.hpp>
- #include <Utils/SRWLock.h>
- #include "include/llapi/ScheduleAPI.h"
- #include <MC/Minecraft.hpp>
- #include <MC/LoopbackPacketSender.hpp>
+ #include <llapi/DynamicCommandAPI.h>
+ #include <llapi/I18nAPI.h>
+ #include <llapi/LLAPI.h>
+ #include <llapi/LoggerAPI.h>
+ #include <llapi/mc/AvailableCommandsPacket.hpp>
+ #include <llapi/mc/CommandMessage.hpp>
+ #include <llapi/mc/CommandOutput.hpp>
+ #include <llapi/mc/CommandRegistry.hpp>
+ #include <llapi/mc/ItemInstance.hpp>
+ #include <llapi/mc/MobEffect.hpp>
+ #include <llapi/mc/ActorDefinitionIdentifier.hpp>
+ #include <llapi/mc/Level.hpp>
+ #include <llapi/mc/Block.hpp>
+ #include <llapi/utils/SRWLock.h>
+ #include <llapi/ScheduleAPI.h>
+ #include <llapi/mc/Minecraft.hpp>
+ #include <llapi/mc/LoopbackPacketSender.hpp>
  #include <dyncall/dyncall_callback.h>
- #include <MC/CommandUtils.hpp>
- #include <MC/CommandSoftEnumRegistry.hpp>
+ #include <llapi/mc/CommandUtils.hpp>
+ #include <llapi/mc/CommandSoftEnumRegistry.hpp>
+ #include <llapi/HookAPI.h>
 
  extern Logger logger;
 
@@ -594,9 +595,9 @@
  std::unique_ptr<class DynamicCommandInstance> DynamicCommand::createCommand(std::string const& name, std::string const& description, CommandPermissionLevel permission, CommandFlag flag1, CommandFlag flag2, HMODULE handle) {
      return DynamicCommandInstance::create(name, description, permission, flag1 |= flag2, handle);
  }
- #include "include/llapi/LLAPI.h"
- #include "include/llapi/EventAPI.h"
- #include "include/liteloader/Config.h"
+ #include <llapi/LLAPI.h>
+ #include <llapi/EventAPI.h>
+ #include <liteloader/Config.h>
 
  DynamicCommandInstance const* DynamicCommand::setup(std::unique_ptr<class DynamicCommandInstance> commandInstance) {
      auto ptr = commandInstance.get();
@@ -962,9 +963,9 @@
 
  #ifdef TEST_DYNAMIC_COMMAND
 
- #include <MC/Actor.hpp>
- #include <MC/Player.hpp>
- #include <MC/Minecraft.hpp>
+ #include <llapi/mc/Actor.hpp>
+ #include <llapi/mc/Player.hpp>
+ #include <llapi/mc/Minecraft.hpp>
 
  void setupTestParamCommand() {
      using Param = DynamicCommand::ParameterData;

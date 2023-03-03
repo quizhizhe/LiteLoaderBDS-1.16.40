@@ -1,7 +1,7 @@
-#include <third-party/mysql/mysql.h>
-#include <DB/Impl/MySQL/Session.h>
-#include <DB/Impl/MySQL/Stmt.h>
-#include "include/llapi/LoggerAPI.h"
+#include <mysql/mysql.h>
+#include <llapi/db/impl/mysql/Session.h>
+#include <llapi/db/impl/mysql/Stmt.h>
+#include <llapi/LoggerAPI.h>
 #define OK 0
 
 namespace DB {

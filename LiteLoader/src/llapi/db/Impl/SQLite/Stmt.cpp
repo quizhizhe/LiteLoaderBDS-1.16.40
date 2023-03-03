@@ -1,7 +1,7 @@
-#include <DB/Impl/SQLite/Stmt.h>
-#include <DB/Impl/SQLite/Session.h>
-#include "include/llapi/LoggerAPI.h"
-#include <third-party/sqlite3/sqlite3.h>
+#include <llapi/db/Impl/sqlite/Stmt.h>
+#include <llapi/db/Impl/sqlite/Session.h>
+#include <llapi/LoggerAPI.h>
+#include <sqlite3/sqlite3.h>
 
 namespace DB {
 

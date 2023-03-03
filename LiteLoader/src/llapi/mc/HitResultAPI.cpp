@@ -1,4 +1,5 @@
-#include <MC/HitResult.hpp>
+#include <llapi/mc/HitResult.hpp>
+#include <llapi/HookAPI.h>
 
 FaceID HitResult::getFacing() {
     return dAccess<FaceID>(this, 28);

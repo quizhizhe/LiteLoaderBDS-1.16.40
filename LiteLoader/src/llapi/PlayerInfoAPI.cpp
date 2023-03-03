@@ -1,11 +1,11 @@
-#include "include/llapi/EventAPI.h"
-#include "include/llapi/LoggerAPI.h"
-#include <MC/ServerPlayer.hpp>
-#include <MC/PropertiesSettings.hpp>
-#include "include/liteloader/LiteLoader.h"
-#include "include/llapi/PlayerInfoAPI.h"
+#include <llapi/EventAPI.h>
+#include <llapi/LoggerAPI.h>
+#include <llapi/mc/ServerPlayer.hpp>
+#include <llapi/mc/PropertiesSettings.hpp>
+#include <liteloader/LiteLoader.h>
+#include <llapi/PlayerInfoAPI.h>
 #include <exception>
-#include <DB/Session.h>
+#include <llapi/db/Session.h>
 
 #define PLAYER_DATABASE_PATH "plugins/LiteLoader/PlayerDB.db"
 #define SQL_CREATE_PLAYER_TABLE \

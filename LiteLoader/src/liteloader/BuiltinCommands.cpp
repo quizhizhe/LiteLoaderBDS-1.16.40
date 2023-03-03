@@ -1,18 +1,18 @@
 ﻿#include <filesystem>
-#include "include/llapi/EventAPI.h"
-#include "include/llapi/LLAPI.h"
-#include "include/llapi/ServerAPI.h"
-#include "include/llapi/RegCommandAPI.h"
-#include <MC/CommandOrigin.hpp>
-#include <MC/CommandOutput.hpp>
-#include <MC/CommandPosition.hpp>
-#include <MC/CommandRegistry.hpp>
-#include <MC/Packet.hpp>
-#include <MC/ServerPlayer.hpp>
-#include <MC/VanillaDimensions.hpp>
-#include "include/liteloader/Config.h"
-#include "include/liteloader/PluginManager.h"
-#include "ScriptEngine/Main/Configs.h"
+#include "llapi/EventAPI.h"
+#include "llapi/LLAPI.h"
+#include "llapi/ServerAPI.h"
+#include "llapi/RegCommandAPI.h"
+#include "llapi/mc/CommandOrigin.hpp"
+#include "llapi/mc/CommandOutput.hpp"
+#include "llapi/mc/CommandPosition.hpp"
+#include "llapi/mc/CommandRegistry.hpp"
+#include "llapi/mc/Packet.hpp"
+#include "llapi/mc/ServerPlayer.hpp"
+#include "llapi/mc/VanillaDimensions.hpp"
+#include "liteloader/Config.h"
+#include "liteloader/PluginManager.h"
+#include "ScriptEngine/src/main/Configs.h"
 
 using namespace RegisterCommandHelper;
 using namespace LL;

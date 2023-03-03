@@ -10,20 +10,20 @@
 #include <vector>
 #include <mutex>
 
-#include "../LiteLoader/Header/Utils/Hash.h"
-#include "../LiteLoader/Header/third-party/detours/detours.h"
-#include "../LiteLoader/Lib/third-party/rawpdb/PDB.h"
-#include "../LiteLoader/Lib/third-party/rawpdb/PDB_RawFile.h"
-#include "../LiteLoader/Lib/third-party/rawpdb/PDB_InfoStream.h"
-#include "../LiteLoader/Lib/third-party/rawpdb/PDB_DBIStream.h"
-#include "../LiteLoader/Lib/third-party/rawpdb/Foundation/PDB_DisableWarningsPop.h"
+#include "llapi/utils/Hash.h"
+#include "detours/detours.h"
+#include "rawpdb/PDB.h"
+#include "rawpdb/PDB_RawFile.h"
+#include "rawpdb/PDB_InfoStream.h"
+#include "rawpdb/PDB_DBIStream.h"
+#include "rawpdb/Foundation/PDB_DisableWarningsPop.h"
 
-#include "../LiteLoader/Header/third-party/parallel_hashmap/phmap.h"
+#include "parallel_hashmap/phmap.h"
 
-#include "../include/Logger.h"
-#include "../LiteLoader/Header/third-party/FMT/printf.h"
+#include "Logger.h"
+#include "FMT/printf.h"
 #include <iomanip>
-#include "../include/Utils.h"
+#include "Utils.h"
 
 #include "../include/FakeSymbol.hpp"
 

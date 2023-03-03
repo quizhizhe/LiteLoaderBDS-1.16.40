@@ -1,6 +1,6 @@
- #include <MC/CommandOrigin.hpp>
- #include <MC/Actor.hpp>
-#include "MC/CompoundTag.hpp"
+#include <llapi/mc/CommandOrigin.hpp>
+#include <llapi/mc/Actor.hpp>
+#include <llapi/mc/CompoundTag.hpp>
 
  ServerPlayer* CommandOrigin::getPlayer() const {
      Actor* origin = getEntity();

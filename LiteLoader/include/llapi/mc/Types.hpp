@@ -1,7 +1,7 @@
 #pragma once
 
-#include "include/llapi/HookAPI.h"
-#include "include/llapi/Global.h"
+#include <llapi/HookAPI.h>
+#include "llapi/Global.h"
 #include "Vec2.hpp"
 #include "Vec3.hpp"
 #include "BlockPos.hpp"

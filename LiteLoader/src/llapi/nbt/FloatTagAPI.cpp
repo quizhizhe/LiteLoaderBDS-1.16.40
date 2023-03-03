@@ -1,4 +1,5 @@
-#include <MC/FloatTag.hpp>
+#include <llapi/mc/FloatTag.hpp>
+#include <llapi/HookAPI.h>
 
 float& FloatTag::value() {
     return dAccess<float, 8>(this);

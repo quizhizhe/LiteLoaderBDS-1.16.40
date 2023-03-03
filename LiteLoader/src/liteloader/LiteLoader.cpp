@@ -1,22 +1,29 @@
+#include <csignal>
+#include <string>
+#include <iostream>
+
+
+#include <llapi/utils/StringHelper.h>
+#include <llapi/utils/FileHelper.h>
+
+#include <seh_exception/seh_exception.hpp>
+
+#include <llapi/ServerAPI.h>
+#include <llapi/HookAPI.h>
+#include <llapi/EventAPI.h>
+#include <llapi/LoggerAPI.h>
+
+#include <liteloader/Config.h>
+#include <liteloader/Loader.h>
+#include <liteloader/CrashLogger.h>
+#include <liteloader/AddonsHelper.h>
+#include <liteloader/Version.h>
+
+#include <llapi/mc/Minecraft.hpp>
+
 #include <Windows.h>
 #include <TlHelp32.h>
 #include <Psapi.h>
-#include <string>
-#include <iostream>
-#include "include/llapi/LoggerAPI.h"
-#include <Utils/StringHelper.h>
-#include <Utils/FileHelper.h>
-#include <seh_exception/seh_exception.hpp>
-#include "include/llapi/ServerAPI.h"
-#include "include/llapi/HookAPI.h"
-#include "include/liteloader/Config.h"
-#include "include/liteloader/Loader.h"
-#include "include/liteloader/CrashLogger.h"
-#include "include/liteloader/AddonsHelper.h"
-#include "include/llapi/EventAPI.h"
-#include "include/liteloader/Version.h"
-#include "MC/Minecraft.hpp"
-#include <csignal>
 
 using namespace std;
 

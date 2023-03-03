@@ -1,12 +1,13 @@
-#include "include/llapi/LoggerAPI.h"
-#include "include/liteloader/LiteLoader.h"
-#include <MC/Block.hpp>
-#include <MC/BlockLegacy.hpp>
-#include <MC/BlockPalette.hpp>
-#include <MC/BlockSerializationUtils.hpp>
-#include <MC/CompoundTag.hpp>
-#include <MC/HashedString.hpp>
-#include <MC/Level.hpp>
+#include <llapi/LoggerAPI.h>
+#include <liteloader/LiteLoader.h>
+#include <llapi/mc/Block.hpp>
+#include <llapi/mc/BlockLegacy.hpp>
+#include <llapi/mc/BlockPalette.hpp>
+#include <llapi/mc/BlockSerializationUtils.hpp>
+#include <llapi/mc/CompoundTag.hpp>
+#include <llapi/mc/HashedString.hpp>
+#include <llapi/mc/Level.hpp>
+#include <llapi/HookAPI.h>
 
 Block* Block::create(const string& name, unsigned short tileData) {
     BlockPalette* generator = Global<Level>->getBlockPalettePtr();

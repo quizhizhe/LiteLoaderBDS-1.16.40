@@ -1,5 +1,5 @@
-#include <DB/Session.h>
-#include "include/llapi/LoggerAPI.h"
+#include <llapi/db/Session.h>
+#include <llapi/LoggerAPI.h>
 
 namespace DB {
 

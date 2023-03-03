@@ -2,7 +2,7 @@
 
 #include <optional>
 #include <string>
-#include "Tools/Demangler/include/MicrosoftDemangle.h"
+#include "MicrosoftDemangle.h"
 
 namespace FakeSymbol {
 

@@ -1,8 +1,8 @@
-#include <MC/ReadOnlyBinaryStream.hpp>
-#include <MC/CompoundTag.hpp>
-#include <MC/NbtIo.hpp>
-#include <MC/IDataInput.hpp>
-#include <MC/VarIntDataInput.hpp>
+#include <llapi/mc/ReadOnlyBinaryStream.hpp>
+#include <llapi/mc/CompoundTag.hpp>
+#include <llapi/mc/NbtIo.hpp>
+#include <llapi/mc/IDataInput.hpp>
+#include <llapi/mc/VarIntDataInput.hpp>
 
 std::string const& ReadOnlyBinaryStream::getData() const {
     return *pBuf;

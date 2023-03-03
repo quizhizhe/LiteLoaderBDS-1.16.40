@@ -1,7 +1,7 @@
 #include <string>
-#include "include/llapi/Global.h"
-#include "include/llapi/LoggerAPI.h"
-#include "include/llapi/ScheduleAPI.h"
+#include <llapi/Global.h>
+#include <llapi/LoggerAPI.h>
+#include <llapi/ScheduleAPI.h>
 extern Logger logger;
 
 LIAPI void OutputEventError(const std::string& errorMsg, const std::string& eventName, const std::string& pluginName) {

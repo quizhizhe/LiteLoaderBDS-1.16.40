@@ -1,8 +1,8 @@
-#include "include/llapi/HookAPI.h"
-#include "include/llapi/LoggerAPI.h"
+#include <llapi/HookAPI.h>
+#include <llapi/LoggerAPI.h>
 #include <seh_exception/seh_exception.hpp>
-#include <Utils/DbgHelper.h>
-#include <Utils/StringHelper.h>
+#include <llapi/utils/DbgHelper.h>
+#include <llapi/utils/StringHelper.h>
 #include <sstream>
 #include <string>
 #include <set>

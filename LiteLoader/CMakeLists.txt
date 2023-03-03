@@ -4,12 +4,10 @@ project(LiteLoader)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_BUILD_TYPE Release) # Always uses Release mode to build BDS plugin for ABI Compatibility
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/x64/)
-
-set(TARGET_DIR ${CMAKE_SOURCE_DIR}/x64/Release/)
-
-file(GLOB_RECURSE SRC_FILES
-        ${PROJECT_SOURCE_DIR}/third-party/nbt-cpp/*.cpp
+file(
+        GLOB_RECURSE SRC_FILES
+        ${PROJECT_SOURCE_DIR}/third-party/include/*.h
+        ${PROJECT_SOURCE_DIR}/third-party/include/*.hpp
         ${PROJECT_SOURCE_DIR}/include/*.h
         ${PROJECT_SOURCE_DIR}/include/*.hpp
         ${PROJECT_SOURCE_DIR}/src/*.cpp

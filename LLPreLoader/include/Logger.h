@@ -2,12 +2,12 @@
 #ifndef FMT_HEADER_ONLY
 #define FMT_HEADER_ONLY
 #endif
-#include "../LiteLoader/Header/third-party/FMT/chrono.h"
-#include "../LiteLoader/Header/third-party/FMT/color.h"
-#include "../LiteLoader/Header/third-party/FMT/core.h"
-#include "../LiteLoader/Header/third-party/FMT/os.h"
-#include "../LiteLoader/Header/third-party/FMT/format.h"
-#include "../LiteLoader/Header/third-party/Nlohmann/json.hpp"
+#include "FMT/chrono.h"
+#include "FMT/color.h"
+#include "FMT/core.h"
+#include "FMT/os.h"
+#include "FMT/format.h"
+#include "Nlohmann/json.hpp"
 #include <string>
 #include <filesystem>
 #include <fstream>

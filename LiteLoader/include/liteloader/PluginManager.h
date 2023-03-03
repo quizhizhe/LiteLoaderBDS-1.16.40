@@ -1,6 +1,5 @@
 #pragma once
-#include "include/llapi/Global.h"
-#include <Windows.h>
+#include "llapi/Global.h"
 #include <string>
 #include <unordered_map>
 

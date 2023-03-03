@@ -1,8 +1,8 @@
 #pragma once
-#include "include/llapi/Global.h"
+#include "llapi/Global.h"
 #include <string>
 #include <functional>
-#include "Header/third-party/httplib/httplib.h"
+#include "httplib/httplib.h"
 
 // "http(s)://www.aaa.com/bbb/c.html"    ->    ""http(s)://www.aaa.com"  &  "/bbb/c.html"
 LIAPI void SplitHttpUrl(const std::string& url, std::string& host, std::string& path);

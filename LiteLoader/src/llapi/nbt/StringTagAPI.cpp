@@ -1,4 +1,5 @@
-#include <MC/StringTag.hpp>
+#include <llapi/mc/StringTag.hpp>
+#include <llapi/HookAPI.h>
 
 std::string& StringTag::value() {
     return dAccess<std::string, 8>(this);

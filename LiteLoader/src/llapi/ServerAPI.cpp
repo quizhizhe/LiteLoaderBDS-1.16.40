@@ -1,8 +1,8 @@
-#include <MC/Common.hpp>
-#include <MC/SharedConstants.hpp>
-#include <MC/Minecraft.hpp>
-#include <MC/ServerNetworkHandler.hpp>
-#include "include/llapi/ServerAPI.h"
+#include <llapi/mc/Common.hpp>
+#include <llapi/mc/SharedConstants.hpp>
+#include <llapi/mc/Minecraft.hpp>
+#include <llapi/mc/ServerNetworkHandler.hpp>
+#include <llapi/ServerAPI.h>
 #include <string>
 class UserEntityIdentifierComponent;
 

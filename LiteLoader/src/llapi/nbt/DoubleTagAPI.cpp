@@ -1,4 +1,5 @@
-#include <MC/DoubleTag.hpp>
+#include <llapi/mc/DoubleTag.hpp>
+#include <llapi/HookAPI.h>
 
 double& DoubleTag::value() {
     return dAccess<double, 8>(this);

@@ -35,13 +35,13 @@
 
 #include "Global.h"
 #include "LLAPI.h"
-#include "include/llapi/utils/FileHelper.h"
-#include "include/llapi/utils/PluginOwnData.h"
-#include "third-party/Nlohmann/json.hpp"
-#include "third-party/FMT/core.h"
-#include "third-party/FMT/os.h"
+#include "llapi/utils/FileHelper.h"
+#include "llapi/utils/PluginOwnData.h"
+#include "Nlohmann/json.hpp"
+#include "FMT/core.h"
+#include "FMT/os.h"
 #include <string>
-#include "include/llapi/utils/StringHelper.h"
+#include "llapi/utils/StringHelper.h"
 
 /**
  * @brief I18nBase API class.
@@ -189,7 +189,7 @@ public:
 };
 
 #ifdef UNICODE
-#include "third-party/compact_enc_det/compact_enc_det.h"
+#include <compact_enc_det/compact_enc_det.h>
 #define UNICODE
 #else
 #include "third-party/compact_enc_det/compact_enc_det.h"
