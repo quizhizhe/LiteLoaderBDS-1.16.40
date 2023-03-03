@@ -19,9 +19,9 @@ public:
     };
     LIAPI void setCustomResourcePackPath(PackType, const std::string& path);
 
-    inline class PackSourceFactory & getPackSourceFactory(){
+    inline class PackSourceFactory* getPackSourceFactory(){
         //ResourcePackRepository::_initializeWorldPackSource Line62
-        return dAccess<PackSourceFactory>(this, 46 * 8);
+        return dAccess<PackSourceFactory*>(this, 46 * 8);
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_RESOURCEPACKREPOSITORY
