@@ -33,7 +33,7 @@ echo.
 if not exist LiteLoaderSDK/Header/ (
     echo [WARNING] LiteLoaderSDK files no found. Pulling from remote...
     echo.
-    git clone %LL_SDK_REMOTE_PATH%
+    git clone %LL_SDK_REMOTE_PATH% LiteLoaderSDK
 )
 
 cd LiteLoaderSDK
