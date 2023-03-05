@@ -22,7 +22,7 @@ public:
 // };
     LIAPI BlockInstance getBlockInstance(BlockPos);
     inline Dimension* getDimension() const{
-        return dAccess< Dimension*>(this, 32);
+        return dAccess< Dimension*>(this, ll::offset::BLOCKSOURCE_getDimension);
     }
     inline AutomaticID<class Dimension, int> getDimensionId() const{
         //Dimension::onBlockEvent Line24
@@ -42,7 +42,7 @@ public:
     }
     inline Dimension const & getDimensionConst() const{
         //BegGoal::canUse Line6
-        return dAccess<Dimension>(this,808);
+        return dAccess<Dimension>(this,ll::offset::BLOCKSOURCE_getDimensionConst);
     };
 //    inline short getHeightmap(class BlockPos const &bs) const{
 //        auto levelchunk = getChunkAt(bs);

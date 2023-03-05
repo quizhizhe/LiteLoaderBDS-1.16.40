@@ -143,7 +143,7 @@ public:
     }
 
     inline Spawner& getSpawner() const{
-        return *dAccess<std::unique_ptr<Spawner>>(this,1968).get();
+        return *dAccess<std::unique_ptr<Spawner>>(this,ll::offset::LEVEL_getSpawner).get();
     };
     
 #undef AFTER_EXTRA

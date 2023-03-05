@@ -28,7 +28,7 @@ public:
     }
     inline bool getDead(){
         //mob::die Line83
-        return dAccess<bool>(this,1850);
+        return dAccess<bool>(this,ll::offset::MOB_getDead);
     };
 
 #undef AFTER_EXTRA

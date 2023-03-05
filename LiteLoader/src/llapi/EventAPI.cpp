@@ -1129,8 +1129,8 @@ TInstanceHook(void, "?handle@ItemUseOnActorInventoryTransaction@@UEBA?AW4Invento
     IF_LISTENED(PlayerInteractEntityEvent) {
         PlayerInteractEntityEvent ev{};
         ev.mPlayer = sp;
-        ev.mTargetId = dAccess<ActorRuntimeID, 104>(this);//正确
-        ev.mInteractiveMode = static_cast<PlayerInteractEntityEvent::InteractiveMode>(dAccess<int, 112>(this));//看起来应该正确
+        ev.mTargetId = dAccess<ActorRuntimeID, ll::offset::EVENTAPI_PlayerInteractEntity_1>(this);//正确
+        ev.mInteractiveMode = static_cast<PlayerInteractEntityEvent::InteractiveMode>(dAccess<int, ll::offset::EVENTAPI_PlayerInteractEntity_2>(this));//看起来应该正确
         if (!ev.call())
             return;
     }

@@ -12,7 +12,7 @@ class CompoundTagVariant {
 #define AFTER_EXTRA
 public:
     inline Tag::Type getTagType() {
-        return dAccess<Tag::Type, 40>(this);
+        return dAccess<Tag::Type, ll::offset::COMPOUNDTAGVARIANT_getTagType>(this);
     }
     inline Tag* asTag() {
         return (Tag*)this;

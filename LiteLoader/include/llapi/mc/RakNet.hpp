@@ -41,7 +41,7 @@ namespace RakNet {
         RakPeer(RakPeer const&) = delete;
         RakPeer(RakPeer&&) = delete;
         SystemAddress getAdr(NetworkIdentifier const& ni) {
-            RakNetGUID const& guid = dAccess<RakNetGUID>(&ni, 8);
+            RakNetGUID const& guid = dAccess<RakNetGUID>(&ni, ll::offset::RAKNET_getAdr);
             return RakPeer::GetSystemAddressFromGuid(guid);
         }
         MCAPI virtual SystemAddress GetSystemAddressFromGuid(struct RakNet::RakNetGUID) const;

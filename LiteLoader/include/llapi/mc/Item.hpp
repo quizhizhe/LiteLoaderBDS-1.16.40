@@ -20,7 +20,7 @@ class Item {
 public:
     inline std::string const & getFullItemName() const{
         //ItemRegistry::registerItem Line25
-        return dAccess<std::string>(this,216);
+        return dAccess<std::string>(this,ll::offset::ITEM_getFullItemName);
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_ITEM

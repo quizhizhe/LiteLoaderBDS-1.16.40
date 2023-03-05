@@ -21,7 +21,7 @@ public:
 
     inline class PackSourceFactory* getPackSourceFactory(){
         //ResourcePackRepository::_initializeWorldPackSource Line62
-        return dAccess<PackSourceFactory*>(this, 46 * 8);
+        return dAccess<PackSourceFactory*>(this, ll::offset::RESOURCEPACKREPOSITORY_getPackSourceFactory);
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_RESOURCEPACKREPOSITORY

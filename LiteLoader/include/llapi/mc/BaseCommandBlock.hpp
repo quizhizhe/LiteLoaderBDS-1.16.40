@@ -13,7 +13,7 @@ class BaseCommandBlock {
 public:
     inline std::string const & getCommand() const{
         //BaseCommandBlock::_setCommand a4 is Command;
-        return dAccess<std::string>(this,56);
+        return dAccess<std::string>(this,ll::offset::BASECOMMANDBLOCK_getCommand);
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_BASECOMMANDBLOCK

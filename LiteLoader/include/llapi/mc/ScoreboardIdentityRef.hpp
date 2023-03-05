@@ -13,7 +13,7 @@ class ScoreboardIdentityRef {
 public:
     enum IdentityDefinition::Type getIdentityType(){
         //ServerScoreboard::_unpackIdentityDefToScorePacket Line30~31 16+72
-        return dAccess<enum IdentityDefinition::Type>(this, 88);
+        return dAccess<enum IdentityDefinition::Type>(this, ll::offset::SCOREBOARDIDENTITYREF_getIdentityType);
     };
 
 #undef AFTER_EXTRA

@@ -3,5 +3,5 @@
 #include <llapi/HookAPI.h>
 
 ServerPlayer* GameMode::getPlayer() {
-    return dAccess<ServerPlayer*, 8>(this);
+    return dAccess<ServerPlayer*, ll::offset::GAMEMODEAPI_getPlayer>(this);
 }

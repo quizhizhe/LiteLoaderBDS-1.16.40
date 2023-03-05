@@ -5,11 +5,11 @@
 #include <llapi/HookAPI.h>
 
 int Biome::getId() const {
-    return dAccess<int, 120>(this);
+    return dAccess<int, ll::offset::BIOMEAPI_getID>(this);
 }
 
 std::string const& Biome::getName() const {
-    return dAccess<std::string, 8>(this);
+    return dAccess<std::string, ll::offset::BIOMEAPI_getName>(this);
 }
 
 // Biome* Biome::fromId(int id) {

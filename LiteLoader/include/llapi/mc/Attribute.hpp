@@ -12,7 +12,7 @@ class Attribute {
 #define AFTER_EXTRA
 public:
     inline class HashedString const & getName() const{
-        return dAccess<HashedString>(this, 8);
+        return dAccess<HashedString>(this, ll::offset::ATTRIBUTE_getName);
     }
 
 #undef AFTER_EXTRA

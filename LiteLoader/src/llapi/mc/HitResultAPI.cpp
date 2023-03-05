@@ -2,13 +2,13 @@
 #include <llapi/HookAPI.h>
 
 FaceID HitResult::getFacing() {
-    return dAccess<FaceID>(this, 28);
+    return dAccess<FaceID>(this, ll::offset::HITRESULTAPI_getFacing);
 }
 Vec3 HitResult::getPos() {
-    return dAccess<Vec3>(this, 44);
+    return dAccess<Vec3>(this, ll::offset::HITRESULTAPI_getPos);
 }
 bool HitResult::isHitLiquid() {
-    return dAccess<bool>(this, 80);
+    return dAccess<bool>(this, ll::offset::HITRESULTAPI_isHitLiquid);
 }
 // LIAPI bool HitResult::isEntity() {
 //     return getHitResultType() == HitResultType::ENTITY;
@@ -17,13 +17,13 @@ bool HitResult::isHitLiquid() {
 //     return getHitResultType() == HitResultType::TILE;
 // }
 BlockPos HitResult::getBlockPos() {
-    return dAccess<BlockPos>(this, 32);
+    return dAccess<BlockPos>(this, ll::offset::HITRESULTAPI_getBlockPos);
 }
 BlockPos HitResult::getLiquidPos() {
-    return dAccess<BlockPos>(this, 84);
+    return dAccess<BlockPos>(this, ll::offset::HITRESULTAPI_getLiquidPos);
 }
 FaceID HitResult::getLiquidFacing() {
-    return dAccess<FaceID>(this, 81);
+    return dAccess<FaceID>(this, ll::offset::HITRESULTAPI_getLiquidFacing);
 }
 // LIAPI Vec3 HitResult::getLiquidHitPos();
 // LIAPI HitResultType HitResult::getHitResultType() {

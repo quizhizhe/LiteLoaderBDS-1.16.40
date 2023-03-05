@@ -22,15 +22,15 @@ class Dimension {
 public:
     inline BlockSource& getBlockSourceFromMainChunkSource() const{
         //ExplorationMapFunction::apply Line57
-        return *dAccess<BlockSource*>(this, 72);
+        return *dAccess<BlockSource*>(this, ll::offset::DIMENSION_getBlockSourceFromMainChunkSource);
     };
     inline int getHeight(){
-        return dAccess<int>(this,202);
+        return dAccess<int>(this,ll::offset::DIMENSION_getHeight);
     };
     inline AutomaticID<class Dimension, int> getDimensionId() const{
         //Player::moveSpawnView Line33
         //Player::checkSpawnBlock Line19
-        return dAccess<AutomaticID<Dimension,int>>(this,192);
+        return dAccess<AutomaticID<Dimension,int>>(this,ll::offset::DIMENSION_getDimensionId);
     };
     inline DimensionHeightRange const & getHeightRange() const{
         // 0为主世界，1为下界，2为末地

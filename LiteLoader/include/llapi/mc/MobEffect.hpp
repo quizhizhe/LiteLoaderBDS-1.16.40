@@ -53,11 +53,11 @@ public:
 
     inline std::string const & getResourceName() const{
         //EffectCommand::execute Line247
-        return dAccess<std::string>(this,80);
+        return dAccess<std::string>(this,ll::offset::MOBEFFECT_getResourceName);
     };
     inline HashedString const & getComponentName() const{
         //MobEffect::MobEffect Line43;
-        return dAccess<HashedString>(this,152);
+        return dAccess<HashedString>(this,ll::offset::MOBEFFECT_getComponentName);
     };
 
 #undef AFTER_EXTRA

@@ -163,7 +163,7 @@ public:
 
     inline int getBlockItemId() const{
         //ItemStackBase::init(ItemStackBase *this, const struct BlockLegacy *a2, int a3) Line14
-        unsigned int id = dAccess<int>(this,268);//mID
+        unsigned int id = dAccess<int>(this,ll::offset::BLOCKLEGAC_getBlockItemId);//mID
         // unsigned int id = this->mID;
         if(id < 256u)
             return id;
@@ -176,7 +176,7 @@ public:
     }
     inline enum BlockActorType getBlockEntityType() const{
         // LevelChunk::_removeCallbacks Line28
-        return dAccess<BlockActorType>(this,168);
+        return dAccess<BlockActorType>(this,ll::offset::BLOCKLEGAC_getBlockEntityType);
         //return this->mBlockEntityType;
     };
 

@@ -14,7 +14,7 @@ class Minecraft {
 public:
     inline NetworkHandler & getNetworkHandler(){
         //lambda_b490644342a3912d59dc52eb79c3a67f_::operator() Line410
-        return dAccess<NetworkHandler>(this,24);
+        return dAccess<NetworkHandler>(this,ll::offset::MINECRAFT_getNetworkHandler);
     };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_MINECRAFT

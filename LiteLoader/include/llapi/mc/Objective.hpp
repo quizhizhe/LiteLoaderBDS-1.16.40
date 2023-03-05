@@ -14,14 +14,14 @@ class Objective {
 public:
     inline std::string getName(){
         //ScoreboardCommand::applyPlayerOperation Line186
-        return dAccess<std::string>(this, 64);
+        return dAccess<std::string>(this, ll::offset::OBJECTIVE_getName);
     };
 
     LIAPI bool setDisplay(const std::string& slotName, ObjectiveSortOrder sort);
 
     inline std::string const & getDisplayName() const{
         //Objective::serialize
-        return dAccess<std::string>(this,96);
+        return dAccess<std::string>(this,ll::offset::OBJECTIVE_getDisplayName);
     };
     
 #undef AFTER_EXTRA

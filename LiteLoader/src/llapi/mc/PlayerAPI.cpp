@@ -47,13 +47,13 @@ extern Logger logger;
 
 NetworkIdentifier* Player::getNetworkIdentifier() const{
     //ServerPlayer::isHostingPlayer
-    return dAccess<NetworkIdentifier*>(this, 2432);
+    return dAccess<NetworkIdentifier*>(this, ll::offset::PLAYERAPI_getNetworkIdentifier);
 }
 
 
 Certificate* Player::getCertificate() const{
     //KickCommand::_kickPlayer Line116
-    return dAccess<Certificate*>(this, 2736);
+    return dAccess<Certificate*>(this, ll::offset::PLAYERAPI_getCertificate);
 }
 
 std::string Player::getRealName() {
@@ -99,12 +99,12 @@ string Player::getServerAddress() {
 
 int Player::getPlatform(){
     //AddPlayerPacket::AddPlayerPacket Line59
-    return dAccess<int>(this, 2104);
+    return dAccess<int>(this, ll::offset::PLAYERAPI_getPlatform);
 }
 
 Container & Player::getInventory(){
     //InventoryContainerModel::_getContainer  2928 + 176
-    return dAccess<Container>(this, 3104);
+    return dAccess<Container>(this, ll::offset::PLAYERAPI_getInventory);
 }
 
 enum CommandPermissionLevel Player::getPlayerPermissionLevel(){
@@ -258,12 +258,12 @@ bool Player::transferServer(const string& address, unsigned short port) {
 
 BlockPos const & Player::getSpawnPosition(){
     //ServerNetworkHandler::_sendLevelData Line316
-    return dAccess<BlockPos>(this, 1797*4);
+    return dAccess<BlockPos>(this, ll::offset::PLAYERAPI_getSpawnPosition);
 }
 
 AutomaticID<Dimension, int> Player::getSpawnDimension(){
     //ServerNetworkHandler::_sendLevelData Line310
-    return dAccess<AutomaticID<Dimension, int>>(this, 1800*4);
+    return dAccess<AutomaticID<Dimension, int>>(this, ll::offset::PLAYERAPI_getSpawnDimension);
 }
 
 std::pair<BlockPos, int> Player::getRespawnPosition() {
@@ -322,12 +322,12 @@ string Player::getXuid() const{
 }
 
 mce::UUID Player::getClientUUID()const{
-    return dAccess<mce::UUID>(this,2720);
+    return dAccess<mce::UUID>(this,ll::offset::PLAYERAPI_getClientUUID);
 };
 
 unsigned char Player::getClientSubId() {
     //ServerPlayer::sendNetworkPacket 参4
-    return dAccess<unsigned char>(this,3520);
+    return dAccess<unsigned char>(this,ll::offset::PLAYERAPI_getClientSubId);
 }
 
 float Player::getAvgPacketLoss() {
@@ -442,7 +442,7 @@ size_t Player::getTotalXpNeededForLevel(int level) {
 
 bool Player::crashClient() {
     auto pkt = MinecraftPackets::createPacket(MinecraftPacketIds::LevelChunk);
-    dAccess<bool, 56>(pkt.get()) = 1;
+    dAccess<bool, ll::offset::PLAYERAPI_crashClient>(pkt.get()) = 1;
     sendNetworkPacket(*pkt);
     return true;
 }
@@ -684,8 +684,8 @@ bool Player::sendUpdateBlockPacket(BlockPos const& bpos, const Block& block, Upd
 
 bool Player::sendTransferPacket(const string& address, short port) const {
     auto packet = MinecraftPackets::createPacket(0x55);
-    dAccess<short>(packet.get(), 36) = port;
-    dAccess<string>(packet.get(), 40) = address;
+    dAccess<short>(packet.get(), ll::offset::PLAYERAPI_sendTransferPacket_port) = port;
+    dAccess<string>(packet.get(), ll::offset::PLAYERAPI_sendTransferPacket_address) = address;
     sendNetworkPacket(*packet);
     return true;
 }
@@ -698,8 +698,8 @@ bool Player::sendSetDisplayObjectivePacket(const string& title, const string& na
 
 bool Player::sendSetScorePacket(char type, const vector<ScorePacketInfo>& data) {
     auto packet = MinecraftPackets::createPacket(0x6c);
-    dAccess<char>(packet.get(), 48) = type;
-    dAccess<vector<ScorePacketInfo>>(packet.get(), 56) = data;
+    dAccess<char>(packet.get(), ll::offset::PLAYERAPI_sendSetScorePacket_type) = type;
+    dAccess<vector<ScorePacketInfo>>(packet.get(), ll::offset::PLAYERAPI_sendSetScorePacket_data) = data;
     sendNetworkPacket(*packet);
     return true;
 }
@@ -750,7 +750,7 @@ bool Player::sendSetScorePacket(char type, const vector<ScorePacketInfo>& data) 
 
 bool Player::sendCommandRequestPacket(const string& cmd) {
     auto packet = MinecraftPackets::createPacket(0x4d);
-    dAccess<string, 48>(packet.get()) = cmd;
+    dAccess<string, ll::offset::PLAYERAPI_sendCommandRequestPacket_cmd>(packet.get()) = cmd;
     Global<ServerNetworkHandler>->handle(*getNetworkIdentifier(), *((CommandRequestPacket*)packet.get()));
     return true;
 }

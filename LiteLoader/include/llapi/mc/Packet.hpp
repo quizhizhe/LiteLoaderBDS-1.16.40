@@ -39,7 +39,7 @@ public:
 
     inline ServerPlayer* getPlayerFromPacket(ServerNetworkHandler* handler, NetworkIdentifier* netId)
     {
-        return handler->getServerPlayer(*netId, dAccess<char>(this, 16));
+        return handler->getServerPlayer(*netId, dAccess<char>(this, ll::offset::PACKET_OBJECTIVE_getDisplayName));
     }
     inline enum StreamReadResult _read(class ReadOnlyBinaryStream& binaryStream)
     {

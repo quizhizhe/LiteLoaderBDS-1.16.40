@@ -13,7 +13,7 @@ Block* BlockLegacy::toBlock(unsigned short tileData) {
 }
 
 string BlockLegacy::getTypeName() {
-    return dAccess<string, 128>(this);
+    return dAccess<string, ll::offset::BLOCKLEGACYAPI_getRuntimeId>(this);
 }
 
 bool BlockLegacy::applyBoneMeal(BlockSource* a1, BlockPos* a2) {

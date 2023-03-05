@@ -23,13 +23,13 @@ public:
 
     inline int getSuccessCount() const{
         //DayLockCommand::execute Line91
-        return dAccess<int>(this,0x28);
+        return dAccess<int>(this,ll::offset::COMMANDOUTPUT_getSuccessCount);
     };
 
     inline void success(){
-        int successCount = dAccess<int>(this,0x28);
+        int successCount = dAccess<int>(this,ll::offset::COMMANDOUTPUT_getSuccessCount);
         ++successCount;
-        dAccess<int>(this,0x28) = successCount;
+        dAccess<int>(this,ll::offset::COMMANDOUTPUT_getSuccessCount) = successCount;
     };
 
     inline bool empty() const{

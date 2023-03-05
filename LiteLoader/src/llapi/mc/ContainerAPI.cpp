@@ -6,7 +6,7 @@
 #include <llapi/HookAPI.h>
 
  LIAPI std::string Container::getTypeName() {
-     ContainerType type = dAccess<ContainerType>(this, 8); //IDA Container::Container
+     ContainerType type = dAccess<ContainerType>(this, ll::offset::CONTAINERAPI_getTypeName); //IDA Container::Container
      // ContainerType type = getContainerType();
      return std::string{magic_enum::enum_name(type)};
  }

@@ -184,11 +184,13 @@ public:
     }
     inline std::string* getDeviceId(){
         //AddPlayerPacket::AddPlayerPacket Line58
-        return dAccess<std::string*>(this,7872);
+        return dAccess<std::string*>(this,ll::offset::PLAYER_getDeviceId);
     };
     inline bool isFlying(){
         //Actor::onAboveBubbleColumn Line5 照抄的，不知行不行
-        return (dAccess<int>(this,2228) == 1 || !dAccess<bool>(this,2232)) && (dAccess<int>(this, 2324) == 1 || !dAccess<bool>(this, 2328));
+        return (dAccess<int>(this,ll::offset::PLAYER_isFlying_1) == 1
+                || !dAccess<bool>(this,ll::offset::PLAYER_isFlying_2))
+                && (dAccess<int>(this, ll::offset::PLAYER_isFlying_3) == 1 || !dAccess<bool>(this, ll::offset::PLAYER_isFlying_4));
     };
     inline bool isHungry(){
         void* Player_HUNGER = dlsym("?HUNGER@Player@@2VAttribute@@B");

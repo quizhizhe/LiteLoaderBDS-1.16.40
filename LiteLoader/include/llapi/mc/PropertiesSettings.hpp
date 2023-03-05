@@ -13,11 +13,11 @@ class PropertiesSettings {
 public:
     inline bool useOnlineAuthentication(){
         //PropertiesSettings::PropertiesSettings Line550;
-        return dAccess<bool>(this, 417);
+        return dAccess<bool>(this, ll::offset::PROPERTIESSETTINGS_useOnlineAuthentication);
     }
     inline std::string getLevelName(){
         //PropertiesSettings::PropertiesSettings Line518
-        return dAccess<std::string>(this,32);
+        return dAccess<std::string>(this,ll::offset::PROPERTIESSETTINGS_getLevelName);
     }
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_PROPERTIESSETTINGS

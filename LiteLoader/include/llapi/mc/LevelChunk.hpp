@@ -42,7 +42,7 @@ struct HardcodedSpawningArea {
 public:
     struct Tick const & getLastTick() const{
         //CommandAreaFactory::_getArea Line156
-        return *dAccess<Tick*>(this, 144);
+        return *dAccess<Tick*>(this, ll::offset::LEVELCHUNK_getLastTick);
     };
     inline int getHeightmap(const ChunkBlockPos *pos){
         //LevelChunk::_lightingCallbacks Line31 应该是这样的
