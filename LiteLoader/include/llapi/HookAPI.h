@@ -5,7 +5,7 @@
 #include <thread>
 
 #include <ModUtils/ModUtils.h>
-#include <liteloader/Offset.h>
+#include "Offset.h"
 
 #include "Global.h"
 #include "utils/Hash.h"
