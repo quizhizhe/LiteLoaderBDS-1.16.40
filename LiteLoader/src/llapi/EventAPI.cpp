@@ -926,20 +926,49 @@ TClasslessInstanceHook(unsigned short,
  }
 
 /////////////////// BlockExploded ///////////////////
-// 没有这个符号
-// TInstanceHook(void, "?onExploded@Block@@QEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
-//               Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
-//     IF_LISTENED(BlockExplodedEvent) {
-//         if (actor) {
-//             BlockExplodedEvent ev{};
-//             ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, bs->getDimensionId());
-//             ev.mExplodeSource = actor;
-//             ev.call();
-//         }
-//     }
-//     IF_LISTENED_END(BlockExplodedEvent)
-//     return original(this, bs, bp, actor);
-// }
+// block::onExploded实际是调用以下其中之一
+// StairBlock
+TInstanceHook(void, "onExploded@StairBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
+           Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
+     IF_LISTENED(BlockExplodedEvent) {
+         if (actor) {
+             BlockExplodedEvent ev{};
+             ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, bs->getDimensionId());
+             ev.mExplodeSource = actor;
+             ev.call();
+        }
+    }
+     IF_LISTENED_END(BlockExplodedEvent)
+     return original(this, bs, bp, actor);
+}
+//TntBlock
+TInstanceHook(void, "?onExploded@TntBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
+              Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
+    IF_LISTENED(BlockExplodedEvent) {
+        if (actor) {
+            BlockExplodedEvent ev{};
+            ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, bs->getDimensionId());
+            ev.mExplodeSource = actor;
+            ev.call();
+        }
+    }
+    IF_LISTENED_END(BlockExplodedEvent)
+    return original(this, bs, bp, actor);
+}
+//TopSnowBlock
+TInstanceHook(void, "?onExploded@TopSnowBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
+              Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
+    IF_LISTENED(BlockExplodedEvent) {
+        if (actor) {
+            BlockExplodedEvent ev{};
+            ev.mBlockInstance = BlockInstance::createBlockInstance(this, *bp, bs->getDimensionId());
+            ev.mExplodeSource = actor;
+            ev.call();
+        }
+    }
+    IF_LISTENED_END(BlockExplodedEvent)
+    return original(this, bs, bp, actor);
+}
 
 
 /////////////////// FireSpread ///////////////////
