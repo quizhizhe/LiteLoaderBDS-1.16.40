@@ -1620,67 +1620,68 @@ THook(void, "?destroyBlocks@@YAXAEAVLevel@@AEBVAABB@@AEAVBlockSource@@H@Z",
 // }
 
 ////////////// ProjectileSpawn //////////////
-// TClasslessInstanceHook(Actor*,
-//                        "?spawnProjectile@Spawner@@QEAAPEAVActor@@AEAVBlockSource@@AEBUActorDefinitionIdentifier@@PEAV2@AEBVVec3@@3@Z",
-//                        BlockSource* a2, ActorDefinitionIdentifier* a3, Actor* a4, Vec3* a5, Vec3* a6) {
-//     string name = a3->getCanonicalName();
-//     if (name != "minecraft:thrown_trident") {
-//         IF_LISTENED(ProjectileSpawnEvent) {
-//             ProjectileSpawnEvent ev{};
-//             ev.mShooter = a4;
-//             ev.mIdentifier = a3;
-//             ev.mType = name;
+ TClasslessInstanceHook(Actor*,
+                        "?spawnProjectile@Spawner@@QEAAPEAVActor@@AEAVBlockSource@@AEBUActorDefinitionIdentifier@@PEAV2@AEBVVec3@@3@Z",
+                        BlockSource* blockSource, ActorDefinitionIdentifier* id, Actor* actor, Vec3* position, Vec3* direction) {
+     string name = id->getCanonicalName();
+     if (name != "minecraft:thrown_trident") {
+         IF_LISTENED(ProjectileSpawnEvent) {
+             ProjectileSpawnEvent ev{};
+             ev.mShooter = actor;
+             ev.mIdentifier = id;
+             ev.mType = name;
 
-//             if (!ev.call())
-//                 return nullptr;
-//         }
-//         IF_LISTENED_END(ProjectileSpawnEvent)
-//     }
-//     auto projectile = original(this, a2, a3, a4, a5, a6);
-//     IF_LISTENED(ProjectileCreatedEvent) {
-//         ProjectileCreatedEvent ev{};
-//         ev.mShooter = a4;
-//         ev.mProjectile = projectile;
-//         ev.call();
-//     }
-//     IF_LISTENED_END(ProjectileCreatedEvent)
-//     return projectile;
-// }
+             if (!ev.call())
+                 return nullptr;
+         }
+         IF_LISTENED_END(ProjectileSpawnEvent)
+     }
+     auto result = original(this, blockSource, id, actor, position, direction);
+     IF_LISTENED(ProjectileCreatedEvent) {
+         ProjectileCreatedEvent ev{};
+         ev.mShooter = actor;
+         ev.mProjectile = result;
+         ev.call();
+     }
+     IF_LISTENED_END(ProjectileCreatedEvent)
+     return result;
+ }
 
-// #include <llapi/mc/CrossbowItem.hpp>
+#include <llapi/mc/CrossbowItem.hpp>
 #include <llapi/mc/ActorDefinitionIdentifier.hpp>
-// static_assert(sizeof(ActorDefinitionIdentifier) == 176);
-// TInstanceHook(void, "?_shootFirework@CrossbowItem@@AEBAXAEBVItemInstance@@AEAVPlayer@@@Z",
-//               CrossbowItem, void* a1, Player* a2) {
-//     IF_LISTENED(ProjectileSpawnEvent) {
-//         ActorDefinitionIdentifier identifier("minecraft:fireworks_rocket");
-//         ProjectileSpawnEvent ev{};
-//         ev.mShooter = a2;
-//         ev.mIdentifier = &identifier;
-//         ev.mType = this->getFullItemName();
+#include <llapi/mc/ItemInstance.hpp>
 
-//         if (!ev.call())
-//             return;
-//     }
-//     IF_LISTENED_END(ProjectileSpawnEvent)
-//     original(this, a1, a2);
-// }
+ TInstanceHook(void, "?_shootFirework@CrossbowItem@@AEBAXAEBVItemInstance@@AEAVPlayer@@@Z",
+               CrossbowItem, ItemInstance* projectileInstance, Player* player) {
+     IF_LISTENED(ProjectileSpawnEvent) {
+         ActorDefinitionIdentifier identifier("minecraft:fireworks_rocket");
+         ProjectileSpawnEvent ev{};
+         ev.mShooter = player;
+         ev.mIdentifier = &identifier;
+         ev.mType = this->getFullItemName();
 
-// TClasslessInstanceHook(void, "?releaseUsing@TridentItem@@UEBAXAEAVItemStack@@PEAVPlayer@@H@Z",
-//                        ItemStack* a2, Player* a3, int a4) {
-//     IF_LISTENED(ProjectileSpawnEvent) {
-//         ActorDefinitionIdentifier identifier("minecraft:thrown_trident");
-//         ProjectileSpawnEvent ev{};
-//         ev.mShooter = a3;
-//         ev.mIdentifier = &identifier;
-//         ev.mType = a2->getTypeName();
+         if (!ev.call())
+             return;
+     }
+     IF_LISTENED_END(ProjectileSpawnEvent)
+     original(this, projectileInstance, player);
+ }
 
-//         if (!ev.call())
-//             return;
-//     }
-//     IF_LISTENED_END(ProjectileSpawnEvent)
-//     return original(this, a2, a3, a4);
-// }
+ TClasslessInstanceHook(void, "?releaseUsing@TridentItem@@UEBAXAEAVItemStack@@PEAVPlayer@@H@Z",
+                        ItemStack* itemStack, Player* player, int durationLeft) {
+     IF_LISTENED(ProjectileSpawnEvent) {
+         ActorDefinitionIdentifier identifier("minecraft:thrown_trident");
+         ProjectileSpawnEvent ev{};
+         ev.mShooter = player;
+         ev.mIdentifier = &identifier;
+         ev.mType = itemStack->getTypeName();
+
+         if (!ev.call())
+             return;
+     }
+     IF_LISTENED_END(ProjectileSpawnEvent)
+     return original(this, itemStack, player, durationLeft);
+ }
 
 // #include <llapi/mc/WeakEntityRef.hpp>
 // #include <llapi/mc/EntityContext.hpp>
