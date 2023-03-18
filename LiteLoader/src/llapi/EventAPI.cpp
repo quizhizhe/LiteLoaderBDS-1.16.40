@@ -1383,24 +1383,24 @@ TInstanceHook(bool, "?useItemOn@GameMode@@UEAA_NAEAVItemStack@@AEBVBlockPos@@EAE
      IF_LISTENED_END(MobHurtEvent)
      return original(this, src, damage, knock, ignite);
  }
-// 没有这个符号
-// TInstanceHook(float, "?getDamageAfterResistanceEffect@Mob@@UEBAMAEBVActorDamageSource@@M@Z", Mob, ActorDamageSource* src, float damage) {
-//     if (src->getCause() == ActorDamageCause::ActorDamageCause_Magic) {
-//         IF_LISTENED(MobHurtEvent) {
-//             if (this) {
-//                 MobHurtEvent ev{};
-//                 ev.mMob = this;
-//                 ev.mDamageSource = src;
-//                 ev.mDamage = damage;
-//                 if (!ev.call())
-//                     return 0;
-//                 damage = ev.mDamage;
-//             }
-//         }
-//         IF_LISTENED_END(MobHurtEvent)
-//     }
-//     return original(this, src, damage);
-// }
+// 函数名变更
+ TInstanceHook(unsigned int, "?getDamageAfterMagicAbsorb@Mob@@UEAAHAEBVActorDamageSource@@H@Z", Mob, ActorDamageSource* src, unsigned int damage) {
+     if (src->getCause() == ActorDamageCause::ActorDamageCause_Magic) {
+         IF_LISTENED(MobHurtEvent) {
+             if (this) {
+                 MobHurtEvent ev{};
+                 ev.mMob = this;
+                 ev.mDamageSource = src;
+                 ev.mDamage = damage;
+                 if (!ev.call())
+                     return 0;
+                 damage = ev.mDamage;
+             }
+         }
+         IF_LISTENED_END(MobHurtEvent)
+     }
+     return original(this, src, damage);
+ }
 
 //////////////// PlayerUseItem & PlayerEat ////////////////
 // #include <llapi/mc/ComponentItem.hpp>
