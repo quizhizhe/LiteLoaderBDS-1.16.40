@@ -1000,30 +1000,30 @@ TClasslessInstanceHook(bool, "?mayPlace@FireBlock@@UEBA_NAEAVBlockSource@@AEBVBl
 
 
 /////////////////// ContainerChange ///////////////////
-// #include <llapi/mc/LevelContainerModel.hpp>
+ #include <llapi/mc/LevelContainerModel.hpp>
 
-// TInstanceHook(void, "?_onItemChanged@LevelContainerModel@@MEAAXHAEBVItemStack@@0@Z",
-//               LevelContainerModel, int slotNumber, ItemStack* oldItem, ItemStack* newItem) {
-//     IF_LISTENED(ContainerChangeEvent) {
-//         Player* pl = (Player*)dAccess<Actor*>(this, 208); // IDA LevelContainerModel::LevelContainerModel
+ TInstanceHook(void, "?_onItemChanged@LevelContainerModel@@MEAAXHAEBVItemStack@@0@Z",
+               LevelContainerModel, int slotNumber, ItemStack* oldItem, ItemStack* newItem) {
+     IF_LISTENED(ContainerChangeEvent) {
+         Player* player = this->mPlayer; // IDA LevelContainerModel::LevelContainerModel
 
-//         if (pl->hasOpenContainer()) {
-//             BlockPos* bp = (BlockPos*)((char*)this + 216);
+         if (player->canOpenContainerScreen()) {
+             BlockPos blockPos = this->mBlockPos;
 
-//             ContainerChangeEvent ev{};
-//             ev.mBlockInstance = Level::getBlockInstance(bp, pl->getDimensionId());
-//             ev.mContainer = ev.mBlockInstance.getContainer();
-//             ev.mPlayer = pl;
-//             ev.mSlot = slotNumber + this->_getContainerOffset();
-//             ev.mPreviousItemStack = oldItem;
-//             ev.mNewItemStack = newItem;
-//             ev.mActor = this->getEntity();
-//             ev.call();
-//         }
-//     }
-//     IF_LISTENED_END(ContainerChangeEvent)
-//     return original(this, slotNumber, oldItem, newItem);
-// }
+             ContainerChangeEvent ev{};
+             ev.mBlockInstance = Level::getBlockInstance(blockPos, player->getDimensionId());
+             ev.mContainer = ev.mBlockInstance.getContainer();
+             ev.mPlayer = player;
+             ev.mSlot = slotNumber + this->_getContainerOffset();
+             ev.mPreviousItemStack = oldItem;
+             ev.mNewItemStack = newItem;
+             ev.mActor = Global<Level>->getEntity(this->mEntityUniqueId);
+             ev.call();
+         }
+     }
+     IF_LISTENED_END(ContainerChangeEvent)
+     return original(this, slotNumber, oldItem, newItem);
+ }
 
 
 /////////////////// ProjectileHitBlock ///////////////////
