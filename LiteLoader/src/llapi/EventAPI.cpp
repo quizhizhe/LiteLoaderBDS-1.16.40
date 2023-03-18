@@ -1267,26 +1267,6 @@ TInstanceHook(bool, "?_canSpreadTo@LiquidBlockDynamic@@AEBA_NAEAVBlockSource@@AE
     return result;
 }
 
-// THook(void, "?_trySpreadTo@LiquidBlockDynamic@@AEBAXAEAVBlockSource@@AEBVBlockPos@@H1E@Z",
-//       LiquidBlockDynamic* _this, BlockSource* bs, BlockPos* to, unsigned int a4, BlockPos* from, char id)
-//{
-//     IF_LISTENED(LiquidSpreadEvent)
-//     {
-//         LiquidSpreadEvent ev{};
-//         ev.mBlockInstance = BlockInstance::createBlockInstance(
-//             const_cast<Block*>(&_this->getRenderBlock()), *from, bs->getDimensionId());
-//         ev.mTarget = *to;
-//         ev.mDimensionId = bs->getDimensionId();
-//         logger.warn("LiquidSpreadEvent - {} - {} -> {}",
-//                     ev.mBlockInstance.getBlock()->getTypeName(), from->toString(), to->toString());
-//         if (!ev.call())
-//             return;
-//     }
-//     IF_LISTENED_END(LiquidSpreadEvent)
-//     return;
-//     original(_this, bs, to, a4, from, id);
-// }
-
 
 /////////////////// PlayerDeath ///////////////////
 TInstanceHook(void*, "?die@ServerPlayer@@UEAAXAEBVActorDamageSource@@@Z", ServerPlayer, ActorDamageSource* src) {
@@ -1308,26 +1288,6 @@ TInstanceHook(void*, "?die@ServerPlayer@@UEAAXAEBVActorDamageSource@@@Z", Server
 #include <llapi/mc/SurvivalMode.hpp>
 /////////////////// PlayerDestroy ///////////////////
 
-// TInstanceHook(bool, "?destroyBlock@SurvivalMode@@UEAA_NAEBVBlockPos@@E@Z",
-//               SurvivalMode, BlockPos a3, unsigned __int8 a4)
-//{
-//     IF_LISTENED(PlayerDestroyBlockEvent)
-//     {
-//         if (getPlayer()->isPlayer())
-//         {
-//             PlayerDestroyBlockEvent ev{};
-//             ev.mPlayer = getPlayer();
-//             auto bl = Level::getBlockInstance(a3, getPlayer()->getDimensionId());
-//             ev.mBlockInstance = bl;
-//             if (!ev.call())
-//             {
-//                 return false;
-//             }
-//         }
-//     }
-//     IF_LISTENED_END(PlayerDestroyBlockEvent)
-//     return original(this, a3, a4);
-// }
 
 TInstanceHook(bool, "?destroyBlock@GameMode@@UEAA_NAEBVBlockPos@@E@Z",
               GameMode, BlockPos blockPos, char face) {
