@@ -9,10 +9,10 @@
 class StackResultStorageEntity;
 
 enum class HitResultType:int {
-    TILE=0,
-    ENTITY,
-    ENTITY_OUT_OF_RANGE,
-    NO_HIT,
+    TILE = 0,
+    ENTITY = 0x1,
+    ENTITY_OUT_OF_RANGE = 0x2,
+    NO_HIT = 0x3,
 };
 
 #undef BEFORE_EXTRA
@@ -22,7 +22,6 @@ class HitResult {
 #define AFTER_EXTRA
 // Add Member There
 
-    //char filler[112];
     Vec3 startPos;       //0
     Vec3 rayDir;         //12
     HitResultType type;  //24
@@ -30,20 +29,17 @@ class HitResult {
     BlockPos endBpos;    //32
     Vec3 endPos;         //44
     uintptr_t actorRef; //56
-    uintptr_t unk64;
-    int unk72;
-    int unk76;           //76
-    bool hitLiquid;      //80
-    FaceID liquidFace;   //81
-    BlockPos liquidBpos; //84
-    Vec3 liquidPos;      //96
-    bool indirectHit;    //108
-    //112
+    bool mIsHitLiquid;  //64
+    FaceID liquidFace;   //65
+    BlockPos liquidBpos; //68
+    Vec3 liquidPos;      //80
+    bool indirectHit;    //92
 public:
-    inline bool __fastcall isHit() {
-        return (unsigned int)(*((int*)this + 6) - 2) > 1;
+    inline bool isHit() {
+        return (unsigned int)(this->type) > 3;
     }
 
+    LIAPI Actor* getEntity();
     LIAPI FaceID getFacing();
     LIAPI Vec3 getPos();
     LIAPI bool isHitLiquid();
