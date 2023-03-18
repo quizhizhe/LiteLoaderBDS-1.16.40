@@ -6,10 +6,24 @@
 #define BEFORE_EXTRA
 
 #undef BEFORE_EXTRA
+class Actor;
+class BlockSource;
 
 class Explosion {
 
 #define AFTER_EXTRA
+public:
+    Vec3 mPos;
+    float mRadius;
+    std::unordered_set<BlockPos> mToBlow;
+    bool mFire;
+    bool mBreaking;
+    bool mAllowUnderwater;
+    Actor *mSource;
+    BlockSource *mRegion;
+    float mMaxResistance;
+    std::optional<bool> mInWaterOverride;
+    char mRandom[64];
 
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_EXPLOSION
