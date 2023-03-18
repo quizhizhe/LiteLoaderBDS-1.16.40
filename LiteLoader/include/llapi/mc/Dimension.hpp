@@ -14,6 +14,11 @@ public:
 
     DimensionHeightRange(short a):max(a){};
 };
+
+struct ActorBlockSyncMessage{
+    ActorUniqueID mEntityUniqueID;
+    char mMessage[4];
+};
 #undef BEFORE_EXTRA
 
 class Dimension {
