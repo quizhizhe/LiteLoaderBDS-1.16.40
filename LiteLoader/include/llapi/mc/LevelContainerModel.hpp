@@ -11,7 +11,13 @@
 class LevelContainerModel : public ContainerModel {
 
 #define AFTER_EXTRA
-
+    char data[200];
+public:
+    Player *mPlayer;
+    BlockPos mBlockPos;
+    BlockActorType mBlockEntityType;
+    ActorUniqueID mEntityUniqueId;
+    std::vector<Container *> initContainerList;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_LEVELCONTAINERMODEL
 public:
