@@ -1537,20 +1537,20 @@ TInstanceHook(void, "?explode@Explosion@@QEAAXXZ",Explosion) {
 
 
 ////////////// ProjectileHitEntity //////////////
-// TClasslessInstanceHook(void, "?onHit@ProjectileComponent@@QEAAXAEAVActor@@AEBVHitResult@@@Z",
-//                        Actor* item, HitResult* res) {
-//     IF_LISTENED(ProjectileHitEntityEvent) {
-//         Actor* to = res->getEntity();
-//         if (to) {
-//             ProjectileHitEntityEvent ev{};
-//             ev.mTarget = to;
-//             ev.mSource = item;
-//             ev.call();
-//         }
-//     }
-//     IF_LISTENED_END(ProjectileHitEntityEvent)
-//     return original(this, item, res);
-// }
+ TClasslessInstanceHook(void, "?onHit@ProjectileComponent@@QEAAXAEAVActor@@AEBVHitResult@@@Z",
+                        Actor* item, HitResult* res) {
+     IF_LISTENED(ProjectileHitEntityEvent) {
+         Actor* to = res->getEntity();
+         if (to) {
+             ProjectileHitEntityEvent ev{};
+             ev.mTarget = to;
+             ev.mSource = item;
+             ev.call();
+         }
+     }
+     IF_LISTENED_END(ProjectileHitEntityEvent)
+     return original(this, item, res);
+ }
 
 
 ////////////// WitherBossDestroy //////////////
