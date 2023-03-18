@@ -1027,23 +1027,39 @@ TClasslessInstanceHook(bool, "?mayPlace@FireBlock@@UEBA_NAEAVBlockSource@@AEBVBl
 
 
 /////////////////// ProjectileHitBlock ///////////////////
-// 没有这个符号
-// TInstanceHook(void, "?onProjectileHit@Block@@QEBAXAEAVBlockSource@@AEBVBlockPos@@AEBVActor@@@Z",
-//               Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
-//     // Exclude default position BlockPos::Zero
-//     if ((bp->x | bp->y | bp->z) == 0) // actor->getPos().distanceTo(bp->center())>5)
-//         return original(this, bs, bp, actor);
-//     IF_LISTENED(ProjectileHitBlockEvent) {
-//         if (this->getTypeName() != "minecraft:air") {
-//             ProjectileHitBlockEvent ev{};
-//             ev.mBlockInstance = Level::getBlockInstance(bp, bs);
-//             ev.mSource = actor;
-//             ev.call();
-//         }
-//     }
-//     IF_LISTENED_END(ProjectileHitBlockEvent)
-//     return original(this, bs, bp, actor);
-// }
+// Block::onProjectileHit实际是调用以下其中之一
+TInstanceHook(void, "?onProjectileHit@TargetBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@AEBVActor@@@Z",
+           Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
+ // Exclude default position BlockPos::Zero
+     if ((bp->x | bp->y | bp->z) == 0) // actor->getPos().distanceTo(bp->center())>5)
+         return original(this, bs, bp, actor);
+     IF_LISTENED(ProjectileHitBlockEvent) {
+         if (this->getTypeName() != "minecraft:air") {
+             ProjectileHitBlockEvent ev{};
+             ev.mBlockInstance = Level::getBlockInstance(bp, bs);
+             ev.mSource = actor;
+             ev.call();
+         }
+     }
+     IF_LISTENED_END(ProjectileHitBlockEvent)
+     return original(this, bs, bp, actor);
+}
+
+TInstanceHook(void, "??onProjectileHit@BellBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@AEBVActor@@@Z",
+              Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
+    if ((bp->x | bp->y | bp->z) == 0)
+        return original(this, bs, bp, actor);
+    IF_LISTENED(ProjectileHitBlockEvent) {
+        if (this->getTypeName() != "minecraft:air") {
+            ProjectileHitBlockEvent ev{};
+            ev.mBlockInstance = Level::getBlockInstance(bp, bs);
+            ev.mSource = actor;
+            ev.call();
+        }
+    }
+    IF_LISTENED_END(ProjectileHitBlockEvent)
+    return original(this, bs, bp, actor);
+}
 
 
 /////////////////// RedStoneUpdate ///////////////////
