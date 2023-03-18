@@ -79,6 +79,8 @@ namespace ll{
         constexpr uint64_t EVENTAPI_PlayerInteractEntity_2 = 0x70;
         // Hopper::Hopper
         constexpr uint64_t EVENTAPI_HopperSearchItem = 0x5;
+        // FillingContainer::FillingContainer a2
+        constexpr uint64_t EVENTAPI_PlayerDropItem = 0xF8;
 
         // ->src/llapi/mc
 

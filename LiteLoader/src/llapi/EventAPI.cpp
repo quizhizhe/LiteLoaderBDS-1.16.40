@@ -1825,28 +1825,29 @@ TInstanceHook(void*, "?handle@ComplexInventoryTransaction@@UEBA?AW4InventoryTran
     return original(this, player, isSenderAuthority);
 }
 
-// 没有这个符号
-// TInstanceHook(void, "?dropSlot@Inventory@@QEAAXH_N00@Z",
-//               Container, int a2, char a3, char a4, bool a5) {
-//     auto pl = dAccess<Player*, 248>(this);
-//     if (pl->isPlayer()) {
-//         IF_LISTENED(PlayerDropItemEvent) {
-//             PlayerDropItemEvent ev{};
-//             if (a2 >= 0) {
-//                 auto& item = this->getItem(a2);
-//                 if (!item.isNull()) {
-//                     ev.mItemStack = const_cast<ItemStack*>(&item);
-//                     ev.mPlayer = pl;
-//                 }
-//                 if (!ev.call()) {
-//                     return;
-//                 }
-//             }
-//         }
-//         IF_LISTENED_END(PlayerDropItemEvent)
-//     }
-//     return original(this, a2, a3, a4, a5);
-// }
+// 更换符号，逻辑大概一致，未清楚玩家丢物品是否调用
+#include <llapi/mc/FillingContainer.hpp>
+ TInstanceHook(void, "?dropSlot@FillingContainer@@QEAAXH_N00@Z",
+               FillingContainer, signed int slot, char unk) {
+     auto player = dAccess<Player*, ll::offset::EVENTAPI_PlayerDropItem>(this);
+     if (player->isPlayer()) {
+         IF_LISTENED(PlayerDropItemEvent) {
+             PlayerDropItemEvent ev{};
+             if (slot >= 0) {
+                 auto& item = this->getItem(slot);
+                 if (!item.isNull()) {
+                     ev.mItemStack = const_cast<ItemStack*>(&item);
+                     ev.mPlayer = player;
+                 }
+                 if (!ev.call()) {
+                     return;
+                 }
+             }
+         }
+         IF_LISTENED_END(PlayerDropItemEvent)
+     }
+     return original(this, slot, unk);
+ }
 
 ////////////// PlayerBedEnter //////////////
 TInstanceHook(int, "?startSleepInBed@Player@@UEAA?AW4BedSleepingResult@@AEBVBlockPos@@@Z",
