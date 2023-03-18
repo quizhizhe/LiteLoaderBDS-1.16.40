@@ -1133,7 +1133,7 @@ TClasslessInstanceHook(void, "?onRedstoneUpdate@ComparatorBlock@@UEBAXAEAVBlockS
 // 没有这个符号
  TClasslessInstanceHook(bool, "?_pullInItems@Hopper@@IEAA_NAEAVBlockSource@@AEAVContainer@@AEBVVec3@@@Z",
                         BlockSource* blockSource, void* container, Vec3* vec3) {
-     bool isMinecart = dAccess<bool>(this, 5); // IDA Hopper::Hopper 正确
+     bool isMinecart = dAccess<bool>(this, ll::offset::EVENTAPI_HopperSearchItem); // IDA Hopper::Hopper 正确
 
      IF_LISTENED(HopperSearchItemEvent) {
          HopperSearchItemEvent ev{};
