@@ -10,7 +10,42 @@
 class Potion {
 
 #define AFTER_EXTRA
-
+public:
+     enum PotionType{
+         Undefined_9 = 0xFFFFFFFF,
+         Regular = 0x0,
+         Splash_0 = 0x1,
+         Lingering = 0x2,
+     };
+    enum PotionVariant{
+        MOVESLOW = 0x0,
+        MOVESPEED = 0x1,
+        DIGSLOW = 0x2,
+        DIGSPEED = 0x3,
+        DAMAGEBOOST = 0x4,
+        HEAL = 0x5,
+        HARM = 0x6,
+        JUMP_0 = 0x7,
+        CONFUSION = 0x8,
+        REGEN = 0x9,
+        RESISTANCE = 0xA,
+        FIRERESISTANCE = 0xB,
+        WATERBREATH = 0xC,
+        INVISIBILITY = 0xD,
+        BLINDNESS = 0xE,
+        NIGHTVISION = 0xF,
+        HUNGER = 0x10,
+        WEAKNESS = 0x11,
+        POISON = 0x12,
+        WITHER = 0x13,
+        HEALTHBOOST = 0x14,
+        ABSORPTION = 0x15,
+        SATURATION = 0x16,
+        LEVITATION = 0x17,
+        TURTLEMASTER = 0x18,
+        SLOWFALL = 0x19,
+        BASE = 0x1A,
+    };
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_POTION
 public:
