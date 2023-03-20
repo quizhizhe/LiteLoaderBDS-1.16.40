@@ -11,7 +11,12 @@
 class SetDisplayObjectivePacket : public Packet {
 
 #define AFTER_EXTRA
-
+public:
+    std::string mDisplaySlotName;
+    std::string mObjectiveName;
+    std::string mObjectiveDisplayName;
+    std::string mCriteriaName;
+    ObjectiveSortOrder mSortOrder;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SETDISPLAYOBJECTIVEPACKET
 public:
