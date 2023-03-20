@@ -1,10 +1,5 @@
 #include <llapi/mc/HitResult.hpp>
 #include <llapi/HookAPI.h>
-#include <llapi/mc/Actor.hpp>
-
-Actor* HitResult::getEntity() {
-    return (Actor*)this->actorRef;
-}
 
 FaceID HitResult::getFacing() {
     return dAccess<FaceID>(this, ll::offset::HITRESULTAPI_getFacing);

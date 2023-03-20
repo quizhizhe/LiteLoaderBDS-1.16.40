@@ -6,6 +6,7 @@
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
 
+class Actor;
 class StackResultStorageEntity;
 
 enum class HitResultType:int {
@@ -37,9 +38,10 @@ class HitResult {
 public:
     inline bool isHit() {
         return (unsigned int)(this->type) > 3;
-    }
-
-    LIAPI Actor* getEntity();
+    };
+    inline Actor* getEntity() {
+        return (Actor*)(this->actorRef);
+    };
     LIAPI FaceID getFacing();
     LIAPI Vec3 getPos();
     LIAPI bool isHitLiquid();
