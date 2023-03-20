@@ -928,7 +928,7 @@ TClasslessInstanceHook(unsigned short,
 /////////////////// BlockExploded ///////////////////
 // block::onExploded实际是调用以下其中之一
 // StairBlock
-TInstanceHook(void, "onExploded@StairBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
+TInstanceHook(void, "?onExploded@StairBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@PEAVActor@@@Z",
            Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
      IF_LISTENED(BlockExplodedEvent) {
          if (actor) {
@@ -1045,7 +1045,7 @@ TInstanceHook(void, "?onProjectileHit@TargetBlock@@UEBAXAEAVBlockSource@@AEBVBlo
      return original(this, bs, bp, actor);
 }
 
-TInstanceHook(void, "??onProjectileHit@BellBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@AEBVActor@@@Z",
+TInstanceHook(void, "?onProjectileHit@BellBlock@@UEBAXAEAVBlockSource@@AEBVBlockPos@@AEBVActor@@@Z",
               Block, BlockSource* bs, BlockPos* bp, Actor* actor) {
     if ((bp->x | bp->y | bp->z) == 0)
         return original(this, bs, bp, actor);
