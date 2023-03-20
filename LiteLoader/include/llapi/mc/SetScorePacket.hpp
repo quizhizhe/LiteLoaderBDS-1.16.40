@@ -6,12 +6,18 @@
 
 #define BEFORE_EXTRA
 
+enum ScorePacketType {
+    Change = 0x0,
+    Remove_2 = 0x1,
+};
 #undef BEFORE_EXTRA
 
 class SetScorePacket : public Packet {
 
 #define AFTER_EXTRA
-
+public:
+    ScorePacketType mType;
+    std::vector<ScorePacketInfo> mScoreInfo;
 #undef AFTER_EXTRA
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SETSCOREPACKET
 public:

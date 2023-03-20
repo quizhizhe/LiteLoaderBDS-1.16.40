@@ -142,10 +142,10 @@ namespace ll{
         constexpr uint64_t PLAYERAPI_sendTransferPacket_port = 0X24;
         // Null
         constexpr uint64_t PLAYERAPI_sendTransferPacket_address = 0X28;
-        // Null
-        constexpr uint64_t PLAYERAPI_sendSetScorePacket_type = 0X30;
-        // Null
-        constexpr uint64_t PLAYERAPI_sendSetScorePacket_data = 0X38;
+        // SetScorePacket::mType
+        constexpr uint64_t PLAYERAPI_sendSetScorePacket_type = 0X28;
+        // SetScorePacket::mScoreInfo
+        constexpr uint64_t PLAYERAPI_sendSetScorePacket_data = 0X30;
         // Null
         constexpr uint64_t PLAYERAPI_sendCommandRequestPacket_cmd = 0X30;
         // Null
