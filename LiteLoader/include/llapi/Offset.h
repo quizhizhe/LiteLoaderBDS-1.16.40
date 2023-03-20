@@ -138,9 +138,9 @@ namespace ll{
         constexpr uint64_t PLAYERAPI_getClientSubId = 0xDC0;
         // Null
         constexpr uint64_t PLAYERAPI_crashClient = 0X38;
-        // Null
-        constexpr uint64_t PLAYERAPI_sendTransferPacket_port = 0X24;
-        // Null
+        // TransferPacket::mServerPort
+        constexpr uint64_t PLAYERAPI_sendTransferPacket_port = 0X48;
+        // TransferPacket::mServerAddress
         constexpr uint64_t PLAYERAPI_sendTransferPacket_address = 0X28;
         // SetScorePacket::mType
         constexpr uint64_t PLAYERAPI_sendSetScorePacket_type = 0X28;
