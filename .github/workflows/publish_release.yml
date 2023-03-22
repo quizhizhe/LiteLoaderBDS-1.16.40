@@ -236,9 +236,12 @@ jobs:
         if: github.event.inputs.status == 'stable'
         run: |
           cd Scripts
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          chmod +x ./UploadTooth.sh
           ./UploadTooth.sh ${{ github.event.inputs.tag }}
         env:
-          REPO_KEY: ${{secrets.ACTIONS_TOKEN}}
+          REPO_KEY: ${{secrets.PUSH_TOKEN}}
           USERNAME: github-actions[bot]
         shell: bash
 

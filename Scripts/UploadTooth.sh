@@ -4,9 +4,10 @@ TOOTH_REMOTE_PATH=https://github.com/Tooth-Hub/LiteLoaderBDS-Legacy.git
 
 cd ..
 echo [INFO] Fetching LiteLoaderBDS-Legacy Tooth to GitHub ...
-
+git config --global core.autocrlf false
 # 获取标签
-now_tag=$(git describe --tags --always | cut -d "-" -f 1)
+#now_tag=$(git describe --tags --always | cut -d "-" -f 1)
+now_tag=$1
 
 echo NOW_TAG $now_tag
 
@@ -29,8 +30,7 @@ echo
 cp -r build/LiteLoaderBDS/* Tooth
 
 cd Tooth
-version=$1
-vers="   \"version\": \"${version:1}\","
+vers="   \"version\": \"${now_tag:1}\","
 
 #modify tooth.json
 sed -i "4c\ ${vers}" ./tooth.json
@@ -48,8 +48,8 @@ if [ "$now_status" ]; then
     echo [INFO] Pushing to origin...
     echo
 
-    git push https://%USERNAME%:%REPO_KEY%@github.com/Tooth-Hub/LiteLoaderBDS-Legacy.git Protocol-408
-    git push --tags https://%USERNAME%:%REPO_KEY%@github.com/Tooth-Hub/LiteLoaderBDS-Legacy.git Protocol-408
+    git push https://${USERNAME}:${REPO_KEY}@github.com/Tooth-Hub/LiteLoaderBDS-Legacy.git Protocol-408
+    git push --tags https://${USERNAME}:${REPO_KEY}@github.com/Tooth-Hub/LiteLoaderBDS-Legacy.git Protocol-408
 
     cd ..
     echo
