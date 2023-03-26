@@ -118,7 +118,7 @@ public:
     static void setup(CommandRegistry* registry) {
         registry->registerCommand(
             "tpdim", "Teleport to Dimension", CommandPermissionLevel::GameMasters,
-            {(CommandFlagValue)0}, {(CommandFlagValue)0x80});
+            {(CommandFlagValue)0}, {(CommandFlagValue)0x40});
         registry->addEnum<DimensionType>("DimensionType",
                                          {
                                              {"overworld", DimensionType::OverWorld},
@@ -312,7 +312,7 @@ public:
     static void setup(CommandRegistry* registry) {
         // Register Cmd
         registry->registerCommand("ll", "LiteLoaderBDS plugin operations",
-                                  CommandPermissionLevel::Console, {(CommandFlagValue)0}, {(CommandFlagValue)0x80});
+                                  CommandPermissionLevel::Console, {(CommandFlagValue)0}, {(CommandFlagValue)0x40});
 
         // Register softenum
         vector<string> pluginList;
@@ -372,7 +372,7 @@ public:
 
     static void setup(CommandRegistry* registry) {
         registry->registerCommand("version", "Get the version of this server",
-                                  CommandPermissionLevel::GameMasters, {(CommandFlagValue)0}, {(CommandFlagValue)0x80});
+                                  CommandPermissionLevel::GameMasters, {(CommandFlagValue)0}, {(CommandFlagValue)0x40});
         registry->registerOverload<VersionCommand>("version");
     }
 };

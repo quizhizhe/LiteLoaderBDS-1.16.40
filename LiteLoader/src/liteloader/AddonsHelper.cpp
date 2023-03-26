@@ -514,7 +514,7 @@ public:
 
     static void setup(CommandRegistry* registry) {
         registry->registerCommand("addons", "LiteLoaderBDS Addons Helper (Restart required after addon changes)",
-                                  CommandPermissionLevel::GameMasters, {(CommandFlagValue)0}, {(CommandFlagValue)0x80});
+                                  CommandPermissionLevel::GameMasters, {(CommandFlagValue)0}, {(CommandFlagValue)0x40});
 
         vector<string> addonsList;
         for (auto& addon : addons)

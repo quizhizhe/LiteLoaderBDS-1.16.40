@@ -19,7 +19,7 @@ using namespace std;
 
 bool RegisterCmd(const string& cmd, const string& describe, int cmdLevel) {
     ::Global<CommandRegistry>->registerCommand(cmd, describe.c_str(), (CommandPermissionLevel)cmdLevel, {(CommandFlagValue)0},
-                                               {(CommandFlagValue)0x80});
+                                               {(CommandFlagValue)0x40});
     return true;
 }
 

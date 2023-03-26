@@ -390,7 +390,7 @@
      /*0*/ virtual ~DynamicCommand();
      /*1*/ virtual void execute(class CommandOrigin const& origin, class CommandOutput& output) const;
 
-     LIAPI static std::unique_ptr<class DynamicCommandInstance> createCommand(std::string const& name, std::string const& description, CommandPermissionLevel permission = CommandPermissionLevel::GameMasters, CommandFlag flag1 = {(CommandFlagValue)0x80}, CommandFlag flag2 = {(CommandFlagValue)0}, HMODULE handle = GetCurrentModule());
+     LIAPI static std::unique_ptr<class DynamicCommandInstance> createCommand(std::string const& name, std::string const& description, CommandPermissionLevel permission = CommandPermissionLevel::GameMasters, CommandFlag flag1 = {(CommandFlagValue)4}, CommandFlag flag2 = {(CommandFlagValue)0}, HMODULE handle = GetCurrentModule());
      LIAPI static std::unique_ptr<class DynamicCommandInstance> createCommand(
          std::string const& name,
          std::string const& description,
@@ -399,7 +399,7 @@
          std::vector<std::vector<std::string>>&& overloads,
          CallBackFn callback,
          CommandPermissionLevel permission = CommandPermissionLevel::GameMasters,
-         CommandFlag flag1 = {(CommandFlagValue)0x80},
+         CommandFlag flag1 = {(CommandFlagValue)0x40},
          CommandFlag flag2 = {(CommandFlagValue)0},
          HMODULE handle = GetCurrentModule());
 
@@ -412,7 +412,7 @@
          std::vector<std::vector<std::string>>&& overloads,
          CallBackFn callback,
          CommandPermissionLevel permission = CommandPermissionLevel::GameMasters,
-         CommandFlag flag1 = {(CommandFlagValue)0x80},
+         CommandFlag flag1 = {(CommandFlagValue)0x40},
          CommandFlag flag2 = {(CommandFlagValue)0},
          HMODULE handle = GetCurrentModule()) {
          return setup(createCommand(name, description, std::move(enums), std::move(params), std::move(overloads), std::move(callback), permission, flag1, flag2, handle));
@@ -483,7 +483,7 @@
 
      friend class DynamicCommand;
 
-     LIAPI DynamicCommandInstance(std::string const& name, std::string const& description, CommandPermissionLevel permission = CommandPermissionLevel::GameMasters, CommandFlag flag = {(CommandFlagValue)0x80}, HMODULE handle = GetCurrentModule());
+     LIAPI DynamicCommandInstance(std::string const& name, std::string const& description, CommandPermissionLevel permission = CommandPermissionLevel::GameMasters, CommandFlag flag = {(CommandFlagValue)0x40}, HMODULE handle = GetCurrentModule());
 
      LIAPI bool setBuilder(DynamicCommand::BuilderFn builder);
      LIAPI DynamicCommand::BuilderFn initCommandBuilder();

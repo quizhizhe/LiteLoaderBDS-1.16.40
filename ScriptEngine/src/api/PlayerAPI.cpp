@@ -87,7 +87,6 @@ ClassDefine<PlayerClass> PlayerClassBuilder =
         .instanceProperty("isAdventure", &PlayerClass::isAdventure)
         .instanceProperty("isGliding", &PlayerClass::isGliding)
         .instanceProperty("isSurvival", &PlayerClass::isSurvival)
-//        .instanceProperty("isSpectator", &PlayerClass::isSpectator)
         .instanceProperty("isRiding", &PlayerClass::isRiding)
         .instanceProperty("isDancing", &PlayerClass::isDancing)
         .instanceProperty("isCreative", &PlayerClass::isCreative)
