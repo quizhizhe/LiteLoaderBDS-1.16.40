@@ -2,6 +2,7 @@
 
 ![BDS 1.16.40.02](https://img.shields.io/badge/BDS-1.16.40.02-blue?style=for-the-badge)&emsp;![Protocol 408](https://img.shields.io/badge/Protocol-408-orange?style=for-the-badge)
 
+v408.3.x 版本变更内容
 ## Added
 
 * 添加`ActorBlockSyncMessage`结构
@@ -29,6 +30,10 @@
 * 修复`TransferPacket`类
 * 修复`SetDisplayObjectivePacket`类
 * 修正`HitResult::getEntity`函数
+
+v408.3.1
+
+* 修复指令在无作弊情况下不能使用
 
 ## Other
 
