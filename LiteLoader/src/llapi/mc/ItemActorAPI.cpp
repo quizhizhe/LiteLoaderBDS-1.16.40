@@ -3,7 +3,7 @@
 #include <llapi/HookAPI.h>
 
 ItemStack* ItemActor::getItemStack() {
-    return dAccess<ItemStack*>(this, ll::offset::ITEMACTORAPI_getItemStack); // IDA Player::take Line127
+    return &dAccess<ItemStack>(this, ll::offset::ITEMACTORAPI_getItemStack); // IDA Player::take Line127
 }
 
 int ItemActor::getDespawnTime() {
